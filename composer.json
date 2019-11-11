@@ -1,0 +1,14 @@
+{
+  "name": "motveu/php-api-sdk",
+  "description": "PHP SDK for integration with JACON SMS and moTV.eu middleware",
+  "keywords": ["php", "motveu", "jacon", "sms", "csms", "middleware", "php api"],
+  "homepage": "https://motv.eu",
+  "autoload": {
+    "classmap": ["src/"]
+  },
+  "require": {
+      "php": ">=7.2",
+      "guzzlehttp/guzzle": "^6.4",
+    "monolog/monolog": "^2.0"
+  }
+}
