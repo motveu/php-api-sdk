@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 8 Nov 2019 19:06:34
+ * Generated on Fri, 22 Nov 2019 9:15:04
  * Part moTV.eu SDK integration kit
  */
 
@@ -39,7 +39,7 @@ class AdvertHomepage
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("AdvertHomepage", "selection", get_defined_vars());
 	}
@@ -48,7 +48,7 @@ class AdvertHomepage
 	/**
 	 * @throws \Motv\Mw\AdvertHomepageUnknownException
 	 */
-	public function update(int $advertHomepageId, array $data): int
+	public function update(?int $advertHomepageId, array $data): int
 	{
 		return $this->connector->call("AdvertHomepage", "update", get_defined_vars());
 	}
@@ -87,7 +87,7 @@ class App
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("App", "selection", get_defined_vars());
 	}
@@ -96,7 +96,7 @@ class App
 	/**
 	 * @throws \Motv\Mw\AppUnknownException
 	 */
-	public function update(int $appsId, array $data): int
+	public function update(?int $appsId, array $data): int
 	{
 		return $this->connector->call("App", "update", get_defined_vars());
 	}
@@ -259,9 +259,9 @@ class Channel
 		int $profilesId,
 		string $devicesType,
 		?string $type = null,
-		?bool $whitelisting = true,
-		?bool $mcastOnly = false,
-		?bool $bcastOnly = false
+		bool $whitelisting = true,
+		bool $mcastOnly = false,
+		bool $bcastOnly = false
 	): array {
 		return $this->connector->call("Channel", "getLockedChannels", get_defined_vars());
 	}
@@ -298,13 +298,13 @@ class Channel
 		int $channelsId,
 		string $type,
 		?int $timestamp = null,
-		?bool $mcast = false,
-		?bool $bcast = false,
-		?bool $allowedMulticast = false,
-		?bool $allowedUnicast = false,
-		?bool $allowedBroadcast = false,
-		?array $preferredEdgesIds = [],
-		?array $nonpreferredEdgesIds = []
+		bool $mcast = false,
+		bool $bcast = false,
+		bool $allowedMulticast = false,
+		bool $allowedUnicast = false,
+		bool $allowedBroadcast = false,
+		array $preferredEdgesIds = [],
+		array $nonpreferredEdgesIds = []
 	): array {
 		return $this->connector->call("Channel", "getStreamUrl", get_defined_vars());
 	}
@@ -318,12 +318,12 @@ class Channel
 	public function getSubscribedChannels(
 		int $profilesId,
 		?string $type = null,
-		?bool $whitelisting = true,
-		?bool $mcastOnly = false,
-		?bool $bcastOnly = false,
+		bool $whitelisting = true,
+		bool $mcastOnly = false,
+		bool $bcastOnly = false,
 		?string $devicesType = null,
-		?bool $isForRecommendations = false,
-		?bool $useCache = true
+		bool $isForRecommendations = false,
+		bool $useCache = true
 	): array {
 		return $this->connector->call("Channel", "getSubscribedChannels", get_defined_vars());
 	}
@@ -356,8 +356,8 @@ class Channel
 
 	public function recordedEventSelection(
 		array $columns,
-		?array $where = [],
-		?array $orderBy = [],
+		array $where = [],
+		array $orderBy = [],
 		?int $page = null,
 		?int $pageLimit = null,
 		?int $channelsId = null
@@ -368,8 +368,8 @@ class Channel
 
 	public function selection(
 		array $columns,
-		?array $where = [],
-		?array $orderBy = [],
+		array $where = [],
+		array $orderBy = [],
 		?int $page = null,
 		?int $pageLimit = null,
 		?int $vendorsId = null,
@@ -384,7 +384,7 @@ class Channel
 	 * @throws \Motv\Mw\ConfigUnknownValueException
 	 * @throws \Motv\Mw\EpgUnknownEpgException
 	 */
-	public function update(int $channelsId, array $data, ?bool $generateNoEpg = false): int
+	public function update(?int $channelsId, array $data, bool $generateNoEpg = false): int
 	{
 		return $this->connector->call("Channel", "update", get_defined_vars());
 	}
@@ -397,7 +397,7 @@ class Channel
 	 * @throws \Motv\Mw\ChannelSubtitleInvalidRoleException
 	 * @throws \Motv\Mw\ChannelUnknownException
 	 */
-	public function updateMulticast(int $channelsId, int $channelsMulticastId, array $data): int
+	public function updateMulticast(int $channelsId, ?int $channelsMulticastId, array $data): int
 	{
 		return $this->connector->call("Channel", "updateMulticast", get_defined_vars());
 	}
@@ -412,7 +412,7 @@ class Channel
 	 * @throws \Motv\Mw\ChannelUnknownException
 	 * @throws \Motv\Mw\TemplateUnknownException
 	 */
-	public function updateUnicast(int $channelsId, int $channelsUnicastId, array $data): int
+	public function updateUnicast(int $channelsId, ?int $channelsUnicastId, array $data): int
 	{
 		return $this->connector->call("Channel", "updateUnicast", get_defined_vars());
 	}
@@ -445,7 +445,7 @@ class ChannelCategory
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("ChannelCategory", "selection", get_defined_vars());
 	}
@@ -454,7 +454,7 @@ class ChannelCategory
 	/**
 	 * @throws \Motv\Mw\ChannelCategoryUnknownException
 	 */
-	public function update(int $channelsCategoriesId, array $data): int
+	public function update(?int $channelsCategoriesId, array $data): int
 	{
 		return $this->connector->call("ChannelCategory", "update", get_defined_vars());
 	}
@@ -481,7 +481,7 @@ class Config
 	}
 
 
-	public function getData(?bool $includePredefined = true): array
+	public function getData(bool $includePredefined = true): array
 	{
 		return $this->connector->call("Config", "getData", get_defined_vars());
 	}
@@ -694,7 +694,7 @@ class Device
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Device", "selection", get_defined_vars());
 	}
@@ -809,7 +809,7 @@ class Edge
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Edge", "selection", get_defined_vars());
 	}
@@ -818,7 +818,7 @@ class Edge
 	/**
 	 * @throws \Motv\Mw\EdgeUnknownException
 	 */
-	public function update(int $edgesId, array $data): int
+	public function update(?int $edgesId, array $data): int
 	{
 		return $this->connector->call("Edge", "update", get_defined_vars());
 	}
@@ -836,7 +836,7 @@ class Epg
 	}
 
 
-	public function eventsSelection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function eventsSelection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Epg", "eventsSelection", get_defined_vars());
 	}
@@ -870,7 +870,7 @@ class Epg
 	 * @throws \Motv\Mw\InvalidParameterValueException
 	 */
 	public function getUpdatedEvents(
-		int $profilesId,
+		?int $profilesId,
 		int $timestamp,
 		?array $channels = null,
 		$from = null,
@@ -967,7 +967,7 @@ class EpgPlaylist
 	/**
 	 * @throws \Motv\Mw\EpgUnknownPlaylistException
 	 */
-	public function getData(int $epgPlaylistsId, ?bool $includeEventVodInfo = false): array
+	public function getData(int $epgPlaylistsId, bool $includeEventVodInfo = false): array
 	{
 		return $this->connector->call("EpgPlaylist", "getData", get_defined_vars());
 	}
@@ -988,7 +988,7 @@ class EpgPlaylist
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("EpgPlaylist", "selection", get_defined_vars());
 	}
@@ -997,7 +997,7 @@ class EpgPlaylist
 	/**
 	 * @throws \Motv\Mw\EpgUnknownPlaylistException
 	 */
-	public function update(int $epgPlaylistsId, array $data): int
+	public function update(?int $epgPlaylistsId, array $data): int
 	{
 		return $this->connector->call("EpgPlaylist", "update", get_defined_vars());
 	}
@@ -1040,7 +1040,7 @@ class EpgRating
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("EpgRating", "selection", get_defined_vars());
 	}
@@ -1049,7 +1049,7 @@ class EpgRating
 	/**
 	 * @throws \Motv\Mw\EpgUnknownRatingException
 	 */
-	public function update(int $epgRatingId, array $data): int
+	public function update(?int $epgRatingId, array $data): int
 	{
 		return $this->connector->call("EpgRating", "update", get_defined_vars());
 	}
@@ -1082,7 +1082,7 @@ class IpRange
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("IpRange", "selection", get_defined_vars());
 	}
@@ -1091,7 +1091,7 @@ class IpRange
 	/**
 	 * @throws \Motv\Mw\IpRangeUnknownException
 	 */
-	public function update(int $ipRangesId, array $data): int
+	public function update(?int $ipRangesId, array $data): int
 	{
 		return $this->connector->call("IpRange", "update", get_defined_vars());
 	}
@@ -1109,7 +1109,7 @@ class Logger
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Logger", "selection", get_defined_vars());
 	}
@@ -1143,7 +1143,7 @@ class Monitoring
 	 * @throws \Motv\Mw\ChannelUnknownException
 	 * @throws \Motv\Mw\TemplateUnknownException
 	 */
-	public function getChannelMonitoringData(array $channels, array $options, ?int $page = 1): array
+	public function getChannelMonitoringData(array $channels, array $options, int $page = 1): array
 	{
 		return $this->connector->call("Monitoring", "getChannelMonitoringData", get_defined_vars());
 	}
@@ -1182,7 +1182,7 @@ class Ota
 	}
 
 
-	public function devicesSelection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function devicesSelection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Ota", "devicesSelection", get_defined_vars());
 	}
@@ -1197,7 +1197,7 @@ class Ota
 	}
 
 
-	public function getLastVersion(int $otaDevicesId, ?bool $active = false): array
+	public function getLastVersion(int $otaDevicesId, bool $active = false): array
 	{
 		return $this->connector->call("Ota", "getLastVersion", get_defined_vars());
 	}
@@ -1224,7 +1224,7 @@ class Ota
 	/**
 	 * @throws \Motv\Mw\OtaUnknownDeviceException
 	 */
-	public function updateDevice(int $otaDevicesId, array $data): int
+	public function updateDevice(?int $otaDevicesId, array $data): int
 	{
 		return $this->connector->call("Ota", "updateDevice", get_defined_vars());
 	}
@@ -1233,13 +1233,13 @@ class Ota
 	/**
 	 * @throws \Motv\Mw\OtaUnknownVersionException
 	 */
-	public function updateVersion(int $otaVersionsId, array $data): int
+	public function updateVersion(?int $otaVersionsId, array $data): int
 	{
 		return $this->connector->call("Ota", "updateVersion", get_defined_vars());
 	}
 
 
-	public function versionsSelection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function versionsSelection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Ota", "versionsSelection", get_defined_vars());
 	}
@@ -1281,7 +1281,7 @@ class Package
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Package", "selection", get_defined_vars());
 	}
@@ -1290,7 +1290,7 @@ class Package
 	/**
 	 * @throws \Motv\Mw\PackageUnknownException
 	 */
-	public function update(int $packagesId, array $data): int
+	public function update(?int $packagesId, array $data): int
 	{
 		return $this->connector->call("Package", "update", get_defined_vars());
 	}
@@ -1350,7 +1350,7 @@ class Person
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Person", "selection", get_defined_vars());
 	}
@@ -1359,7 +1359,7 @@ class Person
 	/**
 	 * @throws \Motv\Mw\PersonUnknownPersonException
 	 */
-	public function update(int $personsId, array $data): int
+	public function update(?int $personsId, array $data): int
 	{
 		return $this->connector->call("Person", "update", get_defined_vars());
 	}
@@ -1452,7 +1452,7 @@ class Profile
 	 * @throws \Motv\Mw\ProfileInvalidPinException
 	 * @throws \Motv\Mw\ProfileUnknownException
 	 */
-	public function update(int $profilesId, array $data): int
+	public function update(?int $profilesId, array $data): int
 	{
 		return $this->connector->call("Profile", "update", get_defined_vars());
 	}
@@ -1541,13 +1541,13 @@ class Recording
 	 * @throws \Motv\Mw\ProfileUnknownException
 	 * @throws \Motv\Mw\RecordingUnknownException
 	 */
-	public function removeRecording(int $profilesId, int $epgEventsId, ?bool $expired = false): void
+	public function removeRecording(int $profilesId, int $epgEventsId, bool $expired = false): void
 	{
 		$this->connector->call("Recording", "removeRecording", get_defined_vars());
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Recording", "selection", get_defined_vars());
 	}
@@ -1610,7 +1610,7 @@ class Role
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Role", "selection", get_defined_vars());
 	}
@@ -1620,7 +1620,7 @@ class Role
 	 * @throws \Motv\Mw\RoleDuplicateNameException
 	 * @throws \Motv\Mw\RoleUnknownException
 	 */
-	public function update(int $rolesId, array $data): int
+	public function update(?int $rolesId, array $data): int
 	{
 		return $this->connector->call("Role", "update", get_defined_vars());
 	}
@@ -1652,11 +1652,11 @@ class Search
 		?string $genre = null,
 		?int $vodsCategoriesId = null,
 		?int $vodsGenresId = null,
-		?bool $includeChannels = true,
-		?bool $includeEvents = true,
-		?bool $includeVods = true,
-		?bool $includeVodsCategories = true,
-		?bool $includePersons = true
+		bool $includeChannels = true,
+		bool $includeEvents = true,
+		bool $includeVods = true,
+		bool $includeVodsCategories = true,
+		bool $includePersons = true
 	): array {
 		return $this->connector->call("Search", "search", get_defined_vars());
 	}
@@ -1693,7 +1693,7 @@ class Statistic
 	}
 
 
-	public function getPairs(?bool $returnSorted = false): array
+	public function getPairs(bool $returnSorted = false): array
 	{
 		return $this->connector->call("Statistic", "getPairs", get_defined_vars());
 	}
@@ -1709,7 +1709,7 @@ class Statistic
 	 * @throws \Motv\Mw\StatisticsUnknownStatisticException
 	 * @throws \Motv\Mw\TemplateErrorFillingException
 	 */
-	public function getStatisticData(int $statisticsId, ?array $filters = [], ?int $page = null, ?int $pageLimit = null): array
+	public function getStatisticData(int $statisticsId, array $filters = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Statistic", "getStatisticData", get_defined_vars());
 	}
@@ -1727,7 +1727,7 @@ class Statistic
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Statistic", "selection", get_defined_vars());
 	}
@@ -1739,7 +1739,7 @@ class Statistic
 	 * @throws \Motv\Mw\StatisticsUnknownStatisticException
 	 * @throws \Motv\Mw\TemplateErrorFillingException
 	 */
-	public function update(int $statisticsId, ?array $data = []): int
+	public function update(?int $statisticsId, array $data = []): int
 	{
 		return $this->connector->call("Statistic", "update", get_defined_vars());
 	}
@@ -1769,7 +1769,6 @@ class Subscription
 	 * @throws \Motv\Mw\EpgUnknownEpgEventException
 	 * @throws \Motv\Mw\PackageUnknownException
 	 * @throws \Motv\Mw\ProfileUnknownException
-	 * @throws \Motv\Mw\RecordingUnknownException
 	 */
 	public function cancelPackage(int $customersId, int $packagesId): void
 	{
@@ -1777,9 +1776,24 @@ class Subscription
 	}
 
 
+	/**
+	 * @throws \Motv\Mw\HomepageUnknownHomepageException
+	 */
+	public function getHomepage(int $customersId): array
+	{
+		return $this->connector->call("Subscription", "getHomepage", get_defined_vars());
+	}
+
+
 	public function getPackageSubscriptions(int $customersId, ?string $devicesType = null): array
 	{
 		return $this->connector->call("Subscription", "getPackageSubscriptions", get_defined_vars());
+	}
+
+
+	public function hasSimilarEventsVods(int $customersId): bool
+	{
+		return $this->connector->call("Subscription", "hasSimilarEventsVods", get_defined_vars());
 	}
 
 
@@ -1867,7 +1881,7 @@ class Template
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Template", "selection", get_defined_vars());
 	}
@@ -1880,7 +1894,7 @@ class Template
 	 * @throws \Motv\Mw\TemplateUnknownException
 	 * @throws \Motv\Mw\TemplateUsedException
 	 */
-	public function update(int $templatesId, array $data): int
+	public function update(?int $templatesId, array $data): int
 	{
 		return $this->connector->call("Template", "update", get_defined_vars());
 	}
@@ -2024,13 +2038,13 @@ class Transcoder
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Transcoder", "selection", get_defined_vars());
 	}
 
 
-	public function streamRecordingsSelection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function streamRecordingsSelection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Transcoder", "streamRecordingsSelection", get_defined_vars());
 	}
@@ -2040,7 +2054,7 @@ class Transcoder
 	 * @throws \Motv\Mw\TranscoderDuplicateNameException
 	 * @throws \Motv\Mw\TranscoderUnknownException
 	 */
-	public function update(int $transcodersId, array $data): int
+	public function update(?int $transcodersId, array $data): int
 	{
 		return $this->connector->call("Transcoder", "update", get_defined_vars());
 	}
@@ -2098,7 +2112,7 @@ class User
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("User", "selection", get_defined_vars());
 	}
@@ -2109,7 +2123,7 @@ class User
 	 * @throws \Motv\Mw\UserDuplicateEmailException
 	 * @throws \Motv\Mw\UserUnknownException
 	 */
-	public function update(int $usersId, array $data): int
+	public function update(?int $usersId, array $data): int
 	{
 		return $this->connector->call("User", "update", get_defined_vars());
 	}
@@ -2143,12 +2157,6 @@ class Vendor
 	}
 
 
-	public function getHomepage(int $vendorsId): array
-	{
-		return $this->connector->call("Vendor", "getHomepage", get_defined_vars());
-	}
-
-
 	/**
 	 * @throws \Motv\Mw\UnathorizedException
 	 */
@@ -2164,7 +2172,7 @@ class Vendor
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Vendor", "selection", get_defined_vars());
 	}
@@ -2174,19 +2182,9 @@ class Vendor
 	 * @throws \Motv\Mw\VendorUnknownException
 	 * @throws \Motv\Mw\ConfigUnknownValueException
 	 */
-	public function update(int $vendorsId, array $data): int
+	public function update(?int $vendorsId, array $data): int
 	{
 		return $this->connector->call("Vendor", "update", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\VendorUnknownException
-	 * @throws \Motv\Mw\ConfigUnknownValueException
-	 */
-	public function updateHomepage(int $vendorsId, array $data): void
-	{
-		$this->connector->call("Vendor", "updateHomepage", get_defined_vars());
 	}
 }
 
@@ -2305,7 +2303,7 @@ class Vod
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("Vod", "selection", get_defined_vars());
 	}
@@ -2334,7 +2332,7 @@ class Vod
 	 * @throws \Motv\Mw\VodUnathorizedException
 	 * @throws \Motv\Mw\VodUnknownException
 	 */
-	public function update(int $vodsId, array $data): int
+	public function update(?int $vodsId, array $data): int
 	{
 		return $this->connector->call("Vod", "update", get_defined_vars());
 	}
@@ -2381,13 +2379,13 @@ class VodCategory
 		string $devicesType,
 		?int $vodsCategoriesId = null,
 		?string $search = null,
-		?bool $rootCategoryIfNotSpecified = false
+		bool $rootCategoryIfNotSpecified = false
 	): array {
 		return $this->connector->call("VodCategory", "getVodCategories", get_defined_vars());
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("VodCategory", "selection", get_defined_vars());
 	}
@@ -2397,7 +2395,7 @@ class VodCategory
 	 * @throws \Motv\Mw\VodCategoryUnknownException
 	 * @throws \Motv\Mw\VodCategoryCircularReferenceException
 	 */
-	public function update(int $vodsCategoriesId, array $data): int
+	public function update(?int $vodsCategoriesId, array $data): int
 	{
 		return $this->connector->call("VodCategory", "update", get_defined_vars());
 	}
@@ -2430,7 +2428,7 @@ class VodGenre
 	}
 
 
-	public function selection(array $columns, ?array $where = [], ?array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
 	{
 		return $this->connector->call("VodGenre", "selection", get_defined_vars());
 	}
@@ -2439,7 +2437,7 @@ class VodGenre
 	/**
 	 * @throws \Motv\Mw\VodUnknownGenreException
 	 */
-	public function update(int $vodsGenresId, array $data): int
+	public function update(?int $vodsGenresId, array $data): int
 	{
 		return $this->connector->call("VodGenre", "update", get_defined_vars());
 	}

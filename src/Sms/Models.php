@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 11 Nov 2019 15:36:29
+ * Generated on Fri, 22 Nov 2019 13:48:24
  * Part moTV.eu SDK integration kit
  */
 
@@ -37,13 +37,8 @@ class Batch
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Batch", "selection", get_defined_vars());
 	}
 
@@ -108,18 +103,13 @@ class Bouquet
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Bouquet", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $bouquets_id, array $data): int
+	public function update(?int $bouquets_id, array $data): int
 	{
 		return $this->connector->call("Bouquet", "update", get_defined_vars());
 	}
@@ -167,18 +157,13 @@ class Category
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Category", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $categories_id, array $data): int
+	public function update(?int $categories_id, array $data): int
 	{
 		return $this->connector->call("Category", "update", get_defined_vars());
 	}
@@ -202,7 +187,7 @@ class Config
 	}
 
 
-	public function getConfig(?bool $forceReload = false, ?bool $includePredefined = true): array
+	public function getConfig(bool $forceReload = false, bool $includePredefined = true): array
 	{
 		return $this->connector->call("Config", "getConfig", get_defined_vars());
 	}
@@ -244,18 +229,13 @@ class CustomValue
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("CustomValue", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $custom_values_id, array $data): int
+	public function update(?int $custom_values_id, array $data): int
 	{
 		return $this->connector->call("CustomValue", "update", get_defined_vars());
 	}
@@ -319,8 +299,8 @@ class Customer
 		int $viewers_id,
 		float $credit,
 		string $remark,
-		?array $data = [],
-		?bool $log = true,
+		array $data = [],
+		bool $log = true,
 		?array $forceInvoice = null
 	): int {
 		return $this->connector->call("Customer", "addCredit", get_defined_vars());
@@ -441,13 +421,8 @@ class Customer
 	}
 
 
-	public function noteSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function noteSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Customer", "noteSelection", get_defined_vars());
 	}
 
@@ -458,25 +433,25 @@ class Customer
 	}
 
 
-	public function update(int $viewers_id, array $data): int
+	public function update(?int $viewers_id, array $data): int
 	{
 		return $this->connector->call("Customer", "update", get_defined_vars());
 	}
 
 
-	public function updateAddress(int $viewers_id, int $viewers_address_id, array $data): void
+	public function updateAddress(int $viewers_id, ?int $viewers_address_id, array $data): void
 	{
 		$this->connector->call("Customer", "updateAddress", get_defined_vars());
 	}
 
 
-	public function updateContact(int $viewers_id, int $viewers_contact_id, array $data): void
+	public function updateContact(int $viewers_id, ?int $viewers_contact_id, array $data): void
 	{
 		$this->connector->call("Customer", "updateContact", get_defined_vars());
 	}
 
 
-	public function updateCustomerNote(int $viewers_note_id, array $data): int
+	public function updateCustomerNote(?int $viewers_note_id, array $data): int
 	{
 		return $this->connector->call("Customer", "updateCustomerNote", get_defined_vars());
 	}
@@ -512,7 +487,7 @@ class Dealer
 	}
 
 
-	public function addCredit(int $dealers_id, float $credit, string $note, ?array $data = []): int
+	public function addCredit(int $dealers_id, float $credit, string $note, array $data = []): int
 	{
 		return $this->connector->call("Dealer", "addCredit", get_defined_vars());
 	}
@@ -542,13 +517,13 @@ class Dealer
 	}
 
 
-	public function getPairs(?bool $includeSelf = true): array
+	public function getPairs(bool $includeSelf = true): array
 	{
 		return $this->connector->call("Dealer", "getPairs", get_defined_vars());
 	}
 
 
-	public function isUnique(int $dealers_id, string $dealers_name): bool
+	public function isUnique(?int $dealers_id, string $dealers_name): bool
 	{
 		return $this->connector->call("Dealer", "isUnique", get_defined_vars());
 	}
@@ -572,18 +547,13 @@ class Dealer
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Dealer", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $dealers_id, array $data): int
+	public function update(?int $dealers_id, array $data): int
 	{
 		return $this->connector->call("Dealer", "update", get_defined_vars());
 	}
@@ -631,7 +601,7 @@ class Devices_Motv
 	}
 
 
-	public function apiConfirmRegistration(?string $token = null, ?string $phone = null, $code = null, ?bool $social = false): array
+	public function apiConfirmRegistration(?string $token = null, ?string $phone = null, $code = null, bool $social = false): array
 	{
 		return $this->connector->call("Devices_Motv", "apiConfirmRegistration", get_defined_vars());
 	}
@@ -661,7 +631,7 @@ class Devices_Motv
 	}
 
 
-	public function apiRegister(int $portalId, array $data, ?bool $social = false): array
+	public function apiRegister(int $portalId, array $data, bool $social = false): array
 	{
 		return $this->connector->call("Devices_Motv", "apiRegister", get_defined_vars());
 	}
@@ -763,41 +733,31 @@ class Devices_Motv
 	}
 
 
-	public function pageSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function pageSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Devices_Motv", "pageSelection", get_defined_vars());
 	}
 
 
-	public function portalsSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function portalsSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Devices_Motv", "portalsSelection", get_defined_vars());
 	}
 
 
-	public function update(int $viewers_id, int $device_id, array $data): int
+	public function update(?int $viewers_id, ?int $device_id, array $data): int
 	{
 		return $this->connector->call("Devices_Motv", "update", get_defined_vars());
 	}
 
 
-	public function updatePortal(int $motvPortalsId, array $data): int
+	public function updatePortal(?int $motvPortalsId, array $data): int
 	{
 		return $this->connector->call("Devices_Motv", "updatePortal", get_defined_vars());
 	}
 
 
-	public function updatePortalPage(int $motv_portals_pages_id, array $data): int
+	public function updatePortalPage(?int $motv_portals_pages_id, array $data): int
 	{
 		return $this->connector->call("Devices_Motv", "updatePortalPage", get_defined_vars());
 	}
@@ -851,13 +811,8 @@ class Epg
 	}
 
 
-	public function categoriesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function categoriesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "categoriesSelection", get_defined_vars());
 	}
 
@@ -892,47 +847,32 @@ class Epg
 	}
 
 
-	public function editCategory(int $epg_category_id, string $epg_category_name): int
+	public function editCategory(?int $epg_category_id, string $epg_category_name): int
 	{
 		return $this->connector->call("Epg", "editCategory", get_defined_vars());
 	}
 
 
-	public function editEpgNetwork(int $epg_networks_id, array $data): int
+	public function editEpgNetwork(?int $epg_networks_id, array $data): int
 	{
 		return $this->connector->call("Epg", "editEpgNetwork", get_defined_vars());
 	}
 
 
-	public function epgEventsImagesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function epgEventsImagesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "epgEventsImagesSelection", get_defined_vars());
 	}
 
 
-	public function epgInsertersSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function epgInsertersSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "epgInsertersSelection", get_defined_vars());
 	}
 
 
-	public function epgNetworksSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function epgNetworksSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "epgNetworksSelection", get_defined_vars());
 	}
 
@@ -949,7 +889,7 @@ class Epg
 	}
 
 
-	public function generateXMLTVFiles(int $epg_id, string $date_start, string $date_end): void
+	public function generateXMLTVFiles(int $epg_id, ?string $date_start, ?string $date_end): void
 	{
 		$this->connector->call("Epg", "generateXMLTVFiles", get_defined_vars());
 	}
@@ -1009,7 +949,7 @@ class Epg
 	}
 
 
-	public function getData(int $epg_id, ?bool $categories = false): array
+	public function getData(int $epg_id, bool $categories = false): array
 	{
 		return $this->connector->call("Epg", "getData", get_defined_vars());
 	}
@@ -1153,7 +1093,7 @@ class Epg
 	}
 
 
-	public function getServiceDataForValidation(int $services_transponders_id, int $services_service_id, int $services_lcn_id, int $services_id): array
+	public function getServiceDataForValidation(int $services_transponders_id, int $services_service_id, ?int $services_lcn_id, int $services_id): array
 	{
 		return $this->connector->call("Epg", "getServiceDataForValidation", get_defined_vars());
 	}
@@ -1195,7 +1135,7 @@ class Epg
 	}
 
 
-	public function getSwDownloadSubdirectories(string $path, ?bool $fullPath = false): array
+	public function getSwDownloadSubdirectories(string $path, bool $fullPath = false): array
 	{
 		return $this->connector->call("Epg", "getSwDownloadSubdirectories", get_defined_vars());
 	}
@@ -1255,13 +1195,8 @@ class Epg
 	}
 
 
-	public function logSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function logSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "logSelection", get_defined_vars());
 	}
 
@@ -1296,13 +1231,8 @@ class Epg
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "selection", get_defined_vars());
 	}
 
@@ -1313,24 +1243,14 @@ class Epg
 	}
 
 
-	public function serverLogSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function serverLogSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "serverLogSelection", get_defined_vars());
 	}
 
 
-	public function servicesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function servicesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "servicesSelection", get_defined_vars());
 	}
 
@@ -1347,13 +1267,8 @@ class Epg
 	}
 
 
-	public function swDownloadBoxesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function swDownloadBoxesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "swDownloadBoxesSelection", get_defined_vars());
 	}
 
@@ -1364,13 +1279,8 @@ class Epg
 	}
 
 
-	public function swDownloadBoxRealesesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function swDownloadBoxRealesesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "swDownloadBoxRealesesSelection", get_defined_vars());
 	}
 
@@ -1381,13 +1291,8 @@ class Epg
 	}
 
 
-	public function swDownloadManufacturersSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function swDownloadManufacturersSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "swDownloadManufacturersSelection", get_defined_vars());
 	}
 
@@ -1398,13 +1303,8 @@ class Epg
 	}
 
 
-	public function swDownloadSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function swDownloadSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "swDownloadSelection", get_defined_vars());
 	}
 
@@ -1415,24 +1315,19 @@ class Epg
 	}
 
 
-	public function transpondersSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function transpondersSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Epg", "transpondersSelection", get_defined_vars());
 	}
 
 
-	public function update(int $epgId, array $data): int
+	public function update(?int $epgId, array $data): int
 	{
 		return $this->connector->call("Epg", "update", get_defined_vars());
 	}
 
 
-	public function updateChannelEventsImage(int $epg_events_images_id, array $data, string $image): int
+	public function updateChannelEventsImage(?int $epg_events_images_id, array $data, string $image): int
 	{
 		return $this->connector->call("Epg", "updateChannelEventsImage", get_defined_vars());
 	}
@@ -1450,7 +1345,7 @@ class Epg
 	}
 
 
-	public function updateEpgInserter(int $epg_inserters_id, array $data): int
+	public function updateEpgInserter(?int $epg_inserters_id, array $data): int
 	{
 		return $this->connector->call("Epg", "updateEpgInserter", get_defined_vars());
 	}
@@ -1468,7 +1363,7 @@ class Epg
 	}
 
 
-	public function updateEpgSwDownload(int $epg_sw_download_id, array $data): int
+	public function updateEpgSwDownload(?int $epg_sw_download_id, array $data): int
 	{
 		return $this->connector->call("Epg", "updateEpgSwDownload", get_defined_vars());
 	}
@@ -1480,31 +1375,31 @@ class Epg
 	}
 
 
-	public function updateServices(int $services_id, array $data): int
+	public function updateServices(?int $services_id, array $data): int
 	{
 		return $this->connector->call("Epg", "updateServices", get_defined_vars());
 	}
 
 
-	public function updateSwDownloadBox(int $epg_sw_download_boxes_id, array $data): int
+	public function updateSwDownloadBox(?int $epg_sw_download_boxes_id, array $data): int
 	{
 		return $this->connector->call("Epg", "updateSwDownloadBox", get_defined_vars());
 	}
 
 
-	public function updateSwDownloadManufacturer(int $epg_sw_download_manufacturers_id, array $data): int
+	public function updateSwDownloadManufacturer(?int $epg_sw_download_manufacturers_id, array $data): int
 	{
 		return $this->connector->call("Epg", "updateSwDownloadManufacturer", get_defined_vars());
 	}
 
 
-	public function updateSwDownloadRelease(int $epg_sw_download_box_realeses_id, array $data): int
+	public function updateSwDownloadRelease(?int $epg_sw_download_box_realeses_id, array $data): int
 	{
 		return $this->connector->call("Epg", "updateSwDownloadRelease", get_defined_vars());
 	}
 
 
-	public function updateTransponders(int $transponders_id, array $data): int
+	public function updateTransponders(?int $transponders_id, array $data): int
 	{
 		return $this->connector->call("Epg", "updateTransponders", get_defined_vars());
 	}
@@ -1552,13 +1447,8 @@ class EpgServer
 	}
 
 
-	public function logSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function logSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("EpgServer", "logSelection", get_defined_vars());
 	}
 }
@@ -1599,13 +1489,8 @@ class Gallery
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Gallery", "selection", get_defined_vars());
 	}
 
@@ -1646,18 +1531,13 @@ class Graph
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Graph", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $graph_id, array $data): int
+	public function update(?int $graph_id, array $data): int
 	{
 		return $this->connector->call("Graph", "update", get_defined_vars());
 	}
@@ -1693,24 +1573,19 @@ class GroupAction
 	}
 
 
-	public function run(int $group_action_id, ?array $data = [], ?string $content = null, ?bool $checkGroupOwnership = true): void
+	public function run(int $group_action_id, array $data = [], ?string $content = null, bool $checkGroupOwnership = true): void
 	{
 		$this->connector->call("GroupAction", "run", get_defined_vars());
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("GroupAction", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $group_action_id, array $data): int
+	public function update(?int $group_action_id, array $data): int
 	{
 		return $this->connector->call("GroupAction", "update", get_defined_vars());
 	}
@@ -1734,24 +1609,19 @@ class Imap
 	}
 
 
-	public function getPairs(?bool $active = false): array
+	public function getPairs(bool $active = false): array
 	{
 		return $this->connector->call("Imap", "getPairs", get_defined_vars());
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Imap", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $config_imap_servers_id, array $data): int
+	public function update(?int $config_imap_servers_id, array $data): int
 	{
 		return $this->connector->call("Imap", "update", get_defined_vars());
 	}
@@ -1787,13 +1657,8 @@ class ImportCustomers
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("ImportCustomers", "selection", get_defined_vars());
 	}
 }
@@ -1892,31 +1757,26 @@ class Invoice
 	}
 
 
-	public function getPrintableBillingHistory(int $viewers_id, int $template, ?bool $mpos = false): string
+	public function getPrintableBillingHistory(int $viewers_id, int $template, bool $mpos = false): string
 	{
 		return $this->connector->call("Invoice", "getPrintableBillingHistory", get_defined_vars());
 	}
 
 
-	public function revertInvoice(int $invoice_id, ?string $remark = ''): void
+	public function revertInvoice(int $invoice_id, string $remark = ''): void
 	{
 		$this->connector->call("Invoice", "revertInvoice", get_defined_vars());
 	}
 
 
-	public function revertReceipt(int $invoice_id, ?string $remark = ''): void
+	public function revertReceipt(int $invoice_id, string $remark = ''): void
 	{
 		$this->connector->call("Invoice", "revertReceipt", get_defined_vars());
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Invoice", "selection", get_defined_vars());
 	}
 }
@@ -1963,13 +1823,8 @@ class Logger
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Logger", "selection", get_defined_vars());
 	}
 }
@@ -2016,18 +1871,13 @@ class Product
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Product", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $products_id, array $data): int
+	public function update(?int $products_id, array $data): int
 	{
 		return $this->connector->call("Product", "update", get_defined_vars());
 	}
@@ -2057,18 +1907,13 @@ class ProductGroup
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("ProductGroup", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $products_groups_id, array $data): int
+	public function update(?int $products_groups_id, array $data): int
 	{
 		return $this->connector->call("ProductGroup", "update", get_defined_vars());
 	}
@@ -2160,13 +2005,8 @@ class Report
 	}
 
 
-	public function precalculationSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function precalculationSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Report", "precalculationSelection", get_defined_vars());
 	}
 
@@ -2179,9 +2019,9 @@ class Report
 
 	public function reportSelection(
 		int $reports_id,
-		?array $columns = [],
-		?array $where = [],
-		?array $order_by = [],
+		array $columns = [],
+		array $where = [],
+		array $order_by = [],
 		?int $page = null,
 		?int $page_limit = null
 	): array {
@@ -2195,24 +2035,19 @@ class Report
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Report", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $reports_id, array $data): int
+	public function update(?int $reports_id, array $data): int
 	{
 		return $this->connector->call("Report", "update", get_defined_vars());
 	}
 
 
-	public function updatePrecalculation(int $reports_precalculations_id, array $data): int
+	public function updatePrecalculation(?int $reports_precalculations_id, array $data): int
 	{
 		return $this->connector->call("Report", "updatePrecalculation", get_defined_vars());
 	}
@@ -2242,13 +2077,8 @@ class Request
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Request", "selection", get_defined_vars());
 	}
 }
@@ -2337,7 +2167,7 @@ class Role
 	}
 
 
-	public function getAllowedRoles(?bool $includeSelf = false): array
+	public function getAllowedRoles(bool $includeSelf = false): array
 	{
 		return $this->connector->call("Role", "getAllowedRoles", get_defined_vars());
 	}
@@ -2391,13 +2221,8 @@ class Role
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Role", "selection", get_defined_vars());
 	}
 
@@ -2408,7 +2233,7 @@ class Role
 	}
 
 
-	public function update(int $roles_id, array $data): int
+	public function update(?int $roles_id, array $data): int
 	{
 		return $this->connector->call("Role", "update", get_defined_vars());
 	}
@@ -2444,7 +2269,7 @@ class Sales
 	}
 
 
-	public function getInvoiceTemplate(?int $invoice_number = null, ?int $invoice_id = null, ?bool $mpos = false): string
+	public function getInvoiceTemplate(?int $invoice_number = null, ?int $invoice_id = null, bool $mpos = false): string
 	{
 		return $this->connector->call("Sales", "getInvoiceTemplate", get_defined_vars());
 	}
@@ -2460,9 +2285,9 @@ class Sales
 		int $viewers_id,
 		array $devices,
 		array $invoice_data,
-		?bool $mpos = false,
-		?bool $return_templates = true,
-		?bool $voucher = false
+		bool $mpos = false,
+		bool $return_templates = true,
+		bool $voucher = false
 	): array {
 		return $this->connector->call("Sales", "saveInvoice", get_defined_vars());
 	}
@@ -2486,18 +2311,13 @@ class Schedule
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Schedule", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $schedule_id, array $data): int
+	public function update(?int $schedule_id, array $data): int
 	{
 		return $this->connector->call("Schedule", "update", get_defined_vars());
 	}
@@ -2521,24 +2341,19 @@ class Smtp
 	}
 
 
-	public function getPairs(?bool $active = false): array
+	public function getPairs(bool $active = false): array
 	{
 		return $this->connector->call("Smtp", "getPairs", get_defined_vars());
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Smtp", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $config_smtp_servers_id, array $data): int
+	public function update(?int $config_smtp_servers_id, array $data): int
 	{
 		return $this->connector->call("Smtp", "update", get_defined_vars());
 	}
@@ -2562,7 +2377,7 @@ class Subscription
 	}
 
 
-	public function getCustomerSubscriptionInfo(int $viewers_id, $device_id = null, ?array $where = []): array
+	public function getCustomerSubscriptionInfo(int $viewers_id, $device_id = null, array $where = []): array
 	{
 		return $this->connector->call("Subscription", "getCustomerSubscriptionInfo", get_defined_vars());
 	}
@@ -2646,13 +2461,13 @@ class System
 	}
 
 
-	public function showSupervisorStderrLog(string $process, ?int $offset = 0, ?int $length = 20000): array
+	public function showSupervisorStderrLog(string $process, int $offset = 0, int $length = 20000): array
 	{
 		return $this->connector->call("System", "showSupervisorStderrLog", get_defined_vars());
 	}
 
 
-	public function showSupervisorStdoutLog(string $process, ?int $offset = 0, ?int $length = 20000): array
+	public function showSupervisorStdoutLog(string $process, int $offset = 0, int $length = 20000): array
 	{
 		return $this->connector->call("System", "showSupervisorStdoutLog", get_defined_vars());
 	}
@@ -2718,18 +2533,13 @@ class Template
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Template", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $groups_invoices_id, array $data): int
+	public function update(?int $groups_invoices_id, array $data): int
 	{
 		return $this->connector->call("Template", "update", get_defined_vars());
 	}
@@ -2879,12 +2689,12 @@ class Ticket
 
 	public function selection(
 		array $columns,
-		?array $where = [],
-		?array $order_by = [],
+		array $where = [],
+		array $order_by = [],
 		?int $page = null,
 		?int $page_limit = null,
-		?bool $assigned_tickets = false,
-		?bool $closed_tickets = true
+		bool $assigned_tickets = false,
+		bool $closed_tickets = true
 	): array {
 		return $this->connector->call("Ticket", "selection", get_defined_vars());
 	}
@@ -2902,18 +2712,13 @@ class Ticket
 	}
 
 
-	public function ticketStatusesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function ticketStatusesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Ticket", "ticketStatusesSelection", get_defined_vars());
 	}
 
 
-	public function updateTicketStatuses(int $tickets_statuses_id, array $data): int
+	public function updateTicketStatuses(?int $tickets_statuses_id, array $data): int
 	{
 		return $this->connector->call("Ticket", "updateTicketStatuses", get_defined_vars());
 	}
@@ -2955,18 +2760,13 @@ class TicketCategory
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("TicketCategory", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $tickets_categories_id, array $data): int
+	public function update(?int $tickets_categories_id, array $data): int
 	{
 		return $this->connector->call("TicketCategory", "update", get_defined_vars());
 	}
@@ -2996,18 +2796,13 @@ class TicketDepartment
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("TicketDepartment", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $departments_id, array $data): int
+	public function update(?int $departments_id, array $data): int
 	{
 		return $this->connector->call("TicketDepartment", "update", get_defined_vars());
 	}
@@ -3067,18 +2862,13 @@ class TicketPriority
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("TicketPriority", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $tickets_priorities_id, array $data): int
+	public function update(?int $tickets_priorities_id, array $data): int
 	{
 		return $this->connector->call("TicketPriority", "update", get_defined_vars());
 	}
@@ -3120,7 +2910,7 @@ class User
 	}
 
 
-	public function getPairsForTickets(?bool $returnDepartment = true): array
+	public function getPairsForTickets(bool $returnDepartment = true): array
 	{
 		return $this->connector->call("User", "getPairsForTickets", get_defined_vars());
 	}
@@ -3132,7 +2922,7 @@ class User
 	}
 
 
-	public function isUnique(int $users_id, string $users_name): bool
+	public function isUnique(?int $users_id, string $users_name): bool
 	{
 		return $this->connector->call("User", "isUnique", get_defined_vars());
 	}
@@ -3144,13 +2934,8 @@ class User
 	}
 
 
-	public function notificationsSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function notificationsSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("User", "notificationsSelection", get_defined_vars());
 	}
 
@@ -3167,18 +2952,13 @@ class User
 	}
 
 
-	public function selection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function selection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("User", "selection", get_defined_vars());
 	}
 
 
-	public function update(int $users_id, array $data): int
+	public function update(?int $users_id, array $data): int
 	{
 		return $this->connector->call("User", "update", get_defined_vars());
 	}
@@ -3238,13 +3018,8 @@ class Warehouse
 	}
 
 
-	public function allDevicesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function allDevicesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Warehouse", "allDevicesSelection", get_defined_vars());
 	}
 
@@ -3261,24 +3036,14 @@ class Warehouse
 	}
 
 
-	public function dealerDevicesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function dealerDevicesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Warehouse", "dealerDevicesSelection", get_defined_vars());
 	}
 
 
-	public function devicesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function devicesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Warehouse", "devicesSelection", get_defined_vars());
 	}
 
@@ -3301,13 +3066,8 @@ class Warehouse
 	}
 
 
-	public function logSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function logSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Warehouse", "logSelection", get_defined_vars());
 	}
 
@@ -3318,13 +3078,8 @@ class Warehouse
 	}
 
 
-	public function warehouseDealerDevicesSelection(
-		array $columns,
-		?array $where = [],
-		?array $order_by = [],
-		?int $page = null,
-		?int $page_limit = null
-	): array {
+	public function warehouseDealerDevicesSelection(array $columns, array $where = [], array $order_by = [], ?int $page = null, ?int $page_limit = null): array
+	{
 		return $this->connector->call("Warehouse", "warehouseDealerDevicesSelection", get_defined_vars());
 	}
 
@@ -3335,7 +3090,7 @@ class Warehouse
 	}
 
 
-	public function warehouseGetDealerDevices(int $dealerId, ?bool $order = false): array
+	public function warehouseGetDealerDevices(int $dealerId, bool $order = false): array
 	{
 		return $this->connector->call("Warehouse", "warehouseGetDealerDevices", get_defined_vars());
 	}

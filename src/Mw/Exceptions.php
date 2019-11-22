@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 8 Nov 2019 19:06:33
+ * Generated on Fri, 22 Nov 2019 9:15:04
  * Part moTV.eu SDK integration kit
  */
 
@@ -898,11 +898,27 @@ class VendorUnknownException extends ApiException
 }
 
 /**
- * Unknown vendor's homepage row
+ * Unknown homepage row
  */
-class VendorUnknownHomepageRowException extends ApiException
+class HomepageUnknownRowException extends ApiException
 {
 	protected $code = 2101;
+}
+
+/**
+ * Unknown homepage
+ */
+class HomepageUnknownHomepageException extends ApiException
+{
+	protected $code = 2102;
+}
+
+/**
+ * Duplicate homepage priority
+ */
+class HomepageDuplicatePriorityException extends ApiException
+{
+	protected $code = 2103;
 }
 
 /**

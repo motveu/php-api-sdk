@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 11 Nov 2019 15:36:28
+ * Generated on Fri, 22 Nov 2019 13:48:24
  * Part moTV.eu SDK integration kit
  */
 
@@ -1959,6 +1959,13 @@ class CreolinkNetworkIssueException extends ApiException
 class FacebookUknownLoginException extends ApiException
 {
 	protected $code = 16502;
+
+
+}
+
+class AbvDuplicateSmartcardException extends ApiException
+{
+	protected $code = 16600;
 
 
 }
