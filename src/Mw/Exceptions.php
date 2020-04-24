@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 22 Nov 2019 9:15:04
+ * Generated on Fri, 24 Apr 2020 9:29:56
  * Part moTV.eu SDK integration kit
  */
 
@@ -31,6 +31,14 @@ class ApiException extends \Exception implements \Throwable
 
 class UnknownApiException extends ApiException
 {
+}
+
+/**
+ * Parent class exception
+ */
+class ApiExternalException extends ApiException
+{
+	protected $code = -1;
 }
 
 /**
@@ -175,6 +183,30 @@ class LoginTokenExpiredException extends ApiException
 class LanguageUnknownException extends ApiException
 {
 	protected $code = 25;
+}
+
+/**
+ * This exception can be used for various statuses, the end customer application should just show the error received in the response part
+ */
+class GeneralException extends ApiException
+{
+	protected $code = 26;
+}
+
+/**
+ * One (or more) of the required headers is missing
+ */
+class MissingHeaderException extends ApiException
+{
+	protected $code = 27;
+}
+
+/**
+ * Missing right for given action / method (internal only)
+ */
+class UnathorizedInternalException extends ApiException
+{
+	protected $code = 28;
 }
 
 /**
@@ -372,17 +404,17 @@ class TranscoderNotDownloadableStreamRecordingException extends ApiException
 /**
  * Unknown VOD category
  */
-class VodCategoryUnknownException extends ApiException
+class CategoryUnknownException extends ApiException
 {
 	protected $code = 500;
 }
 
 /**
- * Circular reference in VOD categories detected - VOD category should not have child that are parents of given category
+ * Duplicate category name
  */
-class VodCategoryCircularReferenceException extends ApiException
+class CategoryDuplicateNameException extends ApiException
 {
-	protected $code = 501;
+	protected $code = 502;
 }
 
 /**
@@ -666,11 +698,19 @@ class VodSubtitleInvalidRoleException extends ApiException
 }
 
 /**
- * Unknown VOD genre
+ * Unknown genre
  */
-class VodUnknownGenreException extends ApiException
+class GenreUnknownException extends ApiException
 {
 	protected $code = 1050;
+}
+
+/**
+ * Duplicate genre name
+ */
+class GenreDuplicateNameException extends ApiException
+{
+	protected $code = 1051;
 }
 
 /**
@@ -810,6 +850,14 @@ class PersonUnknownPersonException extends ApiException
 }
 
 /**
+ * Duplicate person name
+ */
+class PersonDuplicateNameException extends ApiException
+{
+	protected $code = 1601;
+}
+
+/**
  * Unknown statistics
  */
 class StatisticsUnknownStatisticException extends ApiException
@@ -882,6 +930,14 @@ class SystemCommandFailedException extends ApiException
 }
 
 /**
+ * Unable to upload file to transcoder
+ */
+class SystemFailedToUploadFileException extends ApiException
+{
+	protected $code = 1904;
+}
+
+/**
  * Syntax error in template file
  */
 class TemplateErrorFillingException extends ApiException
@@ -919,6 +975,14 @@ class HomepageUnknownHomepageException extends ApiException
 class HomepageDuplicatePriorityException extends ApiException
 {
 	protected $code = 2103;
+}
+
+/**
+ * Invalid homepage category selection search criteria
+ */
+class HomepageInvalidCategorySelectionSearchCriteriaException extends ApiException
+{
+	protected $code = 2104;
 }
 
 /**

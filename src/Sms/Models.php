@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 22 Nov 2019 13:48:24
+ * Generated on Fri, 24 Apr 2020 14:00:08
  * Part moTV.eu SDK integration kit
  */
 
@@ -193,6 +193,12 @@ class Config
 	}
 
 
+	public function isSmsMotvOnly(): bool
+	{
+		return $this->connector->call("Config", "isSmsMotvOnly", get_defined_vars());
+	}
+
+
 	public function update(array $data): void
 	{
 		$this->connector->call("Config", "update", get_defined_vars());
@@ -280,6 +286,18 @@ class Custom_Cico
 	public function getSubscriptionStatus(int $viewers_id): array
 	{
 		return $this->connector->call("Custom_Cico", "getSubscriptionStatus", get_defined_vars());
+	}
+}
+
+class Custom_Motv
+{
+	/** @var \Motv\Sms\Connector */
+	private $connector;
+
+
+	public function __construct(Connector $connector)
+	{
+		$this->connector = $connector;
 	}
 }
 
@@ -385,7 +403,7 @@ class Customer
 	}
 
 
-	public function getCustomerConfig(?string $language = null): array
+	public function getCustomerConfig(?string $language = null, bool $system = false): array
 	{
 		return $this->connector->call("Customer", "getCustomerConfig", get_defined_vars());
 	}
@@ -577,6 +595,78 @@ class Dealer
 	}
 }
 
+class Devices_Facebook
+{
+	/** @var \Motv\Sms\Connector */
+	private $connector;
+
+
+	public function __construct(Connector $connector)
+	{
+		$this->connector = $connector;
+	}
+
+
+	public function getData(int $device_id): array
+	{
+		return $this->connector->call("Devices_Facebook", "getData", get_defined_vars());
+	}
+
+
+	public function login(string $token)
+	{
+		return $this->connector->call("Devices_Facebook", "login", get_defined_vars());
+	}
+
+
+	public function register(string $token)
+	{
+		return $this->connector->call("Devices_Facebook", "register", get_defined_vars());
+	}
+
+
+	public function update(?int $viewers_id, ?int $device_id, array $data): int
+	{
+		return $this->connector->call("Devices_Facebook", "update", get_defined_vars());
+	}
+}
+
+class Devices_Google
+{
+	/** @var \Motv\Sms\Connector */
+	private $connector;
+
+
+	public function __construct(Connector $connector)
+	{
+		$this->connector = $connector;
+	}
+
+
+	public function getData(int $device_id): array
+	{
+		return $this->connector->call("Devices_Google", "getData", get_defined_vars());
+	}
+
+
+	public function login(string $token)
+	{
+		return $this->connector->call("Devices_Google", "login", get_defined_vars());
+	}
+
+
+	public function register(string $token)
+	{
+		return $this->connector->call("Devices_Google", "register", get_defined_vars());
+	}
+
+
+	public function update(?int $viewers_id, ?int $device_id, array $data): int
+	{
+		return $this->connector->call("Devices_Google", "update", get_defined_vars());
+	}
+}
+
 class Devices_Motv
 {
 	/** @var \Motv\Sms\Connector */
@@ -667,21 +757,27 @@ class Devices_Motv
 	}
 
 
-	public function getFacebookClientId(array $params): string
+	public function getFacebookClientId(): string
 	{
 		return $this->connector->call("Devices_Motv", "getFacebookClientId", get_defined_vars());
 	}
 
 
-	public function getFacebookClientSecret(array $params): string
+	public function getFacebookClientSecret(): string
 	{
 		return $this->connector->call("Devices_Motv", "getFacebookClientSecret", get_defined_vars());
 	}
 
 
-	public function getGoogleClientId(array $params): string
+	public function getGoogleClientId(): string
 	{
 		return $this->connector->call("Devices_Motv", "getGoogleClientId", get_defined_vars());
+	}
+
+
+	public function getGoogleClientSecret(): string
+	{
+		return $this->connector->call("Devices_Motv", "getGoogleClientSecret", get_defined_vars());
 	}
 
 
@@ -1495,9 +1591,9 @@ class Gallery
 	}
 
 
-	public function uploadImage(string $image, string $name): void
+	public function uploadImage(string $image, string $name): int
 	{
-		$this->connector->call("Gallery", "uploadImage", get_defined_vars());
+		return $this->connector->call("Gallery", "uploadImage", get_defined_vars());
 	}
 }
 

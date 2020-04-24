@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 22 Nov 2019 9:15:04
+ * Generated on Fri, 24 Apr 2020 9:29:57
  * Part moTV.eu SDK integration kit
  */
 
@@ -36,6 +36,12 @@ class AdvertHomepage
 	public function getData(int $advertHomepageId): array
 	{
 		return $this->connector->call("AdvertHomepage", "getData", get_defined_vars());
+	}
+
+
+	public function getPairs(): array
+	{
+		return $this->connector->call("AdvertHomepage", "getPairs", get_defined_vars());
 	}
 
 
@@ -129,6 +135,60 @@ class Backup
 	}
 }
 
+class Category
+{
+	/** @var \Motv\Mw\AdminConnector */
+	private $connector;
+
+
+	public function __construct(AdminConnector $connector)
+	{
+		$this->connector = $connector;
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\CategoryUnknownException
+	 */
+	public function getData(int $categoriesId): array
+	{
+		return $this->connector->call("Category", "getData", get_defined_vars());
+	}
+
+
+	public function getPairs(): array
+	{
+		return $this->connector->call("Category", "getPairs", get_defined_vars());
+	}
+
+
+	public function getVodCategories(
+		int $profilesId,
+		string $devicesType,
+		?int $genresId = null,
+		?int $subGenresId = null,
+		?string $search = null
+	): array {
+		return $this->connector->call("Category", "getVodCategories", get_defined_vars());
+	}
+
+
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	{
+		return $this->connector->call("Category", "selection", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\CategoryDuplicateNameException
+	 * @throws \Motv\Mw\CategoryUnknownException
+	 */
+	public function update(?int $categoriesId, array $data): int
+	{
+		return $this->connector->call("Category", "update", get_defined_vars());
+	}
+}
+
 class Channel
 {
 	/** @var \Motv\Mw\AdminConnector */
@@ -148,6 +208,8 @@ class Channel
 
 
 	/**
+	 * @throws \Motv\Mw\CategoryDuplicateNameException
+	 * @throws \Motv\Mw\CategoryUnknownException
 	 * @throws \Motv\Mw\ChannelAudioDuplicateRoleException
 	 * @throws \Motv\Mw\ChannelAudioInvalidRoleException
 	 * @throws \Motv\Mw\ChannelDuplicateBindIpPortCombinationException
@@ -156,7 +218,14 @@ class Channel
 	 * @throws \Motv\Mw\ChannelUnknownException
 	 * @throws \Motv\Mw\ConfigUnknownValueException
 	 * @throws \Motv\Mw\EpgUnknownEpgException
+	 * @throws \Motv\Mw\GenreDuplicateNameException
+	 * @throws \Motv\Mw\GenreUnknownException
+	 * @throws \Motv\Mw\PersonDuplicateNameException
+	 * @throws \Motv\Mw\PersonUnknownPersonException
+	 * @throws \Motv\Mw\SystemFailedToUploadFileException
 	 * @throws \Motv\Mw\TemplateUnknownException
+	 * @throws \Motv\Mw\TranscoderUnableToContactException
+	 * @throws \Motv\Mw\UnknownErrorException
 	 */
 	public function copyChannel(int $id, string $name): int
 	{
@@ -171,6 +240,15 @@ class Channel
 	public function delete(int $channelsId): void
 	{
 		$this->connector->call("Channel", "delete", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\ChannelUnknownException
+	 */
+	public function deleteBroadcast(int $channelsBroadcastId): void
+	{
+		$this->connector->call("Channel", "deleteBroadcast", get_defined_vars());
 	}
 
 
@@ -204,9 +282,18 @@ class Channel
 	}
 
 
-	public function getChannelEpgPairs(): array
+	public function getActivePairs(): array
 	{
-		return $this->connector->call("Channel", "getChannelEpgPairs", get_defined_vars());
+		return $this->connector->call("Channel", "getActivePairs", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\ChannelUnknownException
+	 */
+	public function getBroadcast(int $channelsBroadcastId): array
+	{
+		return $this->connector->call("Channel", "getBroadcast", get_defined_vars());
 	}
 
 
@@ -284,17 +371,19 @@ class Channel
 
 	/**
 	 * @throws \Motv\Mw\ChannelStreamUnavailableException
+	 * @throws \Motv\Mw\ChannelUnathorizedException
 	 * @throws \Motv\Mw\ChannelUnknownException
 	 * @throws \Motv\Mw\ChannelUnknownStreamTypeException
 	 * @throws \Motv\Mw\ConfigUnknownValueException
+	 * @throws \Motv\Mw\EpgUnknownEpgEventException
 	 * @throws \Motv\Mw\MarlinUnableToRetrieveLicenseException
 	 * @throws \Motv\Mw\PackageUnknownException
 	 * @throws \Motv\Mw\ProfileUnknownException
 	 * @throws \Motv\Mw\TemplateUnknownException
-	 * @throws \Motv\Mw\EpgUnknownEpgEventException
 	 */
 	public function getStreamUrl(
 		int $profilesId,
+		string $devicesType,
 		int $channelsId,
 		string $type,
 		?int $timestamp = null,
@@ -304,7 +393,9 @@ class Channel
 		bool $allowedUnicast = false,
 		bool $allowedBroadcast = false,
 		array $preferredEdgesIds = [],
-		array $nonpreferredEdgesIds = []
+		array $nonpreferredEdgesIds = [],
+		bool $bb8Ready = false,
+		string $language = 'en'
 	): array {
 		return $this->connector->call("Channel", "getStreamUrl", get_defined_vars());
 	}
@@ -317,13 +408,12 @@ class Channel
 	 */
 	public function getSubscribedChannels(
 		int $profilesId,
+		?string $devicesType,
 		?string $type = null,
 		bool $whitelisting = true,
 		bool $mcastOnly = false,
 		bool $bcastOnly = false,
-		?string $devicesType = null,
-		bool $isForRecommendations = false,
-		bool $useCache = true
+		bool $locked = false
 	): array {
 		return $this->connector->call("Channel", "getSubscribedChannels", get_defined_vars());
 	}
@@ -333,7 +423,7 @@ class Channel
 	 * @throws \Motv\Mw\ChannelUnknownException
 	 * @throws \Motv\Mw\TemplateUnknownException
 	 */
-	public function getUnicast(int $channelsUnicastId): array
+	public function getUnicast(int $channelsUnicastId, string $language = 'en'): array
 	{
 		return $this->connector->call("Channel", "getUnicast", get_defined_vars());
 	}
@@ -380,13 +470,28 @@ class Channel
 
 
 	/**
+	 * @throws \Motv\Mw\CategoryDuplicateNameException
+	 * @throws \Motv\Mw\CategoryUnknownException
 	 * @throws \Motv\Mw\ChannelUnknownException
 	 * @throws \Motv\Mw\ConfigUnknownValueException
 	 * @throws \Motv\Mw\EpgUnknownEpgException
+	 * @throws \Motv\Mw\GenreDuplicateNameException
+	 * @throws \Motv\Mw\GenreUnknownException
+	 * @throws \Motv\Mw\PersonDuplicateNameException
+	 * @throws \Motv\Mw\PersonUnknownPersonException
 	 */
 	public function update(?int $channelsId, array $data, bool $generateNoEpg = false): int
 	{
 		return $this->connector->call("Channel", "update", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\ChannelUnknownException
+	 */
+	public function updateBroadcast(int $channelsId, ?int $channelsBroadcastId, array $data): int
+	{
+		return $this->connector->call("Channel", "updateBroadcast", get_defined_vars());
 	}
 
 
@@ -410,11 +515,24 @@ class Channel
 	 * @throws \Motv\Mw\ChannelSubtitleDuplicateRoleException
 	 * @throws \Motv\Mw\ChannelSubtitleInvalidRoleException
 	 * @throws \Motv\Mw\ChannelUnknownException
+	 * @throws \Motv\Mw\SystemFailedToUploadFileException
 	 * @throws \Motv\Mw\TemplateUnknownException
+	 * @throws \Motv\Mw\TranscoderUnableToContactException
+	 * @throws \Motv\Mw\UnknownErrorException
 	 */
 	public function updateUnicast(int $channelsId, ?int $channelsUnicastId, array $data): int
 	{
 		return $this->connector->call("Channel", "updateUnicast", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\StorageUnknownException
+	 * @throws \Motv\Mw\SystemFailedToUploadFileException
+	 */
+	public function uploadUnicastInputFile(int $storagesId, string $directory, string $filename, string $content): void
+	{
+		$this->connector->call("Channel", "uploadUnicastInputFile", get_defined_vars());
 	}
 }
 
@@ -557,6 +675,16 @@ class Customer
 
 	/**
 	 * @throws \Motv\Mw\CustomerUnknownException
+	 * @throws \Motv\Mw\CustomerUnknownMacException
+	 */
+	public function getCustomerByToken(string $token): array
+	{
+		return $this->connector->call("Customer", "getCustomerByToken", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\CustomerUnknownException
 	 */
 	public function getData(int $customersId): array
 	{
@@ -568,7 +696,7 @@ class Customer
 	 * @throws \Motv\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws \Motv\Mw\CustomerUnknownException
 	 */
-	public function getDataByLogin(string $login): array
+	public function getDataByLogin(string $login, int $vendorsId): array
 	{
 		return $this->connector->call("Customer", "getDataByLogin", get_defined_vars());
 	}
@@ -785,9 +913,15 @@ class Edge
 	}
 
 
-	public function getEdgesByChannelUnicast(int $channelsUnicastId): array
+	public function getEdgesByChannelUnicast(int $channelsUnicastId, string $contentType): array
 	{
 		return $this->connector->call("Edge", "getEdgesByChannelUnicast", get_defined_vars());
+	}
+
+
+	public function getEdgesByPackages(array $packages): array
+	{
+		return $this->connector->call("Edge", "getEdgesByPackages", get_defined_vars());
 	}
 
 
@@ -867,6 +1001,7 @@ class Epg
 
 
 	/**
+	 * @throws \Motv\Mw\EpgUnknownEpgEventException
 	 * @throws \Motv\Mw\InvalidParameterValueException
 	 */
 	public function getUpdatedEvents(
@@ -882,58 +1017,22 @@ class Epg
 
 
 	/**
+	 * @throws \Motv\Mw\CategoryDuplicateNameException
+	 * @throws \Motv\Mw\CategoryUnknownException
 	 * @throws \Motv\Mw\ConfigUnknownValueException
 	 * @throws \Motv\Mw\EpgInsertErrorException
 	 * @throws \Motv\Mw\EpgUnknownEpgException
 	 * @throws \Motv\Mw\EpgXmlMissingAttributeException
 	 * @throws \Motv\Mw\EpgXmlMissingTagException
 	 * @throws \Motv\Mw\EpgXmlSetErrorException
+	 * @throws \Motv\Mw\GenreDuplicateNameException
+	 * @throws \Motv\Mw\GenreUnknownException
+	 * @throws \Motv\Mw\PersonDuplicateNameException
+	 * @throws \Motv\Mw\PersonUnknownPersonException
 	 */
 	public function processEpg(int $channelsId, string $content): void
 	{
 		$this->connector->call("Epg", "processEpg", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\ConfigUnknownValueException
-	 * @throws \Motv\Mw\EpgInsertErrorException
-	 * @throws \Motv\Mw\EpgUnknownEpgException
-	 * @throws \Motv\Mw\EpgXmlMissingAttributeException
-	 * @throws \Motv\Mw\EpgXmlMissingTagException
-	 * @throws \Motv\Mw\EpgXmlSetErrorException
-	 */
-	public function processEpgFolders(array $ids): void
-	{
-		$this->connector->call("Epg", "processEpgFolders", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\ConfigUnknownValueException
-	 * @throws \Motv\Mw\EpgInsertErrorException
-	 * @throws \Motv\Mw\EpgUnknownEpgException
-	 * @throws \Motv\Mw\EpgXmlMissingAttributeException
-	 * @throws \Motv\Mw\EpgXmlMissingTagException
-	 * @throws \Motv\Mw\EpgXmlSetErrorException
-	 */
-	public function processFilesFolder(int $channelsId): void
-	{
-		$this->connector->call("Epg", "processFilesFolder", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\ConfigUnknownValueException
-	 * @throws \Motv\Mw\EpgInsertErrorException
-	 * @throws \Motv\Mw\EpgUnknownEpgException
-	 * @throws \Motv\Mw\EpgXmlMissingAttributeException
-	 * @throws \Motv\Mw\EpgXmlMissingTagException
-	 * @throws \Motv\Mw\EpgXmlSetErrorException
-	 */
-	public function processFolder(string $path): void
-	{
-		$this->connector->call("Epg", "processFolder", get_defined_vars());
 	}
 
 
@@ -955,6 +1054,16 @@ class EpgPlaylist
 	public function __construct(AdminConnector $connector)
 	{
 		$this->connector = $connector;
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\EpgUnknownPlaylistException
+	 * @throws \Motv\Mw\EpgUnknownEpgEventException
+	 */
+	public function addEventsToPlaylist(int $epgPlaylistsId, array $epgEventsIds): void
+	{
+		$this->connector->call("EpgPlaylist", "addEventsToPlaylist", get_defined_vars());
 	}
 
 
@@ -1052,6 +1161,49 @@ class EpgRating
 	public function update(?int $epgRatingId, array $data): int
 	{
 		return $this->connector->call("EpgRating", "update", get_defined_vars());
+	}
+}
+
+class Genre
+{
+	/** @var \Motv\Mw\AdminConnector */
+	private $connector;
+
+
+	public function __construct(AdminConnector $connector)
+	{
+		$this->connector = $connector;
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\GenreUnknownException
+	 */
+	public function getData(int $genresId): array
+	{
+		return $this->connector->call("Genre", "getData", get_defined_vars());
+	}
+
+
+	public function getPairs(): array
+	{
+		return $this->connector->call("Genre", "getPairs", get_defined_vars());
+	}
+
+
+	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
+	{
+		return $this->connector->call("Genre", "selection", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws \Motv\Mw\GenreDuplicateNameException
+	 * @throws \Motv\Mw\GenreUnknownException
+	 */
+	public function update(?int $genresId, array $data): int
+	{
+		return $this->connector->call("Genre", "update", get_defined_vars());
 	}
 }
 
@@ -1222,6 +1374,15 @@ class Ota
 
 
 	/**
+	 * @throws \Motv\Mw\OtaUnknownVersionException
+	 */
+	public function latestById(int $id): array
+	{
+		return $this->connector->call("Ota", "latestById", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws \Motv\Mw\OtaUnknownDeviceException
 	 */
 	public function updateDevice(?int $otaDevicesId, array $data): int
@@ -1308,12 +1469,6 @@ class Person
 	}
 
 
-	public function getActorsPairs(): array
-	{
-		return $this->connector->call("Person", "getActorsPairs", get_defined_vars());
-	}
-
-
 	/**
 	 * @throws \Motv\Mw\PersonUnknownPersonException
 	 */
@@ -1323,13 +1478,7 @@ class Person
 	}
 
 
-	public function getDirectorsPairs(): array
-	{
-		return $this->connector->call("Person", "getDirectorsPairs", get_defined_vars());
-	}
-
-
-	public function getPairs(): array
+	public function getPairs(?string $type = null): array
 	{
 		return $this->connector->call("Person", "getPairs", get_defined_vars());
 	}
@@ -1357,6 +1506,7 @@ class Person
 
 
 	/**
+	 * @throws \Motv\Mw\PersonDuplicateNameException
 	 * @throws \Motv\Mw\PersonUnknownPersonException
 	 */
 	public function update(?int $personsId, array $data): int
@@ -1378,21 +1528,13 @@ class Profile
 
 
 	/**
+	 * @throws \Motv\Mw\CustomerUnknownException
 	 * @throws \Motv\Mw\ProfileCannotDeleteException
 	 * @throws \Motv\Mw\ProfileUnknownException
 	 */
 	public function delete(int $profilesId): void
 	{
 		$this->connector->call("Profile", "delete", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\ProfileUnknownException
-	 */
-	public function getChannelOrder(int $profilesId): array
-	{
-		return $this->connector->call("Profile", "getChannelOrder", get_defined_vars());
 	}
 
 
@@ -1438,7 +1580,7 @@ class Profile
 	/**
 	 * @throws \Motv\Mw\ProfileUnknownException
 	 */
-	public function resetChannelOrder(int $profilesId, string $type): void
+	public function resetChannelOrder(int $profilesId, ?string $type = null): void
 	{
 		$this->connector->call("Profile", "resetChannelOrder", get_defined_vars());
 	}
@@ -1500,7 +1642,7 @@ class Recording
 	 * @throws \Motv\Mw\ProfileUnknownException
 	 * @throws \Motv\Mw\RecordingExceededLengthException
 	 */
-	public function addRecording(int $profilesId, int $epgEventsId): array
+	public function addRecording(int $profilesId, string $devicesType, int $epgEventsId): array
 	{
 		return $this->connector->call("Recording", "addRecording", get_defined_vars());
 	}
@@ -1512,7 +1654,7 @@ class Recording
 	 * @throws \Motv\Mw\ProfileUnknownException
 	 * @throws \Motv\Mw\RecordingUnknownException
 	 */
-	public function getData(int $epgEventsId, int $profilesId): array
+	public function getData(int $epgEventsId, int $profilesId, string $devicesType): array
 	{
 		return $this->connector->call("Recording", "getData", get_defined_vars());
 	}
@@ -1521,8 +1663,14 @@ class Recording
 	/**
 	 * @throws \Motv\Mw\CustomerUnknownException
 	 */
-	public function getRecordingsByCustomer(int $customersId, ?string $devicesType = null, ?int $recordingsId = null, ?int $profilesId = null): array
-	{
+	public function getRecordingsByCustomer(
+		int $customersId,
+		?string $devicesType = null,
+		?int $recordingsId = null,
+		?int $profilesId = null,
+		string $language = 'en',
+		bool $v2 = false
+	): array {
 		return $this->connector->call("Recording", "getRecordingsByCustomer", get_defined_vars());
 	}
 
@@ -1530,7 +1678,7 @@ class Recording
 	/**
 	 * @throws \Motv\Mw\ProfileUnknownException
 	 */
-	public function getRecordingsByProfile(int $profilesId, ?string $devicesType = null, ?int $recordingsId = null): array
+	public function getRecordingsByProfile(int $profilesId, ?string $devicesType = null, string $language = 'en', bool $v2 = false): array
 	{
 		return $this->connector->call("Recording", "getRecordingsByProfile", get_defined_vars());
 	}
@@ -1643,20 +1791,22 @@ class Search
 	 * @throws \Motv\Mw\ConfigUnknownValueException
 	 * @throws \Motv\Mw\PackageUnknownException
 	 * @throws \Motv\Mw\ProfileUnknownException
-	 * @throws \Motv\Mw\VodCategoryUnknownException
+	 * @throws \Motv\Mw\VodUnathorizedException
+	 * @throws \Motv\Mw\VodUnknownException
 	 */
 	public function search(
 		int $profilesId,
 		string $devicesType,
 		string $search,
 		?string $genre = null,
-		?int $vodsCategoriesId = null,
-		?int $vodsGenresId = null,
+		?int $categoriesId = null,
+		?int $genresId = null,
 		bool $includeChannels = true,
 		bool $includeEvents = true,
 		bool $includeVods = true,
-		bool $includeVodsCategories = true,
-		bool $includePersons = true
+		bool $includeCategories = true,
+		bool $includePersons = true,
+		bool $v2 = true
 	): array {
 		return $this->connector->call("Search", "search", get_defined_vars());
 	}
@@ -1777,6 +1927,8 @@ class Subscription
 
 
 	/**
+	 * @throws \Motv\Mw\ConfigUnknownValueException
+	 * @throws \Motv\Mw\HomepageInvalidCategorySelectionSearchCriteriaException
 	 * @throws \Motv\Mw\HomepageUnknownHomepageException
 	 */
 	public function getHomepage(int $customersId): array
@@ -1791,6 +1943,9 @@ class Subscription
 	}
 
 
+	/**
+	 * @throws \Motv\Mw\ConfigUnknownValueException
+	 */
 	public function hasSimilarEventsVods(int $customersId): bool
 	{
 		return $this->connector->call("Subscription", "hasSimilarEventsVods", get_defined_vars());
@@ -1856,7 +2011,7 @@ class Template
 	/**
 	 * @throws \Motv\Mw\TemplateUnknownException
 	 */
-	public function getData(int $templatesId): array
+	public function getData(int $templatesId, string $language = 'en'): array
 	{
 		return $this->connector->call("Template", "getData", get_defined_vars());
 	}
@@ -1902,6 +2057,7 @@ class Template
 
 	/**
 	 * @throws \Motv\Mw\TemplateUnknownException
+	 * @throws \Motv\Mw\TemplateUsedException
 	 */
 	public function updatePredefined(int $templatesId, array $data): int
 	{
@@ -2335,110 +2491,5 @@ class Vod
 	public function update(?int $vodsId, array $data): int
 	{
 		return $this->connector->call("Vod", "update", get_defined_vars());
-	}
-}
-
-class VodCategory
-{
-	/** @var \Motv\Mw\AdminConnector */
-	private $connector;
-
-
-	public function __construct(AdminConnector $connector)
-	{
-		$this->connector = $connector;
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\VodCategoryUnknownException
-	 */
-	public function getData(int $vodsCategoriesId): array
-	{
-		return $this->connector->call("VodCategory", "getData", get_defined_vars());
-	}
-
-
-	public function getPairs(): array
-	{
-		return $this->connector->call("VodCategory", "getPairs", get_defined_vars());
-	}
-
-
-	public function getSortedData(): array
-	{
-		return $this->connector->call("VodCategory", "getSortedData", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\VodCategoryUnknownException
-	 */
-	public function getVodCategories(
-		int $profilesId,
-		string $devicesType,
-		?int $vodsCategoriesId = null,
-		?string $search = null,
-		bool $rootCategoryIfNotSpecified = false
-	): array {
-		return $this->connector->call("VodCategory", "getVodCategories", get_defined_vars());
-	}
-
-
-	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
-	{
-		return $this->connector->call("VodCategory", "selection", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\VodCategoryUnknownException
-	 * @throws \Motv\Mw\VodCategoryCircularReferenceException
-	 */
-	public function update(?int $vodsCategoriesId, array $data): int
-	{
-		return $this->connector->call("VodCategory", "update", get_defined_vars());
-	}
-}
-
-class VodGenre
-{
-	/** @var \Motv\Mw\AdminConnector */
-	private $connector;
-
-
-	public function __construct(AdminConnector $connector)
-	{
-		$this->connector = $connector;
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\VodUnknownGenreException
-	 */
-	public function getData(int $vodsGenresId): array
-	{
-		return $this->connector->call("VodGenre", "getData", get_defined_vars());
-	}
-
-
-	public function getPairs(): array
-	{
-		return $this->connector->call("VodGenre", "getPairs", get_defined_vars());
-	}
-
-
-	public function selection(array $columns, array $where = [], array $orderBy = [], ?int $page = null, ?int $pageLimit = null): array
-	{
-		return $this->connector->call("VodGenre", "selection", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws \Motv\Mw\VodUnknownGenreException
-	 */
-	public function update(?int $vodsGenresId, array $data): int
-	{
-		return $this->connector->call("VodGenre", "update", get_defined_vars());
 	}
 }

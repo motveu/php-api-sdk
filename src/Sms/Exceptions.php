@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 22 Nov 2019 13:48:24
+ * Generated on Fri, 24 Apr 2020 14:00:07
  * Part moTV.eu SDK integration kit
  */
 
@@ -1938,6 +1938,20 @@ class MotvInvalidPinFormatException extends ApiException
 class MotvUnknownErrorException extends ApiException
 {
 	protected $code = 14011;
+
+
+}
+
+class MotvUnknownDeviceException extends ApiException
+{
+	protected $code = 14012;
+
+
+}
+
+class MotvUnknownErrorTryAgainException extends ApiException
+{
+	protected $code = 14013;
 
 
 }
