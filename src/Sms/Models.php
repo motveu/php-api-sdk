@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 24 Apr 2020 14:00:08
+ * Generated on Thu, 30 Jul 2020 15:40:17
  * Part moTV.eu SDK integration kit
  */
 
@@ -277,7 +277,13 @@ class Custom_Cico
 	}
 
 
-	public function getOrderUrl(int $viewers_id, string $redirect_url): string
+	public function getAvailableProducts(int $viewers_id): array
+	{
+		return $this->connector->call("Custom_Cico", "getAvailableProducts", get_defined_vars());
+	}
+
+
+	public function getOrderUrl(int $viewers_id, string $redirect_url, ?int $products_id = null): string
 	{
 		return $this->connector->call("Custom_Cico", "getOrderUrl", get_defined_vars());
 	}
@@ -727,6 +733,12 @@ class Devices_Motv
 	}
 
 
+	public function apiRegisterV2(string $language, int $portalId, array $data, bool $social = false): array
+	{
+		return $this->connector->call("Devices_Motv", "apiRegisterV2", get_defined_vars());
+	}
+
+
 	public function apiRequestNewPassword(string $login): void
 	{
 		$this->connector->call("Devices_Motv", "apiRequestNewPassword", get_defined_vars());
@@ -778,6 +790,12 @@ class Devices_Motv
 	public function getGoogleClientSecret(): string
 	{
 		return $this->connector->call("Devices_Motv", "getGoogleClientSecret", get_defined_vars());
+	}
+
+
+	public function getMotvCustomerConfig(string $language, int $portals_id, ?int $viewers_id = null): array
+	{
+		return $this->connector->call("Devices_Motv", "getMotvCustomerConfig", get_defined_vars());
 	}
 
 
@@ -844,6 +862,12 @@ class Devices_Motv
 	public function update(?int $viewers_id, ?int $device_id, array $data): int
 	{
 		return $this->connector->call("Devices_Motv", "update", get_defined_vars());
+	}
+
+
+	public function updateCustomer(string $language, int $viewers_id, array $data): int
+	{
+		return $this->connector->call("Devices_Motv", "updateCustomer", get_defined_vars());
 	}
 
 
@@ -1231,7 +1255,7 @@ class Epg
 	}
 
 
-	public function getSwDownloadSubdirectories(string $path, bool $fullPath = false): array
+	public function getSwDownloadSubdirectories(?string $path, bool $fullPath = false): array
 	{
 		return $this->connector->call("Epg", "getSwDownloadSubdirectories", get_defined_vars());
 	}
@@ -1780,6 +1804,7 @@ class Integration
 	public function createMotvCustomer(
 		string $login,
 		string $password,
+		?string $profileName = null,
 		?string $pin = null,
 		?int $portals_id = null,
 		?string $birthday = null,
@@ -1804,6 +1829,7 @@ class Integration
 		int $viewers_id,
 		?string $login = null,
 		?string $password = null,
+		?string $profileName = null,
 		?string $pin = null,
 		?string $birthday = null,
 		?string $email = null,
@@ -3096,7 +3122,7 @@ class Voucher
 	}
 
 
-	public function useVoucher(int $viewers_id, string $device_type, int $device_id, int $voucher_number): void
+	public function useVoucher(int $viewers_id, string $device_type, int $device_id, int $voucher_number, ?int $products_id = null): void
 	{
 		$this->connector->call("Voucher", "useVoucher", get_defined_vars());
 	}

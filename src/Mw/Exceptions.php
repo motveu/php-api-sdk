@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 24 Apr 2020 9:29:56
+ * Generated on Thu, 30 Jul 2020 11:13:54
  * Part moTV.eu SDK integration kit
  */
 
@@ -12,7 +12,6 @@ namespace Motv\Mw;
 class ApiException extends \Exception implements \Throwable
 {
 	protected $code;
-
 	protected $response;
 
 
@@ -25,7 +24,7 @@ class ApiException extends \Exception implements \Throwable
 	public function __construct($response)
 	{
 		parent::__construct('', $this->code);
-				$this->response = $response;
+		        $this->response = $response;
 	}
 }
 
@@ -138,6 +137,14 @@ class InvalidParameterValueException extends ApiException
 }
 
 /**
+ * Redis error, please try again. In case the issue persist, please contact moTV.eu team for resolution
+ */
+class RedisErrorTryAgainException extends ApiException
+{
+	protected $code = 13;
+}
+
+/**
  * Invalid authorization header format, see the documentation for how the header should look like
  */
 class LoginIncorrectHeaderFormatException extends ApiException
@@ -207,6 +214,14 @@ class MissingHeaderException extends ApiException
 class UnathorizedInternalException extends ApiException
 {
 	protected $code = 28;
+}
+
+/**
+ * Database exception occurred during the query execution
+ */
+class DatabaseSelectionException extends ApiException
+{
+	protected $code = 29;
 }
 
 /**
@@ -1183,4 +1198,84 @@ class WordDuplicateException extends ApiException
 class FileUnknownException extends ApiException
 {
 	protected $code = 3700;
+}
+
+/**
+ * Unknown DVB region
+ */
+class DvbRegionUnknownException extends ApiException
+{
+	protected $code = 3800;
+}
+
+/**
+ * Unknown recognition model
+ */
+class RecognitionUnknownModelException extends ApiException
+{
+	protected $code = 3900;
+}
+
+/**
+ * Unknown recognition model channel
+ */
+class RecognitionUnknownModelChannelException extends ApiException
+{
+	protected $code = 3901;
+}
+
+/**
+ * Unknown template image
+ */
+class RecognitionUnknownTemplateImageException extends ApiException
+{
+	protected $code = 3902;
+}
+
+/**
+ * Unknown training image
+ */
+class RecognitionUnknownTrainingImageException extends ApiException
+{
+	protected $code = 3903;
+}
+
+/**
+ * Training image cannot be deleted
+ */
+class RecognitionTrainingImageDeleteException extends ApiException
+{
+	protected $code = 3904;
+}
+
+/**
+ * Unknown advert unit
+ */
+class AdvertUnknownUnitException extends ApiException
+{
+	protected $code = 4000;
+}
+
+/**
+ * Unknown campaign
+ */
+class CampaignUnknownException extends ApiException
+{
+	protected $code = 4002;
+}
+
+/**
+ * Advert signature failture
+ */
+class AdvertSignatureFailureException extends ApiException
+{
+	protected $code = 4003;
+}
+
+/**
+ * Unknown campaign section
+ */
+class CampaignUnknownSectionException extends ApiException
+{
+	protected $code = 4004;
 }
