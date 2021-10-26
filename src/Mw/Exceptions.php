@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Thu, 30 Jul 2020 11:13:54
+ * Generated on Fri, 24 Apr 2020 9:29:56
  * Part moTV.eu SDK integration kit
  */
 
@@ -11,21 +11,22 @@ namespace Motv\Mw;
 
 class ApiException extends \Exception implements \Throwable
 {
-	protected $code;
-	protected $response;
+    protected $code;
+
+    protected $response;
 
 
-	public function getResponse()
-	{
-		return $this->response;
-	}
+    public function getResponse()
+    {
+        return $this->response;
+    }
 
 
-	public function __construct($response)
-	{
-		parent::__construct('', $this->code);
-		        $this->response = $response;
-	}
+    public function __construct($response)
+    {
+        parent::__construct('', $this->code);
+                $this->response = $response;
+    }
 }
 
 class UnknownApiException extends ApiException
@@ -37,7 +38,7 @@ class UnknownApiException extends ApiException
  */
 class ApiExternalException extends ApiException
 {
-	protected $code = -1;
+    protected $code = -1;
 }
 
 /**
@@ -45,7 +46,7 @@ class ApiExternalException extends ApiException
  */
 class UnknownErrorException extends ApiException
 {
-	protected $code = 0;
+    protected $code = 0;
 }
 
 /**
@@ -53,7 +54,7 @@ class UnknownErrorException extends ApiException
  */
 class SuccessException extends ApiException
 {
-	protected $code = 1;
+    protected $code = 1;
 }
 
 /**
@@ -61,7 +62,7 @@ class SuccessException extends ApiException
  */
 class UnathorizedException extends ApiException
 {
-	protected $code = 3;
+    protected $code = 3;
 }
 
 /**
@@ -69,7 +70,7 @@ class UnathorizedException extends ApiException
  */
 class UnknownModuleException extends ApiException
 {
-	protected $code = 4;
+    protected $code = 4;
 }
 
 /**
@@ -77,7 +78,7 @@ class UnknownModuleException extends ApiException
  */
 class UnknownMethodException extends ApiException
 {
-	protected $code = 5;
+    protected $code = 5;
 }
 
 /**
@@ -85,7 +86,7 @@ class UnknownMethodException extends ApiException
  */
 class MissingParameterException extends ApiException
 {
-	protected $code = 6;
+    protected $code = 6;
 }
 
 /**
@@ -93,7 +94,7 @@ class MissingParameterException extends ApiException
  */
 class InvalidRequestDataException extends ApiException
 {
-	protected $code = 7;
+    protected $code = 7;
 }
 
 /**
@@ -101,7 +102,7 @@ class InvalidRequestDataException extends ApiException
  */
 class ApplicationMemoryLimitException extends ApiException
 {
-	protected $code = 8;
+    protected $code = 8;
 }
 
 /**
@@ -109,7 +110,7 @@ class ApplicationMemoryLimitException extends ApiException
  */
 class UndefinedRightException extends ApiException
 {
-	protected $code = 9;
+    protected $code = 9;
 }
 
 /**
@@ -117,7 +118,7 @@ class UndefinedRightException extends ApiException
  */
 class ParameterWrongTypeException extends ApiException
 {
-	protected $code = 10;
+    protected $code = 10;
 }
 
 /**
@@ -125,7 +126,7 @@ class ParameterWrongTypeException extends ApiException
  */
 class DatabaseErrorTryAgainException extends ApiException
 {
-	protected $code = 11;
+    protected $code = 11;
 }
 
 /**
@@ -133,15 +134,7 @@ class DatabaseErrorTryAgainException extends ApiException
  */
 class InvalidParameterValueException extends ApiException
 {
-	protected $code = 12;
-}
-
-/**
- * Redis error, please try again. In case the issue persist, please contact moTV.eu team for resolution
- */
-class RedisErrorTryAgainException extends ApiException
-{
-	protected $code = 13;
+    protected $code = 12;
 }
 
 /**
@@ -149,7 +142,7 @@ class RedisErrorTryAgainException extends ApiException
  */
 class LoginIncorrectHeaderFormatException extends ApiException
 {
-	protected $code = 20;
+    protected $code = 20;
 }
 
 /**
@@ -157,7 +150,7 @@ class LoginIncorrectHeaderFormatException extends ApiException
  */
 class LoginIncorrectUsernamePasswordException extends ApiException
 {
-	protected $code = 21;
+    protected $code = 21;
 }
 
 /**
@@ -165,7 +158,7 @@ class LoginIncorrectUsernamePasswordException extends ApiException
  */
 class LoginInactiveUserException extends ApiException
 {
-	protected $code = 22;
+    protected $code = 22;
 }
 
 /**
@@ -173,7 +166,7 @@ class LoginInactiveUserException extends ApiException
  */
 class LoginInactiveRoleException extends ApiException
 {
-	protected $code = 23;
+    protected $code = 23;
 }
 
 /**
@@ -181,7 +174,7 @@ class LoginInactiveRoleException extends ApiException
  */
 class LoginTokenExpiredException extends ApiException
 {
-	protected $code = 24;
+    protected $code = 24;
 }
 
 /**
@@ -189,7 +182,7 @@ class LoginTokenExpiredException extends ApiException
  */
 class LanguageUnknownException extends ApiException
 {
-	protected $code = 25;
+    protected $code = 25;
 }
 
 /**
@@ -197,7 +190,7 @@ class LanguageUnknownException extends ApiException
  */
 class GeneralException extends ApiException
 {
-	protected $code = 26;
+    protected $code = 26;
 }
 
 /**
@@ -205,7 +198,7 @@ class GeneralException extends ApiException
  */
 class MissingHeaderException extends ApiException
 {
-	protected $code = 27;
+    protected $code = 27;
 }
 
 /**
@@ -213,15 +206,7 @@ class MissingHeaderException extends ApiException
  */
 class UnathorizedInternalException extends ApiException
 {
-	protected $code = 28;
-}
-
-/**
- * Database exception occurred during the query execution
- */
-class DatabaseSelectionException extends ApiException
-{
-	protected $code = 29;
+    protected $code = 28;
 }
 
 /**
@@ -229,7 +214,7 @@ class DatabaseSelectionException extends ApiException
  */
 class ScanDirFailedException extends ApiException
 {
-	protected $code = 50;
+    protected $code = 50;
 }
 
 /**
@@ -237,7 +222,7 @@ class ScanDirFailedException extends ApiException
  */
 class CustomerUnknownException extends ApiException
 {
-	protected $code = 100;
+    protected $code = 100;
 }
 
 /**
@@ -245,7 +230,7 @@ class CustomerUnknownException extends ApiException
  */
 class CustomerTooManyFoundException extends ApiException
 {
-	protected $code = 101;
+    protected $code = 101;
 }
 
 /**
@@ -253,7 +238,7 @@ class CustomerTooManyFoundException extends ApiException
  */
 class CustomerDuplicateLoginException extends ApiException
 {
-	protected $code = 102;
+    protected $code = 102;
 }
 
 /**
@@ -261,7 +246,7 @@ class CustomerDuplicateLoginException extends ApiException
  */
 class CustomerIncorrectLoginPasswordException extends ApiException
 {
-	protected $code = 103;
+    protected $code = 103;
 }
 
 /**
@@ -269,7 +254,7 @@ class CustomerIncorrectLoginPasswordException extends ApiException
  */
 class CustomerNotLoggedInException extends ApiException
 {
-	protected $code = 104;
+    protected $code = 104;
 }
 
 /**
@@ -277,7 +262,7 @@ class CustomerNotLoggedInException extends ApiException
  */
 class CustomerInvalidAuthorizationHeaderException extends ApiException
 {
-	protected $code = 105;
+    protected $code = 105;
 }
 
 /**
@@ -285,7 +270,7 @@ class CustomerInvalidAuthorizationHeaderException extends ApiException
  */
 class CustomerUnknownQrException extends ApiException
 {
-	protected $code = 106;
+    protected $code = 106;
 }
 
 /**
@@ -293,7 +278,7 @@ class CustomerUnknownQrException extends ApiException
  */
 class CustomerPasswordFormatInvalidException extends ApiException
 {
-	protected $code = 107;
+    protected $code = 107;
 }
 
 /**
@@ -301,7 +286,7 @@ class CustomerPasswordFormatInvalidException extends ApiException
  */
 class CustomerLicenseLimitExceededException extends ApiException
 {
-	protected $code = 108;
+    protected $code = 108;
 }
 
 /**
@@ -309,7 +294,7 @@ class CustomerLicenseLimitExceededException extends ApiException
  */
 class CustomerDuplicateMacException extends ApiException
 {
-	protected $code = 109;
+    protected $code = 109;
 }
 
 /**
@@ -317,7 +302,7 @@ class CustomerDuplicateMacException extends ApiException
  */
 class CustomerUnknownMacException extends ApiException
 {
-	protected $code = 110;
+    protected $code = 110;
 }
 
 /**
@@ -325,7 +310,7 @@ class CustomerUnknownMacException extends ApiException
  */
 class CustomerMacLoginDisabledException extends ApiException
 {
-	protected $code = 111;
+    protected $code = 111;
 }
 
 /**
@@ -333,7 +318,7 @@ class CustomerMacLoginDisabledException extends ApiException
  */
 class ProfileUnknownException extends ApiException
 {
-	protected $code = 200;
+    protected $code = 200;
 }
 
 /**
@@ -341,7 +326,7 @@ class ProfileUnknownException extends ApiException
  */
 class ProfileCannotDeleteException extends ApiException
 {
-	protected $code = 201;
+    protected $code = 201;
 }
 
 /**
@@ -349,7 +334,7 @@ class ProfileCannotDeleteException extends ApiException
  */
 class ProfileDuplicateNameException extends ApiException
 {
-	protected $code = 202;
+    protected $code = 202;
 }
 
 /**
@@ -357,7 +342,7 @@ class ProfileDuplicateNameException extends ApiException
  */
 class ProfileInvalidBirthdayException extends ApiException
 {
-	protected $code = 203;
+    protected $code = 203;
 }
 
 /**
@@ -365,7 +350,7 @@ class ProfileInvalidBirthdayException extends ApiException
  */
 class ProfileInvalidPinException extends ApiException
 {
-	protected $code = 204;
+    protected $code = 204;
 }
 
 /**
@@ -373,7 +358,7 @@ class ProfileInvalidPinException extends ApiException
  */
 class ChannelCategoryUnknownException extends ApiException
 {
-	protected $code = 300;
+    protected $code = 300;
 }
 
 /**
@@ -381,7 +366,7 @@ class ChannelCategoryUnknownException extends ApiException
  */
 class TranscoderUnknownException extends ApiException
 {
-	protected $code = 400;
+    protected $code = 400;
 }
 
 /**
@@ -389,7 +374,7 @@ class TranscoderUnknownException extends ApiException
  */
 class TranscoderDuplicateNameException extends ApiException
 {
-	protected $code = 401;
+    protected $code = 401;
 }
 
 /**
@@ -397,7 +382,7 @@ class TranscoderDuplicateNameException extends ApiException
  */
 class TranscoderUnableToContactException extends ApiException
 {
-	protected $code = 402;
+    protected $code = 402;
 }
 
 /**
@@ -405,7 +390,7 @@ class TranscoderUnableToContactException extends ApiException
  */
 class TranscoderUnknownStreamRecordingException extends ApiException
 {
-	protected $code = 403;
+    protected $code = 403;
 }
 
 /**
@@ -413,7 +398,7 @@ class TranscoderUnknownStreamRecordingException extends ApiException
  */
 class TranscoderNotDownloadableStreamRecordingException extends ApiException
 {
-	protected $code = 404;
+    protected $code = 404;
 }
 
 /**
@@ -421,7 +406,7 @@ class TranscoderNotDownloadableStreamRecordingException extends ApiException
  */
 class CategoryUnknownException extends ApiException
 {
-	protected $code = 500;
+    protected $code = 500;
 }
 
 /**
@@ -429,7 +414,7 @@ class CategoryUnknownException extends ApiException
  */
 class CategoryDuplicateNameException extends ApiException
 {
-	protected $code = 502;
+    protected $code = 502;
 }
 
 /**
@@ -437,7 +422,7 @@ class CategoryDuplicateNameException extends ApiException
  */
 class PackageUnknownException extends ApiException
 {
-	protected $code = 600;
+    protected $code = 600;
 }
 
 /**
@@ -445,7 +430,7 @@ class PackageUnknownException extends ApiException
  */
 class PackageNotActiveException extends ApiException
 {
-	protected $code = 601;
+    protected $code = 601;
 }
 
 /**
@@ -453,7 +438,7 @@ class PackageNotActiveException extends ApiException
  */
 class ConfigUnknownValueException extends ApiException
 {
-	protected $code = 700;
+    protected $code = 700;
 }
 
 /**
@@ -461,7 +446,7 @@ class ConfigUnknownValueException extends ApiException
  */
 class EpgUnknownEpgException extends ApiException
 {
-	protected $code = 800;
+    protected $code = 800;
 }
 
 /**
@@ -469,7 +454,7 @@ class EpgUnknownEpgException extends ApiException
  */
 class EpgXmlMissingTagException extends ApiException
 {
-	protected $code = 801;
+    protected $code = 801;
 }
 
 /**
@@ -477,7 +462,7 @@ class EpgXmlMissingTagException extends ApiException
  */
 class EpgXmlMissingAttributeException extends ApiException
 {
-	protected $code = 802;
+    protected $code = 802;
 }
 
 /**
@@ -485,7 +470,7 @@ class EpgXmlMissingAttributeException extends ApiException
  */
 class EpgXmlDateParseErrorException extends ApiException
 {
-	protected $code = 803;
+    protected $code = 803;
 }
 
 /**
@@ -493,7 +478,7 @@ class EpgXmlDateParseErrorException extends ApiException
  */
 class EpgXmlSetErrorException extends ApiException
 {
-	protected $code = 804;
+    protected $code = 804;
 }
 
 /**
@@ -501,7 +486,7 @@ class EpgXmlSetErrorException extends ApiException
  */
 class EpgInsertErrorException extends ApiException
 {
-	protected $code = 805;
+    protected $code = 805;
 }
 
 /**
@@ -509,7 +494,7 @@ class EpgInsertErrorException extends ApiException
  */
 class EpgUnknownEpgEventException extends ApiException
 {
-	protected $code = 806;
+    protected $code = 806;
 }
 
 /**
@@ -517,7 +502,7 @@ class EpgUnknownEpgEventException extends ApiException
  */
 class EpgUnknownRatingException extends ApiException
 {
-	protected $code = 807;
+    protected $code = 807;
 }
 
 /**
@@ -525,7 +510,7 @@ class EpgUnknownRatingException extends ApiException
  */
 class EpgUnknownPlaylistException extends ApiException
 {
-	protected $code = 808;
+    protected $code = 808;
 }
 
 /**
@@ -533,7 +518,7 @@ class EpgUnknownPlaylistException extends ApiException
  */
 class ChannelUnknownException extends ApiException
 {
-	protected $code = 900;
+    protected $code = 900;
 }
 
 /**
@@ -541,7 +526,7 @@ class ChannelUnknownException extends ApiException
  */
 class ChannelStreamUnavailableException extends ApiException
 {
-	protected $code = 902;
+    protected $code = 902;
 }
 
 /**
@@ -549,7 +534,7 @@ class ChannelStreamUnavailableException extends ApiException
  */
 class ChannelUnathorizedException extends ApiException
 {
-	protected $code = 903;
+    protected $code = 903;
 }
 
 /**
@@ -557,7 +542,7 @@ class ChannelUnathorizedException extends ApiException
  */
 class ChannelUnknownStreamTypeException extends ApiException
 {
-	protected $code = 904;
+    protected $code = 904;
 }
 
 /**
@@ -565,7 +550,7 @@ class ChannelUnknownStreamTypeException extends ApiException
  */
 class ChannelDuplicateBindIpPortCombinationException extends ApiException
 {
-	protected $code = 905;
+    protected $code = 905;
 }
 
 /**
@@ -573,7 +558,7 @@ class ChannelDuplicateBindIpPortCombinationException extends ApiException
  */
 class ChannelDuplicateOutputIpPortCombinationException extends ApiException
 {
-	protected $code = 906;
+    protected $code = 906;
 }
 
 /**
@@ -581,7 +566,7 @@ class ChannelDuplicateOutputIpPortCombinationException extends ApiException
  */
 class ChannelAudioInvalidRoleException extends ApiException
 {
-	protected $code = 907;
+    protected $code = 907;
 }
 
 /**
@@ -589,7 +574,7 @@ class ChannelAudioInvalidRoleException extends ApiException
  */
 class ChannelImportErrorException extends ApiException
 {
-	protected $code = 908;
+    protected $code = 908;
 }
 
 /**
@@ -597,7 +582,7 @@ class ChannelImportErrorException extends ApiException
  */
 class ChannelSubtitleInvalidRoleException extends ApiException
 {
-	protected $code = 909;
+    protected $code = 909;
 }
 
 /**
@@ -605,7 +590,7 @@ class ChannelSubtitleInvalidRoleException extends ApiException
  */
 class ChannelAgeRestrictionException extends ApiException
 {
-	protected $code = 910;
+    protected $code = 910;
 }
 
 /**
@@ -613,7 +598,7 @@ class ChannelAgeRestrictionException extends ApiException
  */
 class ChannelGeoblockRestrictionException extends ApiException
 {
-	protected $code = 911;
+    protected $code = 911;
 }
 
 /**
@@ -621,7 +606,7 @@ class ChannelGeoblockRestrictionException extends ApiException
  */
 class ChannelAudioDuplicateRoleException extends ApiException
 {
-	protected $code = 912;
+    protected $code = 912;
 }
 
 /**
@@ -629,7 +614,7 @@ class ChannelAudioDuplicateRoleException extends ApiException
  */
 class ChannelSubtitleDuplicateRoleException extends ApiException
 {
-	protected $code = 913;
+    protected $code = 913;
 }
 
 /**
@@ -637,7 +622,7 @@ class ChannelSubtitleDuplicateRoleException extends ApiException
  */
 class ChannelIpRangeRestrictionException extends ApiException
 {
-	protected $code = 914;
+    protected $code = 914;
 }
 
 /**
@@ -645,7 +630,7 @@ class ChannelIpRangeRestrictionException extends ApiException
  */
 class ChannelFfprobeSaveFirstException extends ApiException
 {
-	protected $code = 915;
+    protected $code = 915;
 }
 
 /**
@@ -653,7 +638,7 @@ class ChannelFfprobeSaveFirstException extends ApiException
  */
 class VodUnknownException extends ApiException
 {
-	protected $code = 1000;
+    protected $code = 1000;
 }
 
 /**
@@ -661,7 +646,7 @@ class VodUnknownException extends ApiException
  */
 class VodUnathorizedException extends ApiException
 {
-	protected $code = 1001;
+    protected $code = 1001;
 }
 
 /**
@@ -669,7 +654,7 @@ class VodUnathorizedException extends ApiException
  */
 class VodUnknownStreamTypeException extends ApiException
 {
-	protected $code = 1002;
+    protected $code = 1002;
 }
 
 /**
@@ -677,7 +662,7 @@ class VodUnknownStreamTypeException extends ApiException
  */
 class VodFileErrorException extends ApiException
 {
-	protected $code = 1003;
+    protected $code = 1003;
 }
 
 /**
@@ -685,7 +670,7 @@ class VodFileErrorException extends ApiException
  */
 class VodCannotTranscodeException extends ApiException
 {
-	protected $code = 1004;
+    protected $code = 1004;
 }
 
 /**
@@ -693,7 +678,7 @@ class VodCannotTranscodeException extends ApiException
  */
 class VodSubtitleVttException extends ApiException
 {
-	protected $code = 1005;
+    protected $code = 1005;
 }
 
 /**
@@ -701,7 +686,7 @@ class VodSubtitleVttException extends ApiException
  */
 class VodAudioInvalidRoleException extends ApiException
 {
-	protected $code = 1006;
+    protected $code = 1006;
 }
 
 /**
@@ -709,7 +694,7 @@ class VodAudioInvalidRoleException extends ApiException
  */
 class VodSubtitleInvalidRoleException extends ApiException
 {
-	protected $code = 1007;
+    protected $code = 1007;
 }
 
 /**
@@ -717,7 +702,7 @@ class VodSubtitleInvalidRoleException extends ApiException
  */
 class GenreUnknownException extends ApiException
 {
-	protected $code = 1050;
+    protected $code = 1050;
 }
 
 /**
@@ -725,7 +710,7 @@ class GenreUnknownException extends ApiException
  */
 class GenreDuplicateNameException extends ApiException
 {
-	protected $code = 1051;
+    protected $code = 1051;
 }
 
 /**
@@ -733,7 +718,7 @@ class GenreDuplicateNameException extends ApiException
  */
 class RoleUnknownException extends ApiException
 {
-	protected $code = 1100;
+    protected $code = 1100;
 }
 
 /**
@@ -741,7 +726,7 @@ class RoleUnknownException extends ApiException
  */
 class RoleDuplicateNameException extends ApiException
 {
-	protected $code = 1101;
+    protected $code = 1101;
 }
 
 /**
@@ -749,7 +734,7 @@ class RoleDuplicateNameException extends ApiException
  */
 class RevisionUnknownRevisionException extends ApiException
 {
-	protected $code = 1200;
+    protected $code = 1200;
 }
 
 /**
@@ -757,7 +742,7 @@ class RevisionUnknownRevisionException extends ApiException
  */
 class RevisionUnknownMultiselectRowException extends ApiException
 {
-	protected $code = 1201;
+    protected $code = 1201;
 }
 
 /**
@@ -765,7 +750,7 @@ class RevisionUnknownMultiselectRowException extends ApiException
  */
 class TemplateUnknownException extends ApiException
 {
-	protected $code = 1300;
+    protected $code = 1300;
 }
 
 /**
@@ -773,7 +758,7 @@ class TemplateUnknownException extends ApiException
  */
 class TemplateUsedException extends ApiException
 {
-	protected $code = 1301;
+    protected $code = 1301;
 }
 
 /**
@@ -781,7 +766,7 @@ class TemplateUsedException extends ApiException
  */
 class TemplateDuplicateNameException extends ApiException
 {
-	protected $code = 1302;
+    protected $code = 1302;
 }
 
 /**
@@ -789,7 +774,7 @@ class TemplateDuplicateNameException extends ApiException
  */
 class TemplateCannotEditPredefinedException extends ApiException
 {
-	protected $code = 1303;
+    protected $code = 1303;
 }
 
 /**
@@ -797,7 +782,7 @@ class TemplateCannotEditPredefinedException extends ApiException
  */
 class RecordingExceededLengthException extends ApiException
 {
-	protected $code = 1400;
+    protected $code = 1400;
 }
 
 /**
@@ -805,7 +790,7 @@ class RecordingExceededLengthException extends ApiException
  */
 class RecordingUnknownException extends ApiException
 {
-	protected $code = 1401;
+    protected $code = 1401;
 }
 
 /**
@@ -813,7 +798,7 @@ class RecordingUnknownException extends ApiException
  */
 class RecordingUnknownStreamTypeException extends ApiException
 {
-	protected $code = 1402;
+    protected $code = 1402;
 }
 
 /**
@@ -821,7 +806,7 @@ class RecordingUnknownStreamTypeException extends ApiException
  */
 class DeviceCountExceededException extends ApiException
 {
-	protected $code = 1500;
+    protected $code = 1500;
 }
 
 /**
@@ -829,7 +814,7 @@ class DeviceCountExceededException extends ApiException
  */
 class DeviceUnknownException extends ApiException
 {
-	protected $code = 1501;
+    protected $code = 1501;
 }
 
 /**
@@ -837,7 +822,7 @@ class DeviceUnknownException extends ApiException
  */
 class DeviceConcurrentCountExceededException extends ApiException
 {
-	protected $code = 1502;
+    protected $code = 1502;
 }
 
 /**
@@ -845,7 +830,7 @@ class DeviceConcurrentCountExceededException extends ApiException
  */
 class DeviceUnknownTypeException extends ApiException
 {
-	protected $code = 1503;
+    protected $code = 1503;
 }
 
 /**
@@ -853,7 +838,7 @@ class DeviceUnknownTypeException extends ApiException
  */
 class DeviceFailedToRetrieveWidevineProvisioningException extends ApiException
 {
-	protected $code = 1504;
+    protected $code = 1504;
 }
 
 /**
@@ -861,7 +846,7 @@ class DeviceFailedToRetrieveWidevineProvisioningException extends ApiException
  */
 class PersonUnknownPersonException extends ApiException
 {
-	protected $code = 1600;
+    protected $code = 1600;
 }
 
 /**
@@ -869,7 +854,7 @@ class PersonUnknownPersonException extends ApiException
  */
 class PersonDuplicateNameException extends ApiException
 {
-	protected $code = 1601;
+    protected $code = 1601;
 }
 
 /**
@@ -877,7 +862,7 @@ class PersonDuplicateNameException extends ApiException
  */
 class StatisticsUnknownStatisticException extends ApiException
 {
-	protected $code = 1700;
+    protected $code = 1700;
 }
 
 /**
@@ -885,7 +870,7 @@ class StatisticsUnknownStatisticException extends ApiException
  */
 class StatisticsQueryErrorException extends ApiException
 {
-	protected $code = 1702;
+    protected $code = 1702;
 }
 
 /**
@@ -893,7 +878,7 @@ class StatisticsQueryErrorException extends ApiException
  */
 class StatisticsCannotEditPredefinedException extends ApiException
 {
-	protected $code = 1703;
+    protected $code = 1703;
 }
 
 /**
@@ -901,7 +886,7 @@ class StatisticsCannotEditPredefinedException extends ApiException
  */
 class UserUnknownException extends ApiException
 {
-	protected $code = 1800;
+    protected $code = 1800;
 }
 
 /**
@@ -909,7 +894,7 @@ class UserUnknownException extends ApiException
  */
 class UserDuplicateEmailException extends ApiException
 {
-	protected $code = 1801;
+    protected $code = 1801;
 }
 
 /**
@@ -917,7 +902,7 @@ class UserDuplicateEmailException extends ApiException
  */
 class SystemSupervisorErrorException extends ApiException
 {
-	protected $code = 1900;
+    protected $code = 1900;
 }
 
 /**
@@ -925,7 +910,7 @@ class SystemSupervisorErrorException extends ApiException
  */
 class SystemBackupUnknownFileException extends ApiException
 {
-	protected $code = 1901;
+    protected $code = 1901;
 }
 
 /**
@@ -933,7 +918,7 @@ class SystemBackupUnknownFileException extends ApiException
  */
 class SystemSupervisorUnknownProcessException extends ApiException
 {
-	protected $code = 1902;
+    protected $code = 1902;
 }
 
 /**
@@ -941,7 +926,7 @@ class SystemSupervisorUnknownProcessException extends ApiException
  */
 class SystemCommandFailedException extends ApiException
 {
-	protected $code = 1903;
+    protected $code = 1903;
 }
 
 /**
@@ -949,7 +934,7 @@ class SystemCommandFailedException extends ApiException
  */
 class SystemFailedToUploadFileException extends ApiException
 {
-	protected $code = 1904;
+    protected $code = 1904;
 }
 
 /**
@@ -957,7 +942,7 @@ class SystemFailedToUploadFileException extends ApiException
  */
 class TemplateErrorFillingException extends ApiException
 {
-	protected $code = 2000;
+    protected $code = 2000;
 }
 
 /**
@@ -965,7 +950,7 @@ class TemplateErrorFillingException extends ApiException
  */
 class VendorUnknownException extends ApiException
 {
-	protected $code = 2100;
+    protected $code = 2100;
 }
 
 /**
@@ -973,7 +958,7 @@ class VendorUnknownException extends ApiException
  */
 class HomepageUnknownRowException extends ApiException
 {
-	protected $code = 2101;
+    protected $code = 2101;
 }
 
 /**
@@ -981,7 +966,7 @@ class HomepageUnknownRowException extends ApiException
  */
 class HomepageUnknownHomepageException extends ApiException
 {
-	protected $code = 2102;
+    protected $code = 2102;
 }
 
 /**
@@ -989,7 +974,7 @@ class HomepageUnknownHomepageException extends ApiException
  */
 class HomepageDuplicatePriorityException extends ApiException
 {
-	protected $code = 2103;
+    protected $code = 2103;
 }
 
 /**
@@ -997,7 +982,7 @@ class HomepageDuplicatePriorityException extends ApiException
  */
 class HomepageInvalidCategorySelectionSearchCriteriaException extends ApiException
 {
-	protected $code = 2104;
+    protected $code = 2104;
 }
 
 /**
@@ -1005,7 +990,7 @@ class HomepageInvalidCategorySelectionSearchCriteriaException extends ApiExcepti
  */
 class EdgeUnknownException extends ApiException
 {
-	protected $code = 2200;
+    protected $code = 2200;
 }
 
 /**
@@ -1013,7 +998,7 @@ class EdgeUnknownException extends ApiException
  */
 class EdgeInactiveException extends ApiException
 {
-	protected $code = 2201;
+    protected $code = 2201;
 }
 
 /**
@@ -1021,7 +1006,7 @@ class EdgeInactiveException extends ApiException
  */
 class OtaUnknownDeviceException extends ApiException
 {
-	protected $code = 2300;
+    protected $code = 2300;
 }
 
 /**
@@ -1029,7 +1014,7 @@ class OtaUnknownDeviceException extends ApiException
  */
 class OtaUnknownVersionException extends ApiException
 {
-	protected $code = 2301;
+    protected $code = 2301;
 }
 
 /**
@@ -1037,7 +1022,7 @@ class OtaUnknownVersionException extends ApiException
  */
 class AdvertHomepageUnknownException extends ApiException
 {
-	protected $code = 2400;
+    protected $code = 2400;
 }
 
 /**
@@ -1045,7 +1030,7 @@ class AdvertHomepageUnknownException extends ApiException
  */
 class AppUnknownException extends ApiException
 {
-	protected $code = 2500;
+    protected $code = 2500;
 }
 
 /**
@@ -1053,7 +1038,7 @@ class AppUnknownException extends ApiException
  */
 class DrmUnknownContentIdException extends ApiException
 {
-	protected $code = 2601;
+    protected $code = 2601;
 }
 
 /**
@@ -1061,7 +1046,7 @@ class DrmUnknownContentIdException extends ApiException
  */
 class DrmUnknownTokenException extends ApiException
 {
-	protected $code = 2602;
+    protected $code = 2602;
 }
 
 /**
@@ -1069,7 +1054,7 @@ class DrmUnknownTokenException extends ApiException
  */
 class DrmInvalidRequestException extends ApiException
 {
-	protected $code = 2603;
+    protected $code = 2603;
 }
 
 /**
@@ -1077,7 +1062,7 @@ class DrmInvalidRequestException extends ApiException
  */
 class DrmIpCountryDatabaseErrorException extends ApiException
 {
-	protected $code = 2604;
+    protected $code = 2604;
 }
 
 /**
@@ -1085,7 +1070,7 @@ class DrmIpCountryDatabaseErrorException extends ApiException
  */
 class DrmUnableToGetLicenseException extends ApiException
 {
-	protected $code = 2605;
+    protected $code = 2605;
 }
 
 /**
@@ -1093,7 +1078,7 @@ class DrmUnableToGetLicenseException extends ApiException
  */
 class DrmUnableToContactServerException extends ApiException
 {
-	protected $code = 2606;
+    protected $code = 2606;
 }
 
 /**
@@ -1101,7 +1086,7 @@ class DrmUnableToContactServerException extends ApiException
  */
 class WidevinePlatformInsecureException extends ApiException
 {
-	protected $code = 2700;
+    protected $code = 2700;
 }
 
 /**
@@ -1109,7 +1094,7 @@ class WidevinePlatformInsecureException extends ApiException
  */
 class CentreonMissingConfigValueException extends ApiException
 {
-	protected $code = 2800;
+    protected $code = 2800;
 }
 
 /**
@@ -1117,7 +1102,7 @@ class CentreonMissingConfigValueException extends ApiException
  */
 class MarlinUnableToRetrieveLicenseException extends ApiException
 {
-	protected $code = 2900;
+    protected $code = 2900;
 }
 
 /**
@@ -1125,7 +1110,7 @@ class MarlinUnableToRetrieveLicenseException extends ApiException
  */
 class RecommendationEngineDisabledException extends ApiException
 {
-	protected $code = 3000;
+    protected $code = 3000;
 }
 
 /**
@@ -1133,7 +1118,7 @@ class RecommendationEngineDisabledException extends ApiException
  */
 class RecommendationEngineUnknownTypeException extends ApiException
 {
-	protected $code = 3001;
+    protected $code = 3001;
 }
 
 /**
@@ -1141,7 +1126,7 @@ class RecommendationEngineUnknownTypeException extends ApiException
  */
 class IpRangeUnknownException extends ApiException
 {
-	protected $code = 3100;
+    protected $code = 3100;
 }
 
 /**
@@ -1149,7 +1134,7 @@ class IpRangeUnknownException extends ApiException
  */
 class StorageUnknownException extends ApiException
 {
-	protected $code = 3200;
+    protected $code = 3200;
 }
 
 /**
@@ -1157,7 +1142,7 @@ class StorageUnknownException extends ApiException
  */
 class MotvReserved01Exception extends ApiException
 {
-	protected $code = 3300;
+    protected $code = 3300;
 }
 
 /**
@@ -1165,7 +1150,7 @@ class MotvReserved01Exception extends ApiException
  */
 class SearchTooShortException extends ApiException
 {
-	protected $code = 3400;
+    protected $code = 3400;
 }
 
 /**
@@ -1173,7 +1158,7 @@ class SearchTooShortException extends ApiException
  */
 class ImageInvalidBase64Exception extends ApiException
 {
-	protected $code = 3500;
+    protected $code = 3500;
 }
 
 /**
@@ -1181,7 +1166,7 @@ class ImageInvalidBase64Exception extends ApiException
  */
 class WordUnknownException extends ApiException
 {
-	protected $code = 3600;
+    protected $code = 3600;
 }
 
 /**
@@ -1189,7 +1174,7 @@ class WordUnknownException extends ApiException
  */
 class WordDuplicateException extends ApiException
 {
-	protected $code = 3601;
+    protected $code = 3601;
 }
 
 /**
@@ -1197,85 +1182,5 @@ class WordDuplicateException extends ApiException
  */
 class FileUnknownException extends ApiException
 {
-	protected $code = 3700;
-}
-
-/**
- * Unknown DVB region
- */
-class DvbRegionUnknownException extends ApiException
-{
-	protected $code = 3800;
-}
-
-/**
- * Unknown recognition model
- */
-class RecognitionUnknownModelException extends ApiException
-{
-	protected $code = 3900;
-}
-
-/**
- * Unknown recognition model channel
- */
-class RecognitionUnknownModelChannelException extends ApiException
-{
-	protected $code = 3901;
-}
-
-/**
- * Unknown template image
- */
-class RecognitionUnknownTemplateImageException extends ApiException
-{
-	protected $code = 3902;
-}
-
-/**
- * Unknown training image
- */
-class RecognitionUnknownTrainingImageException extends ApiException
-{
-	protected $code = 3903;
-}
-
-/**
- * Training image cannot be deleted
- */
-class RecognitionTrainingImageDeleteException extends ApiException
-{
-	protected $code = 3904;
-}
-
-/**
- * Unknown advert unit
- */
-class AdvertUnknownUnitException extends ApiException
-{
-	protected $code = 4000;
-}
-
-/**
- * Unknown campaign
- */
-class CampaignUnknownException extends ApiException
-{
-	protected $code = 4002;
-}
-
-/**
- * Advert signature failture
- */
-class AdvertSignatureFailureException extends ApiException
-{
-	protected $code = 4003;
-}
-
-/**
- * Unknown campaign section
- */
-class CampaignUnknownSectionException extends ApiException
-{
-	protected $code = 4004;
+    protected $code = 3700;
 }
