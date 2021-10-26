@@ -1,6 +1,6 @@
 {
   "name": "ixc-soft/motveu-php-api-sdk",
-  "description": "PHP SDK for integration with JACON SMS and moTV.eu middleware by IXCSoft.",
+  "description": "Adaptação da IXCSoft sobre o pacote moTV.eu / JACON PHP SDK para funcionamento em PHP >= 7.0.",
   "keywords": [
     "php",
     "motveu",
@@ -10,7 +10,7 @@
     "ixc",
     "ixcsoft"
   ],
-  "homepage": "https://motv.eu",
+  "homepage": "https://www.ixcsoft.com.br",
   "autoload": {
     "classmap": [
       "src/"
@@ -22,6 +22,7 @@
     }
   },
   "require": {
+    "php": ">=7.0",
     "guzzlehttp/guzzle": "^6.4"
   },
   "require-dev": {
