@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 2 Nov 2022 10:37:45
+ * Generated on Thu, 3 Nov 2022 12:16:10
  * Part moTV.eu SDK integration kit
  */
 
@@ -1705,6 +1705,7 @@ class DocumentationMethodEntity
 	public array $throws;
 	public array $parameters;
 	public ?string $return_doc;
+	public ?string $raw_return_doc;
 }
 
 class DocumentationParameterEntity

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 2 Nov 2022 10:37:42
+ * Generated on Thu, 3 Nov 2022 12:16:07
  * Part moTV.eu SDK integration kit
  */
 
@@ -22,6 +22,7 @@ class Advert
 
 
 	/**
+	 * @return array{'rows': array<AdvertCampaignEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\CampaignUnknownSectionException
 	 * @throws Exceptions\Mw\CampaignUnknownException
@@ -61,7 +62,7 @@ class Advert
 	 */
 	public function getCampaign(int $campaignsId): Entities\Mw\AdvertCampaignEntity
 	{
-		return $this->connector->call("Advert", "getCampaign", get_defined_vars(), Entities\Mw\AdvertCampaignEntity::class);
+		return $this->connector->call("Advert", "getCampaign", get_defined_vars());
 	}
 
 
@@ -76,7 +77,7 @@ class Advert
 	 */
 	public function getCampaignSection(int $campaignsSectionsId): Entities\Mw\AdvertCampaignSectionEntity
 	{
-		return $this->connector->call("Advert", "getCampaignSection", get_defined_vars(), Entities\Mw\AdvertCampaignSectionEntity::class);
+		return $this->connector->call("Advert", "getCampaignSection", get_defined_vars());
 	}
 
 
@@ -85,7 +86,7 @@ class Advert
 	 */
 	public function getUnit(int $unitsId): Entities\Mw\AdvertUnitEntity
 	{
-		return $this->connector->call("Advert", "getUnit", get_defined_vars(), Entities\Mw\AdvertUnitEntity::class);
+		return $this->connector->call("Advert", "getUnit", get_defined_vars());
 	}
 
 
@@ -106,6 +107,7 @@ class Advert
 
 
 	/**
+	 * @return array{'rows': array<AdvertUnitEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\AdvertUnknownUnitException
 	 */
@@ -205,7 +207,7 @@ class AdvertHomepage
 	 */
 	public function getData(int $advertHomepageId, string $language = 'en'): Entities\Mw\AdvertHomepageEntity
 	{
-		return $this->connector->call("AdvertHomepage", "getData", get_defined_vars(), Entities\Mw\AdvertHomepageEntity::class);
+		return $this->connector->call("AdvertHomepage", "getData", get_defined_vars());
 	}
 
 
@@ -216,6 +218,7 @@ class AdvertHomepage
 
 
 	/**
+	 * @return array{rows: array<Motv\ApiModule\Entity\AdvertHomepageEntity>, row_count: int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\WordUnknownException
 	 */
@@ -269,7 +272,7 @@ class App
 	 */
 	public function getData(int $appsId): Entities\Mw\AppEntity
 	{
-		return $this->connector->call("App", "getData", get_defined_vars(), Entities\Mw\AppEntity::class);
+		return $this->connector->call("App", "getData", get_defined_vars());
 	}
 
 
@@ -286,6 +289,7 @@ class App
 
 
 	/**
+	 * @return array{'rows': array<AppEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -379,6 +383,7 @@ class AppManager
 
 
 	/**
+	 * @return array<string, array<array{"app": AppManagerEntity, "latestFiles": array<FileManagerVersionEntity>}>>
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
 	public function getAppsByVendors(): array
@@ -403,7 +408,7 @@ class AppManager
 	 */
 	public function getData(int $appManagerId): Entities\Mw\AppManagerEntity
 	{
-		return $this->connector->call("AppManager", "getData", get_defined_vars(), Entities\Mw\AppManagerEntity::class);
+		return $this->connector->call("AppManager", "getData", get_defined_vars());
 	}
 
 
@@ -412,7 +417,7 @@ class AppManager
 	 */
 	public function getFileData(int $filesId): Entities\Mw\FileManagerEntity
 	{
-		return $this->connector->call("AppManager", "getFileData", get_defined_vars(), Entities\Mw\FileManagerEntity::class);
+		return $this->connector->call("AppManager", "getFileData", get_defined_vars());
 	}
 
 
@@ -422,6 +427,9 @@ class AppManager
 	}
 
 
+	/**
+	 * @return array<string, array{"appManagerId": int, "files": array<FileManagerEntity>}>
+	 */
 	public function getFilesByVersionsFromVendorDevicePackage(
 		int $vendorsId,
 		Enums\Mw\DeviceEnum $device,
@@ -450,6 +458,7 @@ class AppManager
 
 
 	/**
+	 * @return array{'rows': array<AppManagerEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\AppManagerUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -545,7 +554,7 @@ class Category
 	 */
 	public function getData(int $categoriesId, bool $autoSaveImage = true): Entities\Mw\CategoryEntity
 	{
-		return $this->connector->call("Category", "getData", get_defined_vars(), Entities\Mw\CategoryEntity::class);
+		return $this->connector->call("Category", "getData", get_defined_vars());
 	}
 
 
@@ -556,6 +565,7 @@ class Category
 
 
 	/**
+	 * @return array{'rows': array<Motv\ApiModule\Entity\CategoryEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 */
@@ -706,6 +716,7 @@ class Channel
 
 
 	/**
+	 * @return array{'rows': array<Motv\ApiModule\Entity\DvbRegionEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function dvbRegionSelection(
@@ -720,6 +731,7 @@ class Channel
 
 
 	/**
+	 * @return array{raw: string, programs: array<array{programId: string, programName: string, programProvider: string, streams: array<string, array<array{mapping: string, pid: string, language: string, type: string, data: string}>>}>}
 	 * @throws Exceptions\Mw\ChannelFfprobeSaveFirstException
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\TemplateUnknownException
@@ -747,7 +759,7 @@ class Channel
 	 */
 	public function getBroadcast(int $channelsBroadcastId): Entities\Mw\ChannelsBroadcastEntity
 	{
-		return $this->connector->call("Channel", "getBroadcast", get_defined_vars(), Entities\Mw\ChannelsBroadcastEntity::class);
+		return $this->connector->call("Channel", "getBroadcast", get_defined_vars());
 	}
 
 
@@ -771,7 +783,7 @@ class Channel
 
 	public function getChannelUnicastMonitoringData(int $channelsUnicastId): Entities\Mw\MonitoringChannelStatusEntity
 	{
-		return $this->connector->call("Channel", "getChannelUnicastMonitoringData", get_defined_vars(), Entities\Mw\MonitoringChannelStatusEntity::class);
+		return $this->connector->call("Channel", "getChannelUnicastMonitoringData", get_defined_vars());
 	}
 
 
@@ -787,7 +799,7 @@ class Channel
 	 */
 	public function getData(int $channelsId): Entities\Mw\ChannelEntity
 	{
-		return $this->connector->call("Channel", "getData", get_defined_vars(), Entities\Mw\ChannelEntity::class);
+		return $this->connector->call("Channel", "getData", get_defined_vars());
 	}
 
 
@@ -796,7 +808,7 @@ class Channel
 	 */
 	public function getDvbRegion(int $dvbRegionsId): Entities\Mw\DvbRegionEntity
 	{
-		return $this->connector->call("Channel", "getDvbRegion", get_defined_vars(), Entities\Mw\DvbRegionEntity::class);
+		return $this->connector->call("Channel", "getDvbRegion", get_defined_vars());
 	}
 
 
@@ -817,6 +829,7 @@ class Channel
 
 
 	/**
+	 * @return array{epg_events_id: int, epg_events_title: string, epg_events_start: \DateTimeImmutable, epg_events_end: \DateTimeImmutable, channels_unicast_id: int, generator_drm: array<Motv\ApiModule\Enum\TemplateEncryptionEnum>|null}
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
 	 */
 	public function getGenerator(int $generatorId): array
@@ -848,7 +861,7 @@ class Channel
 	 */
 	public function getMulticast(int $channelsMulticastId): Entities\Mw\ChannelMulticastEntity
 	{
-		return $this->connector->call("Channel", "getMulticast", get_defined_vars(), Entities\Mw\ChannelMulticastEntity::class);
+		return $this->connector->call("Channel", "getMulticast", get_defined_vars());
 	}
 
 
@@ -903,7 +916,7 @@ class Channel
 		string $language = 'en',
 		?int $devicesId = null,
 	): Entities\Mw\StreamUrlEntity {
-		return $this->connector->call("Channel", "getStreamUrl", get_defined_vars(), Entities\Mw\StreamUrlEntity::class);
+		return $this->connector->call("Channel", "getStreamUrl", get_defined_vars());
 	}
 
 
@@ -936,7 +949,7 @@ class Channel
 		string $language = 'en',
 		?int $devicesId = null,
 	): Entities\Mw\StreamUrlV2Entity {
-		return $this->connector->call("Channel", "getStreamUrlV3", get_defined_vars(), Entities\Mw\StreamUrlV2Entity::class);
+		return $this->connector->call("Channel", "getStreamUrlV3", get_defined_vars());
 	}
 
 
@@ -982,7 +995,7 @@ class Channel
 	 */
 	public function getUnicast(int $channelsUnicastId, string $language = 'en'): Entities\Mw\ChannelUnicastEntity
 	{
-		return $this->connector->call("Channel", "getUnicast", get_defined_vars(), Entities\Mw\ChannelUnicastEntity::class);
+		return $this->connector->call("Channel", "getUnicast", get_defined_vars());
 	}
 
 
@@ -1015,6 +1028,7 @@ class Channel
 
 
 	/**
+	 * @return array{'rows': array<Motv\ApiModule\Entity\ChannelEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -1204,7 +1218,7 @@ class ChannelCategory
 	 */
 	public function getData(int $channelsCategoriesId): Entities\Mw\ChannelCategoryEntity
 	{
-		return $this->connector->call("ChannelCategory", "getData", get_defined_vars(), Entities\Mw\ChannelCategoryEntity::class);
+		return $this->connector->call("ChannelCategory", "getData", get_defined_vars());
 	}
 
 
@@ -1215,6 +1229,7 @@ class ChannelCategory
 
 
 	/**
+	 * @return array{'rows': array<ChannelCategoryEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 */
@@ -1281,6 +1296,9 @@ class Config
 	}
 
 
+	/**
+	 * @return scalar|\MotvEnum
+	 */
 	public function getData(bool $includePredefined = true): array
 	{
 		return $this->connector->call("Config", "getData", get_defined_vars());
@@ -1310,7 +1328,7 @@ class Config
 	 */
 	public function getRemoteMw(int $remoteMwId): Entities\Mw\RemoteMwEntity
 	{
-		return $this->connector->call("Config", "getRemoteMw", get_defined_vars(), Entities\Mw\RemoteMwEntity::class);
+		return $this->connector->call("Config", "getRemoteMw", get_defined_vars());
 	}
 
 
@@ -1327,6 +1345,7 @@ class Config
 
 
 	/**
+	 * @return array{'rows': array<Motv\ApiModule\Entity\RemoteMwEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function remoteMwSelection(
@@ -1340,6 +1359,9 @@ class Config
 	}
 
 
+	/**
+	 * @return scalar|\MotvEnum
+	 */
 	public function update(array $data): array
 	{
 		return $this->connector->call("Config", "update", get_defined_vars());
@@ -1423,7 +1445,7 @@ class Customer
 	 */
 	public function getCustomerByToken(string $token): Entities\Mw\CustomerEntity
 	{
-		return $this->connector->call("Customer", "getCustomerByToken", get_defined_vars(), Entities\Mw\CustomerEntity::class);
+		return $this->connector->call("Customer", "getCustomerByToken", get_defined_vars());
 	}
 
 
@@ -1434,7 +1456,7 @@ class Customer
 		int $customersId,
 		?Enums\Mw\LoggerEventsEnum $loginLoggerType = null,
 	): Entities\Mw\CustomerEntity {
-		return $this->connector->call("Customer", "getData", get_defined_vars(), Entities\Mw\CustomerEntity::class);
+		return $this->connector->call("Customer", "getData", get_defined_vars());
 	}
 
 
@@ -1444,11 +1466,12 @@ class Customer
 	 */
 	public function getDataByLogin(string $login, int $vendorsId): Entities\Mw\CustomerEntity
 	{
-		return $this->connector->call("Customer", "getDataByLogin", get_defined_vars(), Entities\Mw\CustomerEntity::class);
+		return $this->connector->call("Customer", "getDataByLogin", get_defined_vars());
 	}
 
 
 	/**
+	 * @return array<array{customers_mac_id: int, customers_mac_mac: string, customers_mac_last_used: \DateTimeImmutable}>
 	 * @throws Exceptions\Mw\CustomerUnknownException
 	 */
 	public function getMacAddresses(int $customersId): array
@@ -1476,6 +1499,7 @@ class Customer
 
 
 	/**
+	 * @return array<array{customers_id: int, customers_login: string, customers_vendors_id: int}>
 	 * @throws Exceptions\Mw\CustomerTooManyFoundException
 	 */
 	public function search(
@@ -1519,7 +1543,7 @@ class Detector
 	 */
 	public function getData(int $detectorsId): Entities\Mw\DetectorEntity
 	{
-		return $this->connector->call("Detector", "getData", get_defined_vars(), Entities\Mw\DetectorEntity::class);
+		return $this->connector->call("Detector", "getData", get_defined_vars());
 	}
 
 
@@ -1530,6 +1554,7 @@ class Detector
 
 
 	/**
+	 * @return array{'rows': array<DetectorEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -1581,7 +1606,7 @@ class Device
 	 */
 	public function getData(int $devicesId, ?int $customersId = null): Entities\Mw\DeviceEntity
 	{
-		return $this->connector->call("Device", "getData", get_defined_vars(), Entities\Mw\DeviceEntity::class);
+		return $this->connector->call("Device", "getData", get_defined_vars());
 	}
 
 
@@ -1601,6 +1626,7 @@ class Device
 
 
 	/**
+	 * @return array{'rows': array<DeviceEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\DeviceUnknownException
 	 */
@@ -1665,7 +1691,7 @@ class Documentation
 	 */
 	public function getAdminApiModel(string $type): Entities\ApiSupport\DocumentationApiEntity
 	{
-		return $this->connector->call("Documentation", "getAdminApiModel", get_defined_vars(), Entities\ApiSupport\DocumentationApiEntity::class);
+		return $this->connector->call("Documentation", "getAdminApiModel", get_defined_vars());
 	}
 
 
@@ -1689,7 +1715,7 @@ class Documentation
 	 */
 	public function getEntity(string $type, bool $input = false): Entities\ApiSupport\DocumentationEntityEntity
 	{
-		return $this->connector->call("Documentation", "getEntity", get_defined_vars(), Entities\ApiSupport\DocumentationEntityEntity::class);
+		return $this->connector->call("Documentation", "getEntity", get_defined_vars());
 	}
 
 
@@ -1698,7 +1724,7 @@ class Documentation
 	 */
 	public function getEnum(string $type): Entities\ApiSupport\DocumentationEnumEntity
 	{
-		return $this->connector->call("Documentation", "getEnum", get_defined_vars(), Entities\ApiSupport\DocumentationEnumEntity::class);
+		return $this->connector->call("Documentation", "getEnum", get_defined_vars());
 	}
 
 
@@ -1756,11 +1782,12 @@ class Documentation
 	 */
 	public function getPublicApiModel(string $type): Entities\ApiSupport\DocumentationApiEntity
 	{
-		return $this->connector->call("Documentation", "getPublicApiModel", get_defined_vars(), Entities\ApiSupport\DocumentationApiEntity::class);
+		return $this->connector->call("Documentation", "getPublicApiModel", get_defined_vars());
 	}
 
 
 	/**
+	 * @return array<string, array<DocumentationEntityEntity>|array<DocumentationEnumEntity>|array<DocumentationApiEntity>|array<int, ErrorCodeEntity>|array<array{"model": string, "method": DocumentationMethodEntity}>>
 	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
 	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
 	 */
@@ -1782,6 +1809,9 @@ class Drm
 	}
 
 
+	/**
+	 * @return array{'com.widevine.alpha': string, 'com.apple.fps.1_0': string, 'roku'?: string}
+	 */
 	public function getDrms(
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
 		?\Motv\ApiModule\Entity\ProfileEntity $profile = null,
@@ -1814,10 +1844,13 @@ class Edge
 	 */
 	public function getActiveEdge(int $edgesId): Entities\Mw\EdgeEntity
 	{
-		return $this->connector->call("Edge", "getActiveEdge", get_defined_vars(), Entities\Mw\EdgeEntity::class);
+		return $this->connector->call("Edge", "getActiveEdge", get_defined_vars());
 	}
 
 
+	/**
+	 * @return array<int, array{edges_storages_id: int, storages_edge_mount: string, edges_url: string, storages_catchup_path_clean: int, 'edges_speed_check_url': string, 'edges_speed_test_url': string}>
+	 */
 	public function getActiveEdgesStorages(?int $customersId = null): array
 	{
 		return $this->connector->call("Edge", "getActiveEdgesStorages", get_defined_vars());
@@ -1829,16 +1862,22 @@ class Edge
 	 */
 	public function getData(int $edgesId): Entities\Mw\EdgeEntity
 	{
-		return $this->connector->call("Edge", "getData", get_defined_vars(), Entities\Mw\EdgeEntity::class);
+		return $this->connector->call("Edge", "getData", get_defined_vars());
 	}
 
 
+	/**
+	 * @return array<array{'edges_id': int, 'edges_url': string, 'storages_edge_mount': string, 'channels_unicast_directory': string, drm: array<TemplateEncryptionEnum>|null}>
+	 */
 	public function getEdgesByChannelUnicast(int $channelsUnicastId, Enums\Mw\ContentTypeEnum $contentType): array
 	{
 		return $this->connector->call("Edge", "getEdgesByChannelUnicast", get_defined_vars());
 	}
 
 
+	/**
+	 * @return array{'edges_storages_checked': ?\DateTimeImmutable, 'edges_storages_available': int, 'edges_url': string, 'storages_name': string}
+	 */
 	public function getEdgesStorages(): array
 	{
 		return $this->connector->call("Edge", "getEdgesStorages", get_defined_vars());
@@ -1858,6 +1897,7 @@ class Edge
 
 
 	/**
+	 * @return array{'rows': array<EdgeEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -1897,7 +1937,7 @@ class Epg
 	 */
 	public function getData(int $channelsId): Entities\Mw\EpgChannelEntity
 	{
-		return $this->connector->call("Epg", "getData", get_defined_vars(), Entities\Mw\EpgChannelEntity::class);
+		return $this->connector->call("Epg", "getData", get_defined_vars());
 	}
 
 
@@ -1918,7 +1958,7 @@ class Epg
 	 */
 	public function getEvent(int $epgEventsId): Entities\Mw\EpgEventInternalEntity
 	{
-		return $this->connector->call("Epg", "getEvent", get_defined_vars(), Entities\Mw\EpgEventInternalEntity::class);
+		return $this->connector->call("Epg", "getEvent", get_defined_vars());
 	}
 
 
@@ -1971,6 +2011,9 @@ class Epg
 	}
 
 
+	/**
+	 * @return array<array{'id': int, 'text': string}>
+	 */
 	public function search(string $search): array
 	{
 		return $this->connector->call("Epg", "search", get_defined_vars());
@@ -2039,7 +2082,7 @@ class EpgPlaylist
 	 */
 	public function getData(int $epgPlaylistsId, bool $includeEventVodInfo = false): Entities\Mw\EpgPlaylistEntity
 	{
-		return $this->connector->call("EpgPlaylist", "getData", get_defined_vars(), Entities\Mw\EpgPlaylistEntity::class);
+		return $this->connector->call("EpgPlaylist", "getData", get_defined_vars());
 	}
 
 
@@ -2059,6 +2102,7 @@ class EpgPlaylist
 
 
 	/**
+	 * @return array{'rows': array<EpgPlaylistEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\EpgUnknownPlaylistException
 	 */
@@ -2113,6 +2157,9 @@ class EpgRating
 	}
 
 
+	/**
+	 * @return string|null
+	 */
 	public function getAll(): array
 	{
 		return $this->connector->call("EpgRating", "getAll", get_defined_vars());
@@ -2124,10 +2171,13 @@ class EpgRating
 	 */
 	public function getData(int $epgRatingId): Entities\Mw\EpgRatingEntity
 	{
-		return $this->connector->call("EpgRating", "getData", get_defined_vars(), Entities\Mw\EpgRatingEntity::class);
+		return $this->connector->call("EpgRating", "getData", get_defined_vars());
 	}
 
 
+	/**
+	 * @return array<array{name:string|null, year: int}>
+	 */
 	public function getOptions(): array
 	{
 		return $this->connector->call("EpgRating", "getOptions", get_defined_vars());
@@ -2135,6 +2185,7 @@ class EpgRating
 
 
 	/**
+	 * @return array{'rows': array<\Motv\ApiModule\Entity\EpgRatingEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2185,7 +2236,7 @@ class Genre
 	 */
 	public function getData(int $genresId): Entities\Mw\GenreEntity
 	{
-		return $this->connector->call("Genre", "getData", get_defined_vars(), Entities\Mw\GenreEntity::class);
+		return $this->connector->call("Genre", "getData", get_defined_vars());
 	}
 
 
@@ -2206,6 +2257,7 @@ class Genre
 
 
 	/**
+	 * @return array{'rows': array<GenreEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2246,7 +2298,7 @@ class IpRange
 	 */
 	public function getData(int $ipRangesId): Entities\Mw\IpRangeEntity
 	{
-		return $this->connector->call("IpRange", "getData", get_defined_vars(), Entities\Mw\IpRangeEntity::class);
+		return $this->connector->call("IpRange", "getData", get_defined_vars());
 	}
 
 
@@ -2257,6 +2309,7 @@ class IpRange
 
 
 	/**
+	 * @return array{'rows': array<IpRangeEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2292,6 +2345,7 @@ class Logger
 
 
 	/**
+	 * @return array{'rows': array<LoggerEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2375,6 +2429,7 @@ class Monitoring
 
 
 	/**
+	 * @return array{channel:Motv\ApiModule\Entity\ChannelUnicastEntity|null, monitoring: array<int, array<int, array<int, array<Motv\ApiModule\Entity\MonitoringDataEntity>>>>, count: int}
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
@@ -2390,6 +2445,9 @@ class Monitoring
 	}
 
 
+	/**
+	 * @return array{success: int, failure: int, interval: string} Returns the count of successfull and failed widevine requests from last 1 minute.
+	 */
 	public function getWidevineRequestSuccessFailureCounts(): array
 	{
 		return $this->connector->call("Monitoring", "getWidevineRequestSuccessFailureCounts", get_defined_vars());
@@ -2436,11 +2494,12 @@ class Onboarding
 	 */
 	public function getData(int $onboardingId, string $language = 'en'): Entities\Mw\OnboardingEntity
 	{
-		return $this->connector->call("Onboarding", "getData", get_defined_vars(), Entities\Mw\OnboardingEntity::class);
+		return $this->connector->call("Onboarding", "getData", get_defined_vars());
 	}
 
 
 	/**
+	 * @return array{'rows': array<OnboardingEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\OnboardingUnknownException
 	 * @throws Exceptions\Mw\WordUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
@@ -2490,6 +2549,7 @@ class Ota
 
 
 	/**
+	 * @return array{'rows': array<OtaDeviceEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\OtaUnknownDeviceException
 	 */
@@ -2509,13 +2569,13 @@ class Ota
 	 */
 	public function getDevice(int $otaDevicesId): Entities\Mw\OtaDeviceEntity
 	{
-		return $this->connector->call("Ota", "getDevice", get_defined_vars(), Entities\Mw\OtaDeviceEntity::class);
+		return $this->connector->call("Ota", "getDevice", get_defined_vars());
 	}
 
 
 	public function getLastVersion(int $otaDevicesId, bool $active = false): Entities\Mw\OtaVersionEntity
 	{
-		return $this->connector->call("Ota", "getLastVersion", get_defined_vars(), Entities\Mw\OtaVersionEntity::class);
+		return $this->connector->call("Ota", "getLastVersion", get_defined_vars());
 	}
 
 
@@ -2524,7 +2584,7 @@ class Ota
 	 */
 	public function getVersion(int $otaVersionsId): Entities\Mw\OtaVersionEntity
 	{
-		return $this->connector->call("Ota", "getVersion", get_defined_vars(), Entities\Mw\OtaVersionEntity::class);
+		return $this->connector->call("Ota", "getVersion", get_defined_vars());
 	}
 
 
@@ -2534,7 +2594,7 @@ class Ota
 	 */
 	public function latest(string $name): Entities\Mw\OtaLatestVersionEntity
 	{
-		return $this->connector->call("Ota", "latest", get_defined_vars(), Entities\Mw\OtaLatestVersionEntity::class);
+		return $this->connector->call("Ota", "latest", get_defined_vars());
 	}
 
 
@@ -2544,7 +2604,7 @@ class Ota
 	 */
 	public function latestById(int $id): Entities\Mw\OtaLatestVersionEntity
 	{
-		return $this->connector->call("Ota", "latestById", get_defined_vars(), Entities\Mw\OtaLatestVersionEntity::class);
+		return $this->connector->call("Ota", "latestById", get_defined_vars());
 	}
 
 
@@ -2568,6 +2628,7 @@ class Ota
 
 
 	/**
+	 * @return array{'rows': array<OtaVersionEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\OtaUnknownVersionException
 	 */
@@ -2608,7 +2669,7 @@ class Package
 	 */
 	public function getData(int $packagesId): Entities\Mw\PackageEntity
 	{
-		return $this->connector->call("Package", "getData", get_defined_vars(), Entities\Mw\PackageEntity::class);
+		return $this->connector->call("Package", "getData", get_defined_vars());
 	}
 
 
@@ -2629,6 +2690,7 @@ class Package
 
 
 	/**
+	 * @return array{'rows': array<PackageEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -2669,7 +2731,7 @@ class Person
 	 */
 	public function getData(int $personsId): Entities\Mw\PersonEntity
 	{
-		return $this->connector->call("Person", "getData", get_defined_vars(), Entities\Mw\PersonEntity::class);
+		return $this->connector->call("Person", "getData", get_defined_vars());
 	}
 
 
@@ -2686,6 +2748,7 @@ class Person
 
 
 	/**
+	 * @return array{'rows': array<PersonEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2747,7 +2810,7 @@ class Profile
 	 */
 	public function getData(int $profilesId): Entities\Mw\ProfileEntity
 	{
-		return $this->connector->call("Profile", "getData", get_defined_vars(), Entities\Mw\ProfileEntity::class);
+		return $this->connector->call("Profile", "getData", get_defined_vars());
 	}
 
 
@@ -2861,7 +2924,7 @@ class Recognition
 	 */
 	public function getLatestProgramSegment(int $recognitionModelsChannelsId): Entities\Mw\EpgEventSegmentEntity
 	{
-		return $this->connector->call("Recognition", "getLatestProgramSegment", get_defined_vars(), Entities\Mw\EpgEventSegmentEntity::class);
+		return $this->connector->call("Recognition", "getLatestProgramSegment", get_defined_vars());
 	}
 
 
@@ -2886,7 +2949,7 @@ class Recognition
 		int $recognitionModelsId,
 		bool $loadRecognitionApiData = false,
 	): Entities\Mw\RecognitionModelEntity {
-		return $this->connector->call("Recognition", "getModel", get_defined_vars(), Entities\Mw\RecognitionModelEntity::class);
+		return $this->connector->call("Recognition", "getModel", get_defined_vars());
 	}
 
 
@@ -2899,7 +2962,7 @@ class Recognition
 		int $recognitionModelsChannelsId,
 		bool $loadRecognitionApiData = false,
 	): Entities\Mw\RecognitionModelChannelEntity {
-		return $this->connector->call("Recognition", "getModelChannel", get_defined_vars(), Entities\Mw\RecognitionModelChannelEntity::class);
+		return $this->connector->call("Recognition", "getModelChannel", get_defined_vars());
 	}
 
 
@@ -2928,11 +2991,12 @@ class Recognition
 
 
 	/**
+	 * @return \SelectedLogoClusterEntity|null
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
 	 */
 	public function getSelectedLogoCluster(int $recognitionModelsChannelsId): Entities\Mw\SelectedLogoClusterEntity
 	{
-		return $this->connector->call("Recognition", "getSelectedLogoCluster", get_defined_vars(), Entities\Mw\SelectedLogoClusterEntity::class);
+		return $this->connector->call("Recognition", "getSelectedLogoCluster", get_defined_vars());
 	}
 
 
@@ -2941,7 +3005,7 @@ class Recognition
 	 */
 	public function getTemplateImage(int $recognitionTemplateImagesId): Entities\Mw\RecognitionTemplateImageEntity
 	{
-		return $this->connector->call("Recognition", "getTemplateImage", get_defined_vars(), Entities\Mw\RecognitionTemplateImageEntity::class);
+		return $this->connector->call("Recognition", "getTemplateImage", get_defined_vars());
 	}
 
 
@@ -2950,7 +3014,7 @@ class Recognition
 	 */
 	public function getTrainingImage(int $recognitionTrainingImagesId): Entities\Mw\RecognitionTrainingImageEntity
 	{
-		return $this->connector->call("Recognition", "getTrainingImage", get_defined_vars(), Entities\Mw\RecognitionTrainingImageEntity::class);
+		return $this->connector->call("Recognition", "getTrainingImage", get_defined_vars());
 	}
 
 
@@ -2965,6 +3029,7 @@ class Recognition
 
 
 	/**
+	 * @return array{'rows': array<RecognitionModelEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
@@ -2982,6 +3047,7 @@ class Recognition
 
 
 	/**
+	 * @return array{'rows': array<EpgEventSegmentEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function programSegmentSelection(
@@ -3168,7 +3234,7 @@ class Recording
 		InputEntities\Mw\CustomerDeviceEntity $device,
 		int $epgEventsId,
 	): Entities\Mw\RecommendationCardRecordingEntity {
-		return $this->connector->call("Recording", "addRecording", get_defined_vars(), Entities\Mw\RecommendationCardRecordingEntity::class);
+		return $this->connector->call("Recording", "addRecording", get_defined_vars());
 	}
 
 
@@ -3181,7 +3247,7 @@ class Recording
 		int $profilesId,
 		InputEntities\Mw\CustomerDeviceEntity $device,
 	): Entities\Mw\RecommendationCardRecordingEntity {
-		return $this->connector->call("Recording", "getData", get_defined_vars(), Entities\Mw\RecommendationCardRecordingEntity::class);
+		return $this->connector->call("Recording", "getData", get_defined_vars());
 	}
 
 
@@ -3240,7 +3306,7 @@ class Report
 	 */
 	public function getData(int $reportsId): Entities\Mw\ReportEntity
 	{
-		return $this->connector->call("Report", "getData", get_defined_vars(), Entities\Mw\ReportEntity::class);
+		return $this->connector->call("Report", "getData", get_defined_vars());
 	}
 
 
@@ -3263,6 +3329,7 @@ class Report
 
 
 	/**
+	 * @return array{'rows': array<mixed>, 'row_count': int}
 	 * @throws Exceptions\Mw\ReportQueryErrorException
 	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 * @throws Exceptions\Mw\TemplateErrorFillingException
@@ -3274,6 +3341,7 @@ class Report
 
 
 	/**
+	 * @return array{'rows': array<ReportEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -3408,16 +3476,22 @@ class Subscription
 	 */
 	public function getHomepage(int $customersId): Entities\Mw\HomepageEntity
 	{
-		return $this->connector->call("Subscription", "getHomepage", get_defined_vars(), Entities\Mw\HomepageEntity::class);
+		return $this->connector->call("Subscription", "getHomepage", get_defined_vars());
 	}
 
 
+	/**
+	 * @return array<array{'packages_id': int, 'packages_name': string, 'packages_recording_length': int, 'packages_device_count': int}>
+	 */
 	public function getPackagesBySubscribedPackage(array $packages, ?Enums\Mw\DeviceEnum $devicesType = null): array
 	{
 		return $this->connector->call("Subscription", "getPackagesBySubscribedPackage", get_defined_vars());
 	}
 
 
+	/**
+	 * @return array<array{'packages_id': int, 'packages_name': string, 'packages_recording_length': int, 'packages_device_count': int, 'subscriptions_from': \DateTimeImmutable}>
+	 */
 	public function getPackageSubscriptions(int $customersId, ?Enums\Mw\DeviceEnum $devicesType = null): array
 	{
 		return $this->connector->call("Subscription", "getPackageSubscriptions", get_defined_vars());
@@ -3505,7 +3579,7 @@ class Template
 	 */
 	public function getData(int $templatesId, string $language = 'en'): Entities\Mw\TemplateEntity
 	{
-		return $this->connector->call("Template", "getData", get_defined_vars(), Entities\Mw\TemplateEntity::class);
+		return $this->connector->call("Template", "getData", get_defined_vars());
 	}
 
 
@@ -3528,6 +3602,7 @@ class Template
 
 
 	/**
+	 * @return array{'rows': array<Motv\ApiModule\Entity\TemplateEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
@@ -3606,7 +3681,7 @@ class Transcoder
 	 */
 	public function getData(int $transcodersId): Entities\Mw\TranscoderEntity
 	{
-		return $this->connector->call("Transcoder", "getData", get_defined_vars(), Entities\Mw\TranscoderEntity::class);
+		return $this->connector->call("Transcoder", "getData", get_defined_vars());
 	}
 
 
@@ -3615,7 +3690,7 @@ class Transcoder
 	 */
 	public function getDataByName(string $transcodersName): Entities\Mw\TranscoderEntity
 	{
-		return $this->connector->call("Transcoder", "getDataByName", get_defined_vars(), Entities\Mw\TranscoderEntity::class);
+		return $this->connector->call("Transcoder", "getDataByName", get_defined_vars());
 	}
 
 
@@ -3626,6 +3701,7 @@ class Transcoder
 
 
 	/**
+	 * @return array<array{description: string, pid: int, stderr_logfile: string, stop: int, logfile: string, exitstatus: int, spawnerr: string, now: int, group: string, name: string, statename: string, start: int, state: int, stdout_logfile: string}>
 	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 */
 	public function getSupervisorProcesses(): array
@@ -3669,6 +3745,7 @@ class Transcoder
 
 
 	/**
+	 * @return array{time: string, nvidia: array<array{gpu: string, memory: string, encoder: string, decoder: string}>|null, cpu: string, ram: string, cpu_load: string, transcoding: array{unicast_channels: int, gpu_decoders: int, gpu_encoders: int, gpu_encoders_h264: int, gpu_encoders_hevc: int, cpu_decoders: int, deinterlacing: int, live_bandwidth: int, recording_bandwidth: int}}
 	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 */
 	public function saveSystemUsage(): array
@@ -3678,6 +3755,7 @@ class Transcoder
 
 
 	/**
+	 * @return array{'rows': array<TranscoderEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -3692,6 +3770,7 @@ class Transcoder
 
 
 	/**
+	 * @return array{'rows': array<StreamRecordingEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function streamRecordingsSelection(
@@ -3757,6 +3836,7 @@ class Translator
 
 
 	/**
+	 * @return string|null
 	 * @throws Exceptions\Mw\LanguageUnknownException
 	 */
 	public function exportTranslationsAsSimpleObject(string $language): array
@@ -3784,6 +3864,7 @@ class Translator
 
 
 	/**
+	 * @return array<array{'words_id': int, 'words_text': string, 'translations_text': ?string, 'words_note': string}>
 	 * @throws Exceptions\Mw\LanguageUnknownException
 	 */
 	public function getTranslations(string $language): array
@@ -3797,7 +3878,7 @@ class Translator
 	 */
 	public function getWord(?int $wordsId = null, ?string $wordsText = null): Entities\Mw\WordEntity
 	{
-		return $this->connector->call("Translator", "getWord", get_defined_vars(), Entities\Mw\WordEntity::class);
+		return $this->connector->call("Translator", "getWord", get_defined_vars());
 	}
 
 
@@ -3848,6 +3929,7 @@ class Translator
 
 
 	/**
+	 * @return array{'rows': array<WordEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\WordUnknownException
 	 */
@@ -3884,7 +3966,7 @@ class User
 	 */
 	public function checkLogin(string $header): Entities\ApiSupport\UserEntity
 	{
-		return $this->connector->call("User", "checkLogin", get_defined_vars(), Entities\ApiSupport\UserEntity::class);
+		return $this->connector->call("User", "checkLogin", get_defined_vars());
 	}
 
 
@@ -3894,7 +3976,7 @@ class User
 	 */
 	public function getData(int $usersId): Entities\ApiSupport\UserEntity
 	{
-		return $this->connector->call("User", "getData", get_defined_vars(), Entities\ApiSupport\UserEntity::class);
+		return $this->connector->call("User", "getData", get_defined_vars());
 	}
 
 
@@ -3913,11 +3995,12 @@ class User
 	 */
 	public function login(string $email, string $password): Entities\ApiSupport\UserEntity
 	{
-		return $this->connector->call("User", "login", get_defined_vars(), Entities\ApiSupport\UserEntity::class);
+		return $this->connector->call("User", "login", get_defined_vars());
 	}
 
 
 	/**
+	 * @return array{'rows': array<UserEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -3957,6 +4040,7 @@ class Vendor
 
 
 	/**
+	 * @return array{'rows': array<VendorAvatarEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\VendorUnknownAvatarException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -3991,7 +4075,7 @@ class Vendor
 	 */
 	public function getAvatar(int $vendorsAvatarsId): Entities\Mw\VendorAvatarEntity
 	{
-		return $this->connector->call("Vendor", "getAvatar", get_defined_vars(), Entities\Mw\VendorAvatarEntity::class);
+		return $this->connector->call("Vendor", "getAvatar", get_defined_vars());
 	}
 
 
@@ -4000,7 +4084,7 @@ class Vendor
 	 */
 	public function getData(int $vendorsId): Entities\Mw\VendorEntity
 	{
-		return $this->connector->call("Vendor", "getData", get_defined_vars(), Entities\Mw\VendorEntity::class);
+		return $this->connector->call("Vendor", "getData", get_defined_vars());
 	}
 
 
@@ -4014,6 +4098,7 @@ class Vendor
 
 
 	/**
+	 * @return array<array{vendors_name: string, license_count: int, license_infite: int, license_limitation: int}>
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
@@ -4040,7 +4125,7 @@ class Vendor
 	 */
 	public function getPublicData(int $vendorsId): Entities\Mw\VendorPublicEntity
 	{
-		return $this->connector->call("Vendor", "getPublicData", get_defined_vars(), Entities\Mw\VendorPublicEntity::class);
+		return $this->connector->call("Vendor", "getPublicData", get_defined_vars());
 	}
 
 
@@ -4054,6 +4139,7 @@ class Vendor
 
 
 	/**
+	 * @return array{'rows': array<VendorEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
@@ -4170,6 +4256,7 @@ class Vod
 
 
 	/**
+	 * @return array{raw: string, duration: string, bitrate: string, streams: array<string, array<array{mapping: string, language: string, type: string, data: string}>>}
 	 * @throws Exceptions\Mw\TranscoderUnableToContactException
 	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 * @throws Exceptions\Mw\VodUnathorizedException
@@ -4200,7 +4287,7 @@ class Vod
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
 		bool $useCache = true,
 	): Entities\Mw\VodEntity {
-		return $this->connector->call("Vod", "getData", get_defined_vars(), Entities\Mw\VodEntity::class);
+		return $this->connector->call("Vod", "getData", get_defined_vars());
 	}
 
 
@@ -4213,7 +4300,7 @@ class Vod
 		?int $profilesId = null,
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
 	): Entities\Mw\RecommendationCardEntity {
-		return $this->connector->call("Vod", "getDataV2", get_defined_vars(), Entities\Mw\RecommendationCardEntity::class);
+		return $this->connector->call("Vod", "getDataV2", get_defined_vars());
 	}
 
 
@@ -4230,6 +4317,7 @@ class Vod
 
 
 	/**
+	 * @return array{uploadDirectory: string, storagesId: int, storagesApi: string|null, transcodersApi: string, vodsId: int, vodsFilename: string, token:string}
 	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 * @throws Exceptions\Mw\VodUnathorizedException
 	 * @throws Exceptions\Mw\VodUnknownException
@@ -4305,6 +4393,7 @@ class Vod
 
 
 	/**
+	 * @return array{'rows': array<Motv\ApiModule\Entity\VodEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\VodUnathorizedException
 	 * @throws Exceptions\Mw\VodUnknownException

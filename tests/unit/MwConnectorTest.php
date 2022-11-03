@@ -110,11 +110,11 @@ class MwConnectorTest extends MwConnector
 		$this->assertIsInt($selection['row_count']);
 		$this->assertEquals(1, $selection['row_count']);
 		$vendor2 = $selection['rows'][0];
-		$this->assertIsArray($vendor2);
+		$this->assertInstanceOf(VendorEntity::class, $vendor2);
 
-		$this->assertEquals($vendor->vendors_id, $vendor2['vendors_id']);
-		$this->assertEquals($vendor->vendors_background_type->value, $vendor2['vendors_background_type']);
-		$this->assertEquals($vendor->vendors_accent_color, $vendor2['vendors_accent_color']);
+		$this->assertEquals($vendor->vendors_id, $vendor2->vendors_id);
+		$this->assertEquals($vendor->vendors_background_type->value, $vendor2->vendors_background_type->value);
+		$this->assertEquals($vendor->vendors_accent_color, $vendor2->vendors_accent_color);
 	}
 
 }
