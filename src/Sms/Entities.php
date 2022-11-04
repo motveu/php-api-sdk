@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 4 Nov 2022 10:51:52
+ * Generated on Fri, 4 Nov 2022 13:28:55
  * Part moTV.eu SDK integration kit
  */
 
@@ -14,8 +14,8 @@ class BatchEntity
 	public int $batch_id;
 	public string $products_name;
 	public string $users_name;
-	public \DateTimeImmutable $batch_requested;
-	public \DateTimeImmutable $batch_expiry_date;
+	public string $batch_requested;
+	public string $batch_expiry_date;
 	public int $batch_is_active;
 	public int $batch_number_requested;
 	public int $batch_voucher_generated;
@@ -46,8 +46,8 @@ class DealerEntity
 class EpgEventEntity
 {
 	public int $epg_events_epg_id;
-	public \DateTimeImmutable $epg_events_start;
-	public \DateTimeImmutable $epg_events_end;
+	public string $epg_events_start;
+	public string $epg_events_end;
 	public string $epg_events_title;
 	public ?string $epg_events_subtitle;
 	public ?string $epg_events_category;
@@ -68,8 +68,8 @@ class ScheduleEntity
 	public int $schedule_recurrence;
 	public ?int $schedule_repeat;
 	public \Motv\Connector\Sms\Enums\Sms\ScheduleRepeatUnitsEnum $schedule_repeat_unit;
-	public \DateTimeImmutable $schedule_start;
-	public ?\DateTimeImmutable $schedule_end;
+	public string $schedule_start;
+	public ?string $schedule_end;
 	public int $schedule_users_id;
 	public int $schedule_group_action_id;
 	public string $schedule_data;
@@ -81,8 +81,8 @@ class SubscriptionEntity
 {
 	public int $viewers_bouquets_id;
 	public int $viewers_bouquets_viewers_id;
-	public \DateTimeImmutable $viewers_bouquets_active_from;
-	public \DateTimeImmutable $viewers_bouquets_active_to;
+	public string $viewers_bouquets_active_from;
+	public string $viewers_bouquets_active_to;
 	public int $viewers_bouquets_cancelled;
 	public int $viewers_bouquets_subscribed;
 	public $viewers_bouquets_smartcard_id;
@@ -94,9 +94,9 @@ class SubscriptionEntity
 	public int $viewers_bouquets_suspended;
 	public string $requests_cas_type;
 	public \Motv\Connector\Sms\Enums\Sms\SubscriptionStateEnum $subscription_state;
-	public ?\DateTimeImmutable $CONAX_DATE_FROM;
-	public ?\DateTimeImmutable $CONAX_DATE_TO;
-	public ?\DateTimeImmutable $viewers_bouquets_cancelled_on;
+	public ?string $CONAX_DATE_FROM;
+	public ?string $CONAX_DATE_TO;
+	public ?string $viewers_bouquets_cancelled_on;
 	public ?int $viewers_bouquets_invoice_id;
 	public ?int $bouquets_is_active;
 }
@@ -107,12 +107,12 @@ class TicketEntity
 	public int $tickets_creation_users_id;
 	public int $tickets_viewers_id;
 	public string $tickets_note;
-	public \DateTimeImmutable $tickets_creation_time;
-	public ?\DateTimeImmutable $tickets_close_time;
+	public string $tickets_creation_time;
+	public ?string $tickets_close_time;
 	public ?int $tickets_status;
 	public int $tickets_departments_id;
 	public ?int $tickets_responsible_users_id;
-	public ?\DateTimeImmutable $tickets_departments_change_time;
+	public ?string $tickets_departments_change_time;
 	public int $tickets_notifications_sent;
 	public int $tickets_visited;
 	public int $tickets_tickets_priorities_id;
@@ -136,7 +136,7 @@ class TicketsCategoryEntity
 class TicketsCommentEntity
 {
 	public int $tickets_comments_id;
-	public \DateTimeImmutable $tickets_comments_time;
+	public string $tickets_comments_time;
 	public int $tickets_comments_users_id;
 	public string $tickets_comments_note;
 	public int $tickets_comments_tickets_id;
@@ -160,7 +160,7 @@ class TicketsFileEntity
 	public string $tickets_files_file_type;
 	public string $tickets_files_origin_name;
 	public int $tickets_files_users_id;
-	public \DateTimeImmutable $tickets_files_date;
+	public string $tickets_files_date;
 	public string $file;
 }
 
@@ -237,7 +237,7 @@ class UsersNotificationsEntity
 	public string $users_notifications_type;
 	public string $users_notifications_link;
 	public int $users_notifications_link_id;
-	public \DateTimeImmutable $users_notifications_time;
+	public string $users_notifications_time;
 	public string $ticket_notifications_form_name;
 }
 

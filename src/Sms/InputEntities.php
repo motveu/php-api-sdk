@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 4 Nov 2022 10:51:52
+ * Generated on Fri, 4 Nov 2022 13:28:56
  * Part moTV.eu SDK integration kit
  */
 
@@ -36,8 +36,8 @@ class ScheduleEntity
 	public bool $schedule_recurrence;
 	public ?int $schedule_repeat;
 	public \Motv\Connector\Sms\Enums\Sms\ScheduleRepeatUnitsEnum $schedule_repeat_unit;
-	public \DateTimeImmutable $schedule_start;
-	public \DateTimeImmutable $schedule_end;
+	public string $schedule_start;
+	public string $schedule_end;
 	public int $schedule_group_action_id;
 	public string $schedule_data;
 }
@@ -47,12 +47,12 @@ class TicketEntity
 	public int $tickets_creation_users_id;
 	public int $tickets_viewers_id;
 	public string $tickets_note;
-	public \DateTimeImmutable $tickets_creation_time;
-	public ?\DateTimeImmutable $tickets_close_time;
+	public string $tickets_creation_time;
+	public ?string $tickets_close_time;
 	public ?int $tickets_status;
 	public ?int $tickets_departments_id;
 	public ?int $tickets_responsible_users_id;
-	public ?\DateTimeImmutable $tickets_departments_change_time;
+	public ?string $tickets_departments_change_time;
 	public bool $tickets_notifications_sent;
 	public bool $tickets_visited;
 	public ?int $tickets_tickets_priorities_id;

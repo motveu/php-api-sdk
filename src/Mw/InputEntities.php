@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 4 Nov 2022 10:53:42
+ * Generated on Fri, 4 Nov 2022 13:29:06
  * Part moTV.eu SDK integration kit
  */
 
@@ -13,8 +13,8 @@ class AdvertCampaignEntity
 {
 	public string $campaigns_name;
 	public bool $campaigns_active;
-	public \DateTimeImmutable $campaigns_from;
-	public \DateTimeImmutable $campaigns_to;
+	public string $campaigns_from;
+	public string $campaigns_to;
 	public bool $campaigns_all_packages;
 	public ?bool $campaigns_ssai;
 	public array $campaigns_packages;
@@ -61,8 +61,8 @@ class AdvertUnitEntity
 	public ?string $file;
 	public ?string $file_extension;
 	public bool $units_active;
-	public \DateTimeImmutable $units_from;
-	public \DateTimeImmutable $units_to;
+	public string $units_from;
+	public string $units_to;
 	public int $units_weight;
 	public ?string $units_url;
 	public ?int $units_video_duration;
@@ -300,7 +300,7 @@ class CustomerRegisterEntity
 	public int $customers_vendors_id;
 	public string $profiles_name;
 	public ?string $profiles_pin;
-	public ?\DateTimeImmutable $profiles_birthday;
+	public ?string $profiles_birthday;
 	public string $image;
 }
 
@@ -560,7 +560,7 @@ class PersonEntity
 	public string $persons_name;
 	public \Motv\Connector\Mw\Enums\Mw\PersonEnum $persons_type;
 	public ?string $persons_description;
-	public ?\DateTimeImmutable $persons_birthday;
+	public ?string $persons_birthday;
 	public ?string $image;
 }
 
@@ -573,7 +573,7 @@ class ProfilePublicEntity
 {
 	public ?string $image;
 	public ?string $profiles_name;
-	public ?\DateTimeImmutable $profiles_birthday;
+	public ?string $profiles_birthday;
 	public ?string $profiles_pin;
 	public ?bool $profiles_protect;
 	public ?int $profiles_age;
@@ -659,9 +659,9 @@ class ReportScheduleEntity
 {
 	public string $report_schedules_name;
 	public bool $report_schedules_active;
-	public \DateTimeImmutable $report_schedules_start_date;
+	public string $report_schedules_start_date;
 	public int $report_schedules_start_time;
-	public ?\DateTimeImmutable $report_schedules_end;
+	public ?string $report_schedules_end;
 	public \Motv\Connector\Mw\Enums\Mw\ReportScheduleRepeatEnum $report_schedules_repeat;
 	public string $report_schedules_emails;
 	public string $report_schedules_dashboard;
@@ -837,8 +837,8 @@ class VodEntity
 {
 	public string $vods_name;
 	public ?string $vods_subname;
-	public \DateTimeImmutable $vods_license_start;
-	public \DateTimeImmutable $vods_license_end;
+	public string $vods_license_start;
+	public string $vods_license_end;
 	public bool $vods_tvod;
 	public bool $vods_active;
 	public ?int $vods_categories_id;
@@ -847,11 +847,11 @@ class VodEntity
 	public array $vods_directors;
 	public array $vods_actors;
 	public array $genres;
-	public ?\DateTimeImmutable $vods_released;
+	public ?string $vods_released;
 	public ?string $vods_origin;
 	public ?string $vods_imdb_rating;
 	public ?string $vods_imdb_id;
-	public ?\DateTimeImmutable $vods_hot_news;
+	public ?string $vods_hot_news;
 	public ?int $vods_next_vods_id;
 	public bool $vods_series;
 	public ?int $vods_season;

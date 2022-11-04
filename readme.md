@@ -28,7 +28,7 @@ For full API documentation and test API endpoint please get in touch with JACON 
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$smsConnector = new \Motv\Sms\Connector('https://sms.operator.tv', 'Username', 'secret...');
+$smsConnector = new \Motv\Connector\Sms\AdminConnector('https://sms.operator.tv', 'Username', 'secret...');
 
 // create sample customer
 $viewersId = $smsConnector->Integration()->createMotvCustomer('test', 'myPassword');
@@ -74,10 +74,14 @@ For full API documentation and test API endpoint please get in touch with moTV.e
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$mwAdminConnector = new \Motv\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
+$mwAdminConnector = new \Motv\Connector\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
 
 // get customer with internal ID 1
-$mwAdminConnector->Customer()->getData(1);
+$customerEntity = $mwAdminConnector->Customer()->getData(1);
+$vendorsPairs = $mwAdminConnector->Vendor()->getPairs();
+echo('Customer\'s login: ' . $customerEntity->customers_login);
+echo(PHP_EOL);
+echo('Customer\'s vendor: ' . $vendorsPairs[$customerEntity->customers_vendors_id]);
 ```
 
 Catching errors
@@ -103,7 +107,7 @@ Logging
 This SDK is shipped with Monolog (https://github.com/Seldaek/monolog) support. You can pass logger to the `$connector->setLogger()` method and all API communication will be logged
 
 ```php
-$mwAdminConnector = new \Motv\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
+$mwAdminConnector = new \Motv\Connector\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
 
 $logger = new \Monolog\Logger('API');
 $logger->pushHandler(new \Monolog\Handler\RotatingFileHandler('api.log', 14));
