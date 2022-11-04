@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Thu, 3 Nov 2022 12:16:07
+ * Generated on Fri, 4 Nov 2022 8:57:25
  * Part moTV.eu SDK integration kit
  */
 
@@ -22,7 +22,7 @@ class Advert
 
 
 	/**
-	 * @return array{'rows': array<AdvertCampaignEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\AdvertCampaignEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\CampaignUnknownSectionException
 	 * @throws Exceptions\Mw\CampaignUnknownException
@@ -107,7 +107,7 @@ class Advert
 
 
 	/**
-	 * @return array{'rows': array<AdvertUnitEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\AdvertUnitEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\AdvertUnknownUnitException
 	 */
@@ -218,7 +218,7 @@ class AdvertHomepage
 
 
 	/**
-	 * @return array{rows: array<Motv\ApiModule\Entity\AdvertHomepageEntity>, row_count: int}
+	 * @return array{rows: array<Entities\Mw\AdvertHomepageEntity>, row_count: int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\WordUnknownException
 	 */
@@ -289,7 +289,7 @@ class App
 
 
 	/**
-	 * @return array{'rows': array<AppEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\AppEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -383,7 +383,7 @@ class AppManager
 
 
 	/**
-	 * @return array<string, array<array{"app": AppManagerEntity, "latestFiles": array<FileManagerVersionEntity>}>>
+	 * @return array<string, array<array{"app": Entities\Mw\AppManagerEntity, "latestFiles": array<FileManagerVersionEntity>}>>
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
 	public function getAppsByVendors(): array
@@ -428,7 +428,7 @@ class AppManager
 
 
 	/**
-	 * @return array<string, array{"appManagerId": int, "files": array<FileManagerEntity>}>
+	 * @return array<string, array{"appManagerId": int, "files": array<Entities\Mw\FileManagerEntity>}>
 	 */
 	public function getFilesByVersionsFromVendorDevicePackage(
 		int $vendorsId,
@@ -458,7 +458,7 @@ class AppManager
 
 
 	/**
-	 * @return array{'rows': array<AppManagerEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\AppManagerEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\AppManagerUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -565,7 +565,7 @@ class Category
 
 
 	/**
-	 * @return array{'rows': array<Motv\ApiModule\Entity\CategoryEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\CategoryEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 */
@@ -716,7 +716,7 @@ class Channel
 
 
 	/**
-	 * @return array{'rows': array<Motv\ApiModule\Entity\DvbRegionEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\DvbRegionEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function dvbRegionSelection(
@@ -829,7 +829,7 @@ class Channel
 
 
 	/**
-	 * @return array{epg_events_id: int, epg_events_title: string, epg_events_start: \DateTimeImmutable, epg_events_end: \DateTimeImmutable, channels_unicast_id: int, generator_drm: array<Motv\ApiModule\Enum\TemplateEncryptionEnum>|null}
+	 * @return array{epg_events_id: int, epg_events_title: string, epg_events_start: \DateTimeImmutable, epg_events_end: \DateTimeImmutable, channels_unicast_id: int, generator_drm: array<Enums\Mw\TemplateEncryptionEnum>|null}
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
 	 */
 	public function getGenerator(int $generatorId): array
@@ -1028,7 +1028,7 @@ class Channel
 
 
 	/**
-	 * @return array{'rows': array<Motv\ApiModule\Entity\ChannelEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\ChannelEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -1229,7 +1229,7 @@ class ChannelCategory
 
 
 	/**
-	 * @return array{'rows': array<ChannelCategoryEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\ChannelCategoryEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 */
@@ -1345,7 +1345,7 @@ class Config
 
 
 	/**
-	 * @return array{'rows': array<Motv\ApiModule\Entity\RemoteMwEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\RemoteMwEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function remoteMwSelection(
@@ -1554,7 +1554,7 @@ class Detector
 
 
 	/**
-	 * @return array{'rows': array<DetectorEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\DetectorEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -1626,7 +1626,7 @@ class Device
 
 
 	/**
-	 * @return array{'rows': array<DeviceEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\DeviceEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\DeviceUnknownException
 	 */
@@ -1787,7 +1787,7 @@ class Documentation
 
 
 	/**
-	 * @return array<string, array<DocumentationEntityEntity>|array<DocumentationEnumEntity>|array<DocumentationApiEntity>|array<int, ErrorCodeEntity>|array<array{"model": string, "method": DocumentationMethodEntity}>>
+	 * @return array<string, array<Entities\ApiSupport\DocumentationEntityEntity>|array<DocumentationEnumEntity>|array<DocumentationApiEntity>|array<int, ErrorCodeEntity>|array<array{"model": string, "method": DocumentationMethodEntity}>>
 	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
 	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
 	 */
@@ -1867,7 +1867,7 @@ class Edge
 
 
 	/**
-	 * @return array<array{'edges_id': int, 'edges_url': string, 'storages_edge_mount': string, 'channels_unicast_directory': string, drm: array<TemplateEncryptionEnum>|null}>
+	 * @return array<array{'edges_id': int, 'edges_url': string, 'storages_edge_mount': string, 'channels_unicast_directory': string, drm: array<Enums\Mw\TemplateEncryptionEnum>|null}>
 	 */
 	public function getEdgesByChannelUnicast(int $channelsUnicastId, Enums\Mw\ContentTypeEnum $contentType): array
 	{
@@ -1897,7 +1897,7 @@ class Edge
 
 
 	/**
-	 * @return array{'rows': array<EdgeEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\EdgeEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2102,7 +2102,7 @@ class EpgPlaylist
 
 
 	/**
-	 * @return array{'rows': array<EpgPlaylistEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\EpgPlaylistEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\EpgUnknownPlaylistException
 	 */
@@ -2185,7 +2185,7 @@ class EpgRating
 
 
 	/**
-	 * @return array{'rows': array<\Motv\ApiModule\Entity\EpgRatingEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\\EpgRatingEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2257,7 +2257,7 @@ class Genre
 
 
 	/**
-	 * @return array{'rows': array<GenreEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\GenreEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2309,7 +2309,7 @@ class IpRange
 
 
 	/**
-	 * @return array{'rows': array<IpRangeEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\IpRangeEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2345,7 +2345,7 @@ class Logger
 
 
 	/**
-	 * @return array{'rows': array<LoggerEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\LoggerEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2429,7 +2429,7 @@ class Monitoring
 
 
 	/**
-	 * @return array{channel:Motv\ApiModule\Entity\ChannelUnicastEntity|null, monitoring: array<int, array<int, array<int, array<Motv\ApiModule\Entity\MonitoringDataEntity>>>>, count: int}
+	 * @return array{channel:Entities\Mw\ChannelUnicastEntity|null, monitoring: array<int, array<int, array<int, array<Motv\ApiModule\Entity\MonitoringDataEntity>>>>, count: int}
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
@@ -2499,7 +2499,7 @@ class Onboarding
 
 
 	/**
-	 * @return array{'rows': array<OnboardingEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\OnboardingEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\OnboardingUnknownException
 	 * @throws Exceptions\Mw\WordUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
@@ -2549,7 +2549,7 @@ class Ota
 
 
 	/**
-	 * @return array{'rows': array<OtaDeviceEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\OtaDeviceEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\OtaUnknownDeviceException
 	 */
@@ -2628,7 +2628,7 @@ class Ota
 
 
 	/**
-	 * @return array{'rows': array<OtaVersionEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\OtaVersionEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\OtaUnknownVersionException
 	 */
@@ -2657,6 +2657,7 @@ class Package
 
 	/**
 	 * @throws Exceptions\Mw\PackageUnknownException
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 */
 	public function copyPackage(int $packagesId, string $name): int
 	{
@@ -2690,7 +2691,7 @@ class Package
 
 
 	/**
-	 * @return array{'rows': array<PackageEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\PackageEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -2707,6 +2708,7 @@ class Package
 
 	/**
 	 * @throws Exceptions\Mw\PackageUnknownException
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 */
 	public function update(?int $packagesId, InputEntities\Mw\PackageEntity $data): int
 	{
@@ -2748,7 +2750,7 @@ class Person
 
 
 	/**
-	 * @return array{'rows': array<PersonEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\PersonEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -3029,7 +3031,7 @@ class Recognition
 
 
 	/**
-	 * @return array{'rows': array<RecognitionModelEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\RecognitionModelEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
@@ -3047,7 +3049,7 @@ class Recognition
 
 
 	/**
-	 * @return array{'rows': array<EpgEventSegmentEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\EpgEventSegmentEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function programSegmentSelection(
@@ -3341,7 +3343,7 @@ class Report
 
 
 	/**
-	 * @return array{'rows': array<ReportEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\ReportEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -3602,7 +3604,7 @@ class Template
 
 
 	/**
-	 * @return array{'rows': array<Motv\ApiModule\Entity\TemplateEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\TemplateEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
@@ -3755,7 +3757,7 @@ class Transcoder
 
 
 	/**
-	 * @return array{'rows': array<TranscoderEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\TranscoderEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -3770,7 +3772,7 @@ class Transcoder
 
 
 	/**
-	 * @return array{'rows': array<StreamRecordingEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\StreamRecordingEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function streamRecordingsSelection(
@@ -3929,7 +3931,7 @@ class Translator
 
 
 	/**
-	 * @return array{'rows': array<WordEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\WordEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\WordUnknownException
 	 */
@@ -4000,7 +4002,7 @@ class User
 
 
 	/**
-	 * @return array{'rows': array<UserEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\UserEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -4040,7 +4042,7 @@ class Vendor
 
 
 	/**
-	 * @return array{'rows': array<VendorAvatarEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\VendorAvatarEntity>, 'row_count': int}
 	 * @throws Exceptions\Mw\VendorUnknownAvatarException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -4139,7 +4141,7 @@ class Vendor
 
 
 	/**
-	 * @return array{'rows': array<VendorEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\VendorEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
@@ -4393,7 +4395,7 @@ class Vod
 
 
 	/**
-	 * @return array{'rows': array<Motv\ApiModule\Entity\VodEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\VodEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\VodUnathorizedException
 	 * @throws Exceptions\Mw\VodUnknownException

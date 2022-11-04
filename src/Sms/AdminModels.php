@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Thu, 3 Nov 2022 12:18:00
+ * Generated on Fri, 4 Nov 2022 8:57:46
  * Part moTV.eu SDK integration kit
  */
 
@@ -52,7 +52,7 @@ class Batch
 
 
 	/**
-	 * @return array{'rows': array<BatchEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Sms\BatchEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -745,7 +745,7 @@ class Dealer
 
 
 	/**
-	 * @return array{'rows': array<App\ApiModule\Entity\DealerEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Sms\DealerEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Sms\DealerUnknownDealerException
 	 */
@@ -3725,7 +3725,7 @@ class Schedule
 
 
 	/**
-	 * @return array{'rows': array<App\ApiModule\Entity\ScheduleEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Sms\ScheduleEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Sms\ScheduleUnknownScheduleException
 	 */
@@ -4275,7 +4275,7 @@ class Ticket
 
 
 	/**
-	 * @return array{'rows': array<App\ApiModule\Entity\TicketEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Sms\TicketEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Sms\TicketUnknownTicketException
 	 * @throws Exceptions\Sms\TicketsUnknownTicketStatusException
@@ -4305,7 +4305,7 @@ class Ticket
 
 
 	/**
-	 * @return array{'rows': array<App\ApiModule\Entity\TicketsStatusEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Sms\TicketsStatusEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Sms\TicketsUnknownTicketStatusException
 	 */
@@ -4426,7 +4426,7 @@ class TicketDepartment
 
 
 	/**
-	 * @return array{'rows': array<TicketsDepartmentEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Sms\TicketsDepartmentEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Sms\TicketDepartmentUnknownTicketDepartmentException
 	 */
@@ -4511,7 +4511,7 @@ class TicketPriority
 
 
 	/**
-	 * @return array{'rows': array<TicketsPriorityEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Sms\TicketsPriorityEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Sms\TicketPriorityUnknownTicketPriorityException
 	 */
@@ -4620,7 +4620,7 @@ class User
 
 
 	/**
-	 * @return array{'rows': array<UserEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Sms\UserEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\ApiSupport\UserUnknownException
 	 */
