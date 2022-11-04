@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 4 Nov 2022 8:57:49
+ * Generated on Fri, 4 Nov 2022 9:41:46
  * Part moTV.eu SDK integration kit
  */
 
@@ -18,6 +18,16 @@ class ApiException extends \Exception implements \Throwable
 	public function getResponse()
 	{
 		return $this->response;
+	}
+
+
+	public function getResponseMessage()
+	{
+		if (\is_array($this->response)) {
+					return json_encode($this->response);
+				}
+
+				return (string) $this->response;
 	}
 
 
