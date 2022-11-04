@@ -77,7 +77,7 @@ abstract class Connector {
 
 		$responseContent = json_decode($response->getBody()->getContents(), true);
 
-		if (!is_array($responseContent) || !array_key_exists('status', $responseContent) || !array_key_exists($responseContent['status'], $this->exceptions)) {
+		if ((!is_array($responseContent) || !array_key_exists('status', $responseContent) || !array_key_exists($responseContent['status'], $this->exceptions)) && $responseContent['status'] !== 1) {
 			$exceptionName = '\Motv\Connector\\' . $this->namespace . '\Exceptions\UnknownApiException';
 			$this->log('error', 'Received response with unknown error', [$responseContent['response']]);
 
@@ -91,7 +91,7 @@ abstract class Connector {
 
 		$this->log('info', 'Received response with data', $responseContent);
 
-		return $this->setUpFromArray($responseContent['response']);
+		return is_array($responseContent['response']) ? $this->setUpFromArray($responseContent['response']) : $responseContent['response'];
 	}
 
 	/**
