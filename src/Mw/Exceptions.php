@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 4 Nov 2022 9:41:41
+ * Generated on Fri, 4 Nov 2022 10:53:41
  * Part moTV.eu SDK integration kit
  */
 
@@ -262,14 +262,6 @@ namespace Motv\Connector\Mw\Exceptions\Mw;
 class UnknownErrorException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 0;
-}
-
-/**
- * Success
- */
-class SuccessException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 1;
 }
 
 /**

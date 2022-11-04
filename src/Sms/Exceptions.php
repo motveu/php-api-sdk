@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 4 Nov 2022 9:41:46
+ * Generated on Fri, 4 Nov 2022 10:51:52
  * Part moTV.eu SDK integration kit
  */
 
@@ -262,14 +262,6 @@ namespace Motv\Connector\Sms\Exceptions\Sms;
 class UnknownErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 0;
-}
-
-/**
- * Success
- */
-class SuccessException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1;
 }
 
 /**
