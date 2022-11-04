@@ -84,6 +84,49 @@ echo(PHP_EOL);
 echo('Customer\'s vendor: ' . $vendorsPairs[$customerEntity->customers_vendors_id]);
 ```
 
+Works with entities, update, getData and selection
+---------------
+
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$mwAdminConnector = new \Motv\Connector\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
+
+// It create input entity and filling it by data
+$personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
+$personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
+$personInputEntity->persons_birthday = '1990-01-01';
+$personInputEntity->persons_description = 'Popular actor';
+$personInputEntity->persons_name = 'Firstname Lastname';
+
+// Create new Person in MW
+$personsId = $mwAdminConnector->Person()->update(null, $personInputEntity);
+
+// Get new person entity from MW
+$personEntity = $mwAdminConnector->Person()->getData($personsId);
+echo('Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id);
+echo(PHP_EOL);
+
+// Update data in input entity
+$personInputEntity->persons_name = 'Lastname Firstname';
+
+// Update existing peson in MW
+$mwAdminConnector->Person()->update($personsId, $personInputEntity);
+
+// Get updated person entity from MW
+$personEntity = $mwAdminConnector->Person()->getData($personsId);
+echo('Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id);
+echo(PHP_EOL);
+
+// Select the person by selection function
+$selectedActorEntity = $mwAdminConnector->Person()->selection(['persons_name' => 'Lastname Firstname'])['rows'][0];
+echo('Actor ' . $selectedActorEntity->persons_name . ' with ID: ' . $selectedActorEntity->persons_id);
+echo(PHP_EOL);
+```
+
 Catching errors
 ---------------
 
