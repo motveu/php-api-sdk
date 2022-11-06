@@ -79,9 +79,9 @@ $mwAdminConnector = new \Motv\Connector\Mw\AdminConnector('https://mw.operator.t
 // get customer with internal ID 1
 $customerEntity = $mwAdminConnector->Customer()->getData(1);
 $vendorsPairs = $mwAdminConnector->Vendor()->getPairs();
-echo('Customer\'s login: ' . $customerEntity->customers_login);
-echo(PHP_EOL);
-echo('Customer\'s vendor: ' . $vendorsPairs[$customerEntity->customers_vendors_id]);
+echo 'Login: ' . $customerEntity->customers_login;
+echo PHP_EOL;
+echo 'Vendor: ' . $vendorsPairs[$customerEntity->customers_vendors_id];
 ```
 
 Works with entities, update, getData and selection
@@ -95,36 +95,48 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $mwAdminConnector = new \Motv\Connector\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
 
-// It create input entity and filling it by data
+// It creates input entity and fills it with data
 $personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
 $personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
 $personInputEntity->persons_birthday = '1990-01-01';
+// in case of date, both string and DateTime objects are accept
+$personInputEntity->persons_birthday = (new \DateTimeImmutable)->setTimestamp(strtotime('now'));
 $personInputEntity->persons_description = 'Popular actor';
-$personInputEntity->persons_name = 'Firstname Lastname';
+$personInputEntity->persons_name = 'John Smith';
 
-// Create new Person in MW
+// Creates new Person
 $personsId = $mwAdminConnector->Person()->update(null, $personInputEntity);
 
-// Get new person entity from MW
+// Gets the new person we just created
 $personEntity = $mwAdminConnector->Person()->getData($personsId);
-echo('Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id);
-echo(PHP_EOL);
+echo 'Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id;
+echo PHP_EOL;
 
-// Update data in input entity
-$personInputEntity->persons_name = 'Lastname Firstname';
+// Let's change name of the Person
+$personInputEntity->persons_name = 'Will Smith';
 
-// Update existing peson in MW
+// Updates the name
 $mwAdminConnector->Person()->update($personsId, $personInputEntity);
 
-// Get updated person entity from MW
+// Let's double-check that the changes were actually reflected
 $personEntity = $mwAdminConnector->Person()->getData($personsId);
-echo('Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id);
-echo(PHP_EOL);
+echo 'Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id;
+echo PHP_EOL;
 
 // Select the person by selection function
-$selectedActorEntity = $mwAdminConnector->Person()->selection(['persons_name' => 'Lastname Firstname'])['rows'][0];
-echo('Actor ' . $selectedActorEntity->persons_name . ' with ID: ' . $selectedActorEntity->persons_id);
-echo(PHP_EOL);
+$selectedActorEntity = $mwAdminConnector->Person()->selection(['persons_name' => 'Will Smith'])['rows'][0];
+echo 'Actor ' . $selectedActorEntity->persons_name . ' with ID: ' . $selectedActorEntity->persons_id;
+echo PHP_EOL;
+
+// sending invalid data will result into a neat error, for example
+$personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
+$personInputEntity->persons_name = '';
+$personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
+$personInputEntity->persons_birthday = '1990-01-01';
+$personInputEntity->persons_description = 'Popular actor';
+
+// Will not create a new person because name is empty, will throw an exception instead
+$personsId = $mwAdminConnector->Person()->update(null, $personInputEntity);
 ```
 
 Catching errors
