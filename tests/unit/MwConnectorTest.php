@@ -126,7 +126,7 @@ class MwConnectorTest extends MwConnector
 		// in case of date, both string and DateTime objects are accept
 		$personInputEntity->persons_birthday = (new \DateTimeImmutable)->setTimestamp(strtotime('now'));
 		$personInputEntity->persons_description = 'Popular actor';
-		$personInputEntity->persons_name = 'John Smith' . rand(1, 100);
+		$personInputEntity->persons_name = 'John Smith' . time();
 
 		// Creates new Person
 		$personsId = $this->connector->Person()->update(null, $personInputEntity);
@@ -137,7 +137,7 @@ class MwConnectorTest extends MwConnector
 		echo PHP_EOL;
 
 		// Let's change name of the Person
-		$personInputEntity->persons_name = 'Will Smith' . rand(1, 100);
+		$personInputEntity->persons_name = 'Will Smith' . time();
 
 		// Updates the name
 		$this->connector->Person()->update($personsId, $personInputEntity);
