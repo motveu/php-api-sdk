@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Fri, 4 Nov 2022 13:29:03
+ * Generated on Mon, 7 Nov 2022 8:46:11
  * Part moTV.eu SDK integration kit
  */
 
@@ -53,6 +53,12 @@ class Advert
 	public function getAllUnitsByPosition(Enums\Mw\AdvertUnitPositionEnum $positionsType): array
 	{
 		return $this->connector->call("Advert", "getAllUnitsByPosition", get_defined_vars());
+	}
+
+
+	public function getAvailableCampaignsForCustomerPairs(int $customersId): array
+	{
+		return $this->connector->call("Advert", "getAvailableCampaignsForCustomerPairs", get_defined_vars());
 	}
 
 

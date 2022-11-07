@@ -1,28 +1,35 @@
 <?php
 
 /**
- * Generated on Fri, 4 Nov 2022 13:28:55
+ * Generated on Mon, 7 Nov 2022 9:03:03
  * Part moTV.eu SDK integration kit
  */
 
 declare(strict_types=1);
 
+namespace Motv\Connector\Sms\Entities;
+
+class MotvEntity
+{
+}
+
+
 namespace Motv\Connector\Sms\Entities\Sms;
 
-class BatchEntity
+class BatchEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $batch_id;
 	public string $products_name;
 	public string $users_name;
-	public string $batch_requested;
-	public string $batch_expiry_date;
+	public \DateTimeImmutable $batch_requested;
+	public \DateTimeImmutable $batch_expiry_date;
 	public int $batch_is_active;
 	public int $batch_number_requested;
 	public int $batch_voucher_generated;
 	public int $batch_voucher_used;
 }
 
-class DealerEntity
+class DealerEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $dealers_id;
 	public string $dealers_name;
@@ -43,11 +50,11 @@ class DealerEntity
 	public int $dealers_warehouse;
 }
 
-class EpgEventEntity
+class EpgEventEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $epg_events_epg_id;
-	public string $epg_events_start;
-	public string $epg_events_end;
+	public \DateTimeImmutable $epg_events_start;
+	public \DateTimeImmutable $epg_events_end;
 	public string $epg_events_title;
 	public ?string $epg_events_subtitle;
 	public ?string $epg_events_category;
@@ -60,7 +67,7 @@ class EpgEventEntity
 	public array $otherData;
 }
 
-class ScheduleEntity
+class ScheduleEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $schedule_id;
 	public string $schedule_name;
@@ -68,8 +75,8 @@ class ScheduleEntity
 	public int $schedule_recurrence;
 	public ?int $schedule_repeat;
 	public \Motv\Connector\Sms\Enums\Sms\ScheduleRepeatUnitsEnum $schedule_repeat_unit;
-	public string $schedule_start;
-	public ?string $schedule_end;
+	public \DateTimeImmutable $schedule_start;
+	public ?\DateTimeImmutable $schedule_end;
 	public int $schedule_users_id;
 	public int $schedule_group_action_id;
 	public string $schedule_data;
@@ -77,12 +84,12 @@ class ScheduleEntity
 	public string $group_action_name;
 }
 
-class SubscriptionEntity
+class SubscriptionEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $viewers_bouquets_id;
 	public int $viewers_bouquets_viewers_id;
-	public string $viewers_bouquets_active_from;
-	public string $viewers_bouquets_active_to;
+	public \DateTimeImmutable $viewers_bouquets_active_from;
+	public \DateTimeImmutable $viewers_bouquets_active_to;
 	public int $viewers_bouquets_cancelled;
 	public int $viewers_bouquets_subscribed;
 	public $viewers_bouquets_smartcard_id;
@@ -94,25 +101,25 @@ class SubscriptionEntity
 	public int $viewers_bouquets_suspended;
 	public string $requests_cas_type;
 	public \Motv\Connector\Sms\Enums\Sms\SubscriptionStateEnum $subscription_state;
-	public ?string $CONAX_DATE_FROM;
-	public ?string $CONAX_DATE_TO;
-	public ?string $viewers_bouquets_cancelled_on;
+	public ?\DateTimeImmutable $CONAX_DATE_FROM;
+	public ?\DateTimeImmutable $CONAX_DATE_TO;
+	public ?\DateTimeImmutable $viewers_bouquets_cancelled_on;
 	public ?int $viewers_bouquets_invoice_id;
 	public ?int $bouquets_is_active;
 }
 
-class TicketEntity
+class TicketEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $tickets_id;
 	public int $tickets_creation_users_id;
 	public int $tickets_viewers_id;
 	public string $tickets_note;
-	public string $tickets_creation_time;
-	public ?string $tickets_close_time;
+	public \DateTimeImmutable $tickets_creation_time;
+	public ?\DateTimeImmutable $tickets_close_time;
 	public ?int $tickets_status;
 	public int $tickets_departments_id;
 	public ?int $tickets_responsible_users_id;
-	public ?string $tickets_departments_change_time;
+	public ?\DateTimeImmutable $tickets_departments_change_time;
 	public int $tickets_notifications_sent;
 	public int $tickets_visited;
 	public int $tickets_tickets_priorities_id;
@@ -123,7 +130,7 @@ class TicketEntity
 	public array $responsible_users;
 }
 
-class TicketsCategoryEntity
+class TicketsCategoryEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $tickets_categories_id;
 	public string $tickets_categories_name;
@@ -133,10 +140,10 @@ class TicketsCategoryEntity
 	public string $departments_name;
 }
 
-class TicketsCommentEntity
+class TicketsCommentEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $tickets_comments_id;
-	public string $tickets_comments_time;
+	public \DateTimeImmutable $tickets_comments_time;
 	public int $tickets_comments_users_id;
 	public string $tickets_comments_note;
 	public int $tickets_comments_tickets_id;
@@ -145,14 +152,14 @@ class TicketsCommentEntity
 	public array $references;
 }
 
-class TicketsDepartmentEntity
+class TicketsDepartmentEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $departments_id;
 	public string $departments_name;
 	public array $departments_responsible_users;
 }
 
-class TicketsFileEntity
+class TicketsFileEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $tickets_files_id;
 	public int $tickets_files_tickets_id;
@@ -160,11 +167,11 @@ class TicketsFileEntity
 	public string $tickets_files_file_type;
 	public string $tickets_files_origin_name;
 	public int $tickets_files_users_id;
-	public string $tickets_files_date;
+	public \DateTimeImmutable $tickets_files_date;
 	public string $file;
 }
 
-class TicketsNotificationEntity
+class TicketsNotificationEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $ticket_notifications_actions_id;
 	public string $ticket_notifications_actions_name;
@@ -181,20 +188,20 @@ class TicketsNotificationEntity
 	public ?string $ticket_notifications_email_subject;
 }
 
-class TicketsPriorityEntity
+class TicketsPriorityEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $tickets_priorities_id;
 	public string $tickets_priorities_name;
 }
 
-class TicketsReferencesFileEntity
+class TicketsReferencesFileEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $tickets_comments_references_tickets_comments_id;
 	public int $tickets_files_id;
 	public string $tickets_files_origin_name;
 }
 
-class TicketsStatusEntity
+class TicketsStatusEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $tickets_statuses_id;
 	public string $tickets_statuses_name;
@@ -227,7 +234,7 @@ class UserEntity extends \Motv\Connector\Sms\Entities\ApiSupport\UserEntity
 	public array $users_customs;
 }
 
-class UsersNotificationsEntity
+class UsersNotificationsEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $users_notifications_id;
 	public int $users_notifications_users_id;
@@ -237,20 +244,20 @@ class UsersNotificationsEntity
 	public string $users_notifications_type;
 	public string $users_notifications_link;
 	public int $users_notifications_link_id;
-	public string $users_notifications_time;
+	public \DateTimeImmutable $users_notifications_time;
 	public string $ticket_notifications_form_name;
 }
 
 
 namespace Motv\Connector\Sms\Entities\ApiSupport;
 
-class DocumentationApiEntity
+class DocumentationApiEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public string $name;
 	public array $methods;
 }
 
-class DocumentationEntityEntity
+class DocumentationEntityEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public string $name;
 	public string $shortName;
@@ -261,14 +268,14 @@ class DocumentationEntityEntity
 	public string $space;
 }
 
-class DocumentationEnumCaseEntity
+class DocumentationEnumCaseEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public string $name;
 	public string $value;
 	public string $label;
 }
 
-class DocumentationEnumEntity
+class DocumentationEnumEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public string $name;
 	public string $shortName;
@@ -276,7 +283,7 @@ class DocumentationEnumEntity
 	public string $space;
 }
 
-class DocumentationMethodEntity
+class DocumentationMethodEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public bool $authorization;
 	public string $name;
@@ -293,7 +300,7 @@ class DocumentationMethodEntity
 	public ?string $raw_return_doc;
 }
 
-class DocumentationParameterEntity
+class DocumentationParameterEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public string $name;
 	public bool $optional;
@@ -305,7 +312,7 @@ class DocumentationParameterEntity
 	public bool $isDefault;
 }
 
-class EntityEntity
+class EntityEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public string $description;
 	public ?string $subtype;
@@ -316,7 +323,7 @@ class EntityEntity
 	public ?string $return_doc;
 }
 
-class ErrorCodeEntity
+class ErrorCodeEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $code;
 	public string $name;
@@ -324,7 +331,7 @@ class ErrorCodeEntity
 	public string $space;
 }
 
-class RoleEntity
+class RoleEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $roles_id;
 	public string $roles_name;
@@ -332,7 +339,7 @@ class RoleEntity
 	public int $roles_sysadmin;
 }
 
-class UserEntity
+class UserEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $users_id;
 	public string $users_email;

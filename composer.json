@@ -7,7 +7,7 @@
     "classmap": ["src/", "tests/"]
   },
   "require": {
-    "php": ">=7.2",
+    "php": ">=8.1",
     "guzzlehttp/guzzle": "^7.0",
     "monolog/monolog": "^2.0",
     "phpdocumentor/reflection-docblock": "^5.1"

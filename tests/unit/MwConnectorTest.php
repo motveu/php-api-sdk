@@ -7,6 +7,7 @@ namespace Tests\unit;
 use Motv\Connector\Mw\Entities\Mw\CustomerEntity;
 use Motv\Connector\Mw\Entities\Mw\PackageEntity;
 use Motv\Connector\Mw\Entities\Mw\VendorEntity;
+use Motv\Connector\Mw\Exceptions\ApiSupport\ParameterWrongTypeException;
 use Motv\Connector\Mw\Exceptions\Mw\AdvertHomepageUnknownException;
 use Motv\Connector\Mw\Exceptions\Mw\CategoryUnknownException;
 use Motv\Connector\Mw\Exceptions\Mw\CustomerUnknownException;
@@ -117,4 +118,53 @@ class MwConnectorTest extends MwConnector
 		$this->assertEquals($vendor->vendors_accent_color, $vendor2->vendors_accent_color);
 	}
 
+	public function testCreateAndUpdatePerson(): void
+	{
+		$personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
+		$personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
+		$personInputEntity->persons_birthday = '1990-01-01';
+		// in case of date, both string and DateTime objects are accept
+		$personInputEntity->persons_birthday = (new \DateTimeImmutable)->setTimestamp(strtotime('now'));
+		$personInputEntity->persons_description = 'Popular actor';
+		$personInputEntity->persons_name = 'John Smith' . rand(1, 100);
+
+		// Creates new Person
+		$personsId = $this->connector->Person()->update(null, $personInputEntity);
+
+		// Gets the new person we just created
+		$personEntity = $this->connector->Person()->getData($personsId);
+		echo 'Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id;
+		echo PHP_EOL;
+
+		// Let's change name of the Person
+		$personInputEntity->persons_name = 'Will Smith' . rand(1, 100);
+
+		// Updates the name
+		$this->connector->Person()->update($personsId, $personInputEntity);
+
+		// Let's double-check that the changes were actually reflected
+		$personEntity = $this->connector->Person()->getData($personsId);
+		echo 'Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id;
+		echo PHP_EOL;
+
+		// Select the person by selection function
+		$selectedActorEntity = $this->connector->Person()->selection(['persons_name' => 'Will Smith'])['rows'][0];
+		echo 'Actor ' . $selectedActorEntity->persons_name . ' with ID: ' . $selectedActorEntity->persons_id;
+		echo PHP_EOL;
+
+		// sending invalid data will result into a neat error, for example
+		$personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
+		$personInputEntity->persons_name = '';
+		$personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
+		$personInputEntity->persons_birthday = (new \DateTimeImmutable)->setTimestamp(strtotime('now'));
+		$personInputEntity->persons_description = 'Popular actor';
+
+		try {
+			// Will not create a new person because name is empty, will throw an exception instead
+			$personsId = $this->connector->Person()->update(null, $personInputEntity);
+		} catch (ParameterWrongTypeException $e) {
+			echo $e->getResponseMessage();
+			echo PHP_EOL;
+		}
+	}
 }

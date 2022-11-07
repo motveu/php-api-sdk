@@ -9,6 +9,10 @@ use GuzzleHttp\Exception\TransferException;
 use Monolog\DateTimeImmutable;
 use Monolog\Logger;
 use Motv\Connector\Mw\Exceptions\UnknownApiException;
+use Motv\Connector\Mw\InputEntities\MotvEntity;
+use MotvInternal\SchemaProcessor\Enum\MotvEnum;
+use MotvInternal\SchemaProcessor\SchemaProcessor;
+use PHPUnit\Framework\Constraint\ArrayHasKey;
 
 abstract class Connector {
 
@@ -60,6 +64,7 @@ abstract class Connector {
 
 		$client = new Client();
 
+		$parameters = $this->prepareForRequest($parameters);
 		$this->log('info', 'Sending request to "' . $finalUrl . '" with data', $parameters);
 
 		try {
@@ -164,4 +169,53 @@ abstract class Connector {
 		}
 	}
 
+	/**
+	 * @param array<string, mixed> $data
+	 * @return array<string, mixed>
+	 */
+	private function prepareForRequest(array $data): array
+	{
+		foreach ($data as $k => $v) {
+			if ($v instanceof MotvEntity) {
+				$data[$k] = $this->prepareForRequest($this->serialize($v));
+			} else if (\is_array($v) || $v instanceof ArrayHasKey) {
+				$data[$k] = $this->prepareForRequest((array) $v);
+			} else {
+				if ($v instanceof \DateTime || $v instanceof \DateTimeImmutable) {
+					$data[$k] = $v->format('Y-m-d H:i:s');
+				}
+			}
+		}
+
+		return $data;
+	}
+
+	private function serialize(MotvEntity $entity): array {
+		$data = [];
+
+		foreach (\get_object_vars($entity) as $k => $v) {
+			$data[$k] = $v instanceof \BackedEnum ? $v->value : $v;
+		}
+
+		return $this->serializeMotvEntity($data);
+	}
+
+	private function serializeMotvEntity($data): array
+	{
+		if ($data instanceof MotvEntity) {
+			$data = $this->serialize($data);
+		}
+
+		foreach ($data as $k => $v) {
+			if (\is_array($v)) {
+				$data[$k] = self::serializeMotvEntity($v);
+			} elseif ($v instanceof MotvEntity) {
+				$data[$k] = self::serializeMotvEntity($this->serialize($v));
+			} elseif ($v instanceof \BackedEnum) {
+				$data[$k] = $v->value;
+			}
+		}
+
+		return $data;
+	}
 }
