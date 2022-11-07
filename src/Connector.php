@@ -176,7 +176,7 @@ abstract class Connector {
 	private function prepareForRequest(array $data): array
 	{
 		foreach ($data as $k => $v) {
-			if ($v instanceof MotvEntity) {
+			if ($v instanceof MotvEntity || $v instanceof \Motv\Connector\Sms\InputEntities\MotvEntity) {
 				$data[$k] = $this->prepareForRequest($this->serialize($v));
 			} else if (\is_array($v) || $v instanceof ArrayHasKey) {
 				$data[$k] = $this->prepareForRequest((array) $v);
@@ -190,7 +190,7 @@ abstract class Connector {
 		return $data;
 	}
 
-	private function serialize(MotvEntity $entity): array {
+	private function serialize($entity): array {
 		$data = [];
 
 		foreach (\get_object_vars($entity) as $k => $v) {
@@ -202,14 +202,14 @@ abstract class Connector {
 
 	private function serializeMotvEntity($data): array
 	{
-		if ($data instanceof MotvEntity) {
+		if ($data instanceof MotvEntity || $data instanceof \Motv\Connector\Sms\InputEntities\MotvEntity) {
 			$data = $this->serialize($data);
 		}
 
 		foreach ($data as $k => $v) {
 			if (\is_array($v)) {
 				$data[$k] = self::serializeMotvEntity($v);
-			} elseif ($v instanceof MotvEntity) {
+			} elseif ($v instanceof MotvEntity || $v instanceof \Motv\Connector\Sms\InputEntities\MotvEntity) {
 				$data[$k] = self::serializeMotvEntity($this->serialize($v));
 			} elseif ($v instanceof \BackedEnum) {
 				$data[$k] = $v->value;
