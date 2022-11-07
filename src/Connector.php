@@ -6,12 +6,8 @@ namespace Motv\Connector;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
-use Monolog\DateTimeImmutable;
 use Monolog\Logger;
-use Motv\Connector\Mw\Exceptions\UnknownApiException;
 use Motv\Connector\Mw\InputEntities\MotvEntity;
-use MotvInternal\SchemaProcessor\Enum\MotvEnum;
-use MotvInternal\SchemaProcessor\SchemaProcessor;
 use PHPUnit\Framework\Constraint\ArrayHasKey;
 
 abstract class Connector {
