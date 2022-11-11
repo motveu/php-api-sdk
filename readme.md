@@ -28,7 +28,7 @@ For full API documentation and test API endpoint please get in touch with JACON 
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$smsConnector = new \Motv\Sms\Connector('https://sms.operator.tv', 'Username', 'secret...');
+$smsConnector = new \Motv\Connector\Sms\AdminConnector('https://sms.operator.tv', 'Username', 'secret...');
 
 // create sample customer
 $viewersId = $smsConnector->Integration()->createMotvCustomer('test', 'myPassword');
@@ -74,10 +74,69 @@ For full API documentation and test API endpoint please get in touch with moTV.e
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$mwAdminConnector = new \Motv\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
+$mwAdminConnector = new \Motv\Connector\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
 
 // get customer with internal ID 1
-$mwAdminConnector->Customer()->getData(1);
+$customerEntity = $mwAdminConnector->Customer()->getData(1);
+$vendorsPairs = $mwAdminConnector->Vendor()->getPairs();
+echo 'Login: ' . $customerEntity->customers_login;
+echo PHP_EOL;
+echo 'Vendor: ' . $vendorsPairs[$customerEntity->customers_vendors_id];
+```
+
+Works with entities, update, getData and selection
+---------------
+
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$mwAdminConnector = new \Motv\Connector\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
+
+// It creates input entity and fills it with data
+$personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
+$personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
+$personInputEntity->persons_birthday = '1990-01-01';
+// in case of date, both string and DateTime objects are accept
+$personInputEntity->persons_birthday = (new \DateTimeImmutable)->setTimestamp(strtotime('now'));
+$personInputEntity->persons_description = 'Popular actor';
+$personInputEntity->persons_name = 'John Smith';
+
+// Creates new Person
+$personsId = $mwAdminConnector->Person()->update(null, $personInputEntity);
+
+// Gets the new person we just created
+$personEntity = $mwAdminConnector->Person()->getData($personsId);
+echo 'Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id;
+echo PHP_EOL;
+
+// Let's change name of the Person
+$personInputEntity->persons_name = 'Will Smith';
+
+// Updates the name
+$mwAdminConnector->Person()->update($personsId, $personInputEntity);
+
+// Let's double-check that the changes were actually reflected
+$personEntity = $mwAdminConnector->Person()->getData($personsId);
+echo 'Actor ' . $personEntity->persons_name . ' with ID: ' . $personEntity->persons_id;
+echo PHP_EOL;
+
+// Select the person by selection function
+$selectedActorEntity = $mwAdminConnector->Person()->selection(['persons_name' => 'Will Smith'])['rows'][0];
+echo 'Actor ' . $selectedActorEntity->persons_name . ' with ID: ' . $selectedActorEntity->persons_id;
+echo PHP_EOL;
+
+// sending invalid data will result into a neat error, for example
+$personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
+$personInputEntity->persons_name = '';
+$personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
+$personInputEntity->persons_birthday = '1990-01-01';
+$personInputEntity->persons_description = 'Popular actor';
+
+// Will not create a new person because name is empty, will throw an exception instead
+$personsId = $mwAdminConnector->Person()->update(null, $personInputEntity);
 ```
 
 Catching errors
@@ -103,7 +162,7 @@ Logging
 This SDK is shipped with Monolog (https://github.com/Seldaek/monolog) support. You can pass logger to the `$connector->setLogger()` method and all API communication will be logged
 
 ```php
-$mwAdminConnector = new \Motv\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
+$mwAdminConnector = new \Motv\Connector\Mw\AdminConnector('https://mw.operator.tv', 'Username', 'secret');
 
 $logger = new \Monolog\Logger('API');
 $logger->pushHandler(new \Monolog\Handler\RotatingFileHandler('api.log', 14));
