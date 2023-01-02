@@ -142,7 +142,7 @@ $personsId = $mwAdminConnector->Person()->update(null, $personInputEntity);
 VOD files upload
 ---------------
 
-Files bigger than 20mb cannot be uploaded by API. It's need to upload it by chunks. For easy useing use ```VodUpload.php```.
+Files bigger than 20mb cannot be uploaded by API. It's need to upload it by chunks. For easy useing use ```VodUpload.php```. Works only on UNIX systems.
 
 ```php
 <?php
