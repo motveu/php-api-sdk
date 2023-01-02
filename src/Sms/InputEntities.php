@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 7 Nov 2022 9:33:14
+ * Generated on Mon, 2 Jan 2023 7:23:34
  * Part moTV.eu SDK integration kit
  */
 
@@ -36,6 +36,84 @@ class DealerEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 	public ?bool $dealers_warehouse;
 }
 
+class DeviceAppleEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $device_apple_email;
+	public string $device_apple_generated_id;
+	public string $device_apple_identity_token;
+	public string $device_apple_authorization_code;
+}
+
+class DeviceFacebookEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $device_facebook_email;
+	public string $device_facebook_generated_id;
+}
+
+class DeviceGoogleEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $device_google_email;
+}
+
+class EmailEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public array $to;
+	public array $cc;
+	public array $bcc;
+	public array $attachements;
+	public string $subject;
+	public string $body;
+}
+
+class MotvPortalEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $motv_portals_name;
+	public int $motv_portals_dealers_id;
+	public ?string $motv_portals_url;
+	public int $motv_portals_motv_vendors_id;
+	public string $motv_portals_portal_json_theme;
+	public int $motv_portals_favicon;
+	public ?int $motv_portals_config_smtp_servers_id;
+	public \Motv\Connector\Sms\Enums\Sms\MotvPortalRegistrationMethodEnum $motv_portals_registration_method;
+	public string $motv_portals_ios;
+	public string $motv_portals_android;
+	public int $motv_portals_android_image;
+	public string $motv_portals_player_footer;
+	public array $motv_portals_sections;
+	public array $motv_portals_social_sites;
+	public ?string $motv_portals_google_client_id;
+	public string $motv_portal_facebook_pixel_code;
+	public ?string $motv_portals_facebook_client_id;
+	public ?string $motv_portals_facebook_secret;
+	public bool $motv_portals_registration_enabled;
+	public \Motv\Connector\Sms\Enums\Sms\MotvPortalIOSRegistrationEnabledEnum $motv_portals_ios_registration_enabled;
+	public bool $motv_portals_account_update_enabled;
+	public ?string $motv_portals_custom_registration_close;
+	public ?string $motv_portals_custom_registration_open;
+	public ?string $motv_portals_custom_lost_password_close;
+	public ?string $motv_portals_custom_lost_password_open;
+	public ?string $motv_portals_custom_purchase_close;
+	public ?string $motv_portals_custom_purchase_open;
+	public string $motv_portals_google_analytics;
+	public ?string $motv_portals_google_gtm;
+	public ?string $motv_portals_section_homepage_url;
+	public ?string $motv_portals_section_apps_url;
+	public ?string $motv_portals_section_live_url;
+	public ?string $motv_portals_section_radio_url;
+	public ?string $motv_portals_section_recordings_url;
+	public ?string $motv_portals_section_vod_url;
+	public int $motv_portals_registration_template;
+	public int $motv_portals_lost_password_template;
+	public int $motv_portals_lost_pin_template;
+	public int $motv_portals_avatar;
+	public bool $motv_portals_lost_password_enabled;
+	public ?string $motv_portals_portal_apple_client_id;
+	public ?int $motv_portals_welcome_template;
+	public ?int $motv_portals_registration_text_template;
+	public bool $motv_portals_web_player_cookie;
+	public array $motv_portals_users;
+}
+
 class ScheduleEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 {
 	public string $schedule_name;
@@ -51,6 +129,19 @@ class ScheduleEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 	public $schedule_end;
 	public int $schedule_group_action_id;
 	public string $schedule_data;
+}
+
+class SmtpServerEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $config_smtp_servers_name;
+	public bool $config_smtp_servers_active;
+	public ?int $config_smtp_servers_port;
+	public \Motv\Connector\Sms\Enums\Sms\SmtpSecureTypeEnum $config_smtp_servers_secure;
+	public string $config_smtp_servers_host;
+	public string $config_smtp_servers_login;
+	public string $config_smtp_servers_password;
+	public ?string $config_smtp_servers_address_from;
+	public string $config_smtp_servers_description;
 }
 
 class TicketEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
@@ -126,6 +217,45 @@ class UserEntity extends \Motv\Connector\Sms\InputEntities\ApiSupport\UserEntity
 	public ?int $users_tickets;
 	public ?int $users_dealers_id;
 	public array $users_customs;
+}
+
+class WarehouseDeviceConfigCasEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $warehouse_devices_config_cas;
+	public array $types;
+}
+
+class WarehouseDeviceConfigTypeEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $warehouse_devices_config_type;
+	public bool $warehouse_devices_config_enabled;
+}
+
+class WarehouseDeviceDealerFileEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public int $warehouse_dealers_id;
+	public string $warehouse_cas;
+	public string $warehouse_type;
+	public ?int $warehouse_dealers_id_to;
+}
+
+class WarehouseEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public int $warehouse_dealers_id;
+	public string $warehouse_cas;
+	public string $warehouse_type;
+	public ?string $warehouse_value;
+}
+
+class WarehouseLogEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public ?string $warehouse_log_cas;
+	public ?string $warehouse_log_smartcard_number;
+	public ?string $warehouse_log_stb_number;
+	public ?int $warehouse_log_count;
+	public ?string $warehouse_log_type;
+	public ?int $warehouse_log_dealers_id_from;
+	public ?int $warehouse_log_dealers_id_to;
 }
 
 

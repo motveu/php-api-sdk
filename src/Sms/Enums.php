@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 7 Nov 2022 9:33:13
+ * Generated on Mon, 2 Jan 2023 7:23:33
  * Part moTV.eu SDK integration kit
  */
 
@@ -9,12 +9,51 @@ declare(strict_types=1);
 
 namespace Motv\Connector\Sms\Enums\Sms;
 
+enum MotvPortalIOSRegistrationEnabledEnum: string
+{
+	case ENABLED = 'enabled';
+	case DISABLED = 'disabled';
+	case WEB = 'web';
+}
+
+enum MotvPortalRegistrationMethodEnum: string
+{
+	case NONE = 'none';
+	case EMAIL = 'email';
+	case GSM = 'gsm';
+}
+
+enum MotvPortalSectionEnum: string
+{
+	case HOMEPAGE = 'homepage';
+	case LIVE = 'live';
+	case RADIO = 'radio';
+	case VOD = 'vod';
+	case RECORDINGS = 'recordings';
+	case APPS = 'apps';
+	case DOWNLOADS = 'downloads';
+}
+
+enum MotvPortalSocialSiteEnum: string
+{
+	case FACEBOOK = 'facebook';
+	case GOOGLE = 'google';
+	case APPLE = 'apple';
+}
+
 enum ScheduleRepeatUnitsEnum: string
 {
 	case HOURS = 'hours';
 	case DAYS = 'days';
 	case MONTHS = 'months';
 	case YEARS = 'years';
+}
+
+enum SmtpSecureTypeEnum: string
+{
+	case NONE = 'none';
+	case SSL = 'ssl';
+	case TLS = 'tls';
 }
 
 enum SubscriptionStateEnum: string

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 7 Nov 2022 9:33:13
+ * Generated on Mon, 2 Jan 2023 7:23:33
  * Part moTV.eu SDK integration kit
  */
 
@@ -2033,6 +2033,14 @@ class GoogleUnknownLoginException extends \Motv\Connector\Sms\Exceptions\ApiExce
 }
 
 /**
+ * Google unknown device exception
+ */
+class DeviceGoogleUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 16002;
+}
+
+/**
  * Tivo duplicate smartcard exception
  */
 class TivoDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -2105,6 +2113,14 @@ class FacebookUnknownLoginException extends \Motv\Connector\Sms\Exceptions\ApiEx
 }
 
 /**
+ * Facebook unknown device exception
+ */
+class DeviceFacebookUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 17503;
+}
+
+/**
  * Irdeto duplicate serial exception
  */
 class IrdetoDuplicateSerialException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -2134,6 +2150,14 @@ class AppleRegistrationMissingEmailException extends \Motv\Connector\Sms\Excepti
 class AppleRegistrationFailIdentityTokenDecodeException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 19002;
+}
+
+/**
+ * Apple unknown device exception
+ */
+class DeviceAppleUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 19003;
 }
 
 /**

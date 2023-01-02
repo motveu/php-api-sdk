@@ -7,7 +7,7 @@ namespace Tests\unit;
 use Motv\Connector\Sms\AdminConnector;
 use Nette\Neon\Neon;
 
-class SmsConnector extends SuperBaseTest
+class SmsConnector extends ConnectorBaseTest
 {
 
 	protected AdminConnector $connector;

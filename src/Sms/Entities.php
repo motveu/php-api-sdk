@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 7 Nov 2022 9:33:13
+ * Generated on Mon, 2 Jan 2023 7:23:33
  * Part moTV.eu SDK integration kit
  */
 
@@ -50,6 +50,31 @@ class DealerEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public int $dealers_warehouse;
 }
 
+class DeviceAppleEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $device_apple_id;
+	public int $device_apple_viewers_id;
+	public string $device_apple_email;
+	public string $device_apple_generated_id;
+	public string $device_apple_identity_token;
+	public string $device_apple_authorization_code;
+}
+
+class DeviceFacebookEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $device_facebook_id;
+	public int $device_facebook_viewers_id;
+	public string $device_facebook_email;
+	public string $device_facebook_generated_id;
+}
+
+class DeviceGoogleEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $device_google_id;
+	public int $device_google_viewers_id;
+	public string $device_google_email;
+}
+
 class EpgEventEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $epg_events_epg_id;
@@ -67,6 +92,64 @@ class EpgEventEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public array $otherData;
 }
 
+class MotvPortalEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $motv_portals_id;
+	public string $motv_portals_name;
+	public int $motv_portals_dealers_id;
+	public ?string $motv_portals_url;
+	public int $motv_portals_motv_vendors_id;
+	public $motv_portals_portal_json_theme;
+	public int $motv_portals_favicon;
+	public ?int $motv_portals_config_smtp_servers_id;
+	public \Motv\Connector\Sms\Enums\Sms\MotvPortalRegistrationMethodEnum $motv_portals_registration_method;
+	public string $motv_portals_ios;
+	public string $motv_portals_android;
+	public int $motv_portals_android_image;
+	public string $motv_portals_player_footer;
+	public array $motv_portals_sections;
+	public array $motv_portals_sections_v2;
+	public array $motv_portals_social_sites;
+	public ?string $motv_portals_google_client_id;
+	public string $motv_portal_facebook_pixel_code;
+	public ?string $motv_portals_facebook_client_id;
+	public int $motv_portals_registration_enabled;
+	public \Motv\Connector\Sms\Enums\Sms\MotvPortalIOSRegistrationEnabledEnum $motv_portals_ios_registration_enabled;
+	public int $motv_portals_account_update_enabled;
+	public ?string $motv_portals_custom_registration_close;
+	public ?string $motv_portals_custom_registration_open;
+	public ?string $motv_portals_custom_lost_password_close;
+	public ?string $motv_portals_custom_lost_password_open;
+	public ?string $motv_portals_custom_purchase_close;
+	public ?string $motv_portals_custom_purchase_open;
+	public string $motv_portals_google_analytics;
+	public ?string $motv_portals_google_gtm;
+	public ?string $motv_portals_section_homepage_url;
+	public ?string $motv_portals_section_apps_url;
+	public ?string $motv_portals_section_live_url;
+	public ?string $motv_portals_section_radio_url;
+	public ?string $motv_portals_section_recordings_url;
+	public ?string $motv_portals_section_vod_url;
+	public int $motv_portals_registration_template;
+	public int $motv_portals_lost_password_template;
+	public int $motv_portals_lost_pin_template;
+	public int $motv_portals_avatar;
+	public int $motv_portals_lost_password_enabled;
+	public ?string $motv_portals_portal_apple_client_id;
+	public ?int $motv_portals_welcome_template;
+	public ?int $motv_portals_registration_text_template;
+	public int $motv_portals_web_player_cookie;
+	public array $motv_portals_users;
+	public string $favicon;
+	public string $android_image;
+}
+
+class MotvPortalPrivateEntity extends MotvPortalEntity
+{
+	public ?SmtpServerEntity $smtp;
+	public ?string $motv_portals_facebook_secret;
+}
+
 class ScheduleEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $schedule_id;
@@ -82,6 +165,21 @@ class ScheduleEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public string $schedule_data;
 	public ?int $schedule_viewers_id;
 	public string $group_action_name;
+}
+
+class SmtpServerEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $config_smtp_servers_id;
+	public string $config_smtp_servers_name;
+	public int $config_smtp_servers_active;
+	public ?int $config_smtp_servers_port;
+	public \Motv\Connector\Sms\Enums\Sms\SmtpSecureTypeEnum $config_smtp_servers_secure;
+	public string $config_smtp_servers_host;
+	public string $config_smtp_servers_login;
+	public string $config_smtp_servers_password;
+	public ?string $config_smtp_servers_address_from;
+	public string $config_smtp_servers_description;
+	public string $queueName;
 }
 
 class SubscriptionEntity extends \Motv\Connector\Sms\Entities\MotvEntity
@@ -246,6 +344,59 @@ class UsersNotificationsEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public int $users_notifications_link_id;
 	public \DateTimeImmutable $users_notifications_time;
 	public string $ticket_notifications_form_name;
+}
+
+class WarehouseAvailableDeviceEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $warehouse_dealers_id;
+	public string $warehouse_cas;
+	public string $warehouse_type;
+	public int $count;
+}
+
+class WarehouseDeviceBaseEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $warehouse_id;
+	public \DateTimeImmutable $warehouse_time;
+	public int $warehouse_users_id;
+	public int $warehouse_dealers_id;
+	public string $warehouse_cas;
+	public string $warehouse_type;
+	public string $warehouse_value;
+	public ?string $warehouse_hardware;
+	public int $warehouse_used;
+}
+
+class WarehouseDeviceConfigEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $warehouse_devices_config_id;
+	public string $warehouse_devices_config_cas;
+	public string $warehouse_devices_config_type;
+	public int $warehouse_devices_config_enabled;
+}
+
+class WarehouseDeviceEntity extends WarehouseDeviceBaseEntity
+{
+	public ?int $warehouse_params_id;
+	public ?int $warehouse_params_warehouse_id;
+	public ?string $warehouse_params_param1;
+	public ?string $warehouse_params_param2;
+	public ?string $warehouse_params_param3;
+	public ?string $warehouse_params_param4;
+	public ?string $warehouse_params_param5;
+	public ?string $dealers_name;
+}
+
+class WarehouseLogEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public ?int $warehouse_log_id;
+	public ?string $warehouse_log_cas;
+	public ?string $warehouse_log_smartcard_number;
+	public ?string $warehouse_log_stb_number;
+	public ?int $warehouse_log_count;
+	public ?string $warehouse_log_type;
+	public ?int $warehouse_log_dealers_id_from;
+	public ?int $warehouse_log_dealers_id_to;
 }
 
 

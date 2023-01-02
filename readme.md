@@ -139,6 +139,22 @@ $personInputEntity->persons_description = 'Popular actor';
 $personsId = $mwAdminConnector->Person()->update(null, $personInputEntity);
 ```
 
+moTV VOD files upload
+---------------
+
+Files bigger than 20MB cannot be uploaded via the GUI nor via the API directly as there is limitation on the file size in place. It needs to be uploaded by chunks. We have prepared a sample script `VodUpload.php`. Please note that the script utilizes shell tool `split` to split the original file into chunks and therefore this will not work on Windows OS.
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$vodUpload = new \Motv\Connector\Mw\VodUpload('https://mw.operator.tv', 'Username', 'secret', 'https://storage.operator.tv', 'temp_path');
+
+$vodsId = 1;
+$this->vodUpload->uploadVodFile($vodsId, '/path/test.mp4');
+```
+
 Catching errors
 ---------------
 
