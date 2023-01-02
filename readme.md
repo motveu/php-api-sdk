@@ -139,6 +139,21 @@ $personInputEntity->persons_description = 'Popular actor';
 $personsId = $mwAdminConnector->Person()->update(null, $personInputEntity);
 ```
 
+VOD files upload
+---------------
+
+Files bigger than 20mb cannot be uploaded by API. It's need to upload it by chunks. For easy useing use ```VodUpload.php```.
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$vodUpload = new \Motv\Connector\Mw\VodUpload('https://mw.operator.tv', 'Username', 'secret', 'https://storage.operator.tv', 'temp_path');
+
+$this->vodUpload->uploadVodFile(1, '/path/test.mp4');
+```
+
 Catching errors
 ---------------
 
