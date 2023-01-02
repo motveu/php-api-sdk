@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 7 Nov 2022 9:33:10
+ * Generated on Mon, 2 Jan 2023 7:23:30
  * Part moTV.eu SDK integration kit
  */
 
@@ -816,8 +816,9 @@ class Devices_Apple
 	/**
 	 * @throws Exceptions\Sms\NotLoggedInException
 	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\Sms\DeviceAppleUnknownException
 	 */
-	public function getData(int $device_id): array
+	public function getData(int $device_id): Entities\Sms\DeviceAppleEntity
 	{
 		return $this->connector->call("Devices.Apple", "getData", get_defined_vars());
 	}
@@ -852,8 +853,9 @@ class Devices_Apple
 	/**
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Sms\NotLoggedInException
+	 * @throws Exceptions\Sms\DeviceAppleUnknownException
 	 */
-	public function update(?int $viewers_id, ?int $device_id, array $data): int
+	public function update(int $viewers_id, ?int $device_id, InputEntities\Sms\DeviceAppleEntity $data): int
 	{
 		return $this->connector->call("Devices.Apple", "update", get_defined_vars());
 	}
@@ -874,8 +876,9 @@ class Devices_Facebook
 	/**
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Sms\NotLoggedInException
+	 * @throws Exceptions\Sms\DeviceFacebookUnknownException
 	 */
-	public function getData(int $device_id): array
+	public function getData(int $device_id): Entities\Sms\DeviceFacebookEntity
 	{
 		return $this->connector->call("Devices.Facebook", "getData", get_defined_vars());
 	}
@@ -903,8 +906,9 @@ class Devices_Facebook
 	/**
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Sms\NotLoggedInException
+	 * @throws Exceptions\Sms\DeviceFacebookUnknownException
 	 */
-	public function update(?int $viewers_id, ?int $device_id, array $data): int
+	public function update(int $viewers_id, ?int $device_id, InputEntities\Sms\DeviceFacebookEntity $data): int
 	{
 		return $this->connector->call("Devices.Facebook", "update", get_defined_vars());
 	}
@@ -925,8 +929,9 @@ class Devices_Google
 	/**
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Sms\NotLoggedInException
+	 * @throws Exceptions\Sms\DeviceGoogleUnknownException
 	 */
-	public function getData(int $device_id): array
+	public function getData(int $device_id): Entities\Sms\DeviceGoogleEntity
 	{
 		return $this->connector->call("Devices.Google", "getData", get_defined_vars());
 	}
@@ -954,8 +959,9 @@ class Devices_Google
 	/**
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Sms\NotLoggedInException
+	 * @throws Exceptions\Sms\DeviceGoogleUnknownException
 	 */
-	public function update(?int $viewers_id, ?int $device_id, array $data): int
+	public function update(?int $viewers_id, ?int $device_id, InputEntities\Sms\DeviceGoogleEntity $data): int
 	{
 		return $this->connector->call("Devices.Google", "update", get_defined_vars());
 	}
@@ -988,6 +994,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\DatabaseErrorException
 	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
+	 * @throws Exceptions\Sms\MotvValidationErrorException
 	 */
 	public function apiChangePassword(
 		string $password,
@@ -1014,6 +1021,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\DatabaseErrorException
 	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
+	 * @throws Exceptions\Sms\MotvValidationErrorException
 	 */
 	public function apiChangePin($pin, ?string $token = null, ?string $login = null, $code = null): array
 	{
@@ -1027,17 +1035,23 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
 	 * @throws Exceptions\Sms\CustomerUpdateValidationErrorException
 	 * @throws Exceptions\Sms\MotvUnknownRegistrationTokenException
-	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Sms\NotLoggedInException
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
+	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 */
-	public function apiConfirmRegistration(
-		?string $token = null,
-		?string $phone = null,
-		$code = null,
-		bool $social = false,
-	): array {
+	public function apiConfirmRegistration(?string $token = null, $code = null, bool $social = false): array
+	{
 		return $this->connector->call("Devices.Motv", "apiConfirmRegistration", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
+	 * @throws Exceptions\Sms\MotvIncorrectUsernamePasswordException
+	 */
+	public function apiDelete(string $customers_token, int $profiles_id): void
+	{
+		$this->connector->call("Devices.Motv", "apiDelete", get_defined_vars());
 	}
 
 
@@ -1057,6 +1071,7 @@ class Devices_Motv
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Sms\DatabaseErrorException
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
+	 * @throws Exceptions\Sms\MotvValidationErrorException
 	 */
 	public function apiForceChangePassword(string $customers_token, string $password): void
 	{
@@ -1190,7 +1205,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
 	 * @throws Exceptions\Sms\TemplateUnknownTemplateException
 	 */
-	public function apiRequestNewPassword(string $login): void
+	public function apiRequestNewPassword(string $login, ?int $vendors_id = null): void
 	{
 		$this->connector->call("Devices.Motv", "apiRequestNewPassword", get_defined_vars());
 	}
@@ -1203,7 +1218,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
 	 * @throws Exceptions\Sms\TemplateUnknownTemplateException
 	 */
-	public function apiRequestNewPin(string $login): void
+	public function apiRequestNewPin(string $login, ?int $vendors_id = null): void
 	{
 		$this->connector->call("Devices.Motv", "apiRequestNewPin", get_defined_vars());
 	}
@@ -1312,7 +1327,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\ConfigUnknownSmtpServerException
 	 * @throws Exceptions\Sms\MotvUnknownPortalException
 	 */
-	public function getPortal(int $motvPortalsId): array
+	public function getPortal(int $motvPortalsId): Entities\Sms\MotvPortalEntity
 	{
 		return $this->connector->call("Devices.Motv", "getPortal", get_defined_vars());
 	}
@@ -1346,7 +1361,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\ConfigUnknownSmtpServerException
 	 * @throws Exceptions\Sms\MotvUnknownPortalException
 	 */
-	public function getPortalPrivate(int $motvPortalsId): array
+	public function getPortalPrivate(int $motvPortalsId): Entities\Sms\MotvPortalPrivateEntity
 	{
 		return $this->connector->call("Devices.Motv", "getPortalPrivate", get_defined_vars());
 	}
@@ -1423,6 +1438,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\NotLoggedInException
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
 	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\Sms\MotvValidationErrorException
 	 */
 	public function update(?int $viewers_id, ?int $device_id, array $data): int
 	{
@@ -1435,7 +1451,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\MotvDuplicateUserPortalAccessException
 	 * @throws Exceptions\Sms\MotvUnknownPortalException
 	 */
-	public function updatePortal(?int $motvPortalsId, array $data): int
+	public function updatePortal(?int $motvPortalsId, InputEntities\Sms\MotvPortalEntity $data): int
 	{
 		return $this->connector->call("Devices.Motv", "updatePortal", get_defined_vars());
 	}
@@ -3766,7 +3782,7 @@ class Smtp
 	/**
 	 * @throws Exceptions\Sms\ConfigUnknownSmtpServerException
 	 */
-	public function getData(int $config_smtp_servers_id): array
+	public function getData(int $config_smtp_servers_id): Entities\Sms\SmtpServerEntity
 	{
 		return $this->connector->call("Smtp", "getData", get_defined_vars());
 	}
@@ -3779,10 +3795,10 @@ class Smtp
 
 
 	/**
+	 * @return array{'rows': array<Entities\Sms\SmtpServerEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
-		array $columns,
 		array $where = [],
 		?string $orderColumn = null,
 		bool $orderAscending = true,
@@ -3796,7 +3812,7 @@ class Smtp
 	/**
 	 * @throws Exceptions\Sms\ConfigUnknownSmtpServerException
 	 */
-	public function update(?int $config_smtp_servers_id, array $data): int
+	public function update(?int $config_smtp_servers_id, InputEntities\Sms\SmtpServerEntity $data): int
 	{
 		return $this->connector->call("Smtp", "update", get_defined_vars());
 	}
@@ -4723,10 +4739,10 @@ class Warehouse
 
 
 	/**
+	 * @return array{'rows': array<Entities\Sms\WarehouseDeviceEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function allDevicesSelection(
-		array $columns,
 		array $where = [],
 		?string $orderColumn = null,
 		bool $orderAscending = true,
@@ -4748,20 +4764,21 @@ class Warehouse
 
 
 	/**
+	 * @return array{"duplicateDevices": array<mixed>, "missingDevices": array<mixed>}|null
 	 * @throws Exceptions\Sms\WarehouseParseErrorException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
-	public function changeDevicesDealerFile(string $file, array $data): array
+	public function changeDevicesDealerFile(string $file, InputEntities\Sms\WarehouseDeviceDealerFileEntity $data): array
 	{
 		return $this->connector->call("Warehouse", "changeDevicesDealerFile", get_defined_vars());
 	}
 
 
 	/**
+	 * @return array{"rows": array<Entities\Sms\WarehouseAvailableDeviceEntity>, "row_count": int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function dealerDevicesSelection(
-		array $columns,
 		array $where = [],
 		?string $orderColumn = null,
 		bool $orderAscending = true,
@@ -4773,10 +4790,10 @@ class Warehouse
 
 
 	/**
+	 * @return array{'rows': array<Entities\Sms\WarehouseDeviceBaseEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function devicesSelection(
-		array $columns,
 		array $where = [],
 		?string $orderColumn = null,
 		bool $orderAscending = true,
@@ -4803,7 +4820,7 @@ class Warehouse
 	 * @throws Exceptions\Sms\WarehouseParseErrorException
 	 * @throws Exceptions\Sms\WarehouseDuplicateValueException
 	 */
-	public function importWarehouseDealerDevices(array $data, string $file): void
+	public function importWarehouseDealerDevices(InputEntities\Sms\WarehouseEntity $data, string $file): void
 	{
 		$this->connector->call("Warehouse", "importWarehouseDealerDevices", get_defined_vars());
 	}
@@ -4837,10 +4854,10 @@ class Warehouse
 
 
 	/**
+	 * @return array{'rows': array<Entities\Sms\WarehouseDeviceEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function warehouseDealerDevicesSelection(
-		array $columns,
 		array $where = [],
 		?string $orderColumn = null,
 		bool $orderAscending = true,

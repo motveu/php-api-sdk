@@ -8,7 +8,7 @@ use Codeception\PHPUnit\TestCase;
 use Motv\Connector\Connector;
 use Motv\Connector\Mw\AdminConnector;
 
-class SuperBaseTest extends TestCase
+class ConnectorBaseTest extends TestCase
 {
 
 	protected function assertException(

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 7 Nov 2022 9:32:54
+ * Generated on Mon, 2 Jan 2023 7:53:42
  * Part moTV.eu SDK integration kit
  */
 
@@ -205,6 +205,12 @@ enum FilesTypeEnum: string
 	case APP = 'app';
 }
 
+enum GrafanaThemesEnum: string
+{
+	case DARK = 'dark';
+	case LIGHT = 'light';
+}
+
 enum HomepageLayoutContentEnum: string
 {
 	case ALL = 'all';
@@ -258,6 +264,7 @@ enum LoggerEventsEnum: string
 	case CUSTOMER_PUSH_MESSAGE = 'customer push message';
 	case TOPIC_PUSH_MESSAGE = 'topic push message';
 	case PROFILE_DELETE = 'profile delete';
+	case OFFLINE_CONTENT = 'offline content';
 }
 
 enum MessagingActionTopicEnum: string
@@ -514,6 +521,31 @@ enum TranslationsFormatEnum: string
 	case ANDROID = 'android';
 	case IOS = 'ios';
 	case JSON = 'json';
+}
+
+enum VendorAppGeneralStatusEnum: string
+{
+	case OPEN = 'open';
+	case SEND = 'send';
+}
+
+enum VendorAppSectionEnum: string
+{
+	case GENERAL = 'general';
+	case ANDROID_TV = 'android_tv';
+	case ANDROID = 'android';
+	case IOS = 'ios';
+	case TVOS = 'tvos';
+	case SAMSUNG_LG = 'samsung_lg';
+	case ROKU = 'roku';
+}
+
+enum VendorAppSectionStatusEnum: string
+{
+	case OPEN = 'open';
+	case WAITING_FOR_APPROVAL = 'waiting for approval';
+	case WORK_IN_PROGRESS = 'work in progress';
+	case DONE = 'done';
 }
 
 enum VendorBackgroundTypeEnum: string

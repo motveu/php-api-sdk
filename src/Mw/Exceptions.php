@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 7 Nov 2022 9:32:54
+ * Generated on Mon, 2 Jan 2023 7:53:41
  * Part moTV.eu SDK integration kit
  */
 
@@ -369,7 +369,7 @@ class CustomerInvalidAuthorizationHeaderException extends \Motv\Connector\Mw\Exc
 }
 
 /**
- * Unknown customer's QR code
+ * Unknown QR code
  */
 class CustomerUnknownQrException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
@@ -449,7 +449,7 @@ class ProfileUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
 }
 
 /**
- * Given profile cannot be deleted
+ * This profile cannot be deleted
  */
 class ProfileCannotDeleteException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
@@ -521,7 +521,7 @@ class TranscoderNotDownloadableStreamRecordingException extends \Motv\Connector\
 }
 
 /**
- * Unknown VOD category
+ * Unknown category
  */
 class CategoryUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
@@ -881,7 +881,7 @@ class GenreDuplicateNameException extends \Motv\Connector\Mw\Exceptions\ApiExcep
 }
 
 /**
- * Genre is not empty
+ * Genre is not empty (it is assigned to some EPG, VOD or category)
  */
 class GenreIsNotEmptyException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
@@ -998,14 +998,6 @@ class ReportUnknownReportException extends \Motv\Connector\Mw\Exceptions\ApiExce
 class ReportQueryErrorException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 1702;
-}
-
-/**
- * The report cannot be updated because it is predefined
- */
-class ReportCannotEditPredefinedException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 1703;
 }
 
 /**
@@ -1553,7 +1545,7 @@ class BackupMissingConfigurationKeyException extends \Motv\Connector\Mw\Exceptio
 }
 
 /**
- * Unknown custom dashboard
+ * Unknown grafana custom dashboard
  */
 class GrafanaCustomDashboardUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
@@ -1598,4 +1590,12 @@ class ReportScheduleUnknownException extends \Motv\Connector\Mw\Exceptions\ApiEx
 class ReportScheduleAttachementUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 4951;
+}
+
+/**
+ * Unknown vendor application section exception
+ */
+class VendorAppUnknownSectionException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5000;
 }

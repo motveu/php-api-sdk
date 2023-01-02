@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 7 Nov 2022 9:32:51
+ * Generated on Mon, 2 Jan 2023 7:53:39
  * Part moTV.eu SDK integration kit
  */
 
@@ -24,7 +24,6 @@ class Advert
 	/**
 	 * @return array{'rows': array<Entities\Mw\AdvertCampaignEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
-	 * @throws Exceptions\Mw\CampaignUnknownSectionException
 	 * @throws Exceptions\Mw\CampaignUnknownException
 	 */
 	public function campaignSelection(
@@ -63,7 +62,6 @@ class Advert
 
 
 	/**
-	 * @throws Exceptions\Mw\CampaignUnknownSectionException
 	 * @throws Exceptions\Mw\CampaignUnknownException
 	 */
 	public function getCampaign(int $campaignsId): Entities\Mw\AdvertCampaignEntity
@@ -96,9 +94,25 @@ class Advert
 	}
 
 
+	public function getUnitCampaignPairs(): array
+	{
+		return $this->connector->call("Advert", "getUnitCampaignPairs", get_defined_vars());
+	}
+
+
 	public function getUnitPairs(?array $types = null): array
 	{
 		return $this->connector->call("Advert", "getUnitPairs", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{unitsId: int, token:string}
+	 * @throws Exceptions\Mw\AdvertUnknownUnitException
+	 */
+	public function getUploadToken(int $unitsId): array
+	{
+		return $this->connector->call("Advert", "getUploadToken", get_defined_vars());
 	}
 
 
@@ -129,7 +143,6 @@ class Advert
 
 
 	/**
-	 * @throws Exceptions\Mw\CampaignUnknownSectionException
 	 * @throws Exceptions\Mw\CampaignUnknownException
 	 */
 	public function updateCampaign(?int $campaignsId, InputEntities\Mw\AdvertCampaignEntity $data): int
@@ -175,7 +188,6 @@ class AdvertHomepage
 
 	/**
 	 * @throws Exceptions\Mw\AdvertHomepageUnknownException
-	 * @throws Exceptions\Mw\WordUnknownException
 	 */
 	public function delete(int $advertHomepageId): string
 	{
@@ -209,7 +221,6 @@ class AdvertHomepage
 
 	/**
 	 * @throws Exceptions\Mw\AdvertHomepageUnknownException
-	 * @throws Exceptions\Mw\WordUnknownException
 	 */
 	public function getData(int $advertHomepageId, string $language = 'en'): Entities\Mw\AdvertHomepageEntity
 	{
@@ -226,7 +237,6 @@ class AdvertHomepage
 	/**
 	 * @return array{rows: array<Entities\Mw\AdvertHomepageEntity>, row_count: int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
-	 * @throws Exceptions\Mw\WordUnknownException
 	 */
 	public function selection(
 		array $where = [],
@@ -332,6 +342,7 @@ class AppManager
 
 	/**
 	 * @throws Exceptions\Mw\AppManagerUnknownException
+	 * @throws Exceptions\Mw\VendorRightException
 	 */
 	public function createIfNotExists(InputEntities\Mw\AppManagerEntity $data): int
 	{
@@ -362,6 +373,7 @@ class AppManager
 	/**
 	 * @throws Exceptions\Mw\FileNotFoundException
 	 * @throws Exceptions\Mw\ProfileUnknownException
+	 * @throws Exceptions\Mw\AppManagerUnknownException
 	 */
 	public function download(int $filesId): string
 	{
@@ -369,15 +381,15 @@ class AppManager
 	}
 
 
-	/**
-	 * @throws Exceptions\Mw\VendorUnknownException
-	 */
 	public function getActualVersions(bool $forceIgnorCache = false): array
 	{
 		return $this->connector->call("AppManager", "getActualVersions", get_defined_vars());
 	}
 
 
+	/**
+	 * @throws Exceptions\Mw\VendorRightException
+	 */
 	public function getActualVersionsFromVendorDevicePackage(
 		int $vendorsId,
 		Enums\Mw\DeviceEnum $device,
@@ -390,7 +402,6 @@ class AppManager
 
 	/**
 	 * @return array<string, array<array{"app": Entities\Mw\AppManagerEntity, "latestFiles": array<FileManagerVersionEntity>}>>
-	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
 	public function getAppsByVendors(): array
 	{
@@ -402,6 +413,7 @@ class AppManager
 	 * @throws Exceptions\Mw\FileNotFoundException
 	 * @throws Exceptions\Mw\ProfileUnknownException
 	 * @throws Exceptions\Mw\FileMustBeChangelogException
+	 * @throws Exceptions\Mw\AppManagerUnknownException
 	 */
 	public function getChangeLogContent(int $filesId): string
 	{
@@ -435,6 +447,7 @@ class AppManager
 
 	/**
 	 * @return array<string, array{"appManagerId": int, "files": array<Entities\Mw\FileManagerEntity>}>
+	 * @throws Exceptions\Mw\VendorRightException
 	 */
 	public function getFilesByVersionsFromVendorDevicePackage(
 		int $vendorsId,
@@ -445,6 +458,9 @@ class AppManager
 	}
 
 
+	/**
+	 * @throws Exceptions\Mw\AppManagerUnknownException
+	 */
 	public function getLatestFilesByPlatform(\Motv\ApiModule\Entity\AppManagerEntity $appManagerEntity): array
 	{
 		return $this->connector->call("AppManager", "getLatestFilesByPlatform", get_defined_vars());
@@ -481,6 +497,7 @@ class AppManager
 
 	/**
 	 * @throws Exceptions\Mw\AppManagerUnknownException
+	 * @throws Exceptions\Mw\VendorRightException
 	 */
 	public function update(?int $appManagerId, InputEntities\Mw\AppManagerEntity $data): int
 	{
@@ -558,9 +575,18 @@ class Category
 	/**
 	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 */
-	public function getData(int $categoriesId, bool $autoSaveImage = true): Entities\Mw\CategoryEntity
+	public function getData(int $categoriesId): Entities\Mw\CategoryEntity
 	{
 		return $this->connector->call("Category", "getData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
+	 */
+	public function getDataPrivate(int $categoriesId): Entities\Mw\CategoryPrivateEntity
+	{
+		return $this->connector->call("Category", "getDataPrivate", get_defined_vars());
 	}
 
 
@@ -571,7 +597,7 @@ class Category
 
 
 	/**
-	 * @return array{'rows': array<Entities\Mw\CategoryEntity>, 'row_count': int}
+	 * @return array{'rows': array<Entities\Mw\CategoryPrivateEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 */
@@ -612,7 +638,6 @@ class Channel
 	/**
 	 * @throws Exceptions\Mw\ChannelCannotDeleteException
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function delete(int $channelsId): void
 	{
@@ -622,7 +647,6 @@ class Channel
 
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function deleteBroadcast(int $channelsBroadcastId): void
 	{
@@ -632,7 +656,6 @@ class Channel
 
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function deleteMulticast(int $channelsMulticastId): void
 	{
@@ -643,7 +666,6 @@ class Channel
 	/**
 	 * @throws Exceptions\Mw\ChannelCannotDeleteException
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function deleteUnicast(int $channelsUnicastId): void
 	{
@@ -652,14 +674,8 @@ class Channel
 
 
 	/**
-	 * @throws Exceptions\Mw\CategoryDuplicateNameException
-	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\EpgUnknownEpgException
-	 * @throws Exceptions\Mw\GenreDuplicateNameException
-	 * @throws Exceptions\Mw\GenreUnknownException
-	 * @throws Exceptions\Mw\PersonDuplicateNameException
-	 * @throws Exceptions\Mw\PersonUnknownPersonException
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 * @throws Exceptions\Mw\ChannelAudioInvalidRoleException
 	 * @throws Exceptions\Mw\ChannelDuplicateBindIpPortCombinationException
@@ -680,7 +696,6 @@ class Channel
 
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function duplicateBroadcast(int $channelsBroadcastId, ?int $channelsId = null): int
 	{
@@ -740,7 +755,6 @@ class Channel
 	 * @return array{raw: string, programs: array<array{programId: string, programName: string, programProvider: string, streams: array<string, array<array{mapping: string, pid: string, language: string, type: string, data: string}>>}>}
 	 * @throws Exceptions\Mw\ChannelFfprobeSaveFirstException
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 * @throws Exceptions\Mw\TranscoderUnableToContactException
 	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 */
@@ -801,7 +815,6 @@ class Channel
 
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function getData(int $channelsId): Entities\Mw\ChannelEntity
 	{
@@ -835,7 +848,7 @@ class Channel
 
 
 	/**
-	 * @return array{epg_events_id: int, epg_events_title: string, epg_events_start: \DateTimeImmutable, epg_events_end: \DateTimeImmutable, channels_unicast_id: int, generator_drm: array<Enums\Mw\TemplateEncryptionEnum>|null}
+	 * @return array{epg_events_id: int, epg_events_title: string, epg_events_start: \DateTimeImmutable, epg_events_end: \DateTimeImmutable, channels_unicast_id: int, generator_drm: array<Enums\Mw\TemplateEncryptionEnum>}
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
 	 */
 	public function getGenerator(int $generatorId): array
@@ -845,8 +858,6 @@ class Channel
 
 
 	/**
-	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
-	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function getLockedChannels(
@@ -863,7 +874,6 @@ class Channel
 
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function getMulticast(int $channelsMulticastId): Entities\Mw\ChannelMulticastEntity
 	{
@@ -885,7 +895,6 @@ class Channel
 
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function getRemoteChannels(): array
 	{
@@ -897,12 +906,9 @@ class Channel
 	 * @throws Exceptions\Mw\ChannelStreamUnavailableException
 	 * @throws Exceptions\Mw\ChannelUnathorizedException
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\DeviceUnknownException
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
-	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\Mw\ProfileUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
 	public function getStreamUrl(
@@ -930,12 +936,9 @@ class Channel
 	 * @throws Exceptions\Mw\ChannelStreamUnavailableException
 	 * @throws Exceptions\Mw\ChannelUnathorizedException
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\DeviceUnknownException
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
-	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\Mw\ProfileUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
 	public function getStreamUrlV3(
@@ -960,8 +963,6 @@ class Channel
 
 
 	/**
-	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
-	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function getSubscribedChannels(
@@ -978,15 +979,11 @@ class Channel
 
 
 	/**
-	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
-	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function getSubscribedChannelsLite(
 		int $profilesId,
-		?InputEntities\Mw\CustomerDeviceEntity $device,
-		?Enums\Mw\ChannelTypeEnum $type = null,
-		bool $whitelisting = true,
+		InputEntities\Mw\CustomerDeviceEntity $device,
 		bool $mcastOnly = false,
 		bool $bcastOnly = false,
 		bool $locked = false,
@@ -997,7 +994,6 @@ class Channel
 
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function getUnicast(int $channelsUnicastId, string $language = 'en'): Entities\Mw\ChannelUnicastEntity
 	{
@@ -1049,15 +1045,8 @@ class Channel
 
 
 	/**
-	 * @throws Exceptions\Mw\CategoryDuplicateNameException
-	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\EpgUnknownEpgException
-	 * @throws Exceptions\Mw\GenreDuplicateNameException
-	 * @throws Exceptions\Mw\GenreUnknownException
-	 * @throws Exceptions\Mw\PersonDuplicateNameException
-	 * @throws Exceptions\Mw\PersonUnknownPersonException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
 	 */
 	public function update(?int $channelsId, InputEntities\Mw\ChannelEntity $data, bool $generateNoEpg = false): int
@@ -1068,7 +1057,6 @@ class Channel
 
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function updateBroadcast(
 		int $channelsId,
@@ -1438,7 +1426,8 @@ class Customer
 
 
 	/**
-	 * @throws Exceptions\Mw\ProfileUnknownException
+	 * @throws Exceptions\Mw\CustomerLockedException
+	 * @throws Exceptions\Mw\CustomerUnknownException
 	 */
 	public function delete(int $customersId): void
 	{
@@ -1477,7 +1466,7 @@ class Customer
 
 
 	/**
-	 * @return array<array{customers_mac_id: int, customers_mac_mac: string, customers_mac_last_used: \DateTimeImmutable}>
+	 * @return array<array{customers_mac_id: int, customers_mac_mac: string, customers_mac_last_used: \DateTimeImmutable|null}>
 	 * @throws Exceptions\Mw\CustomerUnknownException
 	 */
 	public function getMacAddresses(int $customersId): array
@@ -1873,7 +1862,7 @@ class Edge
 
 
 	/**
-	 * @return array<array{'edges_id': int, 'edges_url': string, 'storages_edge_mount': string, 'channels_unicast_directory': string, drm: array<Enums\Mw\TemplateEncryptionEnum>|null}>
+	 * @return array<array{'edges_id': int, 'edges_url': string, 'storages_edge_mount': string, 'channels_unicast_directory': string, drm: array<Enums\Mw\TemplateEncryptionEnum>}>
 	 */
 	public function getEdgesByChannelUnicast(int $channelsUnicastId, Enums\Mw\ContentTypeEnum $contentType): array
 	{
@@ -1882,7 +1871,7 @@ class Edge
 
 
 	/**
-	 * @return array{'edges_storages_checked': ?\DateTimeImmutable, 'edges_storages_available': int, 'edges_url': string, 'storages_name': string}
+	 * @return array<array{'edges_storages_checked': ?\DateTimeImmutable, 'edges_storages_available': int|null, 'edges_url': string, 'storages_name': string}>
 	 */
 	public function getEdgesStorages(): array
 	{
@@ -1968,6 +1957,15 @@ class Epg
 	}
 
 
+	/**
+	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
+	 */
+	public function getEventSegments(int $generatorId): array
+	{
+		return $this->connector->call("Epg", "getEventSegments", get_defined_vars());
+	}
+
+
 	public function getPairs(): array
 	{
 		return $this->connector->call("Epg", "getPairs", get_defined_vars());
@@ -1997,18 +1995,12 @@ class Epg
 
 
 	/**
-	 * @throws Exceptions\Mw\CategoryDuplicateNameException
-	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 * @throws Exceptions\Mw\EpgInsertErrorException
 	 * @throws Exceptions\Mw\EpgUnknownEpgException
 	 * @throws Exceptions\Mw\EpgXmlMissingAttributeException
 	 * @throws Exceptions\Mw\EpgXmlMissingTagException
 	 * @throws Exceptions\Mw\EpgXmlSetErrorException
-	 * @throws Exceptions\Mw\GenreDuplicateNameException
-	 * @throws Exceptions\Mw\GenreUnknownException
 	 * @throws Exceptions\Mw\InvalidParameterValueException
-	 * @throws Exceptions\Mw\PersonDuplicateNameException
-	 * @throws Exceptions\Mw\PersonUnknownPersonException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
 	 */
 	public function processEpg(int $channelsId, string $content, bool $pastEvents = false): void
@@ -2386,7 +2378,6 @@ class Messaging
 	/**
 	 * @throws Exceptions\Mw\CustomerUnknownException
 	 * @throws Exceptions\Mw\PushMessageSendException
-	 * @throws Exceptions\Mw\VendorUnknownException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
 	 */
 	public function sendCustomerMessage(
@@ -2401,7 +2392,6 @@ class Messaging
 
 	/**
 	 * @throws Exceptions\Mw\PushMessageSendException
-	 * @throws Exceptions\Mw\VendorUnknownException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
 	 */
 	public function sendTopicMessage(string $topic, InputEntities\Mw\MessagingEntity $options): void
@@ -2437,7 +2427,6 @@ class Monitoring
 	/**
 	 * @return array{channel:Entities\Mw\ChannelUnicastEntity|null, monitoring: array<int, array<int, array<int, array<Motv\ApiModule\Entity\MonitoringDataEntity>>>>, count: int}
 	 * @throws Exceptions\Mw\ChannelUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function getChannelMonitoringData(array $channels, ?array $options = null, int $page = 1): array
 	{
@@ -2486,7 +2475,6 @@ class Onboarding
 
 	/**
 	 * @throws Exceptions\Mw\OnboardingUnknownException
-	 * @throws Exceptions\Mw\WordUnknownException
 	 */
 	public function delete(int $onboardingId): void
 	{
@@ -2496,7 +2484,6 @@ class Onboarding
 
 	/**
 	 * @throws Exceptions\Mw\OnboardingUnknownException
-	 * @throws Exceptions\Mw\WordUnknownException
 	 */
 	public function getData(int $onboardingId, string $language = 'en'): Entities\Mw\OnboardingEntity
 	{
@@ -2506,8 +2493,6 @@ class Onboarding
 
 	/**
 	 * @return array{'rows': array<Entities\Mw\OnboardingEntity>, 'row_count': int}
-	 * @throws Exceptions\Mw\OnboardingUnknownException
-	 * @throws Exceptions\Mw\WordUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
 	public function selection(
@@ -2794,7 +2779,6 @@ class Profile
 
 
 	/**
-	 * @throws Exceptions\Mw\CustomerUnknownException
 	 * @throws Exceptions\Mw\ProfileCannotDeleteException
 	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
@@ -3229,13 +3213,10 @@ class Recording
 	 * @throws Exceptions\Mw\ChannelUnathorizedException
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\CustomerUnknownException
-	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
-	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\Mw\ProfileUnknownException
 	 * @throws Exceptions\Mw\RecordingExceededLengthException
 	 * @throws Exceptions\Mw\RecordingUnknownException
-	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
 	public function addRecording(
 		int $profilesId,
@@ -3325,7 +3306,6 @@ class Report
 
 
 	/**
-	 * @throws Exceptions\Mw\ReportCannotEditPredefinedException
 	 * @throws Exceptions\Mw\ReportQueryErrorException
 	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 * @throws Exceptions\Mw\TemplateErrorFillingException
@@ -3365,7 +3345,6 @@ class Report
 
 
 	/**
-	 * @throws Exceptions\Mw\ReportCannotEditPredefinedException
 	 * @throws Exceptions\Mw\ReportQueryErrorException
 	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 * @throws Exceptions\Mw\TemplateErrorFillingException
@@ -3429,8 +3408,6 @@ class Search
 
 	/**
 	 * @throws Exceptions\Mw\SearchTooShortException
-	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
-	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\Mw\ProfileUnknownException
 	 * @throws Exceptions\Mw\VodUnathorizedException
 	 * @throws Exceptions\Mw\VodUnknownException
@@ -3467,10 +3444,7 @@ class Subscription
 
 	/**
 	 * @throws Exceptions\Mw\CustomerUnknownException
-	 * @throws Exceptions\Mw\DeviceUnknownException
-	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
 	 * @throws Exceptions\Mw\PackageUnknownException
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function cancelPackage(int $customersId, int $packagesId): void
 	{
@@ -3478,10 +3452,6 @@ class Subscription
 	}
 
 
-	/**
-	 * @throws Exceptions\Mw\HomepageInvalidCategorySelectionSearchCriteriaException
-	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
-	 */
 	public function getHomepage(int $customersId): Entities\Mw\HomepageEntity
 	{
 		return $this->connector->call("Subscription", "getHomepage", get_defined_vars());
@@ -3576,15 +3546,6 @@ class Template
 	/**
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
-	public function exportTemplates(array $ids): string
-	{
-		return $this->connector->call("Template", "exportTemplates", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws Exceptions\Mw\TemplateUnknownException
-	 */
 	public function getData(int $templatesId, string $language = 'en'): Entities\Mw\TemplateEntity
 	{
 		return $this->connector->call("Template", "getData", get_defined_vars());
@@ -3594,18 +3555,6 @@ class Template
 	public function getPairs(?Enums\Mw\TemplateTypeEnum $type = null, ?bool $active = true): array
 	{
 		return $this->connector->call("Template", "getPairs", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws Exceptions\Mw\TemplateDuplicateNameException
-	 * @throws Exceptions\Mw\TemplateErrorFillingException
-	 * @throws Exceptions\Mw\TemplateUnknownException
-	 * @throws Exceptions\Mw\TemplateUsedException
-	 */
-	public function importTemplates(string $neon): array
-	{
-		return $this->connector->call("Template", "importTemplates", get_defined_vars());
 	}
 
 
@@ -3753,7 +3702,7 @@ class Transcoder
 
 
 	/**
-	 * @return array{time: string, nvidia: array<array{gpu: string, memory: string, encoder: string, decoder: string}>|null, cpu: string, ram: string, cpu_load: string, transcoding: array{unicast_channels: int, gpu_decoders: int, gpu_encoders: int, gpu_encoders_h264: int, gpu_encoders_hevc: int, cpu_decoders: int, deinterlacing: int, live_bandwidth: int, recording_bandwidth: int}}
+	 * @return array{time: string, nvidia: array<array{gpu: string, memory: string, encoder: string, decoder: string}>, cpu: string, ram: string, cpu_load: string, transcoding: array{unicast_channels: int, gpu_decoders: int, gpu_encoders: int, gpu_encoders_h264: int, gpu_encoders_hevc: int, cpu_decoders: int, deinterlacing: int, live_bandwidth: int, recording_bandwidth: int}}
 	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 */
 	public function saveSystemUsage(): array
@@ -4023,7 +3972,6 @@ class User
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\ApiSupport\UserDuplicateEmailException
 	 * @throws Exceptions\ApiSupport\UserUnknownException
@@ -4096,9 +4044,6 @@ class Vendor
 	}
 
 
-	/**
-	 * @throws Exceptions\Mw\VendorUnknownException
-	 */
 	public function getDistributedLicensesCount(): int
 	{
 		return $this->connector->call("Vendor", "getDistributedLicensesCount", get_defined_vars());
@@ -4108,7 +4053,6 @@ class Vendor
 	/**
 	 * @return array<array{vendors_name: string, license_count: int, license_infite: int, license_limitation: int}>
 	 * @throws Exceptions\ApiSupport\UnathorizedException
-	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
 	public function getLicenseStatistics(): array
 	{
@@ -4254,6 +4198,8 @@ class Vod
 
 
 	/**
+	 * @throws Exceptions\Mw\TranscoderUnableToContactException
+	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 * @throws Exceptions\Mw\VodUnathorizedException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
@@ -4278,7 +4224,7 @@ class Vod
 
 	public function getAvailableVodsIds(
 		int $profilesId,
-		?InputEntities\Mw\CustomerDeviceEntity $device,
+		InputEntities\Mw\CustomerDeviceEntity $device,
 		bool $whitelisting,
 	): array {
 		return $this->connector->call("Vod", "getAvailableVodsIds", get_defined_vars());
@@ -4374,8 +4320,6 @@ class Vod
 
 
 	/**
-	 * @throws Exceptions\Mw\GenreDuplicateNameException
-	 * @throws Exceptions\Mw\GenreUnknownException
 	 * @throws Exceptions\Mw\SystemCommandFailedException
 	 * @throws Exceptions\Mw\SystemFailedToUploadFileException
 	 * @throws Exceptions\Mw\TranscoderUnableToContactException
