@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 2 Jan 2023 7:53:42
+ * Generated on Mon, 18 Sep 2023 14:06:44
  * Part moTV.eu SDK integration kit
  */
 
@@ -77,6 +77,22 @@ enum AndroidTVPlayerEnum: string
 {
 	case EXOPLAYER = 'exoplayer';
 	case NATIVE_PLAYER = 'native player';
+}
+
+enum AnsiblePlaybookEnum: string
+{
+	case PORTAL = 'deploy/portal.yml';
+	case EDGE = 'deploy/edge.yml';
+	case VARNISH = 'deploy/varnish.yml';
+	case HAPROXY = 'deploy/haproxy.yml';
+	case TRANSCODER = 'deploy/transcoder.yml';
+	case BASIC_INITIALIZATION = '02_lxd_host_init.yml';
+}
+
+enum AppAnalyticsSelectionTypeEnum: string
+{
+	case DETAIL = 'detail';
+	case PLAY = 'play';
 }
 
 enum AudioChannelEnum: string
@@ -157,6 +173,39 @@ enum ChannelTypeEnum: string
 	case MOSAIC = 'mozaic';
 }
 
+enum ContainerParameterTypeEnum: string
+{
+	case STATIC_VLAN16 = 'lxd_ip_vlan16';
+	case ELASTICSEARCH_MEMORY_LIMIT = 'elasticsearch_memory_limit';
+	case MYSQL_BUFFER_SIZE = 'mysql_buffer_size';
+	case SMS_URL = 'sms_url';
+	case MW_URL = 'mw_url';
+	case VARNISH_MEMORY = 'VARNISH_MALLOC';
+	case EDGE_MOUNT = 'edge_mount';
+	case EDGE_URL = 'edge_url';
+}
+
+enum ContainerTypeEnum: string
+{
+	case DNSMASQ = 'dnsmasq';
+	case HAPROXY = 'haproxy';
+	case PROMETHEUS = 'prometheus';
+	case MYSQL = 'mysql';
+	case REDIS = 'redis';
+	case ELASTICSEARCH = 'elasticsearch';
+	case RABBITMQ = 'rabbitmq';
+	case GRAFANA = 'grafana';
+	case SMS = 'sms';
+	case PORTAL = 'portal';
+	case MIDDLEWARE = 'middleware';
+	case STORAGE = 'storage';
+	case TRANSCODER = 'transcoder';
+	case VARNISH = 'varnish';
+	case EDGE = 'edge';
+	case LOKI = 'loki';
+	case PMM = 'pmm';
+}
+
 enum ContentTypeEnum: string
 {
 	case LIVE = 'live';
@@ -176,6 +225,8 @@ enum DeviceEnum: string
 	case WEBOS = 'webos';
 	case TVOS = 'tvos';
 	case ROKU = 'roku';
+	case OTA = 'ota';
+	case RDK = 'rdk';
 }
 
 enum DrmTypeEnum: string
@@ -205,6 +256,24 @@ enum FilesTypeEnum: string
 	case APP = 'app';
 }
 
+enum FtpProcessStatusEnum: string
+{
+	case OK = '1';
+	case MISSING_METADATA = '2';
+	case INVALID_METADATA_JSON = '3';
+	case INVALID_METADATA = '4';
+	case MISSING_FILE = '5';
+	case UNKNOWN_API_EXCEPTION = '6';
+	case UNKNOWN_EXCEPTION = '7';
+	case FTP_EXCEPTION = '8';
+}
+
+enum FtpTypeEnum: string
+{
+	case FTP = 'ftp';
+	case SFTP = 'sftp';
+}
+
 enum GrafanaThemesEnum: string
 {
 	case DARK = 'dark';
@@ -224,6 +293,13 @@ enum HomepageLayoutFullsizeTypeEnum: string
 	case VOD = 'vod';
 	case EPG = 'epg';
 	case HOMESCREEN = 'homescreen';
+	case PLAYLIST = 'playlist';
+}
+
+enum HomepageLayoutFullsizeViewTypeEnum: string
+{
+	case PLAYLIST = 'playlist';
+	case CAROUSEL = 'carousel';
 }
 
 enum HomepageLayoutSortEnum: string
@@ -345,6 +421,41 @@ enum PersonEnum: string
 	case DIRECTOR = 'director';
 }
 
+enum PipelineStatusEnum: string
+{
+	case PENDING = 'pending';
+	case SUCCESS = 'success';
+	case FAILURE = 'failure';
+}
+
+enum PipelineTypeEnum: string
+{
+	case PORTAL_DEPLOY = 'portal_deploy';
+	case PORTAL_UPDATE = 'portal_update';
+	case TRANSCODER_CONTAINER_UPDATE = 'transcoder_container_update';
+	case CORS = 'cors';
+	case IPTABLES = 'iptables';
+	case HAPROXY = 'haproxy';
+	case PROXIES = 'proxies';
+}
+
+enum PlaylistTypeEnum: string
+{
+	case VOD = 'vod';
+	case EPG = 'epg';
+}
+
+enum PortalLanguageEnum: string
+{
+	case EN = 'en';
+	case CS = 'cs';
+	case PT = 'pt';
+	case ES = 'es';
+	case MN = 'mn';
+	case DE = 'de';
+	case FR = 'fr';
+}
+
 enum ProfileSDEnum: string
 {
 	case ONLY = '1';
@@ -368,6 +479,12 @@ enum ProfileSDNameEnum: string
 	case HD = 'SD_HD';
 	case UHD1 = 'SD_UHD1';
 	case UHD2 = 'SD_UHD2';
+}
+
+enum PublicMulticastTypeEnum: string
+{
+	case SEND = 'send';
+	case RECEIVE = 'receive';
 }
 
 enum RecognitionMethodEnum: string
@@ -394,7 +511,7 @@ enum RecognitionModelTypeEnum: string
 	case GENERAL_OBJECTS = 'general objects';
 }
 
-enum RecommendationEngineCartAssetTypeEnum: string
+enum RecommendationEngineCardAssetTypeEnum: string
 {
 	case YOUTUBE = 'Youtube';
 	case PORNHUB = 'Pornhub';
@@ -424,13 +541,13 @@ enum RecommendationEngineHomepageLayoutEnum: string
 	case MY_LIST = 'my list';
 	case IMAGES = 'images';
 	case SIMILAR_TO_PAST = 'similar to past';
-	case FULLSIZE_BANNER = 'fullsize banner';
-	case OFFSET_ROW = 'offset row';
 	case RECORDING = 'recording';
 	case SEARCH = 'search';
 	case SIMILAR = 'similar';
 	case VOD = 'vod';
 	case CATEGORY = 'category';
+	case POPULAR_SEARCHES = 'popular searches';
+	case CHANNELS = 'channels';
 }
 
 enum RecommendationEngineRowStyleEnum: string
@@ -442,6 +559,7 @@ enum RecommendationEngineRowStyleEnum: string
 	case LARGE_WIDE = 'large_wide';
 	case LARGE = 'large';
 	case FULL_WIDTH = 'full_width';
+	case FULL_WIDTH_MIDDLE = 'full_width_middle';
 }
 
 enum ReportFilterEnum: string
@@ -456,6 +574,7 @@ enum ReportScheduleAttachementTypeEnum: string
 {
 	case GRAFANA_DASHBOARD = 'grafana dashboard';
 	case GRAFANA_EXCEL = 'grafana excel';
+	case GRAFANA_CSV = 'grafana csv';
 }
 
 enum ReportScheduleRepeatEnum: string
@@ -571,12 +690,14 @@ enum VideoInputCodecEnum: string
 	case MPEG = 'mpeg2';
 	case H264 = 'h264';
 	case HEVC = 'hevc';
+	case VP9 = 'vp9';
 	case PNG = 'png';
 }
 
 enum Vod3rdPartyEnum: string
 {
 	case VUBIQIUTY = 'vubiquity';
+	case MOTV_FTP = 'motv_ftp';
 }
 
 enum VodExternalTypeEnum: string
@@ -592,6 +713,12 @@ enum VodStatusEnum: string
 	case PENDING = '1';
 	case SUCCESS = '2';
 	case FAILED = '3';
+}
+
+enum VodTypeEnum: string
+{
+	case STANDARD = 'standard';
+	case LIVE = 'live';
 }
 
 enum WidevineRequestTypeEnum: string

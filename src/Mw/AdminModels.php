@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 2 Jan 2023 7:53:39
+ * Generated on Mon, 18 Sep 2023 14:06:43
  * Part moTV.eu SDK integration kit
  */
 
@@ -32,12 +32,13 @@ class Advert
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Advert", "campaignSelection", get_defined_vars());
 	}
 
 
-	public function getAllUnitsByCustomer(int $customerId): array
+	public function getAllUnitsByCustomer(\Motv\ApiModule\Entity\ProfileEntity $profile): array
 	{
 		return $this->connector->call("Advert", "getAllUnitsByCustomer", get_defined_vars());
 	}
@@ -55,7 +56,7 @@ class Advert
 	}
 
 
-	public function getAvailableCampaignsForCustomerPairs(int $customersId): array
+	public function getAvailableCampaignsForCustomerPairs(\Motv\ApiModule\Entity\ProfileEntity $profile): array
 	{
 		return $this->connector->call("Advert", "getAvailableCampaignsForCustomerPairs", get_defined_vars());
 	}
@@ -86,6 +87,15 @@ class Advert
 
 
 	/**
+	 * @return array<array{url: string, width: int, height: int, bitrate: int}>|null
+	 */
+	public function getTranscodedUnitMetadata(\Motv\ApiModule\Entity\AdvertUnitEntity $unit): array
+	{
+		return $this->connector->call("Advert", "getTranscodedUnitMetadata", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws Exceptions\Mw\AdvertUnknownUnitException
 	 */
 	public function getUnit(int $unitsId): Entities\Mw\AdvertUnitEntity
@@ -94,7 +104,10 @@ class Advert
 	}
 
 
-	public function getUnitCampaignPairs(): array
+	/**
+	 * @throws Exceptions\Mw\AdvertUnknownUnitException
+	 */
+	public function getUnitCampaignPairs(int $unitsId): array
 	{
 		return $this->connector->call("Advert", "getUnitCampaignPairs", get_defined_vars());
 	}
@@ -137,7 +150,8 @@ class Advert
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Advert", "unitSelection", get_defined_vars());
 	}
 
@@ -159,7 +173,8 @@ class Advert
 		int $campaignsId,
 		?int $campaignsSectionsId,
 		InputEntities\Mw\AdvertCampaignSectionEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Advert", "updateCampaignSection", get_defined_vars());
 	}
 
@@ -245,7 +260,8 @@ class AdvertHomepage
 		?int $page = null,
 		?int $pageLimit = null,
 		string $language = 'en',
-	): array {
+	): array
+	{
 		return $this->connector->call("AdvertHomepage", "selection", get_defined_vars());
 	}
 
@@ -314,7 +330,8 @@ class App
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("App", "selection", get_defined_vars());
 	}
 
@@ -352,7 +369,6 @@ class AppManager
 
 	/**
 	 * @throws Exceptions\Mw\AppManagerUnknownException
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function delete(int $appManagerId): void
 	{
@@ -381,7 +397,10 @@ class AppManager
 	}
 
 
-	public function getActualVersions(bool $forceIgnorCache = false): array
+	/**
+	 * @return array<int, array<string, array<string, array{"updatesBehind": int, "lastVersion": Entities\Mw\FileManagerVersionEntity|null}>>>
+	 */
+	public function getActualVersions(): array
 	{
 		return $this->connector->call("AppManager", "getActualVersions", get_defined_vars());
 	}
@@ -394,8 +413,8 @@ class AppManager
 		int $vendorsId,
 		Enums\Mw\DeviceEnum $device,
 		string $package,
-		bool $forceIgnorCache = false,
-	): array {
+	): array
+	{
 		return $this->connector->call("AppManager", "getActualVersionsFromVendorDevicePackage", get_defined_vars());
 	}
 
@@ -453,7 +472,8 @@ class AppManager
 		int $vendorsId,
 		Enums\Mw\DeviceEnum $device,
 		string $package,
-	): array {
+	): array
+	{
 		return $this->connector->call("AppManager", "getFilesByVersionsFromVendorDevicePackage", get_defined_vars());
 	}
 
@@ -490,7 +510,8 @@ class AppManager
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("AppManager", "selection", get_defined_vars());
 	}
 
@@ -607,7 +628,8 @@ class Category
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Category", "selection", get_defined_vars());
 	}
 
@@ -746,7 +768,8 @@ class Channel
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Channel", "dvbRegionSelection", get_defined_vars());
 	}
 
@@ -763,7 +786,8 @@ class Channel
 		Enums\Mw\ChannelInputTypeEnum $type,
 		?int $channelsUnicastId = null,
 		?string $url = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Channel", "ffprobe", get_defined_vars());
 	}
 
@@ -771,6 +795,12 @@ class Channel
 	public function getActivePairs(): array
 	{
 		return $this->connector->call("Channel", "getActivePairs", get_defined_vars());
+	}
+
+
+	public function getAllChannelMonitoringData(?int $transcodersId = null): array
+	{
+		return $this->connector->call("Channel", "getAllChannelMonitoringData", get_defined_vars());
 	}
 
 
@@ -867,7 +897,8 @@ class Channel
 		bool $whitelisting = true,
 		bool $mcastOnly = false,
 		bool $bcastOnly = false,
-	): array {
+	): array
+	{
 		return $this->connector->call("Channel", "getLockedChannels", get_defined_vars());
 	}
 
@@ -893,9 +924,6 @@ class Channel
 	}
 
 
-	/**
-	 * @throws Exceptions\Mw\ChannelUnknownException
-	 */
 	public function getRemoteChannels(): array
 	{
 		return $this->connector->call("Channel", "getRemoteChannels", get_defined_vars());
@@ -927,7 +955,8 @@ class Channel
 		bool $bb8Ready = false,
 		string $language = 'en',
 		?int $devicesId = null,
-	): Entities\Mw\StreamUrlEntity {
+	): Entities\Mw\StreamUrlEntity
+	{
 		return $this->connector->call("Channel", "getStreamUrl", get_defined_vars());
 	}
 
@@ -957,7 +986,8 @@ class Channel
 		bool $bb8Ready = false,
 		string $language = 'en',
 		?int $devicesId = null,
-	): Entities\Mw\StreamUrlV2Entity {
+	): Entities\Mw\StreamUrlV2Entity
+	{
 		return $this->connector->call("Channel", "getStreamUrlV3", get_defined_vars());
 	}
 
@@ -973,7 +1003,8 @@ class Channel
 		bool $mcastOnly = false,
 		bool $bcastOnly = false,
 		bool $locked = false,
-	): array {
+	): array
+	{
 		return $this->connector->call("Channel", "getSubscribedChannels", get_defined_vars());
 	}
 
@@ -987,7 +1018,8 @@ class Channel
 		bool $mcastOnly = false,
 		bool $bcastOnly = false,
 		bool $locked = false,
-	): array {
+	): array
+	{
 		return $this->connector->call("Channel", "getSubscribedChannelsLite", get_defined_vars());
 	}
 
@@ -1024,7 +1056,8 @@ class Channel
 		?int $page = null,
 		?int $pageLimit = null,
 		?int $channelsId = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Channel", "recordedEventSelection", get_defined_vars());
 	}
 
@@ -1039,7 +1072,8 @@ class Channel
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Channel", "selection", get_defined_vars());
 	}
 
@@ -1062,7 +1096,8 @@ class Channel
 		int $channelsId,
 		?int $channelsBroadcastId,
 		InputEntities\Mw\ChannelBroadcastEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Channel", "updateBroadcast", get_defined_vars());
 	}
 
@@ -1088,7 +1123,8 @@ class Channel
 		int $channelsId,
 		?int $channelsMulticastId,
 		InputEntities\Mw\ChannelMulticastEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Channel", "updateMulticast", get_defined_vars());
 	}
 
@@ -1110,7 +1146,8 @@ class Channel
 		int $channelsId,
 		?int $channelsUnicastId,
 		InputEntities\Mw\ChannelUnicastHttpEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Channel", "updateUnicastHttp", get_defined_vars());
 	}
 
@@ -1132,7 +1169,8 @@ class Channel
 		int $channelsId,
 		?int $channelsUnicastId,
 		InputEntities\Mw\ChannelUnicastMozaicEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Channel", "updateUnicastMozaic", get_defined_vars());
 	}
 
@@ -1154,7 +1192,8 @@ class Channel
 		int $channelsId,
 		?int $channelsUnicastId,
 		InputEntities\Mw\ChannelUnicastRegularEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Channel", "updateUnicastRegular", get_defined_vars());
 	}
 
@@ -1176,7 +1215,8 @@ class Channel
 		int $channelsId,
 		?int $channelsUnicastId,
 		InputEntities\Mw\ChannelUnicastRemoteEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Channel", "updateUnicastRemote", get_defined_vars());
 	}
 
@@ -1190,7 +1230,8 @@ class Channel
 		string $directory,
 		string $filename,
 		?string $content = null,
-	): void {
+	): void
+	{
 		$this->connector->call("Channel", "uploadUnicastInputFile", get_defined_vars());
 	}
 }
@@ -1233,7 +1274,8 @@ class ChannelCategory
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("ChannelCategory", "selection", get_defined_vars());
 	}
 
@@ -1332,9 +1374,21 @@ class Config
 	}
 
 
+	public function getRequiresOtp(): bool
+	{
+		return $this->connector->call("Config", "getRequiresOtp", get_defined_vars());
+	}
+
+
 	public function getSettings(): array
 	{
 		return $this->connector->call("Config", "getSettings", get_defined_vars());
+	}
+
+
+	public function getSystemExpiration(): \DateTimeImmutable
+	{
+		return $this->connector->call("Config", "getSystemExpiration", get_defined_vars());
 	}
 
 
@@ -1348,7 +1402,8 @@ class Config
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Config", "remoteMwSelection", get_defined_vars());
 	}
 
@@ -1426,7 +1481,6 @@ class Customer
 
 
 	/**
-	 * @throws Exceptions\Mw\CustomerLockedException
 	 * @throws Exceptions\Mw\CustomerUnknownException
 	 */
 	public function delete(int $customersId): void
@@ -1450,7 +1504,8 @@ class Customer
 	public function getData(
 		int $customersId,
 		?Enums\Mw\LoggerEventsEnum $loginLoggerType = null,
-	): Entities\Mw\CustomerEntity {
+	): Entities\Mw\CustomerEntity
+	{
 		return $this->connector->call("Customer", "getData", get_defined_vars());
 	}
 
@@ -1504,7 +1559,8 @@ class Customer
 		?int $customersVendorsId = null,
 		?string $wild = null,
 		?int $limit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Customer", "search", get_defined_vars());
 	}
 
@@ -1558,7 +1614,8 @@ class Detector
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Detector", "selection", get_defined_vars());
 	}
 
@@ -1585,21 +1642,13 @@ class Device
 	}
 
 
-	public function addDevice(
-		int $customersId,
-		int $profilesId,
-		Enums\Mw\DeviceEnum $devicesType,
-		string $devicesIdentification,
-		string $devicesHash,
-	): int {
-		return $this->connector->call("Device", "addDevice", get_defined_vars());
-	}
-
-
 	/**
 	 * @throws Exceptions\Mw\DeviceUnknownException
 	 */
-	public function getData(int $devicesId, ?int $customersId = null): Entities\Mw\DeviceEntity
+	public function getData(
+		int $devicesId,
+		?\Motv\ApiModule\Entity\ProfileEntity $profile = null,
+	): Entities\Mw\DeviceEntity
 	{
 		return $this->connector->call("Device", "getData", get_defined_vars());
 	}
@@ -1631,7 +1680,8 @@ class Device
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Device", "selection", get_defined_vars());
 	}
 
@@ -1645,7 +1695,8 @@ class Device
 		?int $devicesDvbSRegionsId = null,
 		?int $devicesDvbTRegionsId = null,
 		?int $devicesDvbT2RegionsId = null,
-	): int {
+	): int
+	{
 		return $this->connector->call("Device", "update", get_defined_vars());
 	}
 }
@@ -1683,6 +1734,7 @@ class Documentation
 	/**
 	 * @throws Exceptions\ApiSupport\DocumentationModelNotFoundException
 	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
+	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
 	 */
 	public function getAdminApiModel(string $type): Entities\ApiSupport\DocumentationApiEntity
 	{
@@ -1774,6 +1826,7 @@ class Documentation
 	/**
 	 * @throws Exceptions\ApiSupport\DocumentationModelNotFoundException
 	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
+	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
 	 */
 	public function getPublicApiModel(string $type): Entities\ApiSupport\DocumentationApiEntity
 	{
@@ -1805,12 +1858,13 @@ class Drm
 
 
 	/**
-	 * @return array{'com.widevine.alpha': string, 'com.apple.fps.1_0': string, 'roku'?: string}
+	 * @return array{'com.widevine.alpha': string, 'com.apple.fps.1_0': string, 'com.apple.fps': string, 'roku'?: string}
 	 */
 	public function getDrms(
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
 		?\Motv\ApiModule\Entity\ProfileEntity $profile = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Drm", "getDrms", get_defined_vars());
 	}
 
@@ -1844,9 +1898,12 @@ class Edge
 
 
 	/**
-	 * @return array<int, array{edges_storages_id: int, storages_edge_mount: string, edges_url: string, storages_catchup_path_clean: int, 'edges_speed_check_url': string, 'edges_speed_test_url': string}>
+	 * @return array<int, array{edges_storages_id: int, storages_edge_mount: string, edges_url: string, 'edges_speed_check_url': string, 'edges_speed_test_url': string}>
 	 */
-	public function getActiveEdgesStorages(?int $customersId = null): array
+	public function getActiveEdgesStorages(
+		?\Motv\ApiModule\Entity\ProfileEntity $profile = null,
+		?InputEntities\Mw\CustomerDeviceEntity $customerDeviceEntity = null,
+	): array
 	{
 		return $this->connector->call("Edge", "getActiveEdgesStorages", get_defined_vars());
 	}
@@ -1901,13 +1958,15 @@ class Edge
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Edge", "selection", get_defined_vars());
 	}
 
 
 	/**
 	 * @throws Exceptions\Mw\EdgeUnknownException
+	 * @throws Exceptions\Mw\EdgeDuplicateNameException
 	 */
 	public function update(?int $edgesId, InputEntities\Mw\EdgeEntity $data): int
 	{
@@ -1960,6 +2019,15 @@ class Epg
 	/**
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
 	 */
+	public function getEventMetadata(int $epgEventsId): Entities\Mw\EpgEventMetadataEntity
+	{
+		return $this->connector->call("Epg", "getEventMetadata", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
+	 */
 	public function getEventSegments(int $generatorId): array
 	{
 		return $this->connector->call("Epg", "getEventSegments", get_defined_vars());
@@ -1983,7 +2051,8 @@ class Epg
 		$from = null,
 		$to = null,
 		?array $ids = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Epg", "getUpdatedEvents", get_defined_vars());
 	}
 
@@ -2029,6 +2098,17 @@ class Epg
 
 	/**
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
+	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 */
+	public function updateEventMetadata(int $epgEventsId, InputEntities\Mw\EpgEventMetadataEntity $data): void
+	{
+		$this->connector->call("Epg", "updateEventMetadata", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
 	 */
 	public function uploadEpgImage(int $epgEventsId, string $content, int $width, int $height): void
@@ -2061,17 +2141,24 @@ class EpgPlaylist
 
 	/**
 	 * @throws Exceptions\Mw\EpgUnknownPlaylistException
+	 * @throws Exceptions\Mw\PlaylistBadContentException
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
 	 */
-	public function addEventsToPlaylist(int $epgPlaylistsId, array $epgEventsIds): void
+	public function addEventsToPlaylist(int $epgPlaylistsId, array $epgEventsIds = []): void
 	{
 		$this->connector->call("EpgPlaylist", "addEventsToPlaylist", get_defined_vars());
 	}
 
 
-	public function getActivePairs(): array
+	/**
+	 * @throws Exceptions\Mw\EpgUnknownPlaylistException
+	 * @throws Exceptions\Mw\PlaylistBadContentException
+	 * @throws Exceptions\Mw\VodUnathorizedException
+	 * @throws Exceptions\Mw\VodUnknownException
+	 */
+	public function addVodsToPlaylist(int $epgPlaylistsId, array $vodsIds = []): void
 	{
-		return $this->connector->call("EpgPlaylist", "getActivePairs", get_defined_vars());
+		$this->connector->call("EpgPlaylist", "addVodsToPlaylist", get_defined_vars());
 	}
 
 
@@ -2093,7 +2180,7 @@ class EpgPlaylist
 	}
 
 
-	public function getPairs(): array
+	public function getPairs(?Enums\Mw\PlaylistTypeEnum $type = null, ?bool $active = null): array
 	{
 		return $this->connector->call("EpgPlaylist", "getPairs", get_defined_vars());
 	}
@@ -2110,7 +2197,8 @@ class EpgPlaylist
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("EpgPlaylist", "selection", get_defined_vars());
 	}
 
@@ -2192,7 +2280,8 @@ class EpgRating
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("EpgRating", "selection", get_defined_vars());
 	}
 
@@ -2238,16 +2327,6 @@ class Genre
 	}
 
 
-	public function getGenresVodsEpgsCount(
-		bool $vods,
-		bool $epg,
-		?array $channelsIds = null,
-		?int $timestamp = null,
-	): array {
-		return $this->connector->call("Genre", "getGenresVodsEpgsCount", get_defined_vars());
-	}
-
-
 	public function getPairs(): array
 	{
 		return $this->connector->call("Genre", "getPairs", get_defined_vars());
@@ -2264,7 +2343,8 @@ class Genre
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Genre", "selection", get_defined_vars());
 	}
 
@@ -2316,7 +2396,8 @@ class IpRange
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("IpRange", "selection", get_defined_vars());
 	}
 
@@ -2352,7 +2433,8 @@ class Logger
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Logger", "selection", get_defined_vars());
 	}
 }
@@ -2385,7 +2467,8 @@ class Messaging
 		InputEntities\Mw\MessagingEntity $options,
 		?int $profilesId = null,
 		?int $devicesId = null,
-	): void {
+	): void
+	{
 		$this->connector->call("Messaging", "sendCustomerMessage", get_defined_vars());
 	}
 
@@ -2502,7 +2585,8 @@ class Onboarding
 		?int $page = null,
 		?int $pageLimit = null,
 		string $language = 'en',
-	): array {
+	): array
+	{
 		return $this->connector->call("Onboarding", "selection", get_defined_vars());
 	}
 
@@ -2550,7 +2634,8 @@ class Ota
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Ota", "devicesSelection", get_defined_vars());
 	}
 
@@ -2629,7 +2714,8 @@ class Ota
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Ota", "versionsSelection", get_defined_vars());
 	}
 }
@@ -2649,6 +2735,9 @@ class Package
 	/**
 	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 * @throws Exceptions\Mw\PackageRecordingLengthShorterThanCatchupException
+	 * @throws Exceptions\Mw\ExternalVodCannotBeLockedVodException
+	 * @throws Exceptions\Mw\VodGroupUnknownException
 	 */
 	public function copyPackage(int $packagesId, string $name): int
 	{
@@ -2692,14 +2781,18 @@ class Package
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Package", "selection", get_defined_vars());
 	}
 
 
 	/**
-	 * @throws Exceptions\Mw\PackageUnknownException
+	 * @throws Exceptions\Mw\ExternalVodCannotBeLockedVodException
 	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 * @throws Exceptions\Mw\PackageRecordingLengthShorterThanCatchupException
+	 * @throws Exceptions\Mw\PackageUnknownException
+	 * @throws Exceptions\Mw\VodGroupUnknownException
 	 */
 	public function update(?int $packagesId, InputEntities\Mw\PackageEntity $data): int
 	{
@@ -2734,6 +2827,9 @@ class Person
 	}
 
 
+	/**
+	 * @return array<array{'id': int, 'text': string}>
+	 */
 	public function search(Enums\Mw\PersonEnum $type, string $search): array
 	{
 		return $this->connector->call("Person", "search", get_defined_vars());
@@ -2750,7 +2846,8 @@ class Person
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Person", "selection", get_defined_vars());
 	}
 
@@ -2763,6 +2860,53 @@ class Person
 	public function update(?int $personsId, InputEntities\Mw\PersonEntity $data): int
 	{
 		return $this->connector->call("Person", "update", get_defined_vars());
+	}
+}
+
+class Poll
+{
+	/** @var AdminConnector */
+	private $connector;
+
+
+	public function __construct(AdminConnector $connector)
+	{
+		$this->connector = $connector;
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\PollUnknownException
+	 */
+	public function getData(int $pollsId): Entities\Mw\PollEntity
+	{
+		return $this->connector->call("Poll", "getData", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': array<Entities\Mw\PollEntity>, 'row_count': int}
+	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
+	 */
+	public function selection(
+		array $where = [],
+		?string $orderColumn = null,
+		bool $orderAscending = true,
+		?int $page = null,
+		?int $pageLimit = null,
+	): array
+	{
+		return $this->connector->call("Poll", "selection", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 * @throws Exceptions\Mw\PollUnknownException
+	 */
+	public function update(?int $pollsId, InputEntities\Mw\PollEntity $data): int
+	{
+		return $this->connector->call("Poll", "update", get_defined_vars());
 	}
 }
 
@@ -2806,7 +2950,10 @@ class Profile
 	}
 
 
-	public function getFavoriteChannels(\Motv\ApiModule\Entity\ProfileEntity $profile, bool $forceReload = false): array
+	/**
+	 * @throws Exceptions\Mw\ProfileUnknownException
+	 */
+	public function getFavoriteChannels(int $profilesId): array
 	{
 		return $this->connector->call("Profile", "getFavoriteChannels", get_defined_vars());
 	}
@@ -2858,7 +3005,8 @@ class Profile
 		InputEntities\Mw\ProfileEntity $data,
 		bool $isRegistration = false,
 		?int $updatersProfilesId = null,
-	): int {
+	): int
+	{
 		return $this->connector->call("Profile", "update", get_defined_vars());
 	}
 
@@ -2897,13 +3045,15 @@ class Recognition
 
 	/**
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
-	 * @throws Exceptions\Mw\InvalidParameterValueException
-	 * @throws Exceptions\Mw\RecognitionApiException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelException
 	 * @throws Exceptions\Mw\RecognitionUnknownTemplateImageException
 	 * @throws Exceptions\Mw\RecognitionProgramSegmentDuplictyException
 	 */
-	public function addProgramSegment(int $recognitionModelsChannelsId, string $start, string $end): void
+	public function addProgramSegment(
+		int $recognitionModelsChannelsId,
+		\DateTimeImmutable $start,
+		\DateTimeImmutable $end,
+	): void
 	{
 		$this->connector->call("Recognition", "addProgramSegment", get_defined_vars());
 	}
@@ -2940,7 +3090,8 @@ class Recognition
 	public function getModel(
 		int $recognitionModelsId,
 		bool $loadRecognitionApiData = false,
-	): Entities\Mw\RecognitionModelEntity {
+	): Entities\Mw\RecognitionModelEntity
+	{
 		return $this->connector->call("Recognition", "getModel", get_defined_vars());
 	}
 
@@ -2953,7 +3104,8 @@ class Recognition
 	public function getModelChannel(
 		int $recognitionModelsChannelsId,
 		bool $loadRecognitionApiData = false,
-	): Entities\Mw\RecognitionModelChannelEntity {
+	): Entities\Mw\RecognitionModelChannelEntity
+	{
 		return $this->connector->call("Recognition", "getModelChannel", get_defined_vars());
 	}
 
@@ -3002,25 +3154,6 @@ class Recognition
 
 
 	/**
-	 * @throws Exceptions\Mw\RecognitionUnknownTrainingImageException
-	 */
-	public function getTrainingImage(int $recognitionTrainingImagesId): Entities\Mw\RecognitionTrainingImageEntity
-	{
-		return $this->connector->call("Recognition", "getTrainingImage", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws Exceptions\Mw\RecognitionUnknownModelException
-	 * @throws Exceptions\Mw\RecognitionUnknownTrainingImageException
-	 */
-	public function getTrainingImages(int $recognitionModelsId): array
-	{
-		return $this->connector->call("Recognition", "getTrainingImages", get_defined_vars());
-	}
-
-
-	/**
 	 * @return array{'rows': array<Entities\Mw\RecognitionModelEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelException
@@ -3033,7 +3166,8 @@ class Recognition
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Recognition", "modelSelection", get_defined_vars());
 	}
 
@@ -3048,7 +3182,8 @@ class Recognition
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Recognition", "programSegmentSelection", get_defined_vars());
 	}
 
@@ -3066,13 +3201,15 @@ class Recognition
 
 	/**
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
-	 * @throws Exceptions\Mw\InvalidParameterValueException
-	 * @throws Exceptions\Mw\RecognitionApiException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelException
 	 * @throws Exceptions\Mw\RecognitionUnknownTemplateImageException
 	 * @throws Exceptions\Mw\RecognitionUnknownProgramSegmentException
 	 */
-	public function removeProgramSegment(int $recognitionModelsChannelsId, string $start, string $end): void
+	public function removeProgramSegment(
+		int $recognitionModelsChannelsId,
+		\DateTimeImmutable $start,
+		\DateTimeImmutable $end,
+	): void
 	{
 		$this->connector->call("Recognition", "removeProgramSegment", get_defined_vars());
 	}
@@ -3090,19 +3227,6 @@ class Recognition
 
 
 	/**
-	 * @throws Exceptions\Mw\RecognitionTrainingImageDeleteException
-	 * @throws Exceptions\Mw\RecognitionUnknownTrainingImageException
-	 * @throws Exceptions\Mw\RecognitionUnknownModelException
-	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
-	 * @throws Exceptions\Mw\RecognitionUnknownTemplateImageException
-	 */
-	public function removeTrainingImage(int $recognitionTrainingImagesId): void
-	{
-		$this->connector->call("Recognition", "removeTrainingImage", get_defined_vars());
-	}
-
-
-	/**
 	 * @throws Exceptions\Mw\RecognitionUnknownModelException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
 	 * @throws Exceptions\Mw\RecognitionUnknownTemplateImageException
@@ -3113,7 +3237,8 @@ class Recognition
 		int $channelsId,
 		int $detectionClusterId,
 		int $templateImageId,
-	): void {
+	): void
+	{
 		$this->connector->call("Recognition", "selectLogoCluster", get_defined_vars());
 	}
 
@@ -3137,15 +3262,14 @@ class Recognition
 	public function updateModelChannel(
 		?int $recognitionModelsChannelsId,
 		InputEntities\Mw\RecognitionModelChannelEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Recognition", "updateModelChannel", get_defined_vars());
 	}
 
 
 	/**
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
-	 * @throws Exceptions\Mw\InvalidParameterValueException
-	 * @throws Exceptions\Mw\RecognitionApiException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelException
 	 * @throws Exceptions\Mw\RecognitionUnknownTemplateImageException
 	 * @throws Exceptions\Mw\RecognitionProgramSegmentDuplictyException
@@ -3153,10 +3277,11 @@ class Recognition
 	 */
 	public function updateProgramSegment(
 		int $recognitionModelsChannelsId,
-		string $start,
-		string $end,
-		string $newEnd,
-	): void {
+		\DateTimeImmutable $start,
+		\DateTimeImmutable $end,
+		\DateTimeImmutable $newEnd,
+	): void
+	{
 		$this->connector->call("Recognition", "updateProgramSegment", get_defined_vars());
 	}
 
@@ -3170,30 +3295,9 @@ class Recognition
 	public function updateTemplateImage(
 		?int $recognitionTemplateImagesId,
 		InputEntities\Mw\RecognitionTemplateImageEntity $data,
-	): int {
+	): int
+	{
 		return $this->connector->call("Recognition", "updateTemplateImage", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws Exceptions\Mw\RecognitionUnknownModelException
-	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
-	 * @throws Exceptions\Mw\RecognitionUnknownTemplateImageException
-	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
-	 */
-	public function uploadTrainingImage(
-		int $recognitionModelsId,
-		string $originalImage,
-		string $image,
-		int $recognitionTemplateImagesId,
-		int $recognitionModelsChannelsId,
-		string $description,
-		int $x1,
-		int $y1,
-		int $x2,
-		int $y2,
-	): int {
-		return $this->connector->call("Recognition", "uploadTrainingImage", get_defined_vars());
 	}
 }
 
@@ -3222,7 +3326,8 @@ class Recording
 		int $profilesId,
 		InputEntities\Mw\CustomerDeviceEntity $device,
 		int $epgEventsId,
-	): Entities\Mw\RecommendationCardRecordingEntity {
+	): Entities\Mw\RecommendationCardRecordingEntity
+	{
 		return $this->connector->call("Recording", "addRecording", get_defined_vars());
 	}
 
@@ -3235,11 +3340,15 @@ class Recording
 		int $epgEventsId,
 		int $profilesId,
 		InputEntities\Mw\CustomerDeviceEntity $device,
-	): Entities\Mw\RecommendationCardRecordingEntity {
+	): Entities\Mw\RecommendationCardRecordingEntity
+	{
 		return $this->connector->call("Recording", "getData", get_defined_vars());
 	}
 
 
+	/**
+	 * @throws Exceptions\Mw\CustomerUnknownException
+	 */
 	public function getRecordingsByCustomer(int $customersId): array
 	{
 		return $this->connector->call("Recording", "getRecordingsByCustomer", get_defined_vars());
@@ -3253,7 +3362,8 @@ class Recording
 		int $profilesId,
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
 		string $language = 'en',
-	): array {
+	): array
+	{
 		return $this->connector->call("Recording", "getRecordingsByProfile", get_defined_vars());
 	}
 
@@ -3322,7 +3432,12 @@ class Report
 	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 * @throws Exceptions\Mw\TemplateErrorFillingException
 	 */
-	public function reportSelection(int $reportsId, ?array $where = null, ?int $page = null, ?int $pageLimit = null): array
+	public function reportSelection(
+		int $reportsId,
+		?array $where = null,
+		?int $page = null,
+		?int $pageLimit = null,
+	): array
 	{
 		return $this->connector->call("Report", "reportSelection", get_defined_vars());
 	}
@@ -3339,7 +3454,8 @@ class Report
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Report", "selection", get_defined_vars());
 	}
 
@@ -3353,11 +3469,114 @@ class Report
 	{
 		return $this->connector->call("Report", "update", get_defined_vars());
 	}
+}
+
+class ReportSchedule
+{
+	/** @var AdminConnector */
+	private $connector;
 
 
-	public function updateRoleHomepageReports(int $rolesId, array $data): void
+	public function __construct(AdminConnector $connector)
 	{
-		$this->connector->call("Report", "updateRoleHomepageReports", get_defined_vars());
+		$this->connector = $connector;
+	}
+
+
+	public function buildQuery(\Motv\ApiModule\Entity\ReportScheduleEntity $reportSchedule, array $query = []): string
+	{
+		return $this->connector->call("ReportSchedule", "buildQuery", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ReportScheduleUnknownException
+	 */
+	public function createBackgroundJobForRunSchedule(int $reportSchedulesId): void
+	{
+		$this->connector->call("ReportSchedule", "createBackgroundJobForRunSchedule", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ReportScheduleUnknownException
+	 */
+	public function delete(int $reportSchedulesId): void
+	{
+		$this->connector->call("ReportSchedule", "delete", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{filename: string, content: string}
+	 * @throws Exceptions\Mw\ReportScheduleAttachementUnknownException
+	 */
+	public function downloadReport(int $reportSchedulesAttachementsId): array
+	{
+		return $this->connector->call("ReportSchedule", "downloadReport", get_defined_vars());
+	}
+
+
+	public function getDashboardPairs(): array
+	{
+		return $this->connector->call("ReportSchedule", "getDashboardPairs", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ReportScheduleUnknownException
+	 */
+	public function getData(int $reportSchedulesId): Entities\Mw\ReportScheduleEntity
+	{
+		return $this->connector->call("ReportSchedule", "getData", get_defined_vars());
+	}
+
+
+	public function getPairs(): array
+	{
+		return $this->connector->call("ReportSchedule", "getPairs", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': array<Entities\Mw\ReportScheduleAttachementEntity>, 'row_count': int}
+	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
+	 */
+	public function historySelection(
+		array $where = [],
+		?string $orderColumn = null,
+		bool $orderAscending = true,
+		?int $page = null,
+		?int $pageLimit = null,
+	): array
+	{
+		return $this->connector->call("ReportSchedule", "historySelection", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': array<Entities\Mw\ReportScheduleEntity>, 'row_count': int}
+	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
+	 */
+	public function selection(
+		array $where = [],
+		?string $orderColumn = null,
+		bool $orderAscending = true,
+		?int $page = null,
+		?int $pageLimit = null,
+	): array
+	{
+		return $this->connector->call("ReportSchedule", "selection", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 * @throws Exceptions\Mw\ReportScheduleUnknownException
+	 */
+	public function update(?int $reportSchedulesId, InputEntities\Mw\ReportScheduleEntity $data): int
+	{
+		return $this->connector->call("ReportSchedule", "update", get_defined_vars());
 	}
 }
 
@@ -3394,42 +3613,6 @@ class Right
 	}
 }
 
-class Search
-{
-	/** @var AdminConnector */
-	private $connector;
-
-
-	public function __construct(AdminConnector $connector)
-	{
-		$this->connector = $connector;
-	}
-
-
-	/**
-	 * @throws Exceptions\Mw\SearchTooShortException
-	 * @throws Exceptions\Mw\ProfileUnknownException
-	 * @throws Exceptions\Mw\VodUnathorizedException
-	 * @throws Exceptions\Mw\VodUnknownException
-	 */
-	public function search(
-		int $profilesId,
-		InputEntities\Mw\CustomerDeviceEntity $device,
-		string $search,
-		?string $genre = null,
-		?int $categoriesId = null,
-		?int $genresId = null,
-		bool $includeChannels = true,
-		bool $includeEvents = true,
-		bool $includeVods = true,
-		bool $includeCategories = true,
-		bool $includePersons = true,
-		bool $v2 = true,
-	): array {
-		return $this->connector->call("Search", "search", get_defined_vars());
-	}
-}
-
 class Subscription
 {
 	/** @var AdminConnector */
@@ -3452,7 +3635,7 @@ class Subscription
 	}
 
 
-	public function getHomepage(int $customersId): Entities\Mw\HomepageEntity
+	public function getHomepage(\Motv\ApiModule\Entity\ProfileEntity $profile): Entities\Mw\HomepageEntity
 	{
 		return $this->connector->call("Subscription", "getHomepage", get_defined_vars());
 	}
@@ -3461,7 +3644,7 @@ class Subscription
 	/**
 	 * @return array<array{'packages_id': int, 'packages_name': string, 'packages_recording_length': int, 'packages_device_count': int}>
 	 */
-	public function getPackagesBySubscribedPackage(array $packages, ?Enums\Mw\DeviceEnum $devicesType = null): array
+	public function getPackagesBySubscribedPackage(array $packages): array
 	{
 		return $this->connector->call("Subscription", "getPackagesBySubscribedPackage", get_defined_vars());
 	}
@@ -3476,13 +3659,16 @@ class Subscription
 	}
 
 
+	/**
+	 * @throws Exceptions\Mw\CustomerUnknownException
+	 */
 	public function getTvods(int $customersId): array
 	{
 		return $this->connector->call("Subscription", "getTvods", get_defined_vars());
 	}
 
 
-	public function hasSimilarEventsVods(int $customersId): bool
+	public function hasSimilarEventsVods(\Motv\ApiModule\Entity\ProfileEntity $profile): bool
 	{
 		return $this->connector->call("Subscription", "hasSimilarEventsVods", get_defined_vars());
 	}
@@ -3570,7 +3756,8 @@ class Template
 		?int $page = null,
 		?int $pageLimit = null,
 		string $language = 'en',
-	): array {
+	): array
+	{
 		return $this->connector->call("Template", "selection", get_defined_vars());
 	}
 
@@ -3596,6 +3783,15 @@ class Transcoder
 	public function __construct(AdminConnector $connector)
 	{
 		$this->connector = $connector;
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\PublicMulticastUnknownException
+	 */
+	public function deletePublicMulticast(int $publicMulticastId): void
+	{
+		$this->connector->call("Transcoder", "deletePublicMulticast", get_defined_vars());
 	}
 
 
@@ -3658,6 +3854,15 @@ class Transcoder
 
 
 	/**
+	 * @throws Exceptions\Mw\PublicMulticastUnknownException
+	 */
+	public function getPublicMulticast(int $publicMulticastId): Entities\Mw\PublicMulticastEntity
+	{
+		return $this->connector->call("Transcoder", "getPublicMulticast", get_defined_vars());
+	}
+
+
+	/**
 	 * @return array<array{description: string, pid: int, stderr_logfile: string, stop: int, logfile: string, exitstatus: int, spawnerr: string, now: int, group: string, name: string, statename: string, start: int, state: int, stdout_logfile: string}>
 	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 */
@@ -3667,10 +3872,7 @@ class Transcoder
 	}
 
 
-	/**
-	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
-	 */
-	public function getSystemTranscodingOptions(): array
+	public function getSystemTranscodingOptions(?int $transcodersId = null, ?int $transcodingGpu = null): array
 	{
 		return $this->connector->call("Transcoder", "getSystemTranscodingOptions", get_defined_vars());
 	}
@@ -3682,6 +3884,22 @@ class Transcoder
 	public function newStreamRecording(InputEntities\Mw\StreamRecordingEntity $data): int
 	{
 		return $this->connector->call("Transcoder", "newStreamRecording", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': array<Entities\Mw\PublicMulticastEntity>, 'row_count': int}
+	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
+	 */
+	public function publicMulticastSelection(
+		array $where = [],
+		?string $orderColumn = null,
+		bool $orderAscending = true,
+		?int $page = null,
+		?int $pageLimit = null,
+	): array
+	{
+		return $this->connector->call("Transcoder", "publicMulticastSelection", get_defined_vars());
 	}
 
 
@@ -3721,7 +3939,8 @@ class Transcoder
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Transcoder", "selection", get_defined_vars());
 	}
 
@@ -3736,7 +3955,8 @@ class Transcoder
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Transcoder", "streamRecordingsSelection", get_defined_vars());
 	}
 
@@ -3764,10 +3984,20 @@ class Transcoder
 	/**
 	 * @throws Exceptions\Mw\TranscoderDuplicateNameException
 	 * @throws Exceptions\Mw\TranscoderUnknownException
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 */
 	public function update(?int $transcodersId, InputEntities\Mw\TranscoderEntity $data): int
 	{
 		return $this->connector->call("Transcoder", "update", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\PublicMulticastUnknownException
+	 */
+	public function updatePublicMulticast(?int $publicMulticastId, InputEntities\Mw\PublicMulticastEntity $data): int
+	{
+		return $this->connector->call("Transcoder", "updatePublicMulticast", get_defined_vars());
 	}
 }
 
@@ -3805,6 +4035,12 @@ class Translator
 	public function getEnabledLanguages(): array
 	{
 		return $this->connector->call("Translator", "getEnabledLanguages", get_defined_vars());
+	}
+
+
+	public function getEntityWord(string $entity, int $entityId): Entities\Mw\WordEntity
+	{
+		return $this->connector->call("Translator", "getEntityWord", get_defined_vars());
 	}
 
 
@@ -3854,9 +4090,20 @@ class Translator
 	/**
 	 * @throws Exceptions\Mw\WordUnknownException
 	 */
-	public function translate(?int $wordsId, ?string $wordsText, string $language, string $fallbackLanguage = 'en'): string
+	public function translate(
+		?int $wordsId,
+		?string $wordsText,
+		string $language,
+		string $fallbackLanguage = 'en',
+	): string
 	{
 		return $this->connector->call("Translator", "translate", get_defined_vars());
+	}
+
+
+	public function translateEntity(string $entity, int $entityId, string $language, string $fallbackText): string
+	{
+		return $this->connector->call("Translator", "translateEntity", get_defined_vars());
 	}
 
 
@@ -3880,7 +4127,10 @@ class Translator
 		InputEntities\Mw\WordEntity $data,
 		?array $translations = null,
 		bool $create = false,
-	): int {
+		?string $entity = null,
+		?int $entityId = null,
+	): int
+	{
 		return $this->connector->call("Translator", "updateWord", get_defined_vars());
 	}
 
@@ -3896,7 +4146,8 @@ class Translator
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Translator", "wordSelection", get_defined_vars());
 	}
 }
@@ -3937,6 +4188,15 @@ class User
 	}
 
 
+	/**
+	 * @return string|null
+	 */
+	public function getImagePairs(): array
+	{
+		return $this->connector->call("User", "getImagePairs", get_defined_vars());
+	}
+
+
 	public function getPairs(): array
 	{
 		return $this->connector->call("User", "getPairs", get_defined_vars());
@@ -3957,6 +4217,16 @@ class User
 
 
 	/**
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\ApiSupport\UserUnknownException
+	 */
+	public function resetOtp(int $usersId): void
+	{
+		$this->connector->call("User", "resetOtp", get_defined_vars());
+	}
+
+
+	/**
 	 * @return array{'rows': array<Entities\Mw\UserEntity>, 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -3966,7 +4236,8 @@ class User
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("User", "selection", get_defined_vars());
 	}
 
@@ -4006,7 +4277,8 @@ class Vendor
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Vendor", "avatarSelection", get_defined_vars());
 	}
 
@@ -4072,12 +4344,27 @@ class Vendor
 	}
 
 
+	public function getPortalUrlsByVendor(): array
+	{
+		return $this->connector->call("Vendor", "getPortalUrlsByVendor", get_defined_vars());
+	}
+
+
 	/**
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 */
 	public function getPublicData(int $vendorsId): Entities\Mw\VendorPublicEntity
 	{
 		return $this->connector->call("Vendor", "getPublicData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\VendorUnknownException
+	 */
+	public function getVendorChannelsOrdering(int $vendorsId): array
+	{
+		return $this->connector->call("Vendor", "getVendorChannelsOrdering", get_defined_vars());
 	}
 
 
@@ -4101,8 +4388,25 @@ class Vendor
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Vendor", "selection", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': array<Entities\Mw\VendorChannelOrderEntity>, 'row_count': int}
+	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
+	 */
+	public function selectionVendorChannelsOrdering(
+		array $where = [],
+		?string $orderColumn = null,
+		bool $orderAscending = true,
+		?int $page = null,
+		?int $pageLimit = null,
+	): array
+	{
+		return $this->connector->call("Vendor", "selectionVendorChannelsOrdering", get_defined_vars());
 	}
 
 
@@ -4124,6 +4428,211 @@ class Vendor
 	public function updateAvatar(?int $vendorsAvatarsId, InputEntities\Mw\VendorAvatarEntity $data): int
 	{
 		return $this->connector->call("Vendor", "updateAvatar", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\VendorUnknownException
+	 * @throws Exceptions\Mw\ChannelUnknownException
+	 */
+	public function updateVendorChannelsOrder(int $vendorsId, int $channelsId, ?int $order): void
+	{
+		$this->connector->call("Vendor", "updateVendorChannelsOrder", get_defined_vars());
+	}
+}
+
+class VendorApp
+{
+	/** @var AdminConnector */
+	private $connector;
+
+
+	public function __construct(AdminConnector $connector)
+	{
+		$this->connector = $connector;
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\VendorUnknownException
+	 */
+	public function changeSectionStatus(
+		int $vendorsId,
+		Enums\Mw\VendorAppSectionEnum $section,
+		Enums\Mw\VendorAppSectionStatusEnum $newStatus,
+		bool $saveLog = true,
+	): void
+	{
+		$this->connector->call("VendorApp", "changeSectionStatus", get_defined_vars());
+	}
+
+
+	public function getAndroidData(int $vendorsId): Entities\Mw\VendorAppAndroidEntity
+	{
+		return $this->connector->call("VendorApp", "getAndroidData", get_defined_vars());
+	}
+
+
+	public function getAndroidTVData(int $vendorsId): Entities\Mw\VendorAppAndroidTVEntity
+	{
+		return $this->connector->call("VendorApp", "getAndroidTVData", get_defined_vars());
+	}
+
+
+	public function getGeneralData(int $vendorsId): Entities\Mw\VendorAppGeneralEntity
+	{
+		return $this->connector->call("VendorApp", "getGeneralData", get_defined_vars());
+	}
+
+
+	public function getIOSData(int $vendorsId): Entities\Mw\VendorAppIOSEntity
+	{
+		return $this->connector->call("VendorApp", "getIOSData", get_defined_vars());
+	}
+
+
+	public function getLastRevision(int $vendorsId): int
+	{
+		return $this->connector->call("VendorApp", "getLastRevision", get_defined_vars());
+	}
+
+
+	public function getRokuData(int $vendorsId): Entities\Mw\VendorAppRokuEntity
+	{
+		return $this->connector->call("VendorApp", "getRokuData", get_defined_vars());
+	}
+
+
+	public function getSamsungLgData(int $vendorsId): Entities\Mw\VendorAppSamsungLgEntity
+	{
+		return $this->connector->call("VendorApp", "getSamsungLgData", get_defined_vars());
+	}
+
+
+	public function getTVOSData(int $vendorsId): Entities\Mw\VendorAppTVOSEntity
+	{
+		return $this->connector->call("VendorApp", "getTVOSData", get_defined_vars());
+	}
+
+
+	public function removeAndroidData(int $vendorsId): void
+	{
+		$this->connector->call("VendorApp", "removeAndroidData", get_defined_vars());
+	}
+
+
+	public function removeAndroidTVData(int $vendorsId): void
+	{
+		$this->connector->call("VendorApp", "removeAndroidTVData", get_defined_vars());
+	}
+
+
+	public function removeGeneralData(int $vendorsId): void
+	{
+		$this->connector->call("VendorApp", "removeGeneralData", get_defined_vars());
+	}
+
+
+	public function removeIOSData(int $vendorsId): void
+	{
+		$this->connector->call("VendorApp", "removeIOSData", get_defined_vars());
+	}
+
+
+	public function removeRokuData(int $vendorsId): void
+	{
+		$this->connector->call("VendorApp", "removeRokuData", get_defined_vars());
+	}
+
+
+	public function removeSamsungLgData(int $vendorsId): void
+	{
+		$this->connector->call("VendorApp", "removeSamsungLgData", get_defined_vars());
+	}
+
+
+	public function removeTVOSData(int $vendorsId): void
+	{
+		$this->connector->call("VendorApp", "removeTVOSData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\VendorUnknownException
+	 */
+	public function sendRequestsForApps(int $vendorsId): void
+	{
+		$this->connector->call("VendorApp", "sendRequestsForApps", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 */
+	public function updateAndroidData(int $vendorsId, InputEntities\Mw\VendorAppAndroidEntity $data): int
+	{
+		return $this->connector->call("VendorApp", "updateAndroidData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 */
+	public function updateAndroidTVData(int $vendorsId, InputEntities\Mw\VendorAppAndroidTVEntity $data): int
+	{
+		return $this->connector->call("VendorApp", "updateAndroidTVData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
+	 * @throws Exceptions\Mw\CustomerUnknownException
+	 */
+	public function updateGeneralData(int $vendorsId, InputEntities\Mw\VendorAppGeneralEntity $data): int
+	{
+		return $this->connector->call("VendorApp", "updateGeneralData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 */
+	public function updateIOSData(int $vendorsId, InputEntities\Mw\VendorAppIOSEntity $data): int
+	{
+		return $this->connector->call("VendorApp", "updateIOSData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 */
+	public function updateRokuData(int $vendorsId, InputEntities\Mw\VendorAppRokuEntity $data): int
+	{
+		return $this->connector->call("VendorApp", "updateRokuData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 */
+	public function updateSamsungLgData(int $vendorsId, InputEntities\Mw\VendorAppSamsungLgEntity $data): int
+	{
+		return $this->connector->call("VendorApp", "updateSamsungLgData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 */
+	public function updateTVOSData(int $vendorsId, InputEntities\Mw\VendorAppTVOSEntity $data): int
+	{
+		return $this->connector->call("VendorApp", "updateTVOSData", get_defined_vars());
 	}
 }
 
@@ -4156,6 +4665,8 @@ class Vod
 	 * @throws Exceptions\Mw\StorageUnknownException
 	 * @throws Exceptions\Mw\VodMinimumAgeRestrictionException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\ExternalVodCannotBeLockedVodException
+	 * @throws Exceptions\Mw\VodGroupUnknownException
 	 */
 	public function copyVod(int $vodsId): int
 	{
@@ -4164,32 +4675,17 @@ class Vod
 
 
 	/**
-	 * @throws Exceptions\Mw\VodUnathorizedException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
-	public function delete(int $vodsId, bool $isTest = false): void
+	public function delete(int $vodsId): void
 	{
 		$this->connector->call("Vod", "delete", get_defined_vars());
 	}
 
 
 	/**
-	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
-	 * @throws Exceptions\Mw\SystemCommandFailedException
-	 * @throws Exceptions\Mw\SystemFailedToUploadFileException
-	 * @throws Exceptions\Mw\TranscoderUnableToContactException
-	 * @throws Exceptions\Mw\TranscoderUnknownException
-	 * @throws Exceptions\Mw\UnknownErrorException
-	 * @throws Exceptions\Mw\VodAudioInvalidRoleException
-	 * @throws Exceptions\Mw\VodCannotChangeTransoderException
-	 * @throws Exceptions\Mw\VodFileErrorException
-	 * @throws Exceptions\Mw\VodMinimumAgeRestrictionException
-	 * @throws Exceptions\Mw\VodSubtitleInvalidRoleException
-	 * @throws Exceptions\Mw\VodSubtitleVttException
-	 * @throws Exceptions\Mw\VodUnathorizedException
 	 * @throws Exceptions\Mw\VodUnknownException
-	 * @throws Exceptions\Mw\StorageUnknownException
-	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\Mw\VodUnathorizedException
 	 */
 	public function deleteMetadata(int $vodsId): void
 	{
@@ -4226,7 +4722,8 @@ class Vod
 		int $profilesId,
 		InputEntities\Mw\CustomerDeviceEntity $device,
 		bool $whitelisting,
-	): array {
+	): array
+	{
 		return $this->connector->call("Vod", "getAvailableVodsIds", get_defined_vars());
 	}
 
@@ -4240,7 +4737,8 @@ class Vod
 		?int $profilesId = null,
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
 		bool $useCache = true,
-	): Entities\Mw\VodEntity {
+	): Entities\Mw\VodEntity
+	{
 		return $this->connector->call("Vod", "getData", get_defined_vars());
 	}
 
@@ -4253,14 +4751,21 @@ class Vod
 		int $vodsId,
 		?int $profilesId = null,
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
-	): Entities\Mw\RecommendationCardEntity {
+	): Entities\Mw\RecommendationCardEntity
+	{
 		return $this->connector->call("Vod", "getDataV2", get_defined_vars());
 	}
 
 
-	public function getPairs(): array
+	public function getPairs(?bool $external = null): array
 	{
 		return $this->connector->call("Vod", "getPairs", get_defined_vars());
+	}
+
+
+	public function getPairsWithIds(): array
+	{
+		return $this->connector->call("Vod", "getPairsWithIds", get_defined_vars());
 	}
 
 
@@ -4312,6 +4817,8 @@ class Vod
 	 * @throws Exceptions\Mw\StorageUnknownException
 	 * @throws Exceptions\Mw\VodMinimumAgeRestrictionException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\ExternalVodCannotBeLockedVodException
+	 * @throws Exceptions\Mw\VodGroupUnknownException
 	 */
 	public function guessVodVideoAudioSubtitle(int $vodsId): void
 	{
@@ -4320,23 +4827,8 @@ class Vod
 
 
 	/**
-	 * @throws Exceptions\Mw\SystemCommandFailedException
-	 * @throws Exceptions\Mw\SystemFailedToUploadFileException
-	 * @throws Exceptions\Mw\TranscoderUnableToContactException
-	 * @throws Exceptions\Mw\TranscoderUnknownException
-	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 * @throws Exceptions\Mw\UnknownErrorException
-	 * @throws Exceptions\Mw\VodAudioInvalidRoleException
-	 * @throws Exceptions\Mw\VodCannotChangeTransoderException
-	 * @throws Exceptions\Mw\VodFileErrorException
-	 * @throws Exceptions\Mw\VodSubtitleInvalidRoleException
-	 * @throws Exceptions\Mw\VodSubtitleVttException
-	 * @throws Exceptions\Mw\VodUnathorizedException
-	 * @throws Exceptions\Mw\VodUnknownException
 	 * @throws Exceptions\Mw\VodYoutubeImportException
-	 * @throws Exceptions\Mw\StorageUnknownException
-	 * @throws Exceptions\Mw\VodMinimumAgeRestrictionException
-	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
 	 */
 	public function importYoutube(string $youtubeId): int
 	{
@@ -4356,7 +4848,8 @@ class Vod
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-	): array {
+	): array
+	{
 		return $this->connector->call("Vod", "selection", get_defined_vars());
 	}
 
@@ -4389,6 +4882,8 @@ class Vod
 	 * @throws Exceptions\Mw\StorageUnknownException
 	 * @throws Exceptions\Mw\VodMinimumAgeRestrictionException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\ExternalVodCannotBeLockedVodException
+	 * @throws Exceptions\Mw\VodGroupUnknownException
 	 */
 	public function update(?int $vodsId, InputEntities\Mw\VodEntity $data): int
 	{

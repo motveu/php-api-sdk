@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 2 Jan 2023 7:53:42
+ * Generated on Mon, 18 Sep 2023 14:06:45
  * Part moTV.eu SDK integration kit
  */
 
@@ -61,6 +61,8 @@ class AdvertHomepageEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?string $advert_homepage_video_path;
 	public ?string $advert_homepage_image_startup_path;
 	public int $advert_homepage_active;
+	public \DateTimeImmutable $advert_homepage_from;
+	public \DateTimeImmutable $advert_homepage_to;
 	public \Motv\Connector\Mw\Enums\Mw\AdvertHomepageActionTypeEnum $advert_homepage_action_type;
 	public string $advert_homepage_action;
 	public ?string $image;
@@ -93,7 +95,7 @@ class AdvertUnitEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?int $units_limit_impressions;
 	public ?int $units_limit_complete;
 	public ?int $units_limit_clicks;
-	public ?int $units_limit_profile;
+	public int $units_limit_profile;
 	public ?\Motv\Connector\Mw\Enums\Mw\AdvertUnitLimitationDurationEnum $units_limit_profile_duration;
 	public ?int $units_limit_profile_amount;
 	public ?\Motv\Connector\Mw\Enums\Mw\AdvertTrackingEnum $units_limit_profile_type;
@@ -109,6 +111,21 @@ class AdvertUnitEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?int $units_image_width;
 	public ?int $units_image_height;
 	public ?string $units_custom_impression_url;
+	public int $units_1st_screen_click_enable;
+	public ?string $units_1st_screen_click_image;
+}
+
+class AnsibleEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public string $ansible_cors;
+	public int $ansible_wildcard_cors;
+	public string $ansible_project_name;
+	public string $ansible_dns_clientname;
+	public string $ansible_timezone;
+	public string $ansible_service_dns_ip;
+	public string $ansible_extra;
+	public array $ansible_haproxy_cluster;
+	public array $ansible_dnsmasq_cluster;
 }
 
 class AppEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -126,7 +143,6 @@ class AppManagerEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $app_manager_package;
 	public int $app_manager_vendors_id;
 	public \Motv\Connector\Mw\Enums\Mw\DeviceEnum $app_manager_device;
-	public ?string $image;
 	public array $files;
 	public array $stores;
 }
@@ -275,11 +291,12 @@ class ChannelMulticastEntity extends ChannelMulticastUnicastEntity
 	public int $channels_multicast_interlaced;
 	public int $channels_multicast_access_unit_delimiters;
 	public ?string $channels_multicast_video_pid;
-	public $storages_live_path;
+	public string $storages_live_path;
 	public array $channels_multicast_vendors;
 	public array $channels_audio;
 	public array $channels_subtitle;
 	public ?TemplateEntity $template;
+	public ?string $channels_multicast_note;
 }
 
 class ChannelMulticastUnicastEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -304,6 +321,7 @@ class ChannelsBroadcastEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?string $channels_broadcast_default_subtitle;
 	public int $channels_broadcast_dvb_regions_id;
 	public array $channels_broadcast_vendors;
+	public ?string $channels_broadcast_note;
 }
 
 class ChannelSubtitleEntity extends ChannelVodAudioSubtitleEntityAbstract
@@ -340,29 +358,21 @@ class ChannelUnicastEntity extends ChannelMulticastUnicastEntity
 	public \Motv\Connector\Mw\Enums\Mw\VideoInputCodecEnum $channels_unicast_input_video_codec;
 	public ?int $channels_unicast_mozaic_size;
 	public \Motv\Connector\Mw\Enums\Mw\ChannelSubtitleEnum $channels_unicast_subtitle_option;
-	public $storages_live_path;
+	public string $storages_live_path;
 	public int $channels_restart_on_fail;
 	public int $channels_notify_on_fail;
 	public string $channels_name;
 	public \Motv\Connector\Mw\Enums\Mw\ChannelTypeEnum $channels_type;
-	public ?\DateTimeImmutable $channels_checked;
-	public \Motv\Connector\Mw\Enums\Mw\MonitoringChannelStateEnum $channels_available;
-	public ?int $channels_live_time;
-	public ?int $channels_mpd_drift;
-	public ?int $channels_mpd_gap;
-	public ?int $channels_warning;
-	public ?int $channels_error;
-	public ?int $channels_thumbnail_time;
 	public array $channels_unicast_vendors;
 	public array $channels_audio;
 	public array $channels_subtitle;
-	public string $channels_unicast_url;
-	public string $channels_unicast_thumbnail_url;
 	public ?TemplateEntity $template_live;
 	public ?TemplateEntity $template_recording;
 	public array $channels_mozaic;
 	public ?int $channels_unicast_remote_channels_id;
 	public ?int $channels_unicast_remote_mw_id;
+	public ?string $channels_unicast_note;
+	public int $channels_unicast_experimental_catchup;
 }
 
 class ChannelUnicastInternalEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -388,6 +398,19 @@ class ChannelVodAudioSubtitleEntity extends ChannelVodAudioSubtitleEntityAbstrac
 
 class ChannelVodAudioSubtitleEntityAbstract extends \Motv\Connector\Mw\Entities\MotvEntity
 {
+}
+
+class ContainerEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public string $containers_name;
+	public \Motv\Connector\Mw\Enums\Mw\ContainerTypeEnum $containers_type;
+	public array $parameters;
+}
+
+class ContainerParameterEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public \Motv\Connector\Mw\Enums\Mw\ContainerParameterTypeEnum $type;
+	public string $value;
 }
 
 class ContinueWatchingEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -424,7 +447,7 @@ class CustomerEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $customers_concurrent_device_count;
 	public int $customers_recording_length;
 	public int $customers_recording_used;
-	public int $customers_locked;
+	public int $customers_autogenerated;
 	public array $profiles;
 	public ?bool $customers_recommendation_engine_enabled;
 	public array $customers_recording_by_profile;
@@ -463,6 +486,7 @@ class DeviceEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?int $devices_dvb_t_regions_id;
 	public ?int $devices_dvb_t2_regions_id;
 	public ?string $devices_google_token;
+	public ?string $devices_package_name;
 }
 
 class DrmKeyEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -485,9 +509,13 @@ class DvbRegionEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 class EdgeEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public int $edges_id;
+	public string $edges_name;
 	public string $edges_url;
 	public int $edges_active;
 	public array $edges_storages;
+	public ?int $edges_servers_id;
+	public int $edges_proxy;
+	public ?string $edges_secondary_url;
 }
 
 class EpgChannelEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -578,6 +606,29 @@ class EpgEventInternalEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $epg_events_duration;
 }
 
+class EpgEventMetadataEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $epg_events_id;
+	public \DateTimeImmutable $epg_events_start;
+	public \DateTimeImmutable $epg_events_end;
+	public string $epg_events_title;
+	public int $epg_events_channels_id;
+	public string $epg_events_subtitle;
+	public ?string $epg_events_desc;
+	public ?int $epg_events_rating;
+	public ?string $epg_events_episode_num;
+	public ?float $epg_events_imdb_rating;
+	public ?string $epg_events_imdb_id;
+	public ?int $epg_events_serie_number;
+	public ?int $epg_events_episode_number;
+	public string $epg_events_icon;
+	public ?string $epg_events_icon_widescreen;
+	public array $epg_events_actors;
+	public array $epg_events_director;
+	public ?int $epg_events_categories_id;
+	public array $epg_events_genres;
+}
+
 class EpgEventSegmentEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public int $recognition_models_channels_id;
@@ -588,6 +639,9 @@ class EpgEventSegmentEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 class EpgPlaylistEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public int $epg_playlists_id;
+	public \Motv\Connector\Mw\Enums\Mw\PlaylistTypeEnum $epg_playlists_type;
+	public ?string $epg_playlists_title;
+	public ?string $epg_playlists_description;
 	public string $epg_playlists_name;
 	public int $epg_playlists_active;
 	public \DateTimeImmutable $epg_playlists_created;
@@ -615,6 +669,7 @@ class FileManagerEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $files_downloaded;
 	public \Motv\Connector\Mw\Enums\Mw\FilesTypeEnum $files_type;
 	public ?int $files_file_size;
+	public \DateTimeImmutable $files_time;
 }
 
 class FileManagerLatestFileEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -624,19 +679,6 @@ class FileManagerLatestFileEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?\Motv\Connector\Mw\Enums\Mw\FilesLauncherEnum $launcher;
 }
 
-class FileManagerOldEntity extends \Motv\Connector\Mw\Entities\MotvEntity
-{
-	public int $files_id;
-	public \DateTimeImmutable $files_time;
-	public int $files_users_id;
-	public string $files_path;
-	public string $files_filename;
-	public array $files_tags;
-	public string $files_description;
-	public int $files_downloaded;
-	public ?string $image;
-}
-
 class FileManagerVersionEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public ?\Motv\Connector\Mw\Enums\Mw\FilesLauncherEnum $filesLauncher;
@@ -644,6 +686,33 @@ class FileManagerVersionEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $latestVersion;
 	public bool $isActual;
 	public \Motv\Connector\Mw\Enums\Mw\DeviceEnum $device;
+}
+
+class FtpEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $ftp_id;
+	public string $ftp_name;
+	public int $ftp_active;
+	public int $ftp_transcoders_id;
+	public int $ftp_templates_id;
+	public \Motv\Connector\Mw\Enums\Mw\FtpTypeEnum $ftp_type;
+	public string $ftp_host;
+	public int $ftp_port;
+	public string $ftp_folder;
+	public string $ftp_login;
+	public string $ftp_password;
+	public ?\DateTimeImmutable $ftp_last_checked;
+}
+
+class FtpLogEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $ftp_log_id;
+	public int $ftp_log_ftp_id;
+	public \DateTimeImmutable $ftp_log_time;
+	public \Motv\Connector\Mw\Enums\Mw\FtpProcessStatusEnum $ftp_log_status;
+	public string $ftp_log_message;
+	public ?string $ftp_log_directory;
+	public ?int $ftp_log_vods_id;
 }
 
 class GenreEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -710,7 +779,7 @@ class HomepageRowEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?int $homepage_layout_order;
 	public ?int $homepage_layout_words_id;
 	public \Motv\Connector\Mw\Enums\Mw\RecommendationEngineHomepageLayoutEnum $homepage_layout_type;
-	public ?\Motv\Connector\Mw\Enums\Mw\RecommendationEngineCartAssetTypeEnum $homepage_layout_asset;
+	public ?\Motv\Connector\Mw\Enums\Mw\RecommendationEngineCardAssetTypeEnum $homepage_layout_asset;
 	public ?string $homepage_layout_search;
 	public ?int $homepage_layout_epg_playlists_id;
 	public ?int $homepage_layout_catchup;
@@ -724,10 +793,9 @@ class HomepageRowEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public array $homepage_layout_channels;
 	public array $homepage_layout_advert_homepage;
 	public \Motv\Connector\Mw\Enums\Mw\RecommendationEngineRowStyleEnum $homepage_layout_row_size;
-	public ?\Motv\Connector\Mw\Enums\Mw\HomepageLayoutFullsizeTypeEnum $homepage_layout_fullsize_type;
-	public ?int $homepage_layout_fullsize_vods_id;
-	public ?int $homepage_layout_fullsize_advert_homepage_id;
-	public ?int $homepage_layout_fullsize_epgs_id;
+	public ?int $homepage_layout_items_limit;
+	public ?\Motv\Connector\Mw\Enums\Mw\HomepageLayoutFullsizeViewTypeEnum $homepage_layout_fullsize_view_type;
+	public ?string $homepage_layout_middle_fullsize_background_image;
 }
 
 class IpRangeEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -918,6 +986,74 @@ class PersonEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?\DateTimeImmutable $persons_birthday;
 }
 
+class PipelineEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $ansible_pipelines_id;
+	public \DateTimeImmutable $ansible_pipelines_created;
+	public int $ansible_pipelines_users_id;
+	public string $ansible_pipelines_description;
+	public \Motv\Connector\Mw\Enums\Mw\PipelineStatusEnum $ansible_pipelines_status;
+	public \Motv\Connector\Mw\Enums\Mw\PipelineTypeEnum $ansible_pipelines_type;
+	public ?int $ansible_pipelines_entity_id;
+	public array $jobs;
+}
+
+class PipelineJobEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $ansible_jobs_id;
+	public int $ansible_jobs_ansible_pipelines_id;
+	public \Motv\Connector\Mw\Enums\Mw\AnsiblePlaybookEnum $ansible_jobs_playbook;
+	public string $ansible_jobs_limit;
+	public string $ansible_jobs_tags;
+	public int $ansible_jobs_gitlab_id;
+	public \Motv\Connector\Mw\Enums\Mw\PipelineStatusEnum $ansible_jobs_status;
+}
+
+class PollEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $polls_id;
+	public int $polls_vendors_id;
+	public \DateTimeImmutable $polls_from;
+	public \DateTimeImmutable $polls_to;
+	public string $polls_question;
+	public int $polls_vods;
+	public array $polls_channels;
+	public array $polls_options;
+}
+
+class PollOptionEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $polls_options_id;
+	public string $polls_options_option;
+}
+
+class PortalEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $portals_id;
+	public int $portals_vendors_id;
+	public int $portals_portal_id;
+	public ?string $portals_sms_url;
+	public string $portals_container_name;
+	public string $portals_client_name;
+	public array $portals_languages;
+	public ?string $portals_firebase;
+	public ?string $portals_google_client_id;
+	public ?string $portals_android_package_name;
+	public ?string $portals_android_certificate;
+	public ?string $portals_apple_bundle_id;
+	public ?string $portals_apple_development_team;
+	public int $portals_provider;
+	public int $portals_device_autologin;
+	public array $portals_urls;
+	public array $portals_servers;
+}
+
+class PortalUrlEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public string $portals_urls_url;
+	public int $portals_urls_primary;
+}
+
 class ProfileEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public int $profiles_id;
@@ -933,7 +1069,6 @@ class ProfileEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $customers_login;
 	public string $customers_token;
 	public int $customers_vendors_id;
-	public int $customers_locked;
 	public string $image;
 	public int $profiles_login_requires_pin;
 	public int $vendors_multicast_unicast_fallback;
@@ -967,6 +1102,20 @@ class ProviderExternalEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $color;
 	public string $image;
 	public int $loginImageCenterCrop;
+}
+
+class PublicMulticastEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $public_multicast_id;
+	public int $public_multicast_transcoders_id;
+	public \Motv\Connector\Mw\Enums\Mw\PublicMulticastTypeEnum $public_multicast_type;
+	public string $public_multicast_password;
+	public ?string $public_multicast_input;
+	public ?int $public_multicast_input_port;
+	public ?string $public_multicast_input_origin;
+	public ?string $public_multicast_mapping;
+	public string $public_multicast_output;
+	public string $public_multicast_note;
 }
 
 class RecognitionModelChannelEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -1013,21 +1162,6 @@ class RecognitionTemplateImageEntity extends \Motv\Connector\Mw\Entities\MotvEnt
 	public int $recognition_template_images_active;
 }
 
-class RecognitionTrainingImageEntity extends \Motv\Connector\Mw\Entities\MotvEntity
-{
-	public int $recognition_training_images_id;
-	public int $recognition_training_images_recognition_models_id;
-	public string $recognition_training_images_image;
-	public string $recognition_training_images_image_original;
-	public int $recognition_training_images_recognition_template_images_id;
-	public string $recognition_training_images_description;
-	public int $recognition_training_images_x1;
-	public int $recognition_training_images_y1;
-	public int $recognition_training_images_x2;
-	public int $recognition_training_images_y2;
-	public int $recognition_training_images_recognition_models_channels_id;
-}
-
 class RecommendationCardChannelEntity extends RecommendationCardEntity
 {
 	public int $channels_id;
@@ -1039,7 +1173,7 @@ class RecommendationCardChannelEntity extends RecommendationCardEntity
 class RecommendationCardEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public int $id;
-	public \Motv\Connector\Mw\Enums\Mw\RecommendationEngineCartAssetTypeEnum $type;
+	public \Motv\Connector\Mw\Enums\Mw\RecommendationEngineCardAssetTypeEnum $type;
 	public ?string $title;
 	public ?string $subtitle;
 	public ?string $description;
@@ -1055,9 +1189,12 @@ class RecommendationCardEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?string $image_widescreen;
 	public ?int $image_widescreen_width;
 	public ?int $image_widescreen_height;
+	public ?string $name_image;
+	public ?int $name_image_width;
+	public ?int $name_image_height;
 	public ?int $locked;
 	public ?int $order;
-	public $episode;
+	public string|int|null $episode;
 	public ?string $genres;
 	public ?string $actors;
 	public ?string $directors;
@@ -1112,6 +1249,7 @@ class RecommendationCardRecordingEntity extends RecommendationCardEventEntity
 class RecommendationCardVodEntity extends RecommendationCardEntity
 {
 	public ?\DateTimeImmutable $hot_news;
+	public ?\DateTimeImmutable $live_start;
 }
 
 class RecommendationCategoryEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -1128,6 +1266,8 @@ class RecommendationRowEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $title;
 	public ?array $data;
 	public ?int $focus;
+	public ?\Motv\Connector\Mw\Enums\Mw\HomepageLayoutFullsizeViewTypeEnum $type_of_view;
+	public ?string $background_image;
 }
 
 class RemoteChannelEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -1149,6 +1289,7 @@ class RemoteMwEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $remote_mw_url;
 	public int $remote_mw_profiles_id;
 	public string $remote_mw_token;
+	public array $edges;
 }
 
 class ReportEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -1199,6 +1340,7 @@ class ReportScheduleEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $report_schedules_variables;
 	public int $report_schedules_export_pdf;
 	public int $report_schedules_export_tables;
+	public int $report_schedules_export_tables_csv;
 	public \Motv\Connector\Mw\Enums\Mw\GrafanaThemesEnum $report_schedules_theme;
 	public int $report_schedules_hidden_params;
 	public int $report_schedules_landscape;
@@ -1223,22 +1365,44 @@ class SelectedLogoClusterEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $recognition_training_detection_cluster_id;
 }
 
+class ServerEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $servers_id;
+	public string $servers_name;
+	public string $servers_internal_ip;
+	public string $servers_public_ip;
+	public string $servers_vpn_ip;
+	public ?string $servers_service_dns_ip;
+	public ?string $servers_extra;
+	public float $servers_latitude;
+	public float $servers_longitude;
+	public array $servers_iptables;
+	public int $servers_null_service_dns_ip;
+	public int $servers_external_load_balancer;
+}
+
+class ServerIpRuleEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public string $servers_iptables_ip;
+	public int $servers_iptables_port;
+	public string $servers_iptables_note;
+}
+
 class StorageEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public int $storages_id;
 	public string $storages_name;
 	public int $storages_active;
-	public ?string $storages_api;
+	public string $storages_api;
 	public ?string $storages_edge_mount;
 	public string $storages_live_path;
-	public int $storages_live_path_clean;
 	public string $storages_catchup_path;
-	public int $storages_catchup_path_clean;
 	public string $storages_vod_path;
 	public int $storages_available;
 	public ?\DateTimeImmutable $storages_checked;
 	public ?string $storages_data;
 	public array $vods_storages_storages;
+	public ?int $storages_servers_id;
 }
 
 class StorageTransferEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -1278,6 +1442,7 @@ class StreamTimeEventBreakEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public array $events;
 	public string $adMpdUrl;
 	public int $id;
+	public bool $ssai;
 }
 
 class StreamTimeEventCuePointEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -1285,6 +1450,7 @@ class StreamTimeEventCuePointEntity extends \Motv\Connector\Mw\Entities\MotvEnti
 	public bool $skipable;
 	public bool $thumbnails;
 	public bool $followable;
+	public bool $seekable;
 	public float $start;
 	public float $end;
 }
@@ -1293,7 +1459,7 @@ class StreamTimeEventsEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public array $breaks;
 	public array $cuepoints;
-	public array $times;
+	public ?array $times;
 }
 
 class StreamUrlBaseEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -1472,10 +1638,24 @@ class TranscoderEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $transcoders_vod_active;
 	public ?array $transcoders_usage;
 	public ?int $transcoders_detectors_id;
+	public ?int $transcoders_servers_id;
+	public array $transcoders_routes;
+	public ?string $transcoders_live_storage_mount_ip;
+	public ?string $transcoders_catchup_storage_mount_ip;
+	public ?string $transcoders_vod_storage_mount_ip;
+}
+
+class TranscoderRouteEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $transcoders_routes_id;
+	public string $transcoders_routes_interface;
+	public string $transcoders_routes_ip;
+	public string $transcoders_routes_routes;
 }
 
 class UserEntity extends \Motv\Connector\Mw\Entities\ApiSupport\UserEntity
 {
+	public ?string $gitlab_token;
 	public array $users_vendors;
 }
 
@@ -1510,6 +1690,8 @@ class VendorAppGeneralEntity extends VendorAppParentEntity
 	public string $vendors_apps_general_color;
 	public \Motv\Connector\Mw\Enums\Mw\VendorAppGeneralStatusEnum $vendors_apps_general_general_status;
 	public \Motv\Connector\Mw\Enums\Mw\VendorAppSectionStatusEnum $vendors_apps_general_status;
+	public ?string $vendors_apps_general_test_login;
+	public ?string $vendors_apps_general_test_password;
 }
 
 class VendorAppIOSEntity extends VendorAppParentEntity
@@ -1542,6 +1724,12 @@ class VendorAppSamsungLgEntity extends VendorAppParentEntity
 	public string $vendors_apps_samsung_lg_app_name;
 	public \Motv\Connector\Mw\Enums\Mw\VendorAppSectionStatusEnum $vendors_apps_samsung_lg_status;
 	public ?string $vendors_apps_samsung_lg_app_icon;
+	public string $vendors_apps_samsung_lg_lg_package_name;
+	public string $vendors_apps_samsung_lg_samsung_package_id;
+	public string $vendors_apps_samsung_lg_samsung_package_name;
+	public int $vendors_apps_samsung_lg_portal_id;
+	public ?string $vendors_apps_samsung_lg_sms_url;
+	public array $vendors_apps_samsung_lg_languages;
 }
 
 class VendorAppTVOSEntity extends VendorAppParentEntity
@@ -1564,8 +1752,17 @@ class VendorAvatarEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $vendors_avatars_image;
 }
 
+class VendorChannelOrderEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public string $channels_name;
+	public string $channels_logo;
+	public int $channels_id;
+	public ?int $channels_vendors_order_order;
+}
+
 class VendorEntity extends VendorPublicEntity
 {
+	public int $vendors_license_count;
 	public int $vendors_license_limitation;
 	public int $vendors_infinite_license;
 	public int $vendors_devices_per_license;
@@ -1583,6 +1780,8 @@ class VendorEntity extends VendorPublicEntity
 	public ?string $vendors_locked_item_url_close;
 	public int $vendors_pin_login;
 	public ?string $vendors_google_services;
+	public ?int $vendors_licence_left_alert_treshold;
+	public ?string $vendors_licence_left_alert_treshold_emails;
 	public array $vendors_channels_unicast;
 	public array $vendors_channels_multicast;
 	public array $vendors_channels_broadcast;
@@ -1606,7 +1805,6 @@ class VendorPublicEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public array $vendors_dvb_networks;
 	public int $vendors_id;
 	public string $vendors_name;
-	public ?string $vendors_portal_url;
 	public int $vendors_mac_login;
 	public int $vendors_multicast_unicast_fallback;
 	public string $vendors_outage_image;
@@ -1625,7 +1823,6 @@ class VendorPublicEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $vendors_push_reminders;
 	public ?int $vendors_login_force_change_password;
 	public ?string $vendors_background_image_phone_portrait;
-	public ?string $vendors_background_image_phone_landscape;
 	public ?string $vendors_background_image_tablet_portrait;
 	public ?string $vendors_background_image_tablet_landscape;
 	public ?string $vendors_background_image_tv;
@@ -1644,6 +1841,7 @@ class VendorPublicEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $customer_password_validation_regex;
 	public ?string $vendors_header_image;
 	public int $vendors_delete_customer_account;
+	public ?string $vendors_portal_url;
 }
 
 class VodAudioEntity extends ChannelVodAudioSubtitleEntityAbstract
@@ -1663,6 +1861,7 @@ class VodEntity extends VodExternalEntity
 	public string $vods_directory;
 	public ?string $vods_filename;
 	public int $vods_transcoders_id;
+	public \Motv\Connector\Mw\Enums\Mw\VodTypeEnum $vods_type;
 	public ?\DateTimeImmutable $vods_transcoding_started;
 	public ?\DateTimeImmutable $vods_transcoding_processed;
 	public int $vods_templates_id;
@@ -1691,6 +1890,9 @@ class VodEntity extends VodExternalEntity
 	public int $vods_delete_metadata;
 	public ?array $vods_drm;
 	public int $vods_offline_playback;
+	public ?string $vods_live_input;
+	public ?\DateTimeImmutable $vods_live_start;
+	public ?int $vods_live_length;
 }
 
 class VodExternalEntity extends \Motv\Connector\Mw\Entities\MotvEntity
@@ -1704,6 +1906,9 @@ class VodExternalEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public ?string $vods_image_widescreen;
 	public ?int $vods_image_widescreen_width;
 	public ?int $vods_image_widescreen_height;
+	public ?string $vods_name_image;
+	public ?int $vods_name_image_width;
+	public ?int $vods_name_image_height;
 	public ?string $vods_description;
 	public array $vods_actors;
 	public array $vods_directors;
@@ -1814,7 +2019,7 @@ class DocumentationParameterEntity extends \Motv\Connector\Mw\Entities\MotvEntit
 	public ?\phpDocumentor\Reflection\DocBlock\Description $description;
 	public string $type;
 	public ?string $arrayOfType;
-	public $default;
+	public mixed $default;
 	public bool $isDefault;
 }
 
@@ -1858,4 +2063,6 @@ class UserEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $roles_active;
 	public int $roles_sysadmin;
 	public string $login;
+	public bool $users_otp_registered;
+	public ?\DateTimeImmutable $users_last_used;
 }

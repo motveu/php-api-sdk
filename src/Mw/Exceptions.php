@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 2 Jan 2023 7:53:41
+ * Generated on Mon, 18 Sep 2023 14:06:44
  * Part moTV.eu SDK integration kit
  */
 
@@ -24,7 +24,7 @@ class ApiException extends \Exception implements \Throwable
 	public function getResponseMessage()
 	{
 		if (\is_array($this->response)) {
-			return json_encode($this->response);
+		    return json_encode($this->response);
 		}
 
 		return (string) $this->response;
@@ -433,14 +433,6 @@ class CustomerQrCodeVendorException extends \Motv\Connector\Mw\Exceptions\ApiExc
 }
 
 /**
- * Customer is locked - read only state and forbidden access to certain resources (eg device list)
- */
-class CustomerLockedException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 114;
-}
-
-/**
  * Unknown profile
  */
 class ProfileUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -521,6 +513,14 @@ class TranscoderNotDownloadableStreamRecordingException extends \Motv\Connector\
 }
 
 /**
+ * Unknown public multicast
+ */
+class PublicMulticastUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 405;
+}
+
+/**
  * Unknown category
  */
 class CategoryUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -566,6 +566,14 @@ class PackageNotActiveException extends \Motv\Connector\Mw\Exceptions\ApiExcepti
 class PackageCannotBeRemovedException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 602;
+}
+
+/**
+ * Recording length can not be shorter than catchup.
+ */
+class PackageRecordingLengthShorterThanCatchupException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 603;
 }
 
 /**
@@ -641,11 +649,19 @@ class EpgUnknownRatingException extends \Motv\Connector\Mw\Exceptions\ApiExcepti
 }
 
 /**
- * Unknown EPG playlist
+ * Unknown playlist
  */
 class EpgUnknownPlaylistException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 808;
+}
+
+/**
+ * Playlist bad content exception
+ */
+class PlaylistBadContentException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 809;
 }
 
 /**
@@ -718,14 +734,6 @@ class ChannelSubtitleInvalidRoleException extends \Motv\Connector\Mw\Exceptions\
 class ChannelAgeRestrictionException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 910;
-}
-
-/**
- * Given profile is not authorized to request given channel stream due to geoblock restrictions
- */
-class ChannelGeoblockRestrictionException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 911;
 }
 
 /**
@@ -854,6 +862,14 @@ class VodMinimumAgeRestrictionException extends \Motv\Connector\Mw\Exceptions\Ap
 class VodFailedToUploadChunkException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 1011;
+}
+
+/**
+ * External VOD cannot be locked VOD
+ */
+class ExternalVodCannotBeLockedVodException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 1012;
 }
 
 /**
@@ -1121,6 +1137,46 @@ class HomepageCannotBeRemovedException extends \Motv\Connector\Mw\Exceptions\Api
 }
 
 /**
+ * Homepage can have only one Top fullsize banner
+ */
+class HomepageCanHaveOnlyOneTopFullsizeBannerException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2108;
+}
+
+/**
+ * Homepage Top fullsize banner must be on the top
+ */
+class HomepageTopFullsizeBannerMustBeOnTheTopException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2109;
+}
+
+/**
+ * Homepage row bad content exception
+ */
+class HomepageRowBadContentException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2110;
+}
+
+/**
+ * Homepage fullwidth banner can be only Images or Playlist type
+ */
+class HomepageFullwidthBannerCanBeOnlyImagesOrPlaylistException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2111;
+}
+
+/**
+ * Homepage fullwidth banner can have only one video
+ */
+class HomepageFullwidthBannerCanHaveOnlyOneVideoException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2112;
+}
+
+/**
  * Licenses count exceeded
  */
 class VendorLicensesExceededException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1142,6 +1198,14 @@ class EdgeUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
 class EdgeInactiveException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 2201;
+}
+
+/**
+ * Duplicate edge name
+ */
+class EdgeDuplicateNameException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2202;
 }
 
 /**
@@ -1598,4 +1662,100 @@ class ReportScheduleAttachementUnknownException extends \Motv\Connector\Mw\Excep
 class VendorAppUnknownSectionException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 5000;
+}
+
+/**
+ * Unknown FTP
+ */
+class FtpUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5100;
+}
+
+/**
+ * An error was encontered during FTP VOD processment
+ */
+class FtpProcessmentException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5101;
+}
+
+/**
+ * Unknown server
+ */
+class ServerUnknownServerException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5200;
+}
+
+/**
+ * Unknown portal
+ */
+class PortalUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5201;
+}
+
+/**
+ * Unknown container
+ */
+class ContainerUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5202;
+}
+
+/**
+ * Container cannot be deleted
+ */
+class ContainerCannotBeDeletedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5203;
+}
+
+/**
+ * Unknown pipeline
+ */
+class PipelineUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5204;
+}
+
+/**
+ * Gitlab token has expired, please logout and login back and retry
+ */
+class GitlabReauthorizeException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5205;
+}
+
+/**
+ * Unknown poll
+ */
+class PollUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5300;
+}
+
+/**
+ * Poll not started yet
+ */
+class PollNotStartedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5302;
+}
+
+/**
+ * Poll ended already
+ */
+class PollEndedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5303;
+}
+
+/**
+ * Poll already voted
+ */
+class PollAlreadyVotedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5304;
 }
