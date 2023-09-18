@@ -121,7 +121,14 @@ abstract class Connector {
 				$instance = new $className();
 
 				foreach ($data as $k => $v) {
-					$property = new \ReflectionProperty($className, $k);
+					try {
+						$property = new \ReflectionProperty($className, $k);
+					} catch (\ReflectionException $e) {
+						$this->log('warning', 'Class ' . $className . ' has extra parameter ' . $k . '. This might be due to outdated SDK, please contact moTV.eu');
+
+						continue;
+					}
+
 					$typeName = $property->getType()->getName();
 
 					try {
