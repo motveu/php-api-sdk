@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 3 Jan 2024 13:24:27
+ * Generated on Thu, 4 Jan 2024 6:30:39
  * Part moTV.eu SDK integration kit
  */
 
@@ -922,6 +922,13 @@ class IpRangeEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $ip_ranges_name;
 	public string $ip_ranges_from;
 	public string $ip_ranges_to;
+}
+
+class LikeEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public int $id;
+	public \Motv\Connector\Mw\Enums\Mw\RecommendationEngineCardAssetTypeEnum $type;
+	public \Motv\Connector\Mw\Enums\Mw\LikeEnum $value;
 }
 
 class LoggerEntity extends \Motv\Connector\Mw\Entities\MotvEntity

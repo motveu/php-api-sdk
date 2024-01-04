@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 3 Jan 2024 13:24:24
+ * Generated on Thu, 4 Jan 2024 6:30:36
  * Part moTV.eu SDK integration kit
  */
 
@@ -3774,6 +3774,9 @@ class ReportSchedule
 	}
 
 
+	/**
+	 * @throws Exceptions\Mw\ReportScheduleUnknownException
+	 */
 	public function buildQuery(int $reportSchedulesId, array $query = []): string
 	{
 		return $this->connector->call("ReportSchedule", "buildQuery", get_defined_vars());
@@ -4670,7 +4673,6 @@ class Vendor
 
 	/**
 	 * @return array{vendors_name: string, license_count: int, license_infite: int, license_limitation: int}[]
-	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 */
 	public function getLicenseStatistics(): array
 	{

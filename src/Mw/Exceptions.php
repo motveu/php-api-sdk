@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 3 Jan 2024 13:24:26
+ * Generated on Thu, 4 Jan 2024 6:30:38
  * Part moTV.eu SDK integration kit
  */
 
@@ -1161,9 +1161,9 @@ class HomepageFullwidthBannerCanBeOnlyImagesOrPlaylistException extends \Motv\Co
 }
 
 /**
- * Homepage fullwidth banner can have only one video
+ * Homepage fullwidth banner can have only one video or one image
  */
-class HomepageFullwidthBannerCanHaveOnlyOneVideoException extends \Motv\Connector\Mw\Exceptions\ApiException
+class HomepageFullwidthBannerCanHaveOnlyOneVideoOrImageException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 2112;
 }

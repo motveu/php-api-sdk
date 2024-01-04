@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 3 Jan 2024 13:24:27
+ * Generated on Thu, 4 Jan 2024 6:30:38
  * Part moTV.eu SDK integration kit
  */
 
@@ -342,6 +342,12 @@ enum ImageValidatorTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case EXACT_SIZE = 'exact size';
 	case MINIMUM_EDGE_SIZE = 'minimum edge size';
 	case CUSTOM = 'custom';
+}
+
+enum LikeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case LIKE = '1';
+	case DISLIKE = '-1';
 }
 
 enum LoggerEventsEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
