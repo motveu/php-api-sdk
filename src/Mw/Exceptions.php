@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 18 Sep 2023 14:06:44
+ * Generated on Wed, 3 Jan 2024 13:24:26
  * Part moTV.eu SDK integration kit
  */
 
@@ -657,9 +657,9 @@ class EpgUnknownPlaylistException extends \Motv\Connector\Mw\Exceptions\ApiExcep
 }
 
 /**
- * Playlist bad content exception
+ * Epg inserted time error: start > end or collision in events.
  */
-class PlaylistBadContentException extends \Motv\Connector\Mw\Exceptions\ApiException
+class EpgInsertTimeErrorException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 809;
 }
@@ -1105,14 +1105,6 @@ class HomepageDuplicatePriorityException extends \Motv\Connector\Mw\Exceptions\A
 }
 
 /**
- * Invalid homepage category selection search criteria
- */
-class HomepageInvalidCategorySelectionSearchCriteriaException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 2104;
-}
-
-/**
  * Your vendor is not allowed to edit this model
  */
 class VendorRightException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1241,6 +1233,14 @@ class AdvertHomepageUnknownException extends \Motv\Connector\Mw\Exceptions\ApiEx
 }
 
 /**
+ * Advert homepage cannot change type exception
+ */
+class AdvertHomepageCannotChangeTypeException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2401;
+}
+
+/**
  * Unknown app
  */
 class AppUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1353,6 +1353,14 @@ class IpRangeUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
 }
 
 /**
+ * IP range can not be deleted.
+ */
+class IpRangeCannotBeDeletedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 3101;
+}
+
+/**
  * Unknown storage
  */
 class StorageUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1449,43 +1457,11 @@ class RecognitionUnknownModelChannelException extends \Motv\Connector\Mw\Excepti
 }
 
 /**
- * Unknown template image
- */
-class RecognitionUnknownTemplateImageException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 3902;
-}
-
-/**
- * Unknown training image
- */
-class RecognitionUnknownTrainingImageException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 3903;
-}
-
-/**
- * Training image cannot be deleted
- */
-class RecognitionTrainingImageDeleteException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 3904;
-}
-
-/**
  * Recognition API exception
  */
 class RecognitionApiException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 3905;
-}
-
-/**
- * Recognition state and type disallow select logo
- */
-class RecognitionStateAndTypeDisallowSelectLogoException extends \Motv\Connector\Mw\Exceptions\ApiException
-{
-	protected $code = 3906;
 }
 
 /**
@@ -1502,6 +1478,22 @@ class RecognitionProgramSegmentDuplictyException extends \Motv\Connector\Mw\Exce
 class RecognitionUnknownProgramSegmentException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 3908;
+}
+
+/**
+ * Saved template duplicity exception
+ */
+class RecognitionSavedTemplateDuplicateException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 3909;
+}
+
+/**
+ * Unknown recognition followed advert segment exception
+ */
+class RecognitionUnknownFollowedAdvertSegmentException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 3910;
 }
 
 /**
@@ -1758,4 +1750,12 @@ class PollEndedException extends \Motv\Connector\Mw\Exceptions\ApiException
 class PollAlreadyVotedException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 5304;
+}
+
+/**
+ * Unknown MMCC
+ */
+class MmccUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5400;
 }

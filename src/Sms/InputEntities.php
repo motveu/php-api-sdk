@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 18 Sep 2023 19:08:21
+ * Generated on Wed, 3 Jan 2024 13:39:34
  * Part moTV.eu SDK integration kit
  */
 
@@ -11,6 +11,44 @@ namespace Motv\Connector\Sms\InputEntities;
 
 class MotvEntity
 {
+}
+
+
+namespace Motv\Connector\Sms\InputEntities\ApiSupport;
+
+class ApiCallEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $url;
+	public string $method;
+
+	/** @var array<mixed> */
+	public array $data;
+	public array $headers;
+	public ?string $response;
+	public ?float $time;
+}
+
+class RoleEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $roles_name;
+	public bool $roles_active;
+}
+
+class UserEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public ?string $users_email;
+	public ?string $users_password;
+	public ?int $users_roles_id;
+	public ?bool $users_active;
+	public ?string $users_image;
+}
+
+class WhereEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $column;
+	public \Motv\Connector\Sms\Enums\ApiSupport\WhereTypeEnum $type;
+	public \Motv\Connector\Sms\Enums\ApiSupport\WhereValueTypeEnum $valueType;
+	public $value;
 }
 
 
@@ -58,14 +96,6 @@ class DealerEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 	public ?string $dealers_email;
 	public ?float $dealers_commission;
 	public ?string $dealers_image;
-	public ?bool $dealers_warehouse;
-}
-
-class DeviceAbvEntity extends DeviceEntity
-{
-	public ?int $device_abv_viewers_id;
-	public ?int $device_abv_smartcard_id;
-	public ?string $device_abv_note;
 }
 
 class DeviceAppleEntity extends DeviceEntity
@@ -75,22 +105,6 @@ class DeviceAppleEntity extends DeviceEntity
 	public string $device_apple_generated_id;
 	public string $device_apple_identity_token;
 	public string $device_apple_authorization_code;
-}
-
-class DeviceCardlessCryptoguardEntity extends DeviceEntity
-{
-	public ?int $device_cardless_cryptoguard_viewers_id;
-	public ?string $device_cardless_cryptoguard_smartcard_id;
-	public ?string $device_cardless_cryptoguard_note;
-	public ?int $device_cardless_cryptoguard_network;
-}
-
-class DeviceCardlessVerimatrixEntity extends DeviceEntity
-{
-	public ?int $device_cardless_verimatrix_viewers_id;
-	public ?int $device_cardless_verimatrix_smartcard_id;
-	public ?string $device_cardless_verimatrix_note;
-	public ?string $device_cardless_verimatrix_serial;
 }
 
 class DeviceEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
@@ -133,64 +147,18 @@ class DeviceMotvEntity extends DeviceEntity
 	public ?bool $device_motv_social_registration_completed;
 }
 
-class DevicePairedConaxEntity extends DeviceEntity
-{
-	public ?int $device_paired_conax_viewers_id;
-	public ?int $device_paired_conax_smartcard_id;
-	public ?int $device_paired_conax_settopbox_id;
-	public ?string $device_paired_conax_note;
-}
-
-class DevicePairedCryptoguardEntity extends DeviceEntity
-{
-	public ?int $device_paired_cryptoguard_viewers_id;
-	public ?int $device_paired_cryptoguard_smartcard_id;
-	public ?int $device_paired_cryptoguard_settopbox_id;
-	public ?string $device_paired_cryptoguard_note;
-	public ?int $device_paired_cryptoguard_network;
-}
-
-class DevicePairedNstvEntity extends DeviceEntity
-{
-	public ?int $device_paired_nstv_viewers_id;
-	public ?int $device_paired_nstv_smartcard_id;
-	public ?int $device_paired_nstv_settopbox_id;
-	public ?string $device_paired_nstv_note;
-}
-
-class DevicePairedSafeviewEntity extends DeviceEntity
-{
-	public ?int $device_paired_safeview_viewers_id;
-	public ?int $device_paired_safeview_smartcard_id;
-	public ?string $device_paired_safeview_settopbox_id;
-	public ?string $device_paired_safeview_note;
-	public ?bool $device_paired_safeview_suspended;
-}
-
-class DeviceSafeviewOttEntity extends DeviceEntity
-{
-	public ?int $device_safeview_ott_viewers_id;
-	public int $device_safeview_ott_ott_id;
-	public ?string $device_safeview_ott_mac;
-	public string $device_safeview_ott_login;
-	public string $device_safeview_ott_password;
-	public ?string $device_safeview_ott_note;
-	public ?string $device_safeview_ott_settopbox_id;
-	public bool $device_safeview_ott_created;
-	public bool $device_safeview_ott_assigned;
-	public int $device_safeview_ott_clicks;
-
-	/** @var \DateTimeImmutable|string|null */
-	public $device_safeview_ott_clicks_refreshed;
-	public int $device_safeview_ott_devices;
-	public int $device_safeview_ott_sessions;
-}
-
 class EmailEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 {
+	/** @var array<string> */
 	public array $to;
+
+	/** @var array<string> */
 	public array $cc;
+
+	/** @var array<string> */
 	public array $bcc;
+
+	/** @var array<string> */
 	public array $attachements;
 	public string $subject;
 	public string $body;
@@ -331,15 +299,6 @@ class EpgSwDownloadEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 	public ?string $epg_sw_download_status;
 	public ?int $epg_sw_download_cycle_time;
 	public ?int $epg_sw_download_file_size;
-	public ?string $epg_sw_download_vmx_now_trigger;
-	public ?string $epg_sw_download_vmx_bit_trigger;
-	public ?string $epg_sw_download_vmx_box_id;
-	public ?string $epg_sw_download_vmx_firmware_version;
-	public ?string $epg_sw_download_vmx_system_descriptor_tag;
-	public ?string $epg_sw_download_vmx_frequency;
-	public ?string $epg_sw_download_vmx_additional_system_descriptor_tag;
-	public ?string $epg_sw_download_vmx_manufacturer_id;
-	public bool $epg_sw_download_verimatrix_box;
 	public ?int $epg_sw_download_epg_sw_download_boxes_id;
 	public ?int $epg_sw_download_epg_sw_download_manufacturer_id;
 	public ?string $epg_sw_download_ip_target;
@@ -358,6 +317,17 @@ class EpgSwDownloadManufacturerEntity extends \Motv\Connector\Sms\InputEntities\
 	public ?string $epg_sw_download_manufacturers_path;
 	public ?string $epg_sw_download_folder_name;
 	public bool $create_path;
+}
+
+class GroupActionEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public string $group_action_name;
+	public \Motv\Connector\Sms\Enums\Sms\GroupActionTypeEnum $group_action_type;
+	public string $group_action_query;
+	public bool $group_action_file;
+
+	/** @var array<int> */
+	public array $group_action_roles;
 }
 
 class GroupsInvoiceEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
@@ -379,21 +349,32 @@ class ImapEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 	public \Motv\Connector\Sms\Enums\Sms\SmtpSecureTypeEnum $config_imap_servers_secure;
 }
 
+class LogEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
+{
+	public int $log_int_parameter1;
+	public ?int $log_int_parameter2;
+	public ?int $log_viewers_id;
+	public ?string $log_string_parameter1;
+	public ?string $log_string_parameter2;
+	public ?string $log_string_parameter3;
+	public ?string $log_text_parameter;
+}
+
 class MotvPortalEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 {
 	public string $motv_portals_name;
 	public int $motv_portals_dealers_id;
 	public ?string $motv_portals_url;
 	public int $motv_portals_motv_vendors_id;
-	public string $motv_portals_portal_json_theme;
 	public int $motv_portals_favicon;
 	public ?int $motv_portals_config_smtp_servers_id;
 	public \Motv\Connector\Sms\Enums\Sms\MotvPortalRegistrationMethodEnum $motv_portals_registration_method;
 	public string $motv_portals_ios;
 	public string $motv_portals_android;
 	public int $motv_portals_android_image;
-	public string $motv_portals_player_footer;
 	public array $motv_portals_sections;
+
+	/** @var array<\Motv\Connector\Sms\Enums\Sms\MotvPortalSocialSiteEnum> */
 	public array $motv_portals_social_sites;
 	public ?string $motv_portals_google_client_id;
 	public ?string $motv_portal_facebook_pixel_code;
@@ -428,6 +409,9 @@ class MotvPortalEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 	public ?int $motv_portals_welcome_template;
 	public ?int $motv_portals_registration_text_template;
 	public bool $motv_portals_web_player_cookie;
+	public bool $motv_portals_show_subscription_section;
+
+	/** @var array<int> */
 	public array $motv_portals_users;
 }
 
@@ -477,8 +461,10 @@ class ProductEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 	public \Motv\Connector\Sms\Enums\Sms\ProductTypeEnum $products_type;
 	public \Motv\Connector\Sms\Enums\Sms\ProductPaymentTypeEnum $products_payment_type;
 	public float $products_tax;
-	public \Motv\Connector\Sms\Enums\Sms\SelfcareProductTypeEnum $products_selfcare_product_type;
+	public ?\Motv\Connector\Sms\Enums\Sms\SelfcareProductTypeEnum $products_selfcare_product_type;
 	public ?array $products_devices;
+
+	/** @var array<int> */
 	public array $products_categories;
 	public ?string $products_currencies_code;
 }
@@ -501,8 +487,14 @@ class ReportEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 {
 	public string $reports_name;
 	public string $reports_query;
+
+	/** @var array<int> */
 	public array $reports_roles;
+
+	/** @var array<ReportColumnEntity> */
 	public array $reports_columns;
+
+	/** @var array<ReportLinkEntity> */
 	public array $reports_links;
 }
 
@@ -553,11 +545,11 @@ class RequestsEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 
 class SalesInvoiceEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 {
+	/** @var array<SalesInvoiceProductEntity> */
 	public array $products;
 	public ?float $invoice_discount;
 	public ?string $invoice_remark;
 	public ?string $parameters;
-	public ?int $invoice_data_voucher;
 	public ?string $remark;
 	public ?int $print_copies;
 	public ?string $email;
@@ -720,45 +712,6 @@ class UserEntity extends \Motv\Connector\Sms\InputEntities\ApiSupport\UserEntity
 	public array $users_customs;
 }
 
-class WarehouseDeviceConfigCasEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
-{
-	public string $warehouse_devices_config_cas;
-	public array $types;
-}
-
-class WarehouseDeviceConfigTypeEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
-{
-	public string $warehouse_devices_config_type;
-	public bool $warehouse_devices_config_enabled;
-}
-
-class WarehouseDeviceDealerFileEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
-{
-	public int $warehouse_dealers_id;
-	public string $warehouse_cas;
-	public string $warehouse_type;
-	public ?int $warehouse_dealers_id_to;
-}
-
-class WarehouseEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
-{
-	public int $warehouse_dealers_id;
-	public \Motv\Connector\Sms\Enums\Sms\DeviceEnum $warehouse_cas;
-	public string $warehouse_type;
-	public ?string $warehouse_value;
-}
-
-class WarehouseLogEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
-{
-	public ?\Motv\Connector\Sms\Enums\Sms\DeviceEnum $warehouse_log_cas;
-	public ?string $warehouse_log_smartcard_number;
-	public ?string $warehouse_log_stb_number;
-	public ?int $warehouse_log_count;
-	public ?string $warehouse_log_type;
-	public ?int $warehouse_log_dealers_id_from;
-	public ?int $warehouse_log_dealers_id_to;
-}
-
 class XmlColumnEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
 {
 	public string $date_start_name;
@@ -797,30 +750,4 @@ class XmlColumnOtherDataEntity extends \Motv\Connector\Sms\InputEntities\MotvEnt
 	public string $other_data_name;
 	public string $other_data_tag;
 	public ?string $other_data_attribute;
-}
-
-
-namespace Motv\Connector\Sms\InputEntities\ApiSupport;
-
-class RoleEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
-{
-	public string $roles_name;
-	public bool $roles_active;
-}
-
-class UserEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
-{
-	public ?string $users_email;
-	public ?string $users_password;
-	public ?int $users_roles_id;
-	public ?bool $users_active;
-	public ?string $users_image;
-}
-
-class WhereEntity extends \Motv\Connector\Sms\InputEntities\MotvEntity
-{
-	public string $column;
-	public \Motv\Connector\Sms\Enums\ApiSupport\WhereTypeEnum $type;
-	public \Motv\Connector\Sms\Enums\ApiSupport\WhereValueTypeEnum $valueType;
-	public $value;
 }
