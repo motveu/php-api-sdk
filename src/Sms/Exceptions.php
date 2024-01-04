@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Mon, 18 Sep 2023 19:08:14
+ * Generated on Thu, 4 Jan 2024 7:52:30
  * Part moTV.eu SDK integration kit
  */
 
@@ -174,14 +174,6 @@ class DealerCircularParentException extends \Motv\Connector\Sms\Exceptions\ApiEx
 }
 
 /**
- * Dealer cannot use warehousing exception
- */
-class DealerCannotUseWarehousingException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 67;
-}
-
-/**
  * Role same parent exception
  */
 class RoleSameParentException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -326,83 +318,11 @@ class ReportNotAuthorizedException extends \Motv\Connector\Sms\Exceptions\ApiExc
 }
 
 /**
- * Graph unknown graph exception
- */
-class GraphUnknownGraphException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 210;
-}
-
-/**
- * Graph query error exception
- */
-class GraphQueryErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 211;
-}
-
-/**
  * Request unknown request exception
  */
 class RequestUnknownRequestException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 220;
-}
-
-/**
- * Import customers unknown batch exception
- */
-class ImportCustomersUnknownBatchException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 230;
-}
-
-/**
- * Import customers file not found exception
- */
-class ImportCustomersFileNotFoundException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 231;
-}
-
-/**
- * Import customers no columns found exception
- */
-class ImportCustomersNoColumnsFoundException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 232;
-}
-
-/**
- * Import customers mixed unique parameters exception
- */
-class ImportCustomersMixedUniqueParametersException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 233;
-}
-
-/**
- * Import customers not enough parameter exception
- */
-class ImportCustomersNotEnoughParameterException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 234;
-}
-
-/**
- * Import customers customer validation error exception
- */
-class ImportCustomersCustomerValidationErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 235;
-}
-
-/**
- * Import customers general error exception
- */
-class ImportCustomersGeneralErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 236;
 }
 
 /**
@@ -443,6 +363,14 @@ class ProductUnknownProductException extends \Motv\Connector\Sms\Exceptions\ApiE
 class ProductInitPriceHasToBeHigherThenZeroException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 261;
+}
+
+/**
+ * Product for selfcare subscription cannot have length in minutes exception
+ */
+class ProductForRenewingCannotHaveLengthInMinutesException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 262;
 }
 
 /**
@@ -542,22 +470,6 @@ class TicketPriorityUnknownTicketPriorityException extends \Motv\Connector\Sms\E
 }
 
 /**
- * Custom value unknown custom value exception
- */
-class CustomValueUnknownCustomValueException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 350;
-}
-
-/**
- * Custom value query error exception
- */
-class CustomValueQueryErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 351;
-}
-
-/**
  * Group action unknown group action exception
  */
 class GroupActionUnknownGroupActionException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -579,6 +491,22 @@ class GroupActionNotAuthorizedException extends \Motv\Connector\Sms\Exceptions\A
 class GroupActionTranslateErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 362;
+}
+
+/**
+ * Only one from Group action or Group action predefined has to be filled exception
+ */
+class OnlyOneFromGroupActionOrGroupActionPredefinedHasToBeFilledException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 363;
+}
+
+/**
+ * Group action or Group action predefined has to be filled exception
+ */
+class GroupActionOrGroupActionPredefinedHasToBeFilledException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 364;
 }
 
 /**
@@ -638,6 +566,14 @@ class MultipleCurrenciesAreNotAllowedOnOneInvoiceException extends \Motv\Connect
 }
 
 /**
+ * Config unknown value exception
+ */
+class ConfigUnknownValueException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 420;
+}
+
+/**
  * Config unknown smtp server exception
  */
 class ConfigUnknownSmtpServerException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -667,46 +603,6 @@ class LogUnknownLogException extends \Motv\Connector\Sms\Exceptions\ApiException
 class LogUnknownLogTemplateException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 431;
-}
-
-/**
- * Voucher unknown voucher exception
- */
-class VoucherUnknownVoucherException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 440;
-}
-
-/**
- * Voucher used already by same customer exception
- */
-class VoucherUsedAlreadyBySameCustomerException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 441;
-}
-
-/**
- * Voucher used already by different customer exception
- */
-class VoucherUsedAlreadyByDifferentCustomerException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 442;
-}
-
-/**
- * Voucher batch not active exception
- */
-class VoucherBatchNotActiveException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 443;
-}
-
-/**
- * Voucher batch expired exception
- */
-class VoucherBatchExpiredException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 444;
 }
 
 /**
@@ -926,9 +822,9 @@ class EpgInsertErrorException extends \Motv\Connector\Sms\Exceptions\ApiExceptio
 }
 
 /**
- * Epg unknown column exception
+ * Epg unknown event exception
  */
-class EpgUnknownColumnException extends \Motv\Connector\Sms\Exceptions\ApiException
+class EpgUnknownEventException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 1508;
 }
@@ -955,6 +851,14 @@ class EpgUnknownTransponderException extends \Motv\Connector\Sms\Exceptions\ApiE
 class EpgUnknownSwDownloadException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 1511;
+}
+
+/**
+ * Epg unknown column exception
+ */
+class EpgUnknownColumnException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 1512;
 }
 
 /**
@@ -990,14 +894,6 @@ class EpgSwDownloadErrorException extends \Motv\Connector\Sms\Exceptions\ApiExce
 }
 
 /**
- * Epg ftp error exception
- */
-class EpgFtpErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1521;
-}
-
-/**
  * Epg config missing value exception
  */
 class EpgConfigMissingValueException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -1006,243 +902,11 @@ class EpgConfigMissingValueException extends \Motv\Connector\Sms\Exceptions\ApiE
 }
 
 /**
- * Epg xmltv dir exception
- */
-class EpgXmltvDirException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1523;
-}
-
-/**
  * Epg unknown category exception
  */
 class EpgUnknownCategoryException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 1524;
-}
-
-/**
- * Warehouse parse error exception
- */
-class WarehouseParseErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1530;
-}
-
-/**
- * Warehouse unsupported file exception
- */
-class WarehouseUnsupportedFileException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1531;
-}
-
-/**
- * Warehouse duplicate value exception
- */
-class WarehouseDuplicateValueException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1532;
-}
-
-/**
- * Warehouse unknown device exception
- */
-class WarehouseUnknownDeviceException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1533;
-}
-
-/**
- * Warehouse device error exception
- */
-class WarehouseDeviceErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1534;
-}
-
-/**
- * Warehouse paired safeview error exception
- */
-class WarehousePairedSafeviewErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1700;
-}
-
-/**
- * Warehouse safeview ott error exception
- */
-class WarehouseSafeviewOttErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1701;
-}
-
-/**
- * Warehouse paired conax error exception
- */
-class WarehousePairedConaxErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1702;
-}
-
-/**
- * Warehouse cardless verimatrix error exception
- */
-class WarehouseCardlessVerimatrixErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1703;
-}
-
-/**
- * Warehouse paired cryptoguard error exception
- */
-class WarehousePairedCryptoguardErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1705;
-}
-
-/**
- * Warehouse paired nstv error exception
- */
-class WarehousePairedNstvErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1706;
-}
-
-/**
- * Warehouse irdeto error exception
- */
-class WarehouseIrdetoErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 1707;
-}
-
-/**
- * Goldy import customers not all columns exception
- */
-class GoldyImportCustomersNotAllColumnsException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 10001;
-}
-
-/**
- * Safeview duplicate smartcard exception
- */
-class SafeviewDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 11000;
-}
-
-/**
- * Safeview duplicate settopbox exception
- */
-class SafeviewDuplicateSettopboxException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 11001;
-}
-
-/**
- * Safeview ott unknown settopbox exception
- */
-class SafeviewOttUnknownSettopboxException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 11002;
-}
-
-/**
- * Safeview ott registration error exception
- */
-class SafeviewOttRegistrationErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 11003;
-}
-
-/**
- * Conax duplicate smartcard exception
- */
-class ConaxDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 11500;
-}
-
-/**
- * Conax duplicate settopbox exception
- */
-class ConaxDuplicateSettopboxException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 11501;
-}
-
-/**
- * Nstv duplicate smartcard exception
- */
-class NstvDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12000;
-}
-
-/**
- * Nstv unknown smartcard exception
- */
-class NstvUnknownSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12002;
-}
-
-/**
- * Kingvon duplicate smartcard exception
- */
-class KingvonDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12100;
-}
-
-/**
- * Kingvon duplicate settopbox exception
- */
-class KingvonDuplicateSettopboxException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12101;
-}
-
-/**
- * Gospell duplicate smartcard exception
- */
-class GospellDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12150;
-}
-
-/**
- * Gospell duplicate settopbox exception
- */
-class GospellDuplicateSettopboxException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12151;
-}
-
-/**
- * Gospell invalid smartcard exception
- */
-class GospellInvalidSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12152;
-}
-
-/**
- * Gospell invalid settopbox exception
- */
-class GospellInvalidSettopboxException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12153;
-}
-
-/**
- * Cardless verimatrix duplicate smartcard exception
- */
-class CardlessVerimatrixDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 12250;
 }
 
 /**
@@ -1339,38 +1003,6 @@ class PsmOrderAlreadyProcessedException extends \Motv\Connector\Sms\Exceptions\A
 class PsmOoredooFailException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 13002;
-}
-
-/**
- * Cryptoguard duplicate smartcard exception
- */
-class CryptoguardDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 13200;
-}
-
-/**
- * Cryptoguard duplicate settopbox exception
- */
-class CryptoguardDuplicateSettopboxException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 13201;
-}
-
-/**
- * Cardless cryptoguard duplicate smartcard exception
- */
-class CardlessCryptoguardDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 13202;
-}
-
-/**
- * Cryptoguard invalid smartcard exception
- */
-class CryptoguardInvalidSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 13203;
 }
 
 /**
@@ -1510,22 +1142,6 @@ class MotvUnknownPageException extends \Motv\Connector\Sms\Exceptions\ApiExcepti
 }
 
 /**
- * Abv duplicate smartcard exception
- */
-class AbvDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 16600;
-}
-
-/**
- * Abv unknown device exception
- */
-class DeviceAbvUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 16601;
-}
-
-/**
  * Facebook unknown response exception
  */
 class FacebookUnknownResponseException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -1619,14 +1235,6 @@ class RequestGeneratorCancellationStopException extends \Motv\Connector\Sms\Exce
 class TreeException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 20300;
-}
-
-/**
- * Batch unknown exception
- */
-class BatchUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 20400;
 }
 
 /**
