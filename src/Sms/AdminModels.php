@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Thu, 4 Jan 2024 7:31:05
+ * Generated on Thu, 4 Jan 2024 7:52:28
  * Part moTV.eu SDK integration kit
  */
 
@@ -923,7 +923,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
 	 * @throws Exceptions\Sms\MotvValidationErrorException
 	 */
-	public function apiChangePin($pin, ?string $token = null, ?string $login = null, $code = null): array
+	public function apiChangePin(mixed $pin, ?string $token = null, ?string $login = null, mixed $code = null): array
 	{
 		return $this->connector->call("Devices.Motv", "apiChangePin", get_defined_vars());
 	}
@@ -939,7 +939,7 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 */
-	public function apiConfirmRegistration(?string $token = null, $code = null, bool $social = false): void
+	public function apiConfirmRegistration(?string $token = null, mixed $code = null, bool $social = false): void
 	{
 		$this->connector->call("Devices.Motv", "apiConfirmRegistration", get_defined_vars());
 	}
