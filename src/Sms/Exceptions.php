@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Thu, 4 Jan 2024 7:52:30
+ * Generated on Tue, 26 Aug 2025 10:50:14
  * Part moTV.eu SDK integration kit
  */
 
@@ -174,6 +174,14 @@ class DealerCircularParentException extends \Motv\Connector\Sms\Exceptions\ApiEx
 }
 
 /**
+ * Dealer can not be removed exception
+ */
+class DealerCannotBeRemovedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 67;
+}
+
+/**
  * Role same parent exception
  */
 class RoleSameParentException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -187,6 +195,14 @@ class RoleSameParentException extends \Motv\Connector\Sms\Exceptions\ApiExceptio
 class RoleCircularParentException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 73;
+}
+
+/**
+ * Role can not be removed exception
+ */
+class RoleCannotBeRemovedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 74;
 }
 
 /**
@@ -374,11 +390,51 @@ class ProductForRenewingCannotHaveLengthInMinutesException extends \Motv\Connect
 }
 
 /**
+ * TVOD product unknown exception
+ */
+class TvodProductUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 263;
+}
+
+/**
+ * Unknown product price in this currency exception
+ */
+class UnknownProductPriceInCurrencyException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 264;
+}
+
+/**
+ * Product cannot be removed exception
+ */
+class ProductCannotBeRemovedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 265;
+}
+
+/**
  * Bouquet unknown bouquet exception
  */
 class BouquetUnknownBouquetException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 270;
+}
+
+/**
+ * Customer bouquet duplicate exception
+ */
+class CustomerBouquetDuplicateException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 271;
+}
+
+/**
+ * Bouquet cannot be removed exception
+ */
+class BouquetCannotBeRemovedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 272;
 }
 
 /**
@@ -558,14 +614,6 @@ class InvoiceProductNotAllowedException extends \Motv\Connector\Sms\Exceptions\A
 }
 
 /**
- * Multiple currencies are not allowed on one invoice exception
- */
-class MultipleCurrenciesAreNotAllowedOnOneInvoiceException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 405;
-}
-
-/**
  * Config unknown value exception
  */
 class ConfigUnknownValueException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -643,14 +691,6 @@ class SystemBackupNotFoundException extends \Motv\Connector\Sms\Exceptions\ApiEx
 class SystemSupervisorFailedException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 458;
-}
-
-/**
- * Transfer device error exception
- */
-class TransferDeviceErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 475;
 }
 
 /**
@@ -910,6 +950,22 @@ class EpgUnknownCategoryException extends \Motv\Connector\Sms\Exceptions\ApiExce
 }
 
 /**
+ * Vendor unknown exception
+ */
+class VendorUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 3000;
+}
+
+/**
+ * Board API exception
+ */
+class BoardApiException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 5500;
+}
+
+/**
  * Zone unknown exception
  */
 class ZoneUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -1006,6 +1062,38 @@ class PsmOoredooFailException extends \Motv\Connector\Sms\Exceptions\ApiExceptio
 }
 
 /**
+ * Cryptoguard duplicate smartcard exception
+ */
+class CryptoguardDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 13200;
+}
+
+/**
+ * Cryptoguard duplicate settopbox exception
+ */
+class CryptoguardDuplicateSettopboxException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 13201;
+}
+
+/**
+ * Cardless cryptoguard duplicate smartcard exception
+ */
+class CardlessCryptoguardDuplicateSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 13202;
+}
+
+/**
+ * Cryptoguard invalid smartcard exception
+ */
+class CryptoguardInvalidSmartcardException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 13203;
+}
+
+/**
  * Motv account duplicate login exception
  */
 class MotvAccountDuplicateLoginException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -1078,14 +1166,6 @@ class MotvDuplicateUserPortalAccessException extends \Motv\Connector\Sms\Excepti
 }
 
 /**
- * Motv invalid pin format exception
- */
-class MotvInvalidPinFormatException extends \Motv\Connector\Sms\Exceptions\ApiException
-{
-	protected $code = 14010;
-}
-
-/**
  * Motv unknown error exception
  */
 class MotvUnknownErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -1107,6 +1187,14 @@ class MotvUnknownDeviceException extends \Motv\Connector\Sms\Exceptions\ApiExcep
 class MotvUnknownErrorTryAgainException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 14013;
+}
+
+/**
+ * Motv unknown VOD exception
+ */
+class MotvUnknownVodException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 14014;
 }
 
 /**
@@ -1302,11 +1390,99 @@ class SelfcareProductNotAllowedException extends \Motv\Connector\Sms\Exceptions\
 }
 
 /**
+ * Auto-generated customers can not use selfcare exception
+ */
+class SelfcareAutogeneratedCustomersCannotUseSelfcareException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20607;
+}
+
+/**
+ * Selfcare order can not be created exception
+ */
+class SelfcareOrderCannotBeCreatedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20608;
+}
+
+/**
+ * Selfcare subscription duplicate exception
+ */
+class SelfcareSubscriptionDuplicateException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20609;
+}
+
+/**
  * Currency unknown exception
  */
 class CurrencyUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 20700;
+}
+
+/**
+ * Currency can not be deactivated exception
+ */
+class CurrencyCannotBeDeactivatedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20701;
+}
+
+/**
+ * Data bundle unknown exception
+ */
+class DataBundleUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20800;
+}
+
+/**
+ * moTV registration form unknown address type exception
+ */
+class MotvRegistrationFormUnknownAddressTypeException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20900;
+}
+
+/**
+ * moTV registration form duplicate control type.
+ */
+class MotvRegistrationFormDuplicateControlTypeException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20901;
+}
+
+/**
+ * moTV registration form unknown exception
+ */
+class MotvRegistrationFormUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20902;
+}
+
+/**
+ * moTV registration form control unknown exception
+ */
+class MotvRegistrationFormControlUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20903;
+}
+
+/**
+ * moTV registration form contact type can not be deleted exception
+ */
+class MotvRegistrationFormContactTypeCannotBeDeletedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20904;
+}
+
+/**
+ * moTV registration form address type can not be deleted exception
+ */
+class MotvRegistrationFormAddressTypeCannotBeDeletedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20905;
 }
 
 

@@ -7,6 +7,7 @@ namespace Motv\Connector\Mw;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use Monolog\Logger;
+use Symfony\Component\VarDumper\VarDumper;
 
 class VodUpload
 {
@@ -80,7 +81,7 @@ class VodUpload
 					],
 					[
 						'name' => 'signedUploadToken',
-						'contents' => $uploadToken['token'],
+						'contents' => $uploadToken->token,
 					],
 					[
 						'name' => 'flowChunkNumber',

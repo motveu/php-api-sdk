@@ -14,10 +14,8 @@ class SmsConnectorTest extends SmsConnector
 	{
 		$this->assertIsArray($this->connector->Bouquet()->getPairs());
 		$this->assertIsArray($this->connector->Category()->getPairs());
-		$this->assertIsArray($this->connector->CustomValue()->getPairs());
 		$this->assertIsArray($this->connector->Dealer()->getPairs());
 		$this->assertIsArray($this->connector->Gallery()->getPairs());
-		$this->assertIsArray($this->connector->Graph()->getPairs());
 		$this->assertIsArray($this->connector->Imap()->getPairs());
 		$this->assertIsArray($this->connector->Product()->getPairs());
 		$this->assertIsArray($this->connector->ProductGroup()->getPairs());
