@@ -7,6 +7,7 @@ namespace Tests\unit;
 use Motv\Connector\Mw\Entities\Mw\CustomerEntity;
 use Motv\Connector\Mw\Entities\Mw\PackageEntity;
 use Motv\Connector\Mw\Entities\Mw\VendorEntity;
+use Motv\Connector\Mw\Enums\Mw\LanguageEnum;
 use Motv\Connector\Mw\Exceptions\ApiSupport\ParameterWrongTypeException;
 use Motv\Connector\Mw\Exceptions\Mw\AdvertHomepageUnknownException;
 use Motv\Connector\Mw\Exceptions\Mw\CategoryUnknownException;
@@ -31,7 +32,6 @@ class MwConnectorTest extends MwConnector
 		$this->assertIsArray($this->connector->Country()->getPairsByCode());
 		$this->assertIsArray($this->connector->Detector()->getPairs());
 		$this->assertIsArray($this->connector->Edge()->getPairs());
-		$this->assertIsArray($this->connector->Epg()->getPairs());
 		$this->assertIsArray($this->connector->EpgPlaylist()->getPairs());
 		$this->assertIsArray($this->connector->Genre()->getPairs());
 		$this->assertIsArray($this->connector->IpRange()->getPairs());
@@ -114,19 +114,21 @@ class MwConnectorTest extends MwConnector
 		$this->assertInstanceOf(VendorEntity::class, $vendor2);
 
 		$this->assertEquals($vendor->vendors_id, $vendor2->vendors_id);
-		$this->assertEquals($vendor->vendors_background_type->value, $vendor2->vendors_background_type->value);
 		$this->assertEquals($vendor->vendors_accent_color, $vendor2->vendors_accent_color);
 	}
 
 	public function testCreateAndUpdatePerson(): void
 	{
 		$personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
+		$personMetadataEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonMetadataEntity();
+		$personMetadataEntity->persons_metadata_default = true;
+		$personMetadataEntity->persons_name = 'John Smith' . time();
+		$personMetadataEntity->persons_metadata_language = \Motv\Connector\Mw\Enums\Mw\LanguageEnum::EN;
 		$personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
 		$personInputEntity->persons_birthday = '1990-01-01';
 		// in case of date, both string and DateTime objects are accept
 		$personInputEntity->persons_birthday = (new \DateTimeImmutable)->setTimestamp(strtotime('now'));
-		$personInputEntity->persons_description = 'Popular actor';
-		$personInputEntity->persons_name = 'John Smith' . time();
+		$personInputEntity->metadata = [$personMetadataEntity];
 
 		// Creates new Person
 		$personsId = $this->connector->Person()->update(null, $personInputEntity);
@@ -137,7 +139,7 @@ class MwConnectorTest extends MwConnector
 		echo PHP_EOL;
 
 		// Let's change name of the Person
-		$personInputEntity->persons_name = 'Will Smith' . time();
+		$personMetadataEntity->persons_name = 'Will Smith' . time();
 
 		// Updates the name
 		$this->connector->Person()->update($personsId, $personInputEntity);
@@ -149,15 +151,15 @@ class MwConnectorTest extends MwConnector
 
 		// Select the person by selection function
 		$selectedActorEntity = $this->connector->Person()->selection(['persons_name' => 'Will Smith'])['rows'][0];
-		echo 'Actor ' . $selectedActorEntity->persons_name . ' with ID: ' . $selectedActorEntity->persons_id;
+		echo 'Actor ' . $selectedActorEntity->metadata[0]->persons_name . ' with ID: ' . $selectedActorEntity->persons_id;
 		echo PHP_EOL;
 
 		// sending invalid data will result into a neat error, for example
 		$personInputEntity = new \Motv\Connector\Mw\InputEntities\Mw\PersonEntity();
-		$personInputEntity->persons_name = '';
+		$personMetadataEntity->persons_name = '';
+		$personInputEntity->metadata = [$personMetadataEntity];
 		$personInputEntity->persons_type = \Motv\Connector\Mw\Enums\Mw\PersonEnum::ACTOR;
 		$personInputEntity->persons_birthday = (new \DateTimeImmutable)->setTimestamp(strtotime('now'));
-		$personInputEntity->persons_description = 'Popular actor';
 
 		try {
 			// Will not create a new person because name is empty, will throw an exception instead

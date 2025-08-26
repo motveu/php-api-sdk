@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Thu, 4 Jan 2024 7:52:31
+ * Generated on Tue, 26 Aug 2025 10:50:14
  * Part moTV.eu SDK integration kit
  */
 
@@ -16,17 +16,32 @@ interface MotvEnum
 
 namespace Motv\Connector\Sms\Enums\Sms;
 
+enum CategoriesTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case NONE = 'none';
+	case SINGLE = 'single';
+	case DYNAMIC = 'dynamic';
+}
+
 enum CustomerFieldTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 {
 	case STATIC_TEXT = 'static_text';
 	case TEXT = 'text';
-	case PASSWORD = 'password';
-	case NUMBER = 'number';
 	case EMAIL = 'email';
+	case PHONE = 'phone';
 	case SELECT = 'select';
 	case CHECKBOX = 'checkbox';
 	case DATE = 'date';
-	case PHONE = 'phone';
+	case RADIO = 'radio';
+	case PASSWORD = 'password';
+	case NUMBER = 'number';
+	case FLOAT = 'float';
+}
+
+enum DelimiterEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case COMMA = ',';
+	case SEMICOLONS = ';';
 }
 
 enum DeviceEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -88,12 +103,6 @@ enum EpgDatetimeFormatEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case HOURS = 'hours';
 }
 
-enum EpgDelimiterEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
-{
-	case COMMA = ',';
-	case SEMICOLONS = ';';
-}
-
 enum EpgFormatEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 {
 	case XLS = 'xlsx';
@@ -113,12 +122,23 @@ enum EpgSourceEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case FTP = '2';
 	case HTTP = '3';
 	case WEB_GRAB = '4';
+	case SFTP = '5';
 }
 
 enum GroupActionPredefinedEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 {
 	case MOTV_NOTIFICATION_SINGLE = 'motv_notification_single';
 	case MOTV_OSD_SINGLE = 'motv_osd_single';
+	case CRYPTOGUARD_PAIR = 'cryptoguard_pair';
+	case CRYPTOGUARD_UNPAIR = 'cryptoguard_unpair';
+	case CRYPTOGUARD_MESSAGE = 'cryptoguard_message';
+	case CRYPTOGUARD_FORCE_MESSAGE = 'cryptoguard_forcedmessage';
+	case CRYPTOGUARD_FINGERPRINT = 'cryptoguard_fingerprint';
+	case CRYPTOGUARD_SIGNAL = 'cryptoguard_signal';
+	case CRYPTOGUARD_BLACKLIST = 'cryptoguard_blacklist';
+	case CARDLESS_CRYPTOGUARD_MESSAGE = 'cardless_cryptoguard_message';
+	case CARDLESS_CRYPTOGUARD_FINGERPRINT = 'cardless_cryptoguard_fingerprint';
+	case CARDLESS_CRYPTOGUARD_BLACKLIST = 'cardless_cryptoguard_blacklist';
 }
 
 enum GroupActionTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -136,6 +156,48 @@ enum GroupActionTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case MOTV_OSD = 'motv_osd';
 	case MOTV_OSD_TOPIC = 'motv_osd_topic';
 	case PSM_GSM = 'psm_gsm';
+	case CRYPTOGUARD_PAIR = 'cryptoguard_pair';
+	case CRYPTOGUARD_UNPAIR = 'cryptoguard_unpair';
+	case CRYPTOGUARD_MESSAGE = 'cryptoguard_message';
+	case CRYPTOGUARD_FINGERPRINT = 'cryptoguard_fingerprint';
+	case CRYPTOGUARD_SIGNAL = 'cryptoguard_signal';
+	case CRYPTOGUARD_FORCEDMESSAGE = 'cryptoguard_forcedmessage';
+	case CRYPTOGUARD_BLACKLIST = 'cryptoguard_blacklist';
+	case CARDLESS_CRYPTOGUARD_MESSAGE = 'cardless_cryptoguard_message';
+	case CARDLESS_CRYPTOGUARD_FINGERPRINT = 'cardless_cryptoguard_fingerprint';
+	case CARDLESS_CRYPTOGUARD_BLACKLIST = 'cardless_cryptoguard_blacklist';
+}
+
+enum InvoiceStateEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case UNPAID = 'unpaid';
+	case CANCELLED = 'cancelled';
+	case SAVED = 'saved';
+	case PAID = 'paid';
+}
+
+enum InvoiceTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case POSTPAID = 'postpaid';
+	case RECEIPT = 'receipt';
+	case PREPAID = 'prepaid';
+	case CONTRACT = 'contract';
+}
+
+enum MotvDeviceEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case WEB_PLAYER = 'web player';
+	case IOS = 'ios';
+	case ANDROID = 'android';
+	case ANDROID_TV = 'android tv';
+	case TIZEN = 'tizen';
+	case WEBOS = 'webos';
+	case TVOS = 'tvos';
+	case ROKU = 'roku';
+	case OTA = 'ota';
+	case RDK = 'rdk';
+	case TITANOS = 'titanos';
+	case VIDAA = 'vidaa';
 }
 
 enum MotvPortalIOSRegistrationEnabledEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -164,6 +226,9 @@ enum MotvPortalSectionEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case DOWNLOADS = 'downloads';
 	case MY_LIST = 'my_list';
 	case CATCHUP = 'catchup';
+	case BOOKS = 'books';
+	case NEWS = 'news';
+	case PODCASTS = 'podcasts';
 }
 
 enum MotvPortalSocialSiteEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -173,12 +238,60 @@ enum MotvPortalSocialSiteEnum: string implements \Motv\Connector\Sms\Enums\MotvE
 	case APPLE = 'apple';
 }
 
+enum MotvRegistrationFormLabelSectionEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case MOTV = 'motv';
+	case GENERAL = 'general';
+	case CONTACT = 'contact';
+	case ADDRESS = 'address';
+	case ADDRESS_TYPES = 'address types';
+	case LOGIN = 'login';
+	case PASSWORD = 'password';
+	case PASSWORD_REPEAT = 'password repeat';
+	case PIN = 'pin';
+	case FORM_SECTION_CUSTOMER = 'form section customer';
+	case FORM_SECTION_CONTACT = 'form section contact';
+	case FORM_SECTION_ADDRESS_FORM_LAYOUT = 'form section addressFormLayout';
+}
+
+enum MotvRegistrationFormOptionEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case DEALERS = 'dealers';
+	case CUSTOM = 'custom';
+}
+
+enum MotvRegistrationFormPaternEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case EMAIL = 'email';
+	case NUMBER = '\d+';
+	case CUSTOM = 'custom';
+}
+
+enum MotvRegistrationFormSectionEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case CUSTOMER = 'customer';
+	case CONTACT = 'contact';
+	case ADDRESS_FORM_LAYOUT = 'addressFormLayout';
+}
+
+enum MotvRegistrationFormUniqueEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case CUSTOMER = 'customer';
+	case SYSTEM = 'system';
+	case NONE = 'none';
+}
+
 enum PaymentGatewaysEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 {
 	case GP_WEBPAY = 'gpwebpay';
 	case NGENIUS = 'ngenius';
 	case TEST_GATEWAY = 'test_gateway';
 	case PAYPAL = 'paypal';
+	case AREEBA = 'areeba';
+	case DPO = 'dpo';
+	case MTN = 'mtn';
+	case AIRTEL = 'airtel';
+	case GDE = 'gde';
 }
 
 enum PortalPageTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -186,6 +299,12 @@ enum PortalPageTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case PRIVACY_POLICY = 'privacy policy';
 	case TERMS_OF_USE = 'terms of use';
 	case GDPR = 'gdpr';
+}
+
+enum ProductContentTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case TVOD = 'tvod';
+	case PRODUCT = 'product';
 }
 
 enum ProductPaymentTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -232,12 +351,77 @@ enum ReportLinkEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case TICKET = 'ticket';
 }
 
-enum ScheduleRepeatUnitsEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+enum RequestTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 {
-	case HOURS = 'hours';
-	case DAYS = 'days';
-	case MONTHS = 'months';
-	case YEARS = 'years';
+	case CANCELLATION = '6';
+	case PIN_RESET = '7';
+	case MESSAGE = '8';
+	case PAIR = '9';
+	case SUBSCRIPTION = '11';
+	case RENEWAL = '12';
+	case FINGERPRINT = '13';
+	case UPDATE_CREDIT = '14';
+	case FORCE_TUNE = '15';
+	case REFRESH_RIGHTS = '16';
+	case FINGERPRING_ADVANCE = '18';
+	case MESSAGE_ADVANCED = '19';
+	case BROADCAST_MESSAGE_ADVANCED = '20';
+	case CABLE_BROADCAST_MESSAGE = '21';
+	case SATELITE_BROADCAST_MESSAGE = '22';
+	case FULL_SYNCHRONIZATION = '23';
+	case BLACKLIST = '24';
+	case CREATE_SMC = '25';
+	case CREATE_STB = '26';
+	case CREATE_OTT_ACCOUNT = '27';
+	case UPDATE_OTT_ACCOUNT = '28';
+	case OTT_CLICKS = '29';
+	case REFRESH_OTT_CLICKS = '30';
+	case OTT_SESSION_RESET = '31';
+	case CREATE_MODERNTV_ACCOUNT = '50';
+	case UPDATE_MODERNTV_ACCOUNT = '51';
+	case USER_MESSAGE = '800';
+	case KV_ECM_FINGERPRINT = '801';
+	case KINVON_UNPAIR = '802';
+	case CRYPTOGARD_UNPAIR = '900';
+	case SIGNAL = '901';
+	case CRYPTOGARD_FORCED_MESSAGE = '902';
+	case BEENIUS_CREATE_SUBSCRIBE = '1000';
+	case BEENIUS_GET_PROFILE = '1001';
+	case BEENIUS_CHANGE_PASSWORD = '1002';
+	case BEENIUS_DELETE_CUSTOMER = '1003';
+	case REX_CREATE_ACCOUNT = '1100';
+	case VOD_SUBSCRIBE = '1101';
+	case VOD_CANCEL = '1102';
+	case MOTV_CREATE_CUSTOMER = '1300';
+	case MOTV_UPDATE_CUSTOMER = '1301';
+	case MOTV_DELETE_CUSTOMER = '1302';
+	case MOTV_NOTIFICATION = '1303';
+	case MOTV_OSD = '1304';
+	case MOTV_TOPIC_NOTIFICATION = '1305';
+	case MOTV_TOPIC_OSD = '1306';
+	case CUSTOM_COMMAND = '1400';
+	case SMARTLABS_CREATE_CUSTOMER = '1600';
+	case SMARTLABS_UPDATE_CUSTOMER = '1601';
+	case SMARTLABS_DELETE_CUSTOMER = '1602';
+	case SMARTLABS_CHANGE_PRODUCT_OFFER = '1603';
+}
+
+enum ResponseStatusEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case OK = 'OK';
+	case ERROR = 'ERROR';
+}
+
+enum RoleDeviceActionEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case VIEW = 'view';
+	case ADD = 'add';
+	case EDIT = 'edit';
+	case REMOVE = 'remove';
+	case CANCEL = 'cancel';
+	case SUSPEND = 'suspend';
+	case RESUME = 'resume';
+	case UPDATE_DURATION = 'update_duration';
 }
 
 enum SelfcareOrderStatusEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -292,6 +476,12 @@ enum TimeUnitEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case DAYS = 'days';
 	case MONTHS = 'months';
 	case YEARS = 'years';
+}
+
+enum TvodsBundleDiscountTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case WITHOUT_DISCOUNT = 'without_discount';
+	case PROPORTIONAL_DISCOUNT = 'proportional_discount';
 }
 
 

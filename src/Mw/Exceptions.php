@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Thu, 4 Jan 2024 6:52:35
+ * Generated on Tue, 26 Aug 2025 10:48:48
  * Part moTV.eu SDK integration kit
  */
 
@@ -313,6 +313,14 @@ class MissingHeaderException extends \Motv\Connector\Mw\Exceptions\ApiException
 }
 
 /**
+ * Exactly one metadata language must be default
+ */
+class MetadataLanguageDefaultException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 31;
+}
+
+/**
  * Failed to obtain data from given directory
  */
 class ScanDirFailedException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -545,6 +553,22 @@ class CategoryIsNotEmptyException extends \Motv\Connector\Mw\Exceptions\ApiExcep
 }
 
 /**
+ * Unknown seasons
+ */
+class SeasonUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 504;
+}
+
+/**
+ * Seasons number duplicate exception
+ */
+class SeasonsNumberDuplicateException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 505;
+}
+
+/**
  * Unknown package
  */
 class PackageUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -662,6 +686,14 @@ class EpgUnknownPlaylistException extends \Motv\Connector\Mw\Exceptions\ApiExcep
 class EpgInsertTimeErrorException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 809;
+}
+
+/**
+ * Playlist can not be removed.
+ */
+class PlaylistCannotBeRemovedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 810;
 }
 
 /**
@@ -870,6 +902,22 @@ class VodFailedToUploadChunkException extends \Motv\Connector\Mw\Exceptions\ApiE
 class ExternalVodCannotBeLockedVodException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 1012;
+}
+
+/**
+ * Duplicate VOD's audio language
+ */
+class VodAudioDuplicateLanguageException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 1013;
+}
+
+/**
+ * Duplicate VOD's subtitle language
+ */
+class VodSubtitleDuplicateLanguageException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 1014;
 }
 
 /**
@@ -1153,19 +1201,43 @@ class HomepageRowBadContentException extends \Motv\Connector\Mw\Exceptions\ApiEx
 }
 
 /**
- * Homepage fullwidth banner can be only Images or Playlist type
+ * Homepage fullwidth banner can be only Images, Playlist type or Channels
  */
-class HomepageFullwidthBannerCanBeOnlyImagesOrPlaylistException extends \Motv\Connector\Mw\Exceptions\ApiException
+class HomepageFullwidthBannerCanBeOnlyImagesOrPlaylistOrChannelsException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 2111;
 }
 
 /**
- * Homepage fullwidth banner can have only one video or one image
+ * Homepage fullwidth banner can have only one video or one image or one channel
  */
-class HomepageFullwidthBannerCanHaveOnlyOneVideoOrImageException extends \Motv\Connector\Mw\Exceptions\ApiException
+class HomepageFullwidthBannerCanHaveOnlyOneVideoOrImageOrChannelException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 2112;
+}
+
+/**
+ * Homepage middle fullsize playlist must have position
+ */
+class HomepageMiddleFullsizePlaylistMustHavePositionException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2113;
+}
+
+/**
+ * Homepage full-width live EPG event has to have EPG event.
+ */
+class HomepageFullwidthLiveEpgEventHasToHaveEpgEventException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2114;
+}
+
+/**
+ * Homepage fullwidth banner cannot be playlist view exception
+ */
+class HomepageFullwidthBannerCannotBePlaylistViewException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2115;
 }
 
 /**
@@ -1537,6 +1609,46 @@ class AdvertRedirectException extends \Motv\Connector\Mw\Exceptions\ApiException
 }
 
 /**
+ * Duplicate package in allowed and disallowed packages exception
+ */
+class DuplicatePackageInAllowedAndDisallowedPackagesException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 4006;
+}
+
+/**
+ * Advert video unit does not support WebOS/Tizen/RDK devices
+ */
+class AdvertVideoUnitDoesNotSupportRokuWebosTizenRdkException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 4007;
+}
+
+/**
+ * Campaign can not be removed.
+ */
+class CampaignCannotBeRemovedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 4008;
+}
+
+/**
+ * Advert unit can not be removed.
+ */
+class AdvertUnitCannotBeRemovedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 4009;
+}
+
+/**
+ * Advert Admob unit support only image bottom position exception
+ */
+class AdvertAdmobUnitSupportOnlyImageBottomPositionException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 4010;
+}
+
+/**
  * Unknown provider
  */
 class ProviderUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1657,6 +1769,22 @@ class VendorAppUnknownSectionException extends \Motv\Connector\Mw\Exceptions\Api
 }
 
 /**
+ * Vendor application portal section not completed
+ */
+class VendorAppPortalSectionNotCompletedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5001;
+}
+
+/**
+ * Vendor application Samsung and LG section not completed
+ */
+class VendorAppSamsunLgSectionNotCompletedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5002;
+}
+
+/**
  * Unknown FTP
  */
 class FtpUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1721,6 +1849,14 @@ class GitlabReauthorizeException extends \Motv\Connector\Mw\Exceptions\ApiExcept
 }
 
 /**
+ * Server is not active
+ */
+class ServerIsNotActiveException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5206;
+}
+
+/**
  * Unknown poll
  */
 class PollUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1753,9 +1889,233 @@ class PollAlreadyVotedException extends \Motv\Connector\Mw\Exceptions\ApiExcepti
 }
 
 /**
+ * Unknown QR overlay
+ */
+class QrOverlayUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5310;
+}
+
+/**
  * Unknown MMCC
  */
 class MmccUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 5400;
+}
+
+/**
+ * Board API exception
+ */
+class BoardApiException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5500;
+}
+
+/**
+ * Message limit length exceeded
+ */
+class ChatMessageTooLongException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5600;
+}
+
+/**
+ * Unknown room name
+ */
+class ChatUnknownRoomException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5601;
+}
+
+/**
+ * Rate limit exceeded
+ */
+class ChatRateLimitExceededException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5602;
+}
+
+/**
+ * Failed to send message
+ */
+class ChatFailedToSendMessageException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5603;
+}
+
+/**
+ * Too strong message
+ */
+class ChatTooStrongMessageException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5604;
+}
+
+/**
+ * News hint unknown exception
+ */
+class NewsHintUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5700;
+}
+
+/**
+ * You are not allowed to show this hint exception
+ */
+class NewsHintRightException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5701;
+}
+
+/**
+ * Unknown topic
+ */
+class TopicUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5800;
+}
+
+/**
+ * Duplicate topic name
+ */
+class TopicDuplicateNameException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5801;
+}
+
+/**
+ * Unknown book
+ */
+class BookUnknownBookException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5900;
+}
+
+/**
+ * News Unknown Exception
+ */
+class NewsUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6000;
+}
+
+/**
+ * News Feed Unknown Exception
+ */
+class NewsFeedUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6001;
+}
+
+/**
+ * News Feed Parsing Exception
+ */
+class NewsFeedParsingException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6002;
+}
+
+/**
+ * Unknown FAQ
+ */
+class FaqUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6200;
+}
+
+/**
+ * Unknown tickets department
+ */
+class TicketsDepartmentUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6201;
+}
+
+/**
+ * Unknown ticket
+ */
+class TicketUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6202;
+}
+
+/**
+ * Unknown ticket message file
+ */
+class TicketMessageFileUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6203;
+}
+
+/**
+ * Unknown ticket template
+ */
+class TicketTemplateUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6204;
+}
+
+/**
+ * Unknown ticket message
+ */
+class TicketMessageUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6205;
+}
+
+/**
+ * Social icons duplicate exception
+ */
+class SocialIconsDuplicateException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6206;
+}
+
+/**
+ * Ticketing disabled exception
+ */
+class TicketingDisabledException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6207;
+}
+
+/**
+ * Ticket message file is not an image exception
+ */
+class TicketMessageFileIsNotImageException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6208;
+}
+
+/**
+ * Invalid email
+ */
+class TicketInvalidEmailException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6209;
+}
+
+/**
+ * Unknown SMTP
+ */
+class SmtpUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6300;
+}
+
+/**
+ * SMTP can not be deleted
+ */
+class SmtpCannotBeDeletedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6301;
+}
+
+/**
+ * SMTP message sending failed
+ */
+class SmtpMessageSendingFailedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 6302;
 }

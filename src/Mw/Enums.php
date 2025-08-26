@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Thu, 4 Jan 2024 6:52:36
+ * Generated on Tue, 26 Aug 2025 10:48:48
  * Part moTV.eu SDK integration kit
  */
 
@@ -15,6 +15,12 @@ interface MotvEnum
 
 
 namespace Motv\Connector\Mw\Enums\Mw;
+
+enum AbTestingGroupEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case A = '0';
+	case B = '1';
+}
 
 enum AdvertHomepageActionTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
@@ -61,9 +67,7 @@ enum AdvertUnitPositionEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case MIDROLL = 'midroll';
 	case POSTROLL = 'postroll';
 	case IMAGE_CARD = 'card';
-	case IMAGE_CHANNEL_EPG = 'cardChannelEpg';
 	case IMAGE_BOTTOM = 'cardBottom';
-	case IMAGE_TOP = 'cardTop';
 }
 
 enum AdvertUnitStatusEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -170,8 +174,8 @@ enum ChannelStreamTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 
 enum ChannelSubtitleEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
-	case DIRECT = '0';
-	case BIND = '1';
+	case ARIB = '0';
+	case OTHER = '1';
 }
 
 enum ChannelTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -181,11 +185,19 @@ enum ChannelTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case MOSAIC = 'mozaic';
 }
 
+enum ChannelUnicastFpsEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case FPS_25 = '25';
+	case FPS_30 = '30';
+	case FPS_50 = '50';
+	case FPS_60 = '60';
+}
+
 enum ContainerParameterTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case STATIC_VLAN16 = 'lxd_ip_vlan16';
 	case ELASTICSEARCH_MEMORY_LIMIT = 'elasticsearch_memory_limit';
-	case MYSQL_BUFFER_SIZE = 'mysql_buffer_size';
+	case MYSQL_BUFFER_SIZE = 'mysql_innodb_buffer_pool_size';
 	case SMS_URL = 'sms_url';
 	case MW_URL = 'mw_url';
 	case VARNISH_MEMORY = 'VARNISH_MALLOC';
@@ -213,6 +225,8 @@ enum ContainerTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case LOKI = 'loki';
 	case PMM = 'pmm';
 	case DETECTOR = 'detector';
+	case CHAT = 'chat';
+	case SMART_TV = 'smarttv';
 }
 
 enum ContentTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -236,6 +250,8 @@ enum DeviceEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case ROKU = 'roku';
 	case OTA = 'ota';
 	case RDK = 'rdk';
+	case TITANOS = 'titanos';
+	case VIDAA = 'vidaa';
 }
 
 enum DrmTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -263,6 +279,7 @@ enum FilesTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case CHANGELOG = 'changelog';
 	case APP = 'app';
+	case OTHER = 'other';
 }
 
 enum FtpProcessStatusEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -281,6 +298,12 @@ enum FtpTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case FTP = 'ftp';
 	case SFTP = 'sftp';
+}
+
+enum GeoblockTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case COUNTRY = 'country';
+	case CITY = 'city';
 }
 
 enum GrafanaThemesEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -309,6 +332,20 @@ enum HomepageLayoutFullsizeViewTypeEnum: string implements \Motv\Connector\Mw\En
 {
 	case PLAYLIST = 'playlist';
 	case CAROUSEL = 'carousel';
+}
+
+enum HomepageLayoutNumberStyleEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case OUTLINED = 'outlined';
+	case OUTLINED_VENDOR = 'outlined_vendor';
+	case SIMPLE = 'simple';
+	case UNDERGLOW = 'underglow';
+}
+
+enum HomepageLayoutPlaylistImagePositionEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case LEFT = 'left';
+	case RIGHT = 'right';
 }
 
 enum HomepageLayoutSortEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -341,7 +378,205 @@ enum ImageValidatorTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case EXACT_SIZE = 'exact size';
 	case MINIMUM_EDGE_SIZE = 'minimum edge size';
+	case MINIMUM_HEIGHT_SIZE = 'minimum height size';
 	case CUSTOM = 'custom';
+}
+
+enum LanguageEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case AB = 'ab';
+	case AA = 'aa';
+	case AF = 'af';
+	case AK = 'ak';
+	case SQ = 'sq';
+	case AM = 'am';
+	case AR = 'ar';
+	case AN = 'an';
+	case HY = 'hy';
+	case AS = 'as';
+	case AV = 'av';
+	case AE = 'ae';
+	case AY = 'ay';
+	case AZ = 'az';
+	case BM = 'bm';
+	case BA = 'ba';
+	case EU = 'eu';
+	case BE = 'be';
+	case BN = 'bn';
+	case BH = 'bh';
+	case BI = 'bi';
+	case BS = 'bs';
+	case BR = 'br';
+	case BG = 'bg';
+	case MY = 'my';
+	case CA = 'ca';
+	case CH = 'ch';
+	case CE = 'ce';
+	case NY = 'ny';
+	case ZH = 'zh';
+	case CV = 'cv';
+	case KW = 'kw';
+	case CO = 'co';
+	case CR = 'cr';
+	case HR = 'hr';
+	case CS = 'cs';
+	case DA = 'da';
+	case DV = 'dv';
+	case NL = 'nl';
+	case DZ = 'dz';
+	case EN = 'en';
+	case EO = 'eo';
+	case ET = 'et';
+	case EE = 'ee';
+	case FO = 'fo';
+	case FJ = 'fj';
+	case FI = 'fi';
+	case FR = 'fr';
+	case FF = 'ff';
+	case GL = 'gl';
+	case KA = 'ka';
+	case DE = 'de';
+	case EL = 'el';
+	case GN = 'gn';
+	case GU = 'gu';
+	case HT = 'ht';
+	case HA = 'ha';
+	case HE = 'he';
+	case HZ = 'hz';
+	case HI = 'hi';
+	case HO = 'ho';
+	case HU = 'hu';
+	case IA = 'ia';
+	case ID = 'id';
+	case IE = 'ie';
+	case GA = 'ga';
+	case IG = 'ig';
+	case IK = 'ik';
+	case IO = 'io';
+	case IS = 'is';
+	case IT = 'it';
+	case IU = 'iu';
+	case JA = 'ja';
+	case JV = 'jv';
+	case KL = 'kl';
+	case KN = 'kn';
+	case KR = 'kr';
+	case KS = 'ks';
+	case KK = 'kk';
+	case KM = 'km';
+	case KI = 'ki';
+	case RW = 'rw';
+	case KY = 'ky';
+	case KV = 'kv';
+	case KG = 'kg';
+	case KO = 'ko';
+	case KU = 'ku';
+	case KJ = 'kj';
+	case LA = 'la';
+	case LB = 'lb';
+	case LG = 'lg';
+	case LI = 'li';
+	case LN = 'ln';
+	case LO = 'lo';
+	case LT = 'lt';
+	case LU = 'lu';
+	case LV = 'lv';
+	case GV = 'gv';
+	case MK = 'mk';
+	case MG = 'mg';
+	case MS = 'ms';
+	case ML = 'ml';
+	case MT = 'mt';
+	case MI = 'mi';
+	case MR = 'mr';
+	case MH = 'mh';
+	case MN = 'mn';
+	case NA = 'na';
+	case NV = 'nv';
+	case ND = 'nd';
+	case NE = 'ne';
+	case NG = 'ng';
+	case NB = 'nb';
+	case NN = 'nn';
+	case NO = 'no';
+	case II = 'ii';
+	case NR = 'nr';
+	case OC = 'oc';
+	case OJ = 'oj';
+	case CU = 'cu';
+	case OM = 'om';
+	case OR = 'or';
+	case OS = 'os';
+	case PA = 'pa';
+	case PI = 'pi';
+	case FA = 'fa';
+	case PL = 'pl';
+	case PS = 'ps';
+	case PT = 'pt';
+	case QU = 'qu';
+	case RM = 'rm';
+	case RN = 'rn';
+	case RO = 'ro';
+	case RU = 'ru';
+	case SA = 'sa';
+	case SC = 'sc';
+	case SD = 'sd';
+	case SE = 'se';
+	case SM = 'sm';
+	case SG = 'sg';
+	case SR = 'sr';
+	case GD = 'gd';
+	case SN = 'sn';
+	case SI = 'si';
+	case SK = 'sk';
+	case SL = 'sl';
+	case SO = 'so';
+	case ST = 'st';
+	case ES = 'es';
+	case SU = 'su';
+	case SW = 'sw';
+	case SS = 'ss';
+	case SV = 'sv';
+	case TA = 'ta';
+	case TE = 'te';
+	case TG = 'tg';
+	case TH = 'th';
+	case TI = 'ti';
+	case BO = 'bo';
+	case TK = 'tk';
+	case TL = 'tl';
+	case TN = 'tn';
+	case TO = 'to';
+	case TR = 'tr';
+	case TS = 'ts';
+	case TT = 'tt';
+	case TW = 'tw';
+	case TY = 'ty';
+	case UG = 'ug';
+	case UK = 'uk';
+	case UR = 'ur';
+	case UZ = 'uz';
+	case VE = 've';
+	case VI = 'vi';
+	case VO = 'vo';
+	case WA = 'wa';
+	case CY = 'cy';
+	case WO = 'wo';
+	case FY = 'fy';
+	case XH = 'xh';
+	case YI = 'yi';
+	case YO = 'yo';
+	case ZA = 'za';
+	case ZU = 'zu';
+}
+
+enum LibrarySearchTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case VOD = 'vod';
+	case EPISODE = 'episode';
+	case CATEGORY = 'category';
+	case BOOK = 'book';
+	case NEWS = 'news';
 }
 
 enum LikeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -370,6 +605,8 @@ enum LoggerEventsEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case TOPIC_PUSH_MESSAGE = 'topic push message';
 	case PROFILE_DELETE = 'profile delete';
 	case OFFLINE_CONTENT = 'offline content';
+	case TOPIC_ADDED = 'push topic added';
+	case TOPIC_REMOVED = 'push topic removed';
 }
 
 enum MessagingActionTopicEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -385,7 +622,6 @@ enum MessagingPushMessageEnum: string implements \Motv\Connector\Mw\Enums\MotvEn
 	case RESTART = '3';
 	case LOGOUT = '4';
 	case CHANNEL_SWITCH = '5';
-	case FIRMWARE_UPDATE = '6';
 	case CLEAR_CACHE = '7';
 	case FINGERPRINT = '8';
 	case MY_LIST_CHANGED = '9';
@@ -438,6 +674,39 @@ enum MonitoringEventChannelEnum: string implements \Motv\Connector\Mw\Enums\Motv
 	case AVSYNC_CHECK = '8';
 }
 
+enum NewsFeedSourceColumnsEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case ID = 'news_original_id';
+	case TITLE = 'news_title';
+	case DATE = 'news_date';
+	case PEREX = 'news_perex';
+	case TEXT = 'news_text';
+	case AUTHOR = 'news_author';
+	case IMAGES = 'news_images';
+	case URL = 'news_url';
+}
+
+enum NewsFeedSourceTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case XML = 'xml';
+	case JSON = 'json';
+}
+
+enum OneSignalSubscriptionExpiryEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case EXPIRED_SUBSCRIPTION = '-1';
+	case ACTIVE_SUBSCRIPTION = '0';
+	case UNLIMITED_SUBSCRIPTION = '1';
+}
+
+enum OneSignalWatchFrequencyEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case WATCHED_WITHIN_LAST_24_HOURS = '1';
+	case WATCHED_WITHIN_LAST_7_DAYS = '2';
+	case WATCHED_WITHIN_LAST_MONTH = '3';
+	case DID_NOT_WATCH_WITHIN_LAST_MONTH = '4';
+}
+
 enum PackageOptionEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case SIMPLE = 'simple';
@@ -463,6 +732,7 @@ enum PipelineTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case PORTAL_UPDATE = 'portal_update';
 	case TRANSCODER_CONTAINER_UPDATE = 'transcoder_container_update';
 	case CORS = 'cors';
+	case BLACKLIST_IPS = 'blacklist ips';
 	case IPTABLES = 'iptables';
 	case HAPROXY = 'haproxy';
 	case PROXIES = 'proxies';
@@ -474,6 +744,9 @@ enum PlaylistItemTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case EPG = 'epg';
 	case GENRE = 'genre';
 	case CATEGORY = 'category';
+	case BOOK = 'book';
+	case NEWS_FEED = 'news feed';
+	case NEWS = 'news';
 }
 
 enum PortalLanguageEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -518,6 +791,12 @@ enum PublicMulticastTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnu
 	case RECEIVE = 'receive';
 }
 
+enum PushMessageNotificationTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case RECEIVED = 'received';
+	case OPENED = 'opened';
+}
+
 enum RecognitionMethodEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case IGNORE_BACKGROUND = 'ignore background';
@@ -550,6 +829,9 @@ enum RecommendationEngineCardAssetTypeEnum: string implements \Motv\Connector\Mw
 	case IMAGE = 'Image';
 	case VIDEO = 'Video';
 	case ADMOB = 'Admob';
+	case BOOK = 'Book';
+	case NEWS_FEED = 'News feed';
+	case NEWS = 'News';
 }
 
 enum RecommendationEngineCriteriaEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -578,9 +860,22 @@ enum RecommendationEngineHomepageLayoutEnum: string implements \Motv\Connector\M
 	case SEARCH = 'search';
 	case SIMILAR = 'similar';
 	case VOD = 'vod';
+	case BOOK = 'book';
+	case NEWS_FEED = 'news feed';
+	case NEWS = 'news';
 	case CATEGORY = 'category';
 	case POPULAR_SEARCHES = 'popular searches';
 	case CHANNELS = 'channels';
+	case VOD_GENRE = 'vod genre';
+	case DOWNLOADS = 'downloads';
+	case CATCHUP = 'catchup';
+	case PLAYER_MENU = 'player menu';
+	case NEXT_PLAYBACK_ITEMS = 'next playback items';
+	case TV_GUIDE_ROW = 'tv guide row';
+	case TV_GUIDE_COLUMN = 'tv guide column';
+	case VOD_LAST_CHANCE = 'vod last chance';
+	case FULL_WIDTH_LIVE_EPG_EVENT = 'full width live epg event';
+	case LIVE_PLAYING = 'live playing';
 }
 
 enum RecommendationEngineOperatorEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -625,6 +920,41 @@ enum ReportScheduleRepeatEnum: string implements \Motv\Connector\Mw\Enums\MotvEn
 	case MONTH = 'month';
 }
 
+enum SearchOrderEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case CHANNELS_CATCHUP_VOD = 'chcv';
+	case CHANNELS_VOD_CATCHUP = 'chvc';
+	case VOD_CHANNELS_CATCHUP = 'vchc';
+	case VOD_CATCHUP_CHANNELS = 'vcch';
+	case CATCHUP_CHANNELS_VOD = 'cchv';
+	case CATCHUP_VOD_CHANNELS = 'cvch';
+}
+
+enum SerieSortEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case ASC = 'asc';
+	case DESC = 'desc';
+}
+
+enum SmtpSecureTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case NONE = 'none';
+	case SSL = 'ssl';
+	case TLS = 'tls';
+}
+
+enum SocialIconsTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case EMAIL = 'email';
+	case FACEBOOK = 'facebook';
+	case WHATS_APP = 'whats_app';
+	case TELEGRAM = 'telegram';
+	case VIBER = 'viber';
+	case PHONE = 'phone';
+	case INSTAGRAM = 'instagram';
+	case MESSENGER = 'messenger';
+}
+
 enum StorageStatusEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case PENDING = '0';
@@ -666,12 +996,42 @@ enum TemplateEncryptionEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case CLEAR = 'clear';
 }
 
+enum TemplateSegmentSizeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case REGULAR = '3.2';
+	case MEDIUM = '6.4';
+	case LONG = '9.6';
+}
+
 enum TemplateTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case LIVE = 'live';
 	case VOD = 'vod';
 	case RECORDING = 'recording';
 	case MULTICAST = 'multicast';
+}
+
+enum TicketHistoryActionsEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case NEW_MESSAGE = 'new message';
+	case CHANGE_STATUS = 'status changed';
+	case CHANGE_PRIORITY = 'priority changed';
+	case CHANGE_DEPARTMENT = 'department changed';
+	case CHANGE_RESPONSIBLE_USER = 'responsible user changed';
+}
+
+enum TicketPriorityEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case LOW = '0';
+	case MEDIUM = '1';
+	case HIGH = '2';
+	case IMMEDIATE = '3';
+}
+
+enum TicketStatusEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case CLOSED = '0';
+	case OPENED = '1';
 }
 
 enum TranslationsFormatEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -697,6 +1057,7 @@ enum VendorAppSectionEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case TVOS = 'tvos';
 	case SAMSUNG_LG = 'samsung_lg';
 	case ROKU = 'roku';
+	case PORTAL = 'portal';
 }
 
 enum VendorAppSectionStatusEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -705,12 +1066,6 @@ enum VendorAppSectionStatusEnum: string implements \Motv\Connector\Mw\Enums\Motv
 	case WAITING_FOR_APPROVAL = 'waiting for approval';
 	case WORK_IN_PROGRESS = 'work in progress';
 	case DONE = 'done';
-}
-
-enum VendorBackgroundTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
-{
-	case SOLID_COLOR = 'solid color';
-	case GRADIENT = 'gradient';
 }
 
 enum VendorLicenseTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
@@ -740,11 +1095,23 @@ enum Vod3rdPartyEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 	case MOTV_FTP = 'motv_ftp';
 }
 
+enum VodContentTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case VOD = 'vod';
+	case PODCAST = 'podcast';
+}
+
 enum VodExternalTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case YOUTUBE = 'youtube';
 	case PORNHUB = 'pornhub';
 	case XVIDEOS = 'xvideos';
+}
+
+enum VodMediaTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case MOVIES = 'movies';
+	case SERIES = 'series';
 }
 
 enum VodStatusEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
