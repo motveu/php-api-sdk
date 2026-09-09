@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Tue, 26 Aug 2025 10:50:14
+ * Generated on Wed, 9 Sep 2026 12:28:39
  * Part moTV.eu SDK integration kit
  */
 
@@ -71,6 +71,7 @@ enum DeviceEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case REX = 'rex';
 	case CORPUS = 'corpus';
 	case TIVO = 'tivo';
+	case MTN = 'mtn';
 }
 
 enum EpgColumnTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -166,6 +167,12 @@ enum GroupActionTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case CARDLESS_CRYPTOGUARD_MESSAGE = 'cardless_cryptoguard_message';
 	case CARDLESS_CRYPTOGUARD_FINGERPRINT = 'cardless_cryptoguard_fingerprint';
 	case CARDLESS_CRYPTOGUARD_BLACKLIST = 'cardless_cryptoguard_blacklist';
+}
+
+enum InitPaymentTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case TRIAL = 'trial';
+	case INITIAL = 'initial';
 }
 
 enum InvoiceStateEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -281,6 +288,13 @@ enum MotvRegistrationFormUniqueEnum: string implements \Motv\Connector\Sms\Enums
 	case NONE = 'none';
 }
 
+enum MotvRegistrationSocialRegistrationCompletionEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case NOTHING = 'nothing';
+	case SHOW_DIALOG = 'show dialog';
+	case SHOW_REGISTRATION_FORM = 'show registration form';
+}
+
 enum PaymentGatewaysEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 {
 	case GP_WEBPAY = 'gpwebpay';
@@ -292,6 +306,8 @@ enum PaymentGatewaysEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case MTN = 'mtn';
 	case AIRTEL = 'airtel';
 	case GDE = 'gde';
+	case STRIPE = 'stripe';
+	case FLUTTERWAVE = 'flutterwave';
 }
 
 enum PortalPageTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -299,6 +315,7 @@ enum PortalPageTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case PRIVACY_POLICY = 'privacy policy';
 	case TERMS_OF_USE = 'terms of use';
 	case GDPR = 'gdpr';
+	case MTN_CONSENT = 'mtn consent';
 }
 
 enum ProductContentTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -424,6 +441,29 @@ enum RoleDeviceActionEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case UPDATE_DURATION = 'update_duration';
 }
 
+enum SelfcareLockedContentTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case VOD = 'vod';
+	case CHANNEL = 'channel';
+}
+
+enum SelfcareLogStageEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case CREATE_PAYMENT = 'create payment';
+	case CREATE_PAYMENT_RESPONSE = 'create payment response';
+	case PROCESS_PAYMENT = 'process payment';
+	case PROCESS_PAYMENT_RESPONSE = 'process payment response';
+	case RENEW_PAYMENT = 'renew payment';
+	case RENEW_PAYMENT_RESPONSE = 'renew payment response';
+	case CALLBACK = 'callback';
+	case CALLBACK_RESPONSE = 'callback response';
+	case RENEW_CALLBACK = 'renew callback';
+	case RENEW_CALLBACK_RESPONSE = 'renew callback response';
+	case CANCEL_SUBSCRIPTION = 'cancel subscription';
+	case CANCEL_SUBSCRIPTION_RESPONSE = 'cancel subscription response';
+	case STRIPE_WEBHOOK = 'stripe webhook';
+}
+
 enum SelfcareOrderStatusEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 {
 	case PENDING = 'pending';
@@ -437,6 +477,13 @@ enum SelfcarePaymentTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEn
 	case ONE_TIME = 'one-time';
 	case RECURRING = 'recurring';
 	case RENEW = 'renew';
+}
+
+enum SelfcareProductOrderingEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case ALPHABET = 'alphabet';
+	case PRICE_ASCENDING = 'price_ascending';
+	case PRICE_DESCENDING = 'price_descending';
 }
 
 enum SelfcareProductTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
@@ -476,6 +523,13 @@ enum TimeUnitEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
 	case DAYS = 'days';
 	case MONTHS = 'months';
 	case YEARS = 'years';
+}
+
+enum TvModeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum
+{
+	case TV_MODE_STANDARD = 'tv_mode_standard';
+	case TV_MODE_SIMPLE = 'tv_mode_simple';
+	case TV_MODE_ZAPPER = 'tv_mode_zapper';
 }
 
 enum TvodsBundleDiscountTypeEnum: string implements \Motv\Connector\Sms\Enums\MotvEnum

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Tue, 26 Aug 2025 10:50:14
+ * Generated on Wed, 9 Sep 2026 12:28:40
  * Part moTV.eu SDK integration kit
  */
 
@@ -39,6 +39,17 @@ class CategoryEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public \Motv\Connector\Sms\Enums\Sms\CategoriesTypeEnum $categories_type;
 	public ?string $categories_query;
 	public int $categories_active;
+}
+
+class ConnectivityResultEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public string $name;
+	public string $url;
+	public bool $reachable;
+	public ?int $httpCode;
+	public float $durationSeconds;
+	public ?string $error;
+	public string $response;
 }
 
 class CountryEntity extends \Motv\Connector\Sms\Entities\MotvEntity
@@ -209,6 +220,14 @@ class DeviceMotvEntity extends DeviceEntity
 	public ?string $motv_portals_name;
 }
 
+class DeviceMtnEntity extends DeviceEntity
+{
+	public int $device_mtn_id;
+	public int $device_mtn_viewers_id;
+	public string $device_mtn_phone;
+	public int $device_mtn_motv_portals_id;
+}
+
 class DevicePairedCryptoguardEntity extends DeviceEntity
 {
 	public int $device_paired_cryptoguard_id;
@@ -375,6 +394,12 @@ class GalleryImageEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public string $images_path;
 }
 
+class GeolocationEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public string $country;
+	public int $countriesId;
+}
+
 class GroupActionEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $group_action_id;
@@ -440,6 +465,13 @@ class LogReceiptTemplateEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public int $log_templates_groups_invoices_id;
 }
 
+class MotvAccountPurchaseBannerEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public ?string $image;
+	public ?string $image_tablet;
+	public ?string $deep_link;
+}
+
 class MotvCustomerAcountLabelsEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public array $loginLabels;
@@ -476,6 +508,7 @@ class MotvPortalEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public ?string $motv_portals_facebook_client_id;
 	public int $motv_portals_registration_enabled;
 	public \Motv\Connector\Sms\Enums\Sms\MotvPortalIOSRegistrationEnabledEnum $motv_portals_ios_registration_enabled;
+	public \Motv\Connector\Sms\Enums\Sms\MotvRegistrationSocialRegistrationCompletionEnum $device_motv_social_registration_completion;
 	public int $motv_portals_account_update_enabled;
 	public ?string $motv_portals_custom_registration_close;
 	public ?string $motv_portals_custom_registration_open;
@@ -497,6 +530,9 @@ class MotvPortalEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public int $motv_portals_lost_password_template;
 	public int $motv_portals_lost_pin_template;
 	public int $motv_portals_avatar;
+	public ?int $motv_portals_image;
+	public ?int $motv_portals_image_tablet;
+	public ?string $motv_portals_deep_link;
 	public int $motv_portals_lost_password_enabled;
 	public ?string $motv_portals_portal_apple_client_id;
 	public ?int $motv_portals_welcome_template;
@@ -640,6 +676,10 @@ class ProductEntity extends ParentProductEntity
 	/** @var array<int> */
 	public array $products_payment_gateways;
 	public ?int $products_data_bundles_id;
+	public int $products_geoblock_enabled;
+
+	/** @var array<int> */
+	public array $countries_products;
 }
 
 class ProductsGroupEntity extends \Motv\Connector\Sms\Entities\MotvEntity
@@ -661,6 +701,7 @@ class ProductsPriceEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public float $selling_price;
 	public float $original_price_retail;
 	public float $selling_price_retail;
+	public ?int $products_prices_trial_days;
 }
 
 class ReportColumnEntity extends \Motv\Connector\Sms\Entities\MotvEntity
@@ -802,6 +843,35 @@ class ScheduleEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public ?string $schedule_image;
 }
 
+class SelfcareLogEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $selfcare_log_id;
+	public int $selfcare_log_session_id;
+	public \Motv\Connector\Sms\Enums\Sms\SelfcareLogStageEnum $selfcare_log_stage;
+	public ?int $selfcare_log_selfcare_orders_id;
+	public ?int $selfcare_log_selfcare_orders_number;
+	public ?string $selfcare_log_selfcare_orders_reference;
+	public \DateTimeImmutable $selfcare_log_created;
+	public ?string $selfcare_log_content;
+	public ?string $selfcare_log_content_type;
+	public ?string $selfcare_log_message;
+	public ?int $selfcare_log_viewers_id;
+	public ?int $selfcare_log_payment_gateways_id;
+	public ?\Motv\Connector\Sms\Enums\Sms\PaymentGatewaysEnum $selfcare_log_payment_gateways_type;
+	public ?string $device_motv_login;
+}
+
+class SelfcareLogSessionEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public int $selfcare_log_session_id;
+	public \Motv\Connector\Sms\Enums\Sms\SelfcareLogStageEnum $selfcare_log_stage;
+	public \DateTimeImmutable $selfcare_log_created;
+	public ?string $device_motv_login;
+
+	/** @var array<SelfcareLogEntity> */
+	public array $logs;
+}
+
 class SelfcareOrderCheckEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 {
 	public int $selfcare_orders_checks_id;
@@ -845,7 +915,19 @@ class SelfcareOrderEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public ?string $selfcare_orders_dpo_data;
 	public ?\Motv\Connector\Sms\Enums\Sms\MotvDeviceEnum $selfcare_orders_motv_devices_type;
 	public ?int $selfcare_orders_data_bundles_id;
+	public ?string $selfcare_orders_stripe_email;
+	public ?string $selfcare_orders_stripe_customer;
+	public ?string $selfcare_orders_stripe_subscription;
+	public ?string $selfcare_orders_stripe_invoice;
 	public ?\DateTimeImmutable $selfcare_orders_processed;
+	public ?\DateTimeImmutable $selfcare_orders_stripe_from;
+	public ?\DateTimeImmutable $selfcare_orders_stripe_to;
+	public ?\Motv\Connector\Sms\Enums\Sms\InitPaymentTypeEnum $selfcare_orders_init_payment_type;
+	public ?int $selfcare_orders_trial_days;
+	public ?string $selfcare_orders_customer_email;
+	public ?string $selfcare_orders_flutterwave_customer_id;
+	public ?string $selfcare_orders_flutterwave_payment_method_id;
+	public ?string $selfcare_orders_flutterwave_charge_id;
 }
 
 class SelfcareOrdersProductEntity extends \Motv\Connector\Sms\Entities\MotvEntity
@@ -897,11 +979,21 @@ class SmtpServerEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public ?int $config_smtp_servers_port;
 	public \Motv\Connector\Sms\Enums\Sms\SmtpSecureTypeEnum $config_smtp_servers_secure;
 	public string $config_smtp_servers_host;
-	public string $config_smtp_servers_login;
-	public string $config_smtp_servers_password;
+	public ?string $config_smtp_servers_login;
+	public ?string $config_smtp_servers_password;
 	public ?string $config_smtp_servers_address_from;
 	public string $config_smtp_servers_description;
 	public string $queueName;
+}
+
+class StripeRenewEntity extends \Motv\Connector\Sms\Entities\MotvEntity
+{
+	public ?string $customersId;
+	public ?string $subscriptionsId;
+	public string $invoicesId;
+	public \Motv\Connector\Sms\Enums\Sms\SelfcareOrderStatusEnum $status;
+	public \DateTimeImmutable $from;
+	public \DateTimeImmutable $to;
 }
 
 class SubscriptionEntity extends \Motv\Connector\Sms\Entities\MotvEntity
@@ -926,6 +1018,7 @@ class SubscriptionEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public ?\DateTimeImmutable $viewers_bouquets_cancelled_on;
 	public ?int $viewers_bouquets_invoice_id;
 	public ?int $bouquets_is_active;
+	public int $viewers_bouquets_from_selfcare;
 }
 
 class TicketEntity extends \Motv\Connector\Sms\Entities\MotvEntity
@@ -1037,6 +1130,7 @@ class TvodProductEntity extends ParentProductEntity
 {
 	public int $tvods_products_id;
 	public string $tvods_products_name;
+	public ?string $tvods_products_code;
 	public int $tvods_products_unit_length;
 	public \Motv\Connector\Sms\Enums\Sms\TimeUnitEnum $tvods_products_unit;
 	public int $tvods_products_is_active;
@@ -1056,6 +1150,10 @@ class TvodProductEntity extends ParentProductEntity
 
 	/** @var array<int> */
 	public array $tvods_products_payment_gateways;
+	public int $tvods_products_geoblock_enabled;
+
+	/** @var array<int> */
+	public array $countries_tvods_products;
 }
 
 class TvodProductExtendedEntity extends TvodProductEntity
@@ -1139,7 +1237,7 @@ class DocumentationEntityEntity extends \Motv\Connector\Sms\Entities\MotvEntity
 	public string $name;
 	public string $shortName;
 	public bool $input;
-	public ?DocumentationEntityEntity $parent;
+	public ?self $parent;
 
 	/** @var array<EntityEntity> */
 	public array $properties;
