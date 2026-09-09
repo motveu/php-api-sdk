@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Tue, 26 Aug 2025 10:48:48
+ * Generated on Wed, 9 Sep 2026 9:59:49
  * Part moTV.eu SDK integration kit
  */
 
@@ -697,6 +697,14 @@ class PlaylistCannotBeRemovedException extends \Motv\Connector\Mw\Exceptions\Api
 }
 
 /**
+ * EPG Rating cannot be deleted
+ */
+class EpgRatingCannotBeDeletedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 811;
+}
+
+/**
  * Unknown channel
  */
 class ChannelUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -977,6 +985,14 @@ class TemplateDuplicateNameException extends \Motv\Connector\Mw\Exceptions\ApiEx
 }
 
 /**
+ * Minimum profile bitrate is higher then template's maximum mobile bitrate. That would result in zero playbable profiles on mobile devices.
+ */
+class TemplateMobileBitrateInvalidException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 1303;
+}
+
+/**
  * Customer has exceeded allowed recording length
  */
 class RecordingExceededLengthException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1238,6 +1254,14 @@ class HomepageFullwidthLiveEpgEventHasToHaveEpgEventException extends \Motv\Conn
 class HomepageFullwidthBannerCannotBePlaylistViewException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 2115;
+}
+
+/**
+ * Vendor TV mode cannot be deactivated
+ */
+class VendorTvModeCannotBeDeactivatedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 2116;
 }
 
 /**
@@ -1649,6 +1673,14 @@ class AdvertAdmobUnitSupportOnlyImageBottomPositionException extends \Motv\Conne
 }
 
 /**
+ * Advert unit time restriction overlap Exception
+ */
+class AdvertUnitTimeRestrictionOverlapException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 4011;
+}
+
+/**
  * Unknown provider
  */
 class ProviderUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
@@ -1782,6 +1814,46 @@ class VendorAppPortalSectionNotCompletedException extends \Motv\Connector\Mw\Exc
 class VendorAppSamsunLgSectionNotCompletedException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 5002;
+}
+
+/**
+ * Android keystore can be generated only for Android and AndroidTV apps exception
+ */
+class VendorAppAndroidKeystoreCanBeGeneratedOnlyForAndroidException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5003;
+}
+
+/**
+ * Android keystore generation failed exception
+ */
+class VendorAppAndroidKeystoreGenerationFailedException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5004;
+}
+
+/**
+ * Android keystore unknown exception
+ */
+class VendorAppAndroidKeystoreUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5005;
+}
+
+/**
+ * App Store Connect Team ID can be updated only for iOs and tvOS
+ */
+class VendorAppAppStoreConnectTeamIdCanBeUpdatedOnlyForIOsAndTvOsException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5006;
+}
+
+/**
+ * Roku App Package unknown exception
+ */
+class VendorAppRokuAppPackageUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 5007;
 }
 
 /**
@@ -2118,4 +2190,28 @@ class SmtpCannotBeDeletedException extends \Motv\Connector\Mw\Exceptions\ApiExce
 class SmtpMessageSendingFailedException extends \Motv\Connector\Mw\Exceptions\ApiException
 {
 	protected $code = 6302;
+}
+
+/**
+ * Unknown AI chat conversation
+ */
+class AiChatConversationUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 7000;
+}
+
+/**
+ * Unknown external transcoder
+ */
+class ExternalTsUnknownException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 7100;
+}
+
+/**
+ * Duplicate external transcoder edge prefix
+ */
+class ExternalTsDuplicateEdgePrefixException extends \Motv\Connector\Mw\Exceptions\ApiException
+{
+	protected $code = 7101;
 }

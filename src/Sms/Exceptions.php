@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Tue, 26 Aug 2025 10:50:14
+ * Generated on Wed, 9 Sep 2026 10:01:24
  * Part moTV.eu SDK integration kit
  */
 
@@ -374,7 +374,7 @@ class ProductUnknownProductException extends \Motv\Connector\Sms\Exceptions\ApiE
 }
 
 /**
- * Product initial price has to be higher then 0 exception
+ * Product initial price and trial period have to be higher then 0 exception
  */
 class ProductInitPriceHasToBeHigherThenZeroException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
@@ -411,6 +411,14 @@ class UnknownProductPriceInCurrencyException extends \Motv\Connector\Sms\Excepti
 class ProductCannotBeRemovedException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 265;
+}
+
+/**
+ * Product price has to be zero for free prepay products
+ */
+class ProductPriceHasToBeZeroForFreePrepayProductsException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 266;
 }
 
 /**
@@ -766,6 +774,22 @@ class SubscriptionCannotCancelException extends \Motv\Connector\Sms\Exceptions\A
 }
 
 /**
+ * Subscription cannot resume exception
+ */
+class SubscriptionCannotResumeException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 504;
+}
+
+/**
+ * Subscription cannot update duration exception
+ */
+class SubscriptionCannotUpdateDurationException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 505;
+}
+
+/**
  * Sale error exception
  */
 class SaleErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -947,6 +971,14 @@ class EpgConfigMissingValueException extends \Motv\Connector\Sms\Exceptions\ApiE
 class EpgUnknownCategoryException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 1524;
+}
+
+/**
+ * Geolocation library not installed, please contact moTV.eu team for resolution
+ */
+class DrmIpCountryDatabaseErrorException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 2604;
 }
 
 /**
@@ -1414,6 +1446,22 @@ class SelfcareSubscriptionDuplicateException extends \Motv\Connector\Sms\Excepti
 }
 
 /**
+ * Customer is not in a testing category
+ */
+class CustomerIsNotInTestingCategoryException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20610;
+}
+
+/**
+ * Selfcare log unknown exception
+ */
+class SelfcareLogUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20611;
+}
+
+/**
  * Currency unknown exception
  */
 class CurrencyUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
@@ -1483,6 +1531,54 @@ class MotvRegistrationFormContactTypeCannotBeDeletedException extends \Motv\Conn
 class MotvRegistrationFormAddressTypeCannotBeDeletedException extends \Motv\Connector\Sms\Exceptions\ApiException
 {
 	protected $code = 20905;
+}
+
+/**
+ * moTV registration form category can be type of checkbox or radio exception
+ */
+class MotvRegistrationFormCategoriesCanBeOnlyTypeOfCheckboxOrRadioException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 20906;
+}
+
+/**
+ * Invalid MTN phone number exception
+ */
+class InvalidMtnPhoneNumberException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 21000;
+}
+
+/**
+ * MTN OTP API failed exception
+ */
+class MtnOtpApiFailedException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 21001;
+}
+
+/**
+ * MTN unknown device exception
+ */
+class DeviceMtnUnknownException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 21002;
+}
+
+/**
+ * MTN invalid OTP exception
+ */
+class MtnInvalidOtpException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 21003;
+}
+
+/**
+ * MTN expired OTP exception
+ */
+class MtnExpiredOtpException extends \Motv\Connector\Sms\Exceptions\ApiException
+{
+	protected $code = 21004;
 }
 
 

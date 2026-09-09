@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Tue, 26 Aug 2025 10:48:46
+ * Generated on Wed, 9 Sep 2026 9:59:47
  * Part moTV.eu SDK integration kit
  */
 
@@ -22,7 +22,7 @@ class Advert
 
 
 	/**
-	 * @return array{rows: Entities\Mw\AdvertCampaignEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\AdvertCampaignEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\CampaignUnknownException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -103,7 +103,7 @@ class Advert
 
 
 	/**
-	 * @return array{impressionsByDay: array<string,float>, totalImpressions: int}
+	 * @return array{"impressionsByDay": array<string,float>, "totalImpressions": int}
 	 * @throws Exceptions\Mw\AdvertUnknownUnitException
 	 * @throws Exceptions\Mw\CampaignUnknownException
 	 * @throws Exceptions\Mw\CampaignUnknownSectionException
@@ -208,7 +208,7 @@ class Advert
 
 
 	/**
-	 * @return array{rows: Entities\Mw\AdvertUnitEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\AdvertUnitEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\AdvertUnknownUnitException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -238,6 +238,7 @@ class Advert
 	/**
 	 * @throws Exceptions\Mw\CampaignUnknownException
 	 * @throws Exceptions\Mw\CampaignUnknownSectionException
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 */
 	public function updateCampaignSection(
 		int $campaignsId,
@@ -254,6 +255,7 @@ class Advert
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
 	 * @throws Exceptions\Mw\AdvertVideoUnitDoesNotSupportRokuWebosTizenRdkException
 	 * @throws Exceptions\Mw\AdvertAdmobUnitSupportOnlyImageBottomPositionException
+	 * @throws Exceptions\Mw\AdvertUnitTimeRestrictionOverlapException
 	 */
 	public function updateUnit(?int $unitsId, InputEntities\Mw\AdvertUnitEntity $data): int
 	{
@@ -316,7 +318,10 @@ class AdvertHomepage
 	/**
 	 * @throws Exceptions\Mw\AdvertHomepageUnknownException
 	 */
-	public function getData(int $advertHomepageId, string $language = 'en'): Entities\Mw\AdvertHomepageEntity
+	public function getData(
+		int $advertHomepageId,
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+	): Entities\Mw\AdvertHomepageEntity
 	{
 		return $this->connector->call("AdvertHomepage", "getData", get_defined_vars());
 	}
@@ -342,7 +347,7 @@ class AdvertHomepage
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-		string $language = 'en',
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("AdvertHomepage", "selection", get_defined_vars());
@@ -411,7 +416,7 @@ class App
 
 
 	/**
-	 * @return array{rows: Entities\Mw\AppEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\AppEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -489,7 +494,7 @@ class AppManager
 
 
 	/**
-	 * @return array<int,array<string,array<string,array{updatesBehind: int, lastVersion: Entities\Mw\FileManagerVersionEntity|null}>>>
+	 * @return array<int,array<string,array<string,array{"updatesBehind": int, "lastVersion": Entities\Mw\FileManagerVersionEntity|null}>>>
 	 */
 	public function getActualVersions(): array
 	{
@@ -512,7 +517,7 @@ class AppManager
 
 
 	/**
-	 * @return array<string,array{app: Entities\Mw\AppManagerEntity, latestFiles: Entities\Mw\FileManagerVersionEntity[]}[]>
+	 * @return array<string,array{"app": Entities\Mw\AppManagerEntity, "latestFiles": Entities\Mw\FileManagerVersionEntity[]}[]>
 	 */
 	public function getAppsByVendors(): array
 	{
@@ -560,7 +565,7 @@ class AppManager
 
 
 	/**
-	 * @return array<string,array{appManagerId: int, files: Entities\Mw\FileManagerEntity[]}>
+	 * @return array<string,array{"appManagerId": int, "files": Entities\Mw\FileManagerEntity[]}>
 	 * @throws Exceptions\Mw\VendorRightException
 	 */
 	public function getFilesByVersionsFromVendorDevicePackage(
@@ -578,7 +583,7 @@ class AppManager
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 * @throws Exceptions\Mw\TemplateErrorFillingException
 	 */
-	public function getInstructionsBody(int $appManagerId, ?string $emailAddress = null): string
+	public function getInstructionsBody(int $appManagerId): string
 	{
 		return $this->connector->call("AppManager", "getInstructionsBody", get_defined_vars());
 	}
@@ -600,7 +605,7 @@ class AppManager
 
 
 	/**
-	 * @return array{rows: Entities\Mw\AppManagerEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\AppManagerEntity[], 'row_count': int}
 	 * @throws Exceptions\Mw\AppManagerUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -619,11 +624,8 @@ class AppManager
 
 	/**
 	 * @throws Exceptions\Mw\AppManagerUnknownException
-	 * @throws Exceptions\Mw\VendorUnknownException
-	 * @throws Exceptions\Mw\BoardApiException
-	 * @throws Exceptions\Mw\TemplateErrorFillingException
 	 */
-	public function sendNotifications(int $appManagerId, bool $isTest = false): void
+	public function sendNotifications(int $appManagerId): void
 	{
 		$this->connector->call("AppManager", "sendNotifications", get_defined_vars());
 	}
@@ -730,7 +732,7 @@ class Book
 
 
 	/**
-	 * @return array{rows: Entities\Mw\BookEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\BookEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -749,6 +751,7 @@ class Book
 	/**
 	 * @throws Exceptions\Mw\BookUnknownBookException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 */
 	public function update(?int $booksId, InputEntities\Mw\BookEntity $data): int
 	{
@@ -829,6 +832,7 @@ class Category
 
 	/**
 	 * @throws Exceptions\Mw\SeasonsNumberDuplicateException
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 */
 	public function newSeason(int $categoriesId, int $season): int
 	{
@@ -846,7 +850,7 @@ class Category
 
 
 	/**
-	 * @return array{rows: Entities\Mw\SeasonEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\SeasonEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -863,7 +867,7 @@ class Category
 
 
 	/**
-	 * @return array{rows: Entities\Mw\CategoryAdminEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\CategoryAdminEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -1006,7 +1010,7 @@ class Channel
 
 
 	/**
-	 * @return array{rows: Entities\Mw\DvbRegionEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\DvbRegionEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -1023,7 +1027,7 @@ class Channel
 
 
 	/**
-	 * @return array{raw: string, programs: array{programId: string, programName: string, programProvider: string, streams: array<string,array{mapping: string, pid: string, language: string, type: string, data: string}[]>}[]}
+	 * @return array{raw: string, programs: array{programId: string, programName: string, programProvider: string, streams: array<string,array{0: string, mapping: string, pid: string, language: string, type: string, data: string}[]>}[]}
 	 * @throws Exceptions\Mw\ChannelFfprobeSaveFirstException
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\TranscoderUnableToContactException
@@ -1055,6 +1059,15 @@ class Channel
 	public function getAllChannelMonitoringData(?int $transcodersId = null): array
 	{
 		return $this->connector->call("Channel", "getAllChannelMonitoringData", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<int>
+	 */
+	public function getAvailablePackagesForChannel(int $channelsId): array
+	{
+		return $this->connector->call("Channel", "getAvailablePackagesForChannel", get_defined_vars());
 	}
 
 
@@ -1091,6 +1104,15 @@ class Channel
 	public function getChannelsAlerts(): array
 	{
 		return $this->connector->call("Channel", "getChannelsAlerts", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ChannelUnknownException
+	 */
+	public function getChannelsName(int $channelsId): string
+	{
+		return $this->connector->call("Channel", "getChannelsName", get_defined_vars());
 	}
 
 
@@ -1168,10 +1190,9 @@ class Channel
 
 	/**
 	 * @return array<Entities\Mw\SubscribedChannelInternalEntity>
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function getLockedChannels(
-		int $profilesId,
+		Entities\Mw\ProfileEntity $profile,
 		InputEntities\Mw\CustomerDeviceEntity $device,
 		?Enums\Mw\ChannelTypeEnum $type = null,
 		bool $whitelisting = true,
@@ -1225,13 +1246,12 @@ class Channel
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\DeviceUnknownException
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 * @param array<int[]> $preferredEdgesStoragesIds
 	 * @param array<int[]> $nonpreferredEdgesStoragesIds
 	 */
 	public function getStreamUrl(
-		int $profilesId,
+		Entities\Mw\ProfileEntity $profile,
 		InputEntities\Mw\CustomerDeviceEntity $device,
 		int $channelsId,
 		?Enums\Mw\ChannelManifestTypeEnum $type = null,
@@ -1244,7 +1264,7 @@ class Channel
 		array $preferredEdgesStoragesIds = [],
 		array $nonpreferredEdgesStoragesIds = [],
 		bool $bb8Ready = false,
-		string $language = 'en',
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
 		?int $devicesId = null,
 	): Entities\Mw\StreamUrlEntity
 	{
@@ -1258,13 +1278,12 @@ class Channel
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 * @throws Exceptions\Mw\DeviceUnknownException
 	 * @throws Exceptions\Mw\EpgUnknownEpgEventException
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 * @param array<int[]> $preferredEdgesStoragesIds
 	 * @param array<int[]> $nonpreferredEdgesStoragesIds
 	 */
 	public function getStreamUrlV3(
-		int $profilesId,
+		Entities\Mw\ProfileEntity $profile,
 		InputEntities\Mw\CustomerDeviceEntity $device,
 		int $channelsId,
 		?Enums\Mw\ChannelManifestTypeEnum $type,
@@ -1277,7 +1296,7 @@ class Channel
 		array $preferredEdgesStoragesIds = [],
 		array $nonpreferredEdgesStoragesIds = [],
 		bool $bb8Ready = false,
-		string $language = 'en',
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
 		?int $devicesId = null,
 	): Entities\Mw\StreamUrlV2Entity
 	{
@@ -1287,10 +1306,9 @@ class Channel
 
 	/**
 	 * @return array<Entities\Mw\SubscribedChannelInternalEntity>
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function getSubscribedChannels(
-		int $profilesId,
+		Entities\Mw\ProfileEntity $profile,
 		?InputEntities\Mw\CustomerDeviceEntity $device,
 		?Enums\Mw\ChannelTypeEnum $type = null,
 		bool $whitelisting = true,
@@ -1305,10 +1323,9 @@ class Channel
 
 	/**
 	 * @return array<Entities\Mw\SubscribedChannelLiteEntity>
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function getSubscribedChannelsLite(
-		int $profilesId,
+		Entities\Mw\ProfileEntity $profile,
 		InputEntities\Mw\CustomerDeviceEntity $device,
 		bool $mcastOnly = false,
 		bool $bcastOnly = false,
@@ -1322,14 +1339,17 @@ class Channel
 	/**
 	 * @throws Exceptions\Mw\ChannelUnknownException
 	 */
-	public function getUnicast(int $channelsUnicastId, string $language = 'en'): Entities\Mw\ChannelUnicastEntity
+	public function getUnicast(
+		int $channelsUnicastId,
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+	): Entities\Mw\ChannelUnicastEntity
 	{
 		return $this->connector->call("Channel", "getUnicast", get_defined_vars());
 	}
 
 
 	/**
-	 * @return array{video: int, audio: int}[]
+	 * @return array{"video": int, "audio": int, "codec": Enums\Mw\VideoInputCodecEnum|null}[]
 	 */
 	public function getUnicastFfprobes(): array
 	{
@@ -1375,7 +1395,7 @@ class Channel
 
 
 	/**
-	 * @return array{rows: Entities\Mw\ChannelEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\ChannelEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -1580,7 +1600,7 @@ class ChannelCategory
 
 
 	/**
-	 * @return array{rows: Entities\Mw\ChannelCategoryEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\ChannelCategoryEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\ChannelCategoryUnknownException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -1616,6 +1636,23 @@ class Config
 	public function __construct(AdminConnector $connector)
 	{
 		$this->connector = $connector;
+	}
+
+
+	/**
+	 * @return array{'rows': Entities\Mw\ExternalTsEntity[], 'row_count': int}
+	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
+	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
+	 */
+	public function externalTsSelection(
+		array $where = [],
+		?string $orderColumn = null,
+		bool $orderAscending = true,
+		?int $page = null,
+		?int $pageLimit = null,
+	): array
+	{
+		return $this->connector->call("Config", "externalTsSelection", get_defined_vars());
 	}
 
 
@@ -1667,6 +1704,24 @@ class Config
 	public function getDefaultMetadataLanguage(): Enums\Mw\LanguageEnum
 	{
 		return $this->connector->call("Config", "getDefaultMetadataLanguage", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ExternalTsUnknownException
+	 */
+	public function getExternalTs(int $externalTsId): Entities\Mw\ExternalTsEntity
+	{
+		return $this->connector->call("Config", "getExternalTs", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<string>
+	 */
+	public function getExternalTsPairs(): array
+	{
+		return $this->connector->call("Config", "getExternalTsPairs", get_defined_vars());
 	}
 
 
@@ -1752,7 +1807,7 @@ class Config
 
 
 	/**
-	 * @return array{rows: Entities\Mw\RemoteMwEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\RemoteMwEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -1775,6 +1830,16 @@ class Config
 	public function update(array $data): array
 	{
 		return $this->connector->call("Config", "update", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\ExternalTsUnknownException
+	 * @throws Exceptions\Mw\ExternalTsDuplicateEdgePrefixException
+	 */
+	public function updateExternalTs(?int $externalTsId, InputEntities\Mw\ExternalTsEntity $data): int
+	{
+		return $this->connector->call("Config", "updateExternalTs", get_defined_vars());
 	}
 
 
@@ -1824,7 +1889,7 @@ class Country
 
 
 	/**
-	 * @return array{id: int, text: string}[]
+	 * @return list<array{'id': int, 'text': string}>
 	 */
 	public function searchCities(string $search): array
 	{
@@ -1916,7 +1981,7 @@ class Customer
 
 
 	/**
-	 * @return array{customers_mac_id: int, customers_mac_mac: string, customers_mac_last_used: \DateTimeImmutable|null}[]
+	 * @return list<array{customers_mac_id: int, customers_mac_mac: string, customers_mac_last_used: \DateTimeImmutable|null}>
 	 * @throws Exceptions\Mw\CustomerUnknownException
 	 */
 	public function getMacAddresses(int $customersId): array
@@ -1925,18 +1990,18 @@ class Customer
 	}
 
 
-	public function getUsageHistory(int $customersId): array
-	{
-		return $this->connector->call("Customer", "getUsageHistory", get_defined_vars());
-	}
-
-
+	/**
+	 * @throws Exceptions\Mw\CustomerUnknownException
+	 */
 	public function removeAllMacAddresses(int $customersId): void
 	{
 		$this->connector->call("Customer", "removeAllMacAddresses", get_defined_vars());
 	}
 
 
+	/**
+	 * @throws Exceptions\Mw\CustomerUnknownException
+	 */
 	public function removeMacAddress(int $customersMacAddressId): void
 	{
 		$this->connector->call("Customer", "removeMacAddress", get_defined_vars());
@@ -1944,7 +2009,7 @@ class Customer
 
 
 	/**
-	 * @return array{customers_id: int, customers_login: string, customers_vendors_id: int}[]
+	 * @return list<array{customers_id: int, customers_login: string, customers_vendors_id: int}>
 	 * @throws Exceptions\Mw\CustomerTooManyFoundException
 	 */
 	public function search(
@@ -2003,7 +2068,7 @@ class Detector
 
 
 	/**
-	 * @return array{rows: Entities\Mw\DetectorEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\DetectorEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -2069,7 +2134,7 @@ class Device
 
 
 	/**
-	 * @return array{rows: Entities\Mw\DeviceEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\DeviceEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\DeviceUnknownException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -2142,7 +2207,6 @@ class Documentation
 	/**
 	 * @throws Exceptions\ApiSupport\DocumentationModelNotFoundException
 	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
-	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
 	 */
 	public function getAdminApiModel(string $type): Entities\ApiSupport\DocumentationApiEntity
 	{
@@ -2248,7 +2312,6 @@ class Documentation
 	/**
 	 * @throws Exceptions\ApiSupport\DocumentationModelNotFoundException
 	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
-	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
 	 */
 	public function getPublicApiModel(string $type): Entities\ApiSupport\DocumentationApiEntity
 	{
@@ -2257,7 +2320,7 @@ class Documentation
 
 
 	/**
-	 * @return array<Entities\ApiSupport\DocumentationEntityEntity[]|Entities\ApiSupport\DocumentationEnumEntity[]|Entities\ApiSupport\DocumentationApiEntity[]|array<int,Entities\ApiSupport\ErrorCodeEntity>|array{model: string, method: Entities\ApiSupport\DocumentationMethodEntity}[]>
+	 * @return array<Entities\ApiSupport\DocumentationEntityEntity[]|Entities\ApiSupport\DocumentationEnumEntity[]|Entities\ApiSupport\DocumentationApiEntity[]|array<int,Entities\ApiSupport\ErrorCodeEntity>|array{"model": string, "method": Entities\ApiSupport\DocumentationMethodEntity}[]>
 	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
 	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
 	 */
@@ -2280,7 +2343,7 @@ class Drm
 
 
 	/**
-	 * @return array{com.widevine.alpha: string, com.apple.fps.1_0: string, com.apple.fps: string, roku?: string}
+	 * @return array{'com.widevine.alpha': string, 'com.apple.fps.1_0': string, 'com.apple.fps': string, 'roku'?: string}
 	 */
 	public function getDrms(
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
@@ -2341,7 +2404,7 @@ class Edge
 
 
 	/**
-	 * @return array{edges_id: int, edges_url: string, storages_edge_mount: string, channels_unicast_directory: string, drm: Enums\Mw\TemplateEncryptionEnum[]}[]
+	 * @return array{'edges_id': int, 'edges_url': string, 'storages_edge_mount': string, 'channels_unicast_directory': string, drm: Enums\Mw\TemplateEncryptionEnum[]}[]
 	 */
 	public function getEdgesByChannelUnicast(int $channelsUnicastId, Enums\Mw\ContentTypeEnum $contentType): array
 	{
@@ -2350,7 +2413,7 @@ class Edge
 
 
 	/**
-	 * @return array{edges_storages_checked: ?\DateTimeImmutable, edges_storages_available: int|null, edges_url: string, storages_name: string}[]
+	 * @return list<array{'edges_storages_checked': ?\DateTimeImmutable, 'edges_storages_available': int|null, 'edges_url': string, 'storages_name': string}>
 	 */
 	public function getEdgesStorages(): array
 	{
@@ -2378,7 +2441,7 @@ class Edge
 
 
 	/**
-	 * @return array{rows: Entities\Mw\EdgeEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\EdgeEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -2495,8 +2558,8 @@ class Epg
 		?Entities\Mw\ProfileEntity $profile,
 		int $timestamp,
 		?array $channels = null,
-		$from = null,
-		$to = null,
+		mixed $from = null,
+		mixed $to = null,
 		?array $ids = null,
 	): array
 	{
@@ -2526,7 +2589,7 @@ class Epg
 
 
 	/**
-	 * @return array{id: int, text: string}[]
+	 * @return list<array{'id': int, 'text': string}>
 	 */
 	public function search(string $search): array
 	{
@@ -2606,7 +2669,20 @@ class EpgPlaylist
 	/**
 	 * @throws Exceptions\Mw\EpgUnknownPlaylistException
 	 */
-	public function getData(int $epgPlaylistsId, bool $includeItemsInfo = false): Entities\Mw\EpgPlaylistEntity
+	public function getAdminData(int $epgPlaylistsId, bool $includeItemsInfo = false): Entities\Mw\EpgPlaylistAdminEntity
+	{
+		return $this->connector->call("EpgPlaylist", "getAdminData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\EpgUnknownPlaylistException
+	 */
+	public function getData(
+		int $epgPlaylistsId,
+		bool $includeItemsInfo = false,
+		?Enums\Mw\LanguageEnum $language = null,
+	): Entities\Mw\EpgPlaylistEntity
 	{
 		return $this->connector->call("EpgPlaylist", "getData", get_defined_vars());
 	}
@@ -2619,6 +2695,15 @@ class EpgPlaylist
 	public function getEventPlaylists(int $epgEventsId): array
 	{
 		return $this->connector->call("EpgPlaylist", "getEventPlaylists", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<int,array<int,string>>
+	 */
+	public function getHomepagesUsage(): array
+	{
+		return $this->connector->call("EpgPlaylist", "getHomepagesUsage", get_defined_vars());
 	}
 
 
@@ -2642,7 +2727,7 @@ class EpgPlaylist
 
 
 	/**
-	 * @return array{rows: Entities\Mw\EpgPlaylistEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\EpgPlaylistAdminEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\EpgUnknownPlaylistException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -2661,6 +2746,7 @@ class EpgPlaylist
 
 	/**
 	 * @throws Exceptions\Mw\EpgUnknownPlaylistException
+	 * @throws Exceptions\Mw\MetadataLanguageDefaultException
 	 */
 	public function update(?int $epgPlaylistsId, InputEntities\Mw\EpgPlaylistEntity $data): int
 	{
@@ -2693,6 +2779,7 @@ class EpgRating
 
 	/**
 	 * @throws Exceptions\Mw\EpgUnknownRatingException
+	 * @throws Exceptions\Mw\EpgRatingCannotBeDeletedException
 	 */
 	public function delete(int $epgRatingId): void
 	{
@@ -2728,7 +2815,16 @@ class EpgRating
 
 
 	/**
-	 * @return array{rows: Entities\Mw\EpgRatingEntity[], row_count: int}
+	 * @return array<string|null>
+	 */
+	public function getPairs(): array
+	{
+		return $this->connector->call("EpgRating", "getPairs", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': Entities\Mw\EpgRatingEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -2794,7 +2890,7 @@ class Faq
 
 
 	/**
-	 * @return array{rows: Entities\Mw\FaqAdminEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\FaqAdminEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -2879,7 +2975,7 @@ class Genre
 
 
 	/**
-	 * @return array{rows: Entities\Mw\GenreAdminEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\GenreAdminEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -2904,6 +3000,158 @@ class Genre
 	public function update(?int $genresId, InputEntities\Mw\GenreEntity $data): int
 	{
 		return $this->connector->call("Genre", "update", get_defined_vars());
+	}
+}
+
+class Homepage
+{
+	/** @var AdminConnector */
+	private $connector;
+
+
+	public function __construct(AdminConnector $connector)
+	{
+		$this->connector = $connector;
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 * @throws Exceptions\Mw\VendorRightException
+	 */
+	public function checkEditRightsForVendor(int $homepagesId): void
+	{
+		$this->connector->call("Homepage", "checkEditRightsForVendor", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageDuplicatePriorityException
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 * @throws Exceptions\Mw\VendorRightException
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCanBeOnlyImagesOrPlaylistOrChannelsException
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCanHaveOnlyOneVideoOrImageOrChannelException
+	 * @throws Exceptions\Mw\HomepageMiddleFullsizePlaylistMustHavePositionException
+	 * @throws Exceptions\Mw\HomepageFullwidthLiveEpgEventHasToHaveEpgEventException
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCannotBePlaylistViewException
+	 */
+	public function duplicate(int $homepagesId): int
+	{
+		return $this->connector->call("Homepage", "duplicate", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCanBeOnlyImagesOrPlaylistOrChannelsException
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCanHaveOnlyOneVideoOrImageOrChannelException
+	 * @throws Exceptions\Mw\HomepageMiddleFullsizePlaylistMustHavePositionException
+	 * @throws Exceptions\Mw\HomepageFullwidthLiveEpgEventHasToHaveEpgEventException
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCannotBePlaylistViewException
+	 */
+	public function duplicateRow(int $rowsId): int
+	{
+		return $this->connector->call("Homepage", "duplicateRow", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<int>
+	 */
+	public function getCustomersCount(): array
+	{
+		return $this->connector->call("Homepage", "getCustomersCount", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 */
+	public function getData(int $homepagesId, bool $filtered = false): Entities\Mw\HomepageEntity
+	{
+		return $this->connector->call("Homepage", "getData", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<string>
+	 */
+	public function getPairs(): array
+	{
+		return $this->connector->call("Homepage", "getPairs", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 */
+	public function getRow(int $rowsId): Entities\Mw\HomepageRowEntity
+	{
+		return $this->connector->call("Homepage", "getRow", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 * @throws Exceptions\Mw\HomepageCannotBeRemovedException
+	 */
+	public function remove(int $homepagesId): void
+	{
+		$this->connector->call("Homepage", "remove", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 */
+	public function removeRow(int $rowsId): void
+	{
+		$this->connector->call("Homepage", "removeRow", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': Entities\Mw\HomepageEntity[], 'row_count': int}
+	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
+	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
+	 */
+	public function selection(
+		array $where = [],
+		?string $orderColumn = null,
+		bool $orderAscending = true,
+		?int $page = null,
+		?int $pageLimit = null,
+	): array
+	{
+		return $this->connector->call("Homepage", "selection", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageDuplicatePriorityException
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 * @throws Exceptions\Mw\VendorRightException
+	 */
+	public function update(?int $homepagesId, InputEntities\Mw\HomepageEntity $data): int
+	{
+		return $this->connector->call("Homepage", "update", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\HomepageUnknownHomepageException
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCanBeOnlyImagesOrPlaylistOrChannelsException
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCanHaveOnlyOneVideoOrImageOrChannelException
+	 * @throws Exceptions\Mw\HomepageMiddleFullsizePlaylistMustHavePositionException
+	 * @throws Exceptions\Mw\HomepageFullwidthLiveEpgEventHasToHaveEpgEventException
+	 * @throws Exceptions\Mw\HomepageFullwidthBannerCannotBePlaylistViewException
+	 */
+	public function updateRow(int $homepagesId, ?int $rowsId, InputEntities\Mw\HomepageRowEntity $data): int
+	{
+		return $this->connector->call("Homepage", "updateRow", get_defined_vars());
 	}
 }
 
@@ -2948,7 +3196,7 @@ class IpRange
 
 
 	/**
-	 * @return array{rows: Entities\Mw\IpRangeEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\IpRangeEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -2986,7 +3234,7 @@ class Logger
 
 
 	/**
-	 * @return array{rows: Entities\Mw\LoggerEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\LoggerEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3075,7 +3323,7 @@ class Messaging
 
 
 	/**
-	 * @return array{rows: Entities\Mw\MessagingEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\MessagingEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3095,6 +3343,7 @@ class Messaging
 	 * @throws Exceptions\Mw\CustomerUnknownException
 	 * @throws Exceptions\Mw\PushMessageSendException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 */
 	public function sendCustomerMessage(
 		int $customersId,
@@ -3120,7 +3369,7 @@ class Messaging
 
 
 	/**
-	 * @return array{rows: Entities\Mw\TopicEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\TopicEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3314,7 +3563,7 @@ class News
 
 
 	/**
-	 * @return array{rows: Entities\Mw\NewsEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\NewsEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3331,7 +3580,7 @@ class News
 
 
 	/**
-	 * @return array{rows: Entities\Mw\NewsFeedEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\NewsFeedEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3392,14 +3641,17 @@ class Onboarding
 	/**
 	 * @throws Exceptions\Mw\OnboardingUnknownException
 	 */
-	public function getData(int $onboardingId, string $language = 'en'): Entities\Mw\OnboardingEntity
+	public function getData(
+		int $onboardingId,
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+	): Entities\Mw\OnboardingEntity
 	{
 		return $this->connector->call("Onboarding", "getData", get_defined_vars());
 	}
 
 
 	/**
-	 * @return array{rows: Entities\Mw\OnboardingEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\OnboardingEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3409,7 +3661,7 @@ class Onboarding
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-		string $language = 'en',
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("Onboarding", "selection", get_defined_vars());
@@ -3449,7 +3701,7 @@ class Ota
 
 
 	/**
-	 * @return array{rows: Entities\Mw\OtaDeviceEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\OtaDeviceEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\OtaUnknownDeviceException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -3530,7 +3782,7 @@ class Ota
 
 
 	/**
-	 * @return array{rows: Entities\Mw\OtaVersionEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\OtaVersionEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\OtaUnknownVersionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -3573,6 +3825,30 @@ class Package
 
 
 	/**
+	 * @return array{name: string, image: string, description: ?string, isAvailable: bool}[]
+	 * @throws Exceptions\Mw\ProfileUnknownException
+	 */
+	public function getAvailableChannelsForPackage(int $packagesId, int $profilesId): array
+	{
+		return $this->connector->call("Package", "getAvailableChannelsForPackage", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{name: string, image: string, description: ?string, isAvailable: bool}[]
+	 * @throws Exceptions\Mw\ProfileUnknownException
+	 */
+	public function getAvailableVodsForPackage(
+		int $packagesId,
+		int $profilesId,
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+	): array
+	{
+		return $this->connector->call("Package", "getAvailableVodsForPackage", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws Exceptions\Mw\PackageUnknownException
 	 */
 	public function getData(int $packagesId): Entities\Mw\PackageEntity
@@ -3601,7 +3877,7 @@ class Package
 
 
 	/**
-	 * @return array{rows: Entities\Mw\PackageEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\PackageEntity[], 'row_count': int}
 	 * @throws Exceptions\Mw\PackageUnknownException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -3681,7 +3957,7 @@ class Person
 
 
 	/**
-	 * @return array{id: int, text: string}[]
+	 * @return list<array{'id': int, 'text': string}>
 	 */
 	public function search(Enums\Mw\PersonEnum $type, string $search): array
 	{
@@ -3690,7 +3966,7 @@ class Person
 
 
 	/**
-	 * @return array{id: string, text: string}[]
+	 * @return list<array{'id': string, 'text': string}>
 	 */
 	public function searchForHomepageRow(Enums\Mw\PersonEnum $type, string $search): array
 	{
@@ -3699,7 +3975,7 @@ class Person
 
 
 	/**
-	 * @return array{rows: Entities\Mw\PersonAdminEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\PersonAdminEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3749,7 +4025,7 @@ class Poll
 
 
 	/**
-	 * @return array{rows: Entities\Mw\PollEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\PollEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3935,7 +4211,7 @@ class QrOverlay
 
 
 	/**
-	 * @return array{rows: Entities\Mw\QrOverlayEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\QrOverlayEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -3998,7 +4274,7 @@ class Recognition
 
 
 	/**
-	 * @return array{rows: Entities\Mw\RecognitionSavedTemplateEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\RecognitionSavedTemplateEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -4015,7 +4291,7 @@ class Recognition
 
 
 	/**
-	 * @return array{rows: Entities\Mw\TimelineSegmentEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\TimelineSegmentEntity[], 'row_count': int}
 	 * @throws Exceptions\Mw\DetectorUnknownException
 	 * @throws Exceptions\Mw\RecognitionApiException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
@@ -4029,7 +4305,7 @@ class Recognition
 
 
 	/**
-	 * @return array{rows: Entities\Mw\RecognitionAdvertSegmentListEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\RecognitionAdvertSegmentListEntity[], 'row_count': int}
 	 * @throws Exceptions\Mw\DetectorUnknownException
 	 * @throws Exceptions\Mw\RecognitionApiException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
@@ -4162,7 +4438,7 @@ class Recognition
 
 
 	/**
-	 * @return array{rows: Entities\Mw\RecognitionModelEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\RecognitionModelEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelException
 	 * @throws Exceptions\Mw\RecognitionUnknownModelChannelException
@@ -4181,7 +4457,7 @@ class Recognition
 
 
 	/**
-	 * @return array{rows: Entities\Mw\EpgEventSegmentEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\EpgEventSegmentEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -4304,12 +4580,11 @@ class Recording
 
 
 	/**
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 * @throws Exceptions\Mw\RecordingUnknownException
 	 */
 	public function getData(
 		int $epgEventsId,
-		int $profilesId,
+		Entities\Mw\ProfileEntity $profile,
 		InputEntities\Mw\CustomerDeviceEntity $device,
 	): Entities\Mw\RecommendationCardRecordingEntity
 	{
@@ -4329,12 +4604,11 @@ class Recording
 
 	/**
 	 * @return array<Entities\Mw\RecommendationRowEntity>
-	 * @throws Exceptions\Mw\ProfileUnknownException
 	 */
 	public function getRecordingsByProfile(
-		int $profilesId,
+		Entities\Mw\ProfileEntity $profile,
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
-		string $language = 'en',
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("Recording", "getRecordingsByProfile", get_defined_vars());
@@ -4366,16 +4640,6 @@ class Report
 
 	/**
 	 * @throws Exceptions\Mw\ReportUnknownReportException
-	 * @param array<int[]> $ids
-	 */
-	public function exportReports(array $ids): string
-	{
-		return $this->connector->call("Report", "exportReports", get_defined_vars());
-	}
-
-
-	/**
-	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 */
 	public function getData(int $reportsId): Entities\Mw\ReportEntity
 	{
@@ -4393,19 +4657,7 @@ class Report
 
 
 	/**
-	 * @return array<int>
-	 * @throws Exceptions\Mw\ReportQueryErrorException
-	 * @throws Exceptions\Mw\ReportUnknownReportException
-	 * @throws Exceptions\Mw\TemplateErrorFillingException
-	 */
-	public function importReports(string $neon): array
-	{
-		return $this->connector->call("Report", "importReports", get_defined_vars());
-	}
-
-
-	/**
-	 * @return array{rows: array, row_count: int}
+	 * @return array{'rows': array, 'row_count': int}
 	 * @throws Exceptions\Mw\ReportQueryErrorException
 	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 * @throws Exceptions\Mw\TemplateErrorFillingException
@@ -4423,7 +4675,7 @@ class Report
 
 
 	/**
-	 * @return array{rows: Entities\Mw\ReportEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\ReportEntity[], 'row_count': int}
 	 * @throws Exceptions\Mw\ReportUnknownReportException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 */
@@ -4490,7 +4742,7 @@ class ReportSchedule
 
 
 	/**
-	 * @return array{filename: string, content: string}
+	 * @return array{filename: string, content: string, contentType: string}
 	 * @throws Exceptions\Mw\ReportScheduleAttachementUnknownException
 	 */
 	public function downloadReport(int $reportSchedulesAttachementsId): array
@@ -4527,7 +4779,7 @@ class ReportSchedule
 
 
 	/**
-	 * @return array{rows: Entities\Mw\ReportScheduleAttachementEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\ReportScheduleAttachementEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -4544,7 +4796,7 @@ class ReportSchedule
 
 
 	/**
-	 * @return array{rows: Entities\Mw\ReportScheduleEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\ReportScheduleEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -4639,7 +4891,7 @@ class Subscription
 
 
 	/**
-	 * @return array{packages_id: int, packages_name: string, packages_recording_length: int, packages_device_count: int}[]
+	 * @return array{'packages_id': int, 'packages_name': string, 'packages_recording_length': int, 'packages_device_count': int}[]
 	 * @param array<int[]> $packages
 	 */
 	public function getPackagesBySubscribedPackage(array $packages): array
@@ -4649,7 +4901,7 @@ class Subscription
 
 
 	/**
-	 * @return array{packages_id: int, packages_name: string, packages_recording_length: int, packages_device_count: int, subscriptions_from: \DateTimeImmutable}[]
+	 * @return list<array{'packages_id': int, 'packages_name': string, 'packages_recording_length': int, 'packages_device_count': int, 'subscriptions_from': \DateTimeImmutable}>
 	 */
 	public function getPackageSubscriptions(int $customersId, ?Enums\Mw\DeviceEnum $devicesType = null): array
 	{
@@ -4711,6 +4963,7 @@ class Template
 	 * @throws Exceptions\Mw\TemplateErrorFillingException
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 * @throws Exceptions\Mw\TemplateUsedException
+	 * @throws Exceptions\Mw\TemplateMobileBitrateInvalidException
 	 */
 	public function copyTemplate(int $templatesId, string $name): int
 	{
@@ -4731,7 +4984,10 @@ class Template
 	/**
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 */
-	public function getData(int $templatesId, string $language = 'en'): Entities\Mw\TemplateEntity
+	public function getData(
+		int $templatesId,
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+	): Entities\Mw\TemplateEntity
 	{
 		return $this->connector->call("Template", "getData", get_defined_vars());
 	}
@@ -4747,7 +5003,7 @@ class Template
 
 
 	/**
-	 * @return array{rows: Entities\Mw\TemplateEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\TemplateEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -4758,7 +5014,7 @@ class Template
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-		string $language = 'en',
+		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("Template", "selection", get_defined_vars());
@@ -4770,6 +5026,7 @@ class Template
 	 * @throws Exceptions\Mw\TemplateErrorFillingException
 	 * @throws Exceptions\Mw\TemplateUnknownException
 	 * @throws Exceptions\Mw\TemplateUsedException
+	 * @throws Exceptions\Mw\TemplateMobileBitrateInvalidException
 	 */
 	public function update(?int $templatesId, InputEntities\Mw\TemplateEntity $data): int
 	{
@@ -4901,6 +5158,7 @@ class Ticket
 	 * @throws Exceptions\Mw\TicketTemplateUnknownException
 	 * @throws Exceptions\Mw\VendorRightException
 	 * @throws Exceptions\Mw\SmtpMessageSendingFailedException
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @param array<InputEntities\Mw\UploadFileEntity> $files
 	 */
 	public function insertUserMessage(int $ticketsId, string $message, array $files = []): int
@@ -4910,7 +5168,7 @@ class Ticket
 
 
 	/**
-	 * @return array{rows: Entities\Mw\TicketEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\TicketEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -4971,7 +5229,7 @@ class TicketsDepartment
 
 
 	/**
-	 * @return array{rows: Entities\Mw\TicketsDepartmentEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\TicketsDepartmentEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -5036,7 +5294,10 @@ class Transcoder
 	}
 
 
-	public function ffprobe(string $path): string
+	/**
+	 * @return array<mixed>
+	 */
+	public function ffprobe(string $path): array
 	{
 		return $this->connector->call("Transcoder", "ffprobe", get_defined_vars());
 	}
@@ -5117,7 +5378,7 @@ class Transcoder
 
 
 	/**
-	 * @return array{rows: Entities\Mw\PublicMulticastEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\PublicMulticastEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -5160,7 +5421,7 @@ class Transcoder
 
 
 	/**
-	 * @return array{rows: Entities\Mw\TranscoderEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\TranscoderEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -5177,7 +5438,7 @@ class Transcoder
 
 
 	/**
-	 * @return array{rows: Entities\Mw\StreamRecordingEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\StreamRecordingEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -5287,7 +5548,7 @@ class Translator
 
 
 	/**
-	 * @return array{words_id: int, words_text: string, translations_text: ?string, words_note: string}[]
+	 * @return array{'words_id': int, 'words_text': string, 'translations_text': ?string, 'words_note': string}[]
 	 * @throws Exceptions\Mw\LanguageUnknownException
 	 */
 	public function getTranslations(string $language): array
@@ -5315,7 +5576,8 @@ class Translator
 
 
 	/**
-	 * @param array<string[]> $languages
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 * @param array<Enums\Mw\LanguageEnum> $languages
 	 */
 	public function saveLanguages(array $languages): void
 	{
@@ -5329,15 +5591,20 @@ class Translator
 	public function translate(
 		?int $wordsId,
 		?string $wordsText,
-		string $language,
-		string $fallbackLanguage = 'en',
+		Enums\Mw\LanguageEnum $language,
+		Enums\Mw\LanguageEnum $fallbackLanguage = \Motv\ApiModule\Enum\LanguageEnum::EN,
 	): string
 	{
 		return $this->connector->call("Translator", "translate", get_defined_vars());
 	}
 
 
-	public function translateEntity(string $entity, int $entityId, string $language, string $fallbackText): string
+	public function translateEntity(
+		string $entity,
+		int $entityId,
+		Enums\Mw\LanguageEnum $language,
+		string $fallbackText,
+	): string
 	{
 		return $this->connector->call("Translator", "translateEntity", get_defined_vars());
 	}
@@ -5374,7 +5641,7 @@ class Translator
 
 
 	/**
-	 * @return array{rows: Entities\Mw\WordEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\WordEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\WordUnknownException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -5455,6 +5722,16 @@ class User
 
 
 	/**
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\ApiSupport\UserUnknownException
+	 */
+	public function impersonate(int $usersId): Entities\ApiSupport\UserEntity
+	{
+		return $this->connector->call("User", "impersonate", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws Exceptions\Mw\GeneralException
 	 * @throws Exceptions\ApiSupport\LoginInactiveRoleException
 	 * @throws Exceptions\ApiSupport\LoginInactiveUserException
@@ -5478,7 +5755,7 @@ class User
 
 
 	/**
-	 * @return array{rows: Entities\ApiSupport\UserEntity[], row_count: int}
+	 * @return array{'rows': Entities\ApiSupport\UserEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -5491,6 +5768,12 @@ class User
 	): array
 	{
 		return $this->connector->call("User", "selection", get_defined_vars());
+	}
+
+
+	public function setHomepagePreview(?int $profilesId, ?Enums\Mw\DeviceEnum $devicesType): void
+	{
+		$this->connector->call("User", "setHomepagePreview", get_defined_vars());
 	}
 
 
@@ -5519,7 +5802,7 @@ class Vendor
 
 
 	/**
-	 * @return array{rows: Entities\Mw\VendorAvatarEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\VendorAvatarEntity[], 'row_count': int}
 	 * @throws Exceptions\Mw\VendorUnknownAvatarException
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -5542,6 +5825,24 @@ class Vendor
 	public function deleteAvatar(int $vendorsAvatarsId): void
 	{
 		$this->connector->call("Vendor", "deleteAvatar", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<Enums\Mw\ChannelsViewModeEnum>
+	 */
+	public function getAllowedChannelsViewModes(int $vendorsId): array
+	{
+		return $this->connector->call("Vendor", "getAllowedChannelsViewModes", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<Enums\Mw\TvModeEnum>
+	 */
+	public function getAllowedTvModes(int $vendorsId): array
+	{
+		return $this->connector->call("Vendor", "getAllowedTvModes", get_defined_vars());
 	}
 
 
@@ -5579,7 +5880,7 @@ class Vendor
 
 
 	/**
-	 * @return array{vendors_name: string, license_count: int, license_infite: int, license_limitation: int}[]
+	 * @return list<array{vendors_name: string, license_count: int, license_infite: int, license_limitation: int}>
 	 */
 	public function getLicenseStatistics(): array
 	{
@@ -5647,7 +5948,16 @@ class Vendor
 
 
 	/**
-	 * @return array{rows: Entities\Mw\VendorEntity[], row_count: int}
+	 * @return array<string>
+	 */
+	public function getVendorsSmsUrls(Enums\Mw\VendorAppSectionEnum $section): array
+	{
+		return $this->connector->call("Vendor", "getVendorsSmsUrls", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': Entities\Mw\VendorEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
@@ -5665,7 +5975,7 @@ class Vendor
 
 
 	/**
-	 * @return array{rows: Entities\Mw\VendorChannelOrderEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\VendorChannelOrderEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -5687,6 +5997,8 @@ class Vendor
 	 * @throws Exceptions\Mw\VendorUnknownException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
 	 * @throws Exceptions\Mw\SocialIconsDuplicateException
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 * @throws Exceptions\Mw\VendorTvModeCannotBeDeactivatedException
 	 */
 	public function update(?int $vendorsId, InputEntities\Mw\VendorEntity $data): int
 	{
@@ -5741,6 +6053,29 @@ class VendorApp
 	}
 
 
+	/**
+	 * @throws Exceptions\Mw\VendorAppAndroidKeystoreUnknownException
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 */
+	public function downloadAndroidKeystore(int $vendorsId, Enums\Mw\VendorAppSectionEnum $section): string
+	{
+		return $this->connector->call("VendorApp", "downloadAndroidKeystore", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\VendorAppAndroidKeystoreCanBeGeneratedOnlyForAndroidException
+	 * @throws Exceptions\Mw\VendorAppUnknownSectionException
+	 * @throws Exceptions\Mw\VendorAppAndroidKeystoreGenerationFailedException
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\Mw\BoardApiException
+	 */
+	public function generateAndroidKeystore(int $vendorsId, Enums\Mw\VendorAppSectionEnum $section): void
+	{
+		$this->connector->call("VendorApp", "generateAndroidKeystore", get_defined_vars());
+	}
+
+
 	public function getData(int $vendorsId, Enums\Mw\VendorAppSectionEnum $section): ?Entities\Mw\VendorAppParentEntity
 	{
 		return $this->connector->call("VendorApp", "getData", get_defined_vars());
@@ -5763,6 +6098,26 @@ class VendorApp
 
 
 	/**
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\Mw\VendorAppRokuAppPackageUnknownException
+	 * @throws Exceptions\Mw\VendorAppUnknownSectionException
+	 */
+	public function getRokuAppPackage(int $vendorsId): string
+	{
+		return $this->connector->call("VendorApp", "getRokuAppPackage", get_defined_vars());
+	}
+
+
+	/**
+	 * @return string[]|null
+	 */
+	public function getSamsungLgReleaseErrors(int $vendorsId): ?array
+	{
+		return $this->connector->call("VendorApp", "getSamsungLgReleaseErrors", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 */
 	public function removeImage(int $vendorsId, Enums\Mw\VendorAppSectionEnum $section, string $imageName): void
@@ -5778,7 +6133,7 @@ class VendorApp
 
 
 	/**
-	 * @return array{rows: Entities\Mw\VendorAppStatusLogEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\VendorAppStatusLogEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -5805,9 +6160,9 @@ class VendorApp
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function updateSectionAndroid(int $vendorsId, InputEntities\Mw\VendorAppAndroidEntity $data): int
@@ -5817,9 +6172,9 @@ class VendorApp
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function updateSectionAndroidTV(int $vendorsId, InputEntities\Mw\VendorAppAndroidTVEntity $data): int
@@ -5829,9 +6184,9 @@ class VendorApp
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function updateSectionGeneral(int $vendorsId, InputEntities\Mw\VendorAppGeneralEntity $data): int
@@ -5841,9 +6196,9 @@ class VendorApp
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function updateSectionIOS(int $vendorsId, InputEntities\Mw\VendorAppIOSEntity $data): int
@@ -5853,9 +6208,9 @@ class VendorApp
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function updateSectionPortal(int $vendorsId, InputEntities\Mw\VendorAppPortalEntity $data): int
@@ -5865,9 +6220,9 @@ class VendorApp
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function updateSectionRoku(int $vendorsId, InputEntities\Mw\VendorAppRokuEntity $data): int
@@ -5877,9 +6232,9 @@ class VendorApp
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function updateSectionSamsungLg(int $vendorsId, InputEntities\Mw\VendorAppSamsungLgEntity $data): int
@@ -5889,14 +6244,69 @@ class VendorApp
 
 
 	/**
-	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\CustomerIncorrectLoginPasswordException
 	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 * @throws Exceptions\Mw\InvalidParameterValueException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function updateSectionTVOS(int $vendorsId, InputEntities\Mw\VendorAppTVOSEntity $data): int
 	{
 		return $this->connector->call("VendorApp", "updateSectionTVOS", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\VendorAppAndroidKeystoreCanBeGeneratedOnlyForAndroidException
+	 * @throws Exceptions\Mw\VendorAppUnknownSectionException
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 */
+	public function uploadAndroidKeystoreData(
+		int $vendorsId,
+		Enums\Mw\VendorAppSectionEnum $section,
+		string $keystore,
+		string $password,
+		string $storePassword,
+		string $alias,
+	): void
+	{
+		$this->connector->call("VendorApp", "uploadAndroidKeystoreData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Mw\InvalidParameterValueException
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\Mw\VendorAppUnknownSectionException
+	 * @throws Exceptions\Mw\ImageInvalidBase64Exception
+	 */
+	public function uploadImage(
+		int $vendorsId,
+		Enums\Mw\VendorAppSectionEnum $section,
+		string $imageName,
+		string $image,
+	): void
+	{
+		$this->connector->call("VendorApp", "uploadImage", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\Mw\VendorAppUnknownSectionException
+	 */
+	public function uploadRokuAppPackage(int $vendorsId, string $appPackage): void
+	{
+		$this->connector->call("VendorApp", "uploadRokuAppPackage", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\Mw\VendorAppUnknownSectionException
+	 */
+	public function uploadRokuSignKey(int $vendorsId, string $signKey): void
+	{
+		$this->connector->call("VendorApp", "uploadRokuSignKey", get_defined_vars());
 	}
 }
 
@@ -5971,7 +6381,7 @@ class Vod
 
 
 	/**
-	 * @return array{raw: string, duration: string, bitrate: string, streams: array<string,array{mapping: string, language: string, type: string, data: string}[]>}
+	 * @return array{raw: string, duration: string, bitrate: string, streams: array<string,array<string,mixed>[]>}
 	 * @throws Exceptions\Mw\TranscoderUnableToContactException
 	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 * @throws Exceptions\Mw\VodUnknownException
@@ -5988,6 +6398,15 @@ class Vod
 	public function getAdminData(int $vodsId): Entities\Mw\VodEntity
 	{
 		return $this->connector->call("Vod", "getAdminData", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<int>
+	 */
+	public function getAvailablePackagesForVod(int $vodsId): array
+	{
+		return $this->connector->call("Vod", "getAvailablePackagesForVod", get_defined_vars());
 	}
 
 
@@ -6101,6 +6520,15 @@ class Vod
 
 
 	/**
+	 * @throws Exceptions\Mw\VodUnknownException
+	 */
+	public function getVodsName(int $vodsId, ?Enums\Mw\LanguageEnum $language = null): string
+	{
+		return $this->connector->call("Vod", "getVodsName", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws Exceptions\Mw\SystemCommandFailedException
 	 * @throws Exceptions\Mw\SystemFailedToUploadFileException
 	 * @throws Exceptions\Mw\TranscoderUnableToContactException
@@ -6149,7 +6577,7 @@ class Vod
 
 
 	/**
-	 * @return array{rows: Entities\Mw\LibrarySearchEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\LibrarySearchEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -6184,7 +6612,7 @@ class Vod
 
 
 	/**
-	 * @return array{id: int, text: string}[]
+	 * @return list<array{'id': int, 'text': string}>
 	 */
 	public function search(string $search): array
 	{
@@ -6193,7 +6621,7 @@ class Vod
 
 
 	/**
-	 * @return array{rows: Entities\Mw\VodEntity[], row_count: int}
+	 * @return array{'rows': Entities\Mw\VodEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
 	 */
@@ -6210,6 +6638,7 @@ class Vod
 
 
 	/**
+	 * @throws Exceptions\Mw\TranscoderUnknownException
 	 * @throws Exceptions\Mw\VodUnknownException
 	 */
 	public function startTrailerTranscoding(int $vodsId): void

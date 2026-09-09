@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Tue, 26 Aug 2025 10:50:12
+ * Generated on Wed, 9 Sep 2026 10:01:22
  * Part moTV.eu SDK integration kit
  */
 
@@ -228,6 +228,12 @@ class Config
 	}
 
 
+	public function getLocale(): string
+	{
+		return $this->connector->call("Config", "getLocale", get_defined_vars());
+	}
+
+
 	public function getRequiresOtp(): bool
 	{
 		return $this->connector->call("Config", "getRequiresOtp", get_defined_vars());
@@ -243,6 +249,12 @@ class Config
 	public function isSmsMotvOnly(): bool
 	{
 		return $this->connector->call("Config", "isSmsMotvOnly", get_defined_vars());
+	}
+
+
+	public function mwApiUrl(): ?string
+	{
+		return $this->connector->call("Config", "mwApiUrl", get_defined_vars());
 	}
 
 
@@ -309,9 +321,9 @@ class Customer
 	/**
 	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
 	 */
-	public function customerExists(int $viewers_id): bool
+	public function customerExists(int $viewers_id): void
 	{
-		return $this->connector->call("Customer", "customerExists", get_defined_vars());
+		$this->connector->call("Customer", "customerExists", get_defined_vars());
 	}
 
 
@@ -1261,6 +1273,10 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\MotvUnknownPortalException
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
 	 * @throws Exceptions\Sms\TemplateUnknownTemplateException
+	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
+	 * @throws Exceptions\Sms\MotvUnknownDeviceException
+	 * @throws Exceptions\Sms\NotLoggedInException
+	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 */
 	public function apiRequestNewPassword(string $login, ?int $vendors_id = null): void
 	{
@@ -1274,6 +1290,10 @@ class Devices_Motv
 	 * @throws Exceptions\Sms\MotvUnknownPortalException
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
 	 * @throws Exceptions\Sms\TemplateUnknownTemplateException
+	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
+	 * @throws Exceptions\Sms\MotvUnknownDeviceException
+	 * @throws Exceptions\Sms\NotLoggedInException
+	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 */
 	public function apiRequestNewPin(string $login, ?int $vendors_id = null): void
 	{
@@ -1341,6 +1361,17 @@ class Devices_Motv
 	): void
 	{
 		$this->connector->call("Devices.Motv", "finishSocialRegistration", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\MotvUnknownPortalException
+	 * @throws Exceptions\Sms\MotvIncorrectUsernamePasswordException
+	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
+	 */
+	public function getAccountPurchaseBanner(string $customers_token): Entities\Sms\MotvAccountPurchaseBannerEntity
+	{
+		return $this->connector->call("Devices.Motv", "getAccountPurchaseBanner", get_defined_vars());
 	}
 
 
@@ -1503,7 +1534,7 @@ class Devices_Motv
 
 
 	/**
-	 * @return array<int,array{portal: int<0, 4294967295>, name: string, vendor: int<0, 4294967295>, api: string|null, mw: string}>
+	 * @return array<int,array{portal: int<0, 4294967295>, name: string, vendor: int<0, 4294967295>, api: string, mw: string}>
 	 */
 	public function getProviderData(): array
 	{
@@ -1613,6 +1644,145 @@ class Devices_Motv
 	}
 }
 
+class Documentation
+{
+	/** @var AdminConnector */
+	private $connector;
+
+
+	public function __construct(AdminConnector $connector)
+	{
+		$this->connector = $connector;
+	}
+
+
+	public function generatePostmanCollection(
+		string $name,
+		string $baseUrl,
+		string $apiUrl,
+		string $type,
+		string $endpointDestination,
+		string $headerAuthorization,
+	): string
+	{
+		return $this->connector->call("Documentation", "generatePostmanCollection", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<Entities\ApiSupport\DocumentationApiEntity>
+	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
+	 */
+	public function getApi(string $type, bool $onlyAllowedFunctions = true, ?string $search = null): array
+	{
+		return $this->connector->call("Documentation", "getApi", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<string>
+	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
+	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
+	 */
+	public function getApiClasses(string $type, bool $onlyAllowedFunctions = true, ?string $search = null): array
+	{
+		return $this->connector->call("Documentation", "getApiClasses", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\ApiSupport\DocumentationModelNotFoundException
+	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
+	 */
+	public function getApiModel(string $type): Entities\ApiSupport\DocumentationApiEntity
+	{
+		return $this->connector->call("Documentation", "getApiModel", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<string>
+	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
+	 * @throws Exceptions\ApiSupport\DocumentationUnknownApiNameException
+	 */
+	public function getAvailableModels(string $type): array
+	{
+		return $this->connector->call("Documentation", "getAvailableModels", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<string,array<string,string>>
+	 */
+	public function getDatabaseStructure(): array
+	{
+		return $this->connector->call("Documentation", "getDatabaseStructure", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<Entities\ApiSupport\DocumentationEntityEntity>
+	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
+	 */
+	public function getEntities(?string $search = null): array
+	{
+		return $this->connector->call("Documentation", "getEntities", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
+	 */
+	public function getEntity(string $type, bool $input = false): Entities\ApiSupport\DocumentationEntityEntity
+	{
+		return $this->connector->call("Documentation", "getEntity", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\ApiSupport\DocumentationEnumNotFoundException
+	 */
+	public function getEnum(string $name): Entities\ApiSupport\DocumentationEnumEntity
+	{
+		return $this->connector->call("Documentation", "getEnum", get_defined_vars());
+	}
+
+
+	public function getEnums(?string $search = null): array
+	{
+		return $this->connector->call("Documentation", "getEnums", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<\ErrorCodeEntity>
+	 */
+	public function getErrorCodes(?string $search = null): array
+	{
+		return $this->connector->call("Documentation", "getErrorCodes", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<string>
+	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
+	 */
+	public function getExtendedEntities(string $type, bool $input = false): array
+	{
+		return $this->connector->call("Documentation", "getExtendedEntities", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array<Entities\ApiSupport\DocumentationEntityEntity>
+	 * @throws Exceptions\ApiSupport\DocumentationEntityNotFoundException
+	 */
+	public function getInputEntities(?string $search = null): array
+	{
+		return $this->connector->call("Documentation", "getInputEntities", get_defined_vars());
+	}
+}
+
 class Epg
 {
 	/** @var AdminConnector */
@@ -1633,6 +1803,7 @@ class Epg
 	 * @throws Exceptions\Sms\EpgUnsupportedFileException
 	 * @throws Exceptions\Sms\EpgUnsupportedDateFormatException
 	 * @throws Exceptions\Sms\EpgXmlFatalErrorException
+	 * @throws Exceptions\Sms\InvalidParameterValueException
 	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
 	 */
 	public function autoProccessAll(): void
@@ -1656,6 +1827,7 @@ class Epg
 	 * @throws Exceptions\Sms\EpgExcelErrorException
 	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
 	 * @throws Exceptions\Sms\EpgUnknownEpgException
+	 * @throws Exceptions\Sms\InvalidParameterValueException
 	 */
 	public function autoProcessFtp(?int $epg_id = null, ?\DateTimeImmutable $ftpDate = null): array
 	{
@@ -1672,6 +1844,7 @@ class Epg
 	 * @throws Exceptions\Sms\EpgUnsupportedFileException
 	 * @throws Exceptions\Sms\EpgUnsupportedDateFormatException
 	 * @throws Exceptions\Sms\EpgXmlFatalErrorException
+	 * @throws Exceptions\Sms\InvalidParameterValueException
 	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
 	 */
 	public function autoProcessHttp(?int $epg_id = null, ?\DateTimeImmutable $httpDate = null): array
@@ -1688,6 +1861,7 @@ class Epg
 	 * @throws Exceptions\Sms\EpgSetExceptionException
 	 * @throws Exceptions\Sms\EpgUnsupportedDateFormatException
 	 * @throws Exceptions\Sms\EpgXmlFatalErrorException
+	 * @throws Exceptions\Sms\InvalidParameterValueException
 	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
 	 */
 	public function autoProcessImap(?int $epg_id = null): array
@@ -1900,6 +2074,7 @@ class Epg
 	 * @throws Exceptions\Sms\EpgUnsupportedDateFormatException
 	 * @throws Exceptions\Sms\EpgXmlFatalErrorException
 	 * @throws Exceptions\Sms\EpgUnknownEpgException
+	 * @throws Exceptions\Sms\InvalidParameterValueException
 	 */
 	public function getDataFromXml(int $epg_id, string $file): array
 	{
@@ -2080,6 +2255,7 @@ class Epg
 	 * @throws Exceptions\Sms\EpgUnsupportedFileException
 	 * @throws Exceptions\Sms\EpgUnsupportedDateFormatException
 	 * @throws Exceptions\Sms\EpgXmlFatalErrorException
+	 * @throws Exceptions\Sms\InvalidParameterValueException
 	 */
 	public function saveEpgFile(string $file, string $name, int $epgId, bool $sendToMw): int
 	{
@@ -2178,6 +2354,7 @@ class Epg
 	 * @throws Exceptions\Sms\EpgUnsupportedFileException
 	 * @throws Exceptions\Sms\EpgUnsupportedDateFormatException
 	 * @throws Exceptions\Sms\EpgXmlFatalErrorException
+	 * @throws Exceptions\Sms\InvalidParameterValueException
 	 */
 	public function uploadEpgFile(string $file, string $name, int $epgId): void
 	{
@@ -2209,6 +2386,15 @@ class Gallery
 	public function getImage(int $images_id): Entities\Sms\GalleryImageEntity
 	{
 		return $this->connector->call("Gallery", "getImage", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\GalleryUnknownImageException
+	 */
+	public function getImageUrl(int $images_id): string
+	{
+		return $this->connector->call("Gallery", "getImageUrl", get_defined_vars());
 	}
 
 
@@ -2439,6 +2625,7 @@ class Integration
 		?array $macAdresses = null,
 		array $additionalCustomerData = [],
 		?int $vendorsId = null,
+		?Enums\Sms\TvModeEnum $tvMode = null,
 	): int
 	{
 		return $this->connector->call("Integration", "createMotvCustomer", get_defined_vars());
@@ -2536,6 +2723,7 @@ class Integration
 		?array $macAdresses = null,
 		array $additionalCustomerData = [],
 		?int $portals_id = null,
+		?Enums\Sms\TvModeEnum $tvMode = null,
 	): int
 	{
 		return $this->connector->call("Integration", "updateMotvCustomer", get_defined_vars());
@@ -2798,6 +2986,7 @@ class Product
 	 * @throws Exceptions\Sms\GroupUnknownGroupException
 	 * @throws Exceptions\Sms\ProductForRenewingCannotHaveLengthInMinutesException
 	 * @throws Exceptions\Sms\ProductInitPriceHasToBeHigherThenZeroException
+	 * @throws Exceptions\Sms\ProductPriceHasToBeZeroForFreePrepayProductsException
 	 * @throws Exceptions\ApiSupport\InvalidRequestDataException
 	 */
 	public function update(?int $products_id, InputEntities\Sms\ProductEntity $data): int
@@ -3335,6 +3524,7 @@ class Sales
 		?int $device_id = null,
 		bool $forSelfcare = false,
 		?string $currency = null,
+		bool $ipCheck = false,
 	): array
 	{
 		return $this->connector->call("Sales", "getAllowedProductsForCustomer", get_defined_vars());
@@ -3540,6 +3730,15 @@ class Selfcare
 
 
 	/**
+	 * @throws Exceptions\Sms\TemplateErrorFillingException
+	 */
+	public function canRemoveAllSubscriptions(int $viewersId): bool
+	{
+		return $this->connector->call("Selfcare", "canRemoveAllSubscriptions", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws Exceptions\Sms\SelfcareNotAllowedException
 	 * @throws Exceptions\Sms\SelfcareOrderUnknownException
 	 * @throws Exceptions\Sms\SelfcarePaymentGatewayUnknownException
@@ -3565,10 +3764,58 @@ class Selfcare
 		int $paymentGatewaysId,
 		string $currency,
 		?string $devicesType,
+		?Enums\Sms\InitPaymentTypeEnum $initPaymentTypeEnum,
 		?array $extendedData = null,
+		?string $cardNumber = null,
+		?string $expirationDate = null,
+		?string $securityCode = null,
 	): string
 	{
 		return $this->connector->call("Selfcare", "createOrder", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\SelfcareNotAllowedException
+	 * @throws Exceptions\Sms\SelfcareOrderFailException
+	 * @throws Exceptions\Sms\SelfcareOrderUnknownException
+	 * @throws Exceptions\Sms\SelfcarePaymentGatewayUnknownException
+	 */
+	public function enterAdditionalFields(
+		string $ordersReference,
+		string $city,
+		string $state,
+		string $line1,
+		string $country,
+		string $postalCode,
+		?string $line2,
+	): string
+	{
+		return $this->connector->call("Selfcare", "enterAdditionalFields", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\SelfcareNotAllowedException
+	 * @throws Exceptions\Sms\SelfcareOrderFailException
+	 * @throws Exceptions\Sms\SelfcareOrderUnknownException
+	 * @throws Exceptions\Sms\SelfcarePaymentGatewayUnknownException
+	 */
+	public function enterOtp(string $ordersReference, string $otp): string
+	{
+		return $this->connector->call("Selfcare", "enterOtp", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\SelfcareNotAllowedException
+	 * @throws Exceptions\Sms\SelfcareOrderFailException
+	 * @throws Exceptions\Sms\SelfcareOrderUnknownException
+	 * @throws Exceptions\Sms\SelfcarePaymentGatewayUnknownException
+	 */
+	public function enterPin(string $ordersReference, string $pin): string
+	{
+		return $this->connector->call("Selfcare", "enterPin", get_defined_vars());
 	}
 
 
@@ -3596,6 +3843,7 @@ class Selfcare
 	 * @throws Exceptions\Sms\MotvUnknownPortalException
 	 * @throws Exceptions\Sms\NotLoggedInException
 	 * @throws Exceptions\Sms\ProductUnknownProductException
+	 * @throws Exceptions\Sms\SelfcareSubscriptionDuplicateException
 	 * @throws Exceptions\Sms\SubscriptionUnknownSubscriptionException
 	 * @throws Exceptions\Sms\TemplateErrorFillingException
 	 * @throws Exceptions\Sms\TemplateUnknownTemplateException
@@ -3644,6 +3892,12 @@ class Selfcare
 	public function getAllowedProductsForCustomer(string $customers_token, ?string $currency = null): array
 	{
 		return $this->connector->call("Selfcare", "getAllowedProductsForCustomer", get_defined_vars());
+	}
+
+
+	public function getCountriesId(): ?int
+	{
+		return $this->connector->call("Selfcare", "getCountriesId", get_defined_vars());
 	}
 
 
@@ -3705,6 +3959,23 @@ class Selfcare
 
 
 	/**
+	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
+	 * @throws Exceptions\Sms\SelfcareAutogeneratedCustomersCannotUseSelfcareException
+	 * @throws Exceptions\Sms\SelfcareNotAllowedException
+	 * @throws Exceptions\Sms\MotvIncorrectUsernamePasswordException
+	 */
+	public function getLockedContentName(
+		string $customers_token,
+		int $lockedContentId,
+		string $language,
+		Enums\Sms\SelfcareLockedContentTypeEnum $lockedContentType,
+	): string
+	{
+		return $this->connector->call("Selfcare", "getLockedContentName", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws Exceptions\Sms\SelfcareOrderUnknownException
 	 */
 	public function getOrder(int $ordersId): Entities\Sms\SelfcareOrderEntity
@@ -3750,6 +4021,15 @@ class Selfcare
 
 
 	/**
+	 * @throws Exceptions\Sms\SelfcarePaymentGatewayUnknownException
+	 */
+	public function getPaymentGatewayConnectivity(int $paymentGatewaysId): Entities\Sms\ConnectivityResultEntity
+	{
+		return $this->connector->call("Selfcare", "getPaymentGatewayConnectivity", get_defined_vars());
+	}
+
+
+	/**
 	 * @return array<Entities\Sms\PaymentGatewayEntity>
 	 * @throws Exceptions\Sms\SelfcarePaymentGatewayUnknownException
 	 * @throws Exceptions\Sms\BouquetUnknownBouquetException
@@ -3764,6 +4044,7 @@ class Selfcare
 		int $productsId,
 		Enums\Sms\ProductContentTypeEnum $type,
 		?string $customers_token = null,
+		?Enums\Sms\InitPaymentTypeEnum $initPaymentType = null,
 	): array
 	{
 		return $this->connector->call("Selfcare", "getPaymentGatewaysForProduct", get_defined_vars());
@@ -3793,12 +4074,55 @@ class Selfcare
 
 
 	/**
+	 * @return array<Entities\Sms\SalesProductEntity>
+	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
+	 * @throws Exceptions\Sms\GroupUnknownGroupException
+	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
+	 * @throws Exceptions\Sms\SelfcareAutogeneratedCustomersCannotUseSelfcareException
+	 * @throws Exceptions\Sms\SelfcareNotAllowedException
+	 * @throws Exceptions\Sms\SelfcareSubscriptionUnknownException
+	 * @throws Exceptions\Sms\BouquetUnknownBouquetException
+	 * @throws Exceptions\Sms\MotvIncorrectUsernamePasswordException
+	 * @throws Exceptions\Sms\ProductUnknownProductException
+	 * @throws Exceptions\Sms\TemplateErrorFillingException
+	 */
+	public function getProductsByLockedContent(
+		int $lockedContentId,
+		string $language,
+		string $customers_token,
+		Enums\Sms\SelfcareLockedContentTypeEnum $lockedContentType,
+		?string $currency = null,
+	): array
+	{
+		return $this->connector->call("Selfcare", "getProductsByLockedContent", get_defined_vars());
+	}
+
+
+	/**
 	 * @return array<Entities\Sms\SelfcareOrderEntity>
 	 * @throws Exceptions\Sms\SelfcareOrderUnknownException
 	 */
 	public function getRecurringOrders(int $parentOrdersId): array
 	{
 		return $this->connector->call("Selfcare", "getRecurringOrders", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\SelfcareLogUnknownException
+	 */
+	public function getSelfcareLogData(int $selfcareLogId): Entities\Sms\SelfcareLogEntity
+	{
+		return $this->connector->call("Selfcare", "getSelfcareLogData", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\SelfcareLogUnknownException
+	 */
+	public function getSelfcareLogSession(int $selfcareLogSessionId): Entities\Sms\SelfcareLogSessionEntity
+	{
+		return $this->connector->call("Selfcare", "getSelfcareLogSession", get_defined_vars());
 	}
 
 
@@ -3812,12 +4136,21 @@ class Selfcare
 
 
 	/**
+	 * @throws Exceptions\Sms\SelfcareSubscriptionUnknownException
+	 */
+	public function getSubscriptionFromParentOrder(int $ordersId): Entities\Sms\SelfcareSubscriptionEntity
+	{
+		return $this->connector->call("Selfcare", "getSubscriptionFromParentOrder", get_defined_vars());
+	}
+
+
+	/**
 	 * @throws Exceptions\Sms\SelfcareNotAllowedException
 	 * @throws Exceptions\Sms\MotvIncorrectUsernamePasswordException
 	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
 	 * @throws Exceptions\Sms\SelfcareAutogeneratedCustomersCannotUseSelfcareException
 	 */
-	public function getTermsOfUse(string $customers_token, string $language): ?string
+	public function getTermsOfUse(string $customers_token, string $language): ?\Nette\Utils\Html
 	{
 		return $this->connector->call("Selfcare", "getTermsOfUse", get_defined_vars());
 	}
@@ -3921,6 +4254,12 @@ class Selfcare
 	}
 
 
+	public function isInitialPaymentSupported(): bool
+	{
+		return $this->connector->call("Selfcare", "isInitialPaymentSupported", get_defined_vars());
+	}
+
+
 	public function isOneTimePaymentSupported(): bool
 	{
 		return $this->connector->call("Selfcare", "isOneTimePaymentSupported", get_defined_vars());
@@ -3936,6 +4275,12 @@ class Selfcare
 	public function isSelfcareAllowed(): bool
 	{
 		return $this->connector->call("Selfcare", "isSelfcareAllowed", get_defined_vars());
+	}
+
+
+	public function isTrialPaymentSupported(): bool
+	{
+		return $this->connector->call("Selfcare", "isTrialPaymentSupported", get_defined_vars());
 	}
 
 
@@ -4066,6 +4411,37 @@ class Selfcare
 
 
 	/**
+	 * @throws Exceptions\Sms\CustomerIsNotInTestingCategoryException
+	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
+	 * @throws Exceptions\Sms\SelfcareNotAllowedException
+	 * @throws Exceptions\Sms\TemplateErrorFillingException
+	 */
+	public function removeAllSubscriptions(int $viewersId): void
+	{
+		$this->connector->call("Selfcare", "removeAllSubscriptions", get_defined_vars());
+	}
+
+
+	/**
+	 * @return array{'rows': Entities\Sms\SelfcareLogSessionEntity[], 'row_count': int}
+	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
+	 * @throws Exceptions\Sms\SelfcareLogUnknownException
+	 * @param array<InputEntities\ApiSupport\WhereEntity> $where
+	 */
+	public function selectionLog(
+		array $where = [],
+		?string $orderColumn = null,
+		bool $orderAscending = true,
+		?int $page = null,
+		?int $page_limit = null,
+		bool $infinityPaginatior = false,
+	): array
+	{
+		return $this->connector->call("Selfcare", "selectionLog", get_defined_vars());
+	}
+
+
+	/**
 	 * @return array{'rows': Entities\Sms\SelfcareOrderEntity[], 'row_count': int}
 	 * @throws Exceptions\ApiSupport\DatabaseSelectionException
 	 * @throws Exceptions\Sms\SelfcareOrderUnknownException
@@ -4077,6 +4453,7 @@ class Selfcare
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $page_limit = null,
+		bool $infinityPaginatior = false,
 	): array
 	{
 		return $this->connector->call("Selfcare", "selectionOrders", get_defined_vars());
@@ -4133,6 +4510,46 @@ class Selfcare
 	): array
 	{
 		return $this->connector->call("Selfcare", "selectionSubscriptions", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
+	 * @throws Exceptions\ApiSupport\DatabaseErrorTryAgainException
+	 * @throws Exceptions\Sms\GroupUnknownGroupException
+	 * @throws Exceptions\Sms\InvoiceUnknownInvoiceException
+	 * @throws Exceptions\Sms\MotvUnknownErrorTryAgainException
+	 * @throws Exceptions\Sms\MotvUnknownVodException
+	 * @throws Exceptions\Sms\SelfcareOrderCannotBeCreatedException
+	 * @throws Exceptions\Sms\SelfcareOrderUnknownException
+	 * @throws Exceptions\Sms\SelfcarePaymentGatewayUnknownException
+	 * @throws Exceptions\Sms\SelfcareSubscriptionDuplicateException
+	 * @throws Exceptions\Sms\SelfcareSubscriptionUnknownException
+	 * @throws Exceptions\Sms\TvodProductUnknownException
+	 * @throws Exceptions\Sms\UnknownProductPriceInCurrencyException
+	 * @throws Exceptions\Sms\BouquetUnknownBouquetException
+	 * @throws Exceptions\Sms\ConfigUnknownSmtpServerException
+	 * @throws Exceptions\Sms\DealerUnknownDealerException
+	 * @throws Exceptions\Sms\DeviceIncompatibleProductException
+	 * @throws Exceptions\Sms\DeviceUnknownDeviceException
+	 * @throws Exceptions\Sms\InvoiceNotEnoughCreditCustomerException
+	 * @throws Exceptions\Sms\InvoiceNotEnoughCreditDealerException
+	 * @throws Exceptions\Sms\InvoiceProductNotAllowedException
+	 * @throws Exceptions\Sms\MotvIncorrectUsernamePasswordException
+	 * @throws Exceptions\Sms\MotvUnknownDeviceException
+	 * @throws Exceptions\Sms\MotvUnknownPortalException
+	 * @throws Exceptions\Sms\NotLoggedInException
+	 * @throws Exceptions\Sms\ProductUnknownProductException
+	 * @throws Exceptions\Sms\SubscriptionUnknownSubscriptionException
+	 * @throws Exceptions\Sms\TemplateErrorFillingException
+	 * @throws Exceptions\Sms\TemplateUnknownTemplateException
+	 * @throws Exceptions\ApiSupport\InvalidRequestDataException
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\ApiSupport\UserUnknownException
+	 */
+	public function stripeWebhook(?string $stripeSignature, ?string $payload): void
+	{
+		$this->connector->call("Selfcare", "stripeWebhook", get_defined_vars());
 	}
 
 
@@ -4299,7 +4716,7 @@ class Subscription
 	 * @return array<Entities\Sms\SubscriptionEntity>
 	 * @throws Exceptions\Sms\CustomerUnknownCustomerException
 	 */
-	public function getCustomerSubscriptionInfo(int $viewers_id, $device_id = null, array $where = []): array
+	public function getCustomerSubscriptionInfo(int $viewers_id, mixed $device_id = null, array $where = []): array
 	{
 		return $this->connector->call("Subscription", "getCustomerSubscriptionInfo", get_defined_vars());
 	}
@@ -4320,6 +4737,7 @@ class Subscription
 	 * @throws Exceptions\Sms\NotLoggedInException
 	 * @throws Exceptions\Sms\SubscriptionUnknownSubscriptionException
 	 * @throws Exceptions\Sms\SubscriptionUnknownSuspensionException
+	 * @throws Exceptions\Sms\SubscriptionCannotResumeException
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 */
 	public function resumeSubscription(int $viewers_bouquets_id): int
@@ -4343,6 +4761,7 @@ class Subscription
 	/**
 	 * @throws Exceptions\Sms\NotLoggedInException
 	 * @throws Exceptions\Sms\SubscriptionUnknownSubscriptionException
+	 * @throws Exceptions\Sms\SubscriptionCannotUpdateDurationException
 	 * @throws Exceptions\ApiSupport\UnathorizedException
 	 */
 	public function update(int $viewers_bouquets_id, string $from, string $to, string $remark): void
@@ -5122,6 +5541,16 @@ class User
 	public function getPairsForTickets(bool $returnDepartment = true): array
 	{
 		return $this->connector->call("User", "getPairsForTickets", get_defined_vars());
+	}
+
+
+	/**
+	 * @throws Exceptions\ApiSupport\UnathorizedException
+	 * @throws Exceptions\ApiSupport\UserUnknownException
+	 */
+	public function impersonate(int $usersId): Entities\ApiSupport\UserEntity
+	{
+		return $this->connector->call("User", "impersonate", get_defined_vars());
 	}
 
 
