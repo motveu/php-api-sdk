@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 9 Sep 2026 9:59:49
+ * Generated on Wed, 9 Sep 2026 12:29:28
  * Part moTV.eu SDK integration kit
  */
 
@@ -20,6 +20,13 @@ enum AbTestingGroupEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
 {
 	case A = '0';
 	case B = '1';
+}
+
+enum AdSkippingEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum
+{
+	case DISABLED = 'disabled';
+	case MANUAL = 'manual';
+	case AUTOMATIC = 'automatic';
 }
 
 enum AdvertHomepageActionTypeEnum: string implements \Motv\Connector\Mw\Enums\MotvEnum

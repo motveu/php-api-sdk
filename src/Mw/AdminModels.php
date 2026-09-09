@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 9 Sep 2026 9:59:47
+ * Generated on Wed, 9 Sep 2026 12:29:26
  * Part moTV.eu SDK integration kit
  */
 
@@ -320,7 +320,7 @@ class AdvertHomepage
 	 */
 	public function getData(
 		int $advertHomepageId,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): Entities\Mw\AdvertHomepageEntity
 	{
 		return $this->connector->call("AdvertHomepage", "getData", get_defined_vars());
@@ -347,7 +347,7 @@ class AdvertHomepage
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("AdvertHomepage", "selection", get_defined_vars());
@@ -1264,7 +1264,7 @@ class Channel
 		array $preferredEdgesStoragesIds = [],
 		array $nonpreferredEdgesStoragesIds = [],
 		bool $bb8Ready = false,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 		?int $devicesId = null,
 	): Entities\Mw\StreamUrlEntity
 	{
@@ -1296,7 +1296,7 @@ class Channel
 		array $preferredEdgesStoragesIds = [],
 		array $nonpreferredEdgesStoragesIds = [],
 		bool $bb8Ready = false,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 		?int $devicesId = null,
 	): Entities\Mw\StreamUrlV2Entity
 	{
@@ -1341,7 +1341,7 @@ class Channel
 	 */
 	public function getUnicast(
 		int $channelsUnicastId,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): Entities\Mw\ChannelUnicastEntity
 	{
 		return $this->connector->call("Channel", "getUnicast", get_defined_vars());
@@ -3643,7 +3643,7 @@ class Onboarding
 	 */
 	public function getData(
 		int $onboardingId,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): Entities\Mw\OnboardingEntity
 	{
 		return $this->connector->call("Onboarding", "getData", get_defined_vars());
@@ -3661,7 +3661,7 @@ class Onboarding
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("Onboarding", "selection", get_defined_vars());
@@ -3841,7 +3841,7 @@ class Package
 	public function getAvailableVodsForPackage(
 		int $packagesId,
 		int $profilesId,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("Package", "getAvailableVodsForPackage", get_defined_vars());
@@ -4256,8 +4256,8 @@ class Recognition
 	 */
 	public function addProgramSegment(
 		int $recognitionModelsChannelsId,
-		\Safe\DateTimeImmutable $start,
-		\Safe\DateTimeImmutable $end,
+		\DateTimeImmutable $start,
+		\DateTimeImmutable $end,
 	): void
 	{
 		$this->connector->call("Recognition", "addProgramSegment", get_defined_vars());
@@ -4489,8 +4489,8 @@ class Recognition
 	 */
 	public function removeProgramSegment(
 		int $recognitionModelsChannelsId,
-		\Safe\DateTimeImmutable $start,
-		\Safe\DateTimeImmutable $end,
+		\DateTimeImmutable $start,
+		\DateTimeImmutable $end,
 	): void
 	{
 		$this->connector->call("Recognition", "removeProgramSegment", get_defined_vars());
@@ -4527,9 +4527,9 @@ class Recognition
 	 */
 	public function updateProgramSegment(
 		int $recognitionModelsChannelsId,
-		\Safe\DateTimeImmutable $start,
-		\Safe\DateTimeImmutable $end,
-		\Safe\DateTimeImmutable $newEnd,
+		\DateTimeImmutable $start,
+		\DateTimeImmutable $end,
+		\DateTimeImmutable $newEnd,
 	): void
 	{
 		$this->connector->call("Recognition", "updateProgramSegment", get_defined_vars());
@@ -4608,7 +4608,7 @@ class Recording
 	public function getRecordingsByProfile(
 		Entities\Mw\ProfileEntity $profile,
 		?InputEntities\Mw\CustomerDeviceEntity $device = null,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("Recording", "getRecordingsByProfile", get_defined_vars());
@@ -4986,7 +4986,7 @@ class Template
 	 */
 	public function getData(
 		int $templatesId,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): Entities\Mw\TemplateEntity
 	{
 		return $this->connector->call("Template", "getData", get_defined_vars());
@@ -5014,7 +5014,7 @@ class Template
 		bool $orderAscending = true,
 		?int $page = null,
 		?int $pageLimit = null,
-		Enums\Mw\LanguageEnum $language = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $language = Enums\Mw\LanguageEnum::EN,
 	): array
 	{
 		return $this->connector->call("Template", "selection", get_defined_vars());
@@ -5592,7 +5592,7 @@ class Translator
 		?int $wordsId,
 		?string $wordsText,
 		Enums\Mw\LanguageEnum $language,
-		Enums\Mw\LanguageEnum $fallbackLanguage = \Motv\ApiModule\Enum\LanguageEnum::EN,
+		Enums\Mw\LanguageEnum $fallbackLanguage = Enums\Mw\LanguageEnum::EN,
 	): string
 	{
 		return $this->connector->call("Translator", "translate", get_defined_vars());

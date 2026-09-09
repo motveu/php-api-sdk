@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 9 Sep 2026 10:01:22
+ * Generated on Wed, 9 Sep 2026 12:28:37
  * Part moTV.eu SDK integration kit
  */
 
@@ -3149,10 +3149,7 @@ class Report
 	}
 
 
-	public function precalculateReports(
-		?int $reports_precalculations_id = null,
-		?\Symfony\Component\Console\Output\OutputInterface $consoleOutput = null,
-	): void
+	public function precalculateReports(?int $reports_precalculations_id = null): void
 	{
 		$this->connector->call("Report", "precalculateReports", get_defined_vars());
 	}

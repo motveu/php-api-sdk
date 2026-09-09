@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 9 Sep 2026 10:01:24
+ * Generated on Wed, 9 Sep 2026 12:28:40
  * Part moTV.eu SDK integration kit
  */
 

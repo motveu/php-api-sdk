@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 9 Sep 2026 9:59:50
+ * Generated on Wed, 9 Sep 2026 12:29:28
  * Part moTV.eu SDK integration kit
  */
 
@@ -379,6 +379,9 @@ class ChannelEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $channels_forced_pin;
 	public int $channels_offline_playback;
 	public int $channels_chat_enabled;
+	public int $channels_ad_nonskippable;
+	public ?int $channels_ad_seek_after;
+	public int $channels_ad_timeline_markers;
 	public int $channels_restart_on_fail;
 	public int $channels_notify_on_fail;
 	public ?string $channels_note;
@@ -444,6 +447,9 @@ class ChannelInternalEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $channels_enabled_unicast;
 	public int $channels_enabled_broadcast;
 	public ?int $channels_allowed_timeshit;
+	public int $channels_ad_nonskippable;
+	public ?int $channels_ad_seek_after;
+	public int $channels_ad_timeline_markers;
 }
 
 class ChannelMulticastEntity extends ChannelMulticastUnicastEntity
@@ -1521,6 +1527,7 @@ class PackageEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $packages_include_licence;
 	public ?int $packages_homepages_id;
 	public int $packages_show_similar;
+	public \Motv\Connector\Mw\Enums\Mw\AdSkippingEnum $packages_ad_skipping;
 
 	/** @var array<int> */
 	public array $channels_packages;
@@ -2042,6 +2049,14 @@ class RightsRoleEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public int $roles_sysadmin;
 }
 
+class ScteAdSeekingRulesEntity extends \Motv\Connector\Mw\Entities\MotvEntity
+{
+	public ?int $allowSeekAfter;
+	public bool $snapToAdStart;
+	public \Motv\Connector\Mw\Enums\Mw\AdSkippingEnum $adSkipping;
+	public bool $adTimelineMarkers;
+}
+
 class SearchRuleEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 {
 	public \Motv\Connector\Mw\Enums\Mw\RecommendationEngineOperatorEnum $operator;
@@ -2226,6 +2241,7 @@ class StreamUrlBaseEntity extends \Motv\Connector\Mw\Entities\MotvEntity
 	public string $widevineCertificate;
 	public ?int $liveWindowDuration;
 	public ?StreamTimeEventsEntity $timeEvents;
+	public ?ScteAdSeekingRulesEntity $scteAdSeekingRules;
 	public ?string $chatRoomName;
 	public bool $chatAutoOpen;
 	public ?int $maxMobileBitrate;
@@ -2282,6 +2298,7 @@ class SubscribedChannelInternalEntity extends ChannelInternalEntity
 	public bool $mcast;
 	public bool $bcast;
 	public bool $allowed_recordings;
+	public \Motv\Connector\Mw\Enums\Mw\AdSkippingEnum $package_ad_skipping;
 }
 
 class SubscribedChannelLiteEntity extends \Motv\Connector\Mw\Entities\MotvEntity

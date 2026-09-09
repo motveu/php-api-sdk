@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generated on Wed, 9 Sep 2026 9:59:50
+ * Generated on Wed, 9 Sep 2026 12:29:29
  * Part moTV.eu SDK integration kit
  */
 
@@ -306,6 +306,9 @@ class ChannelEntity extends \Motv\Connector\Mw\InputEntities\MotvEntity
 	public ?array $channels_packages_locked;
 	public ?bool $channels_offline_playback;
 	public bool $channels_chat_enabled;
+	public bool $channels_ad_nonskippable;
+	public ?int $channels_ad_seek_after;
+	public bool $channels_ad_timeline_markers;
 	public ?bool $channels_package_override_enabled;
 	public ?int $channels_allowed_timeshit;
 	public ?int $channels_recording_expiration;
@@ -969,6 +972,7 @@ class PackageEntity extends \Motv\Connector\Mw\InputEntities\MotvEntity
 	public bool $packages_enabled_unicast;
 	public bool $packages_enabled_broadcast;
 	public int $packages_ip_ranges_enabled;
+	public \Motv\Connector\Mw\Enums\Mw\AdSkippingEnum $packages_ad_skipping;
 	public ?int $packages_include_licence;
 	public ?int $packages_homepages_id;
 	public ?bool $packages_show_similar;
